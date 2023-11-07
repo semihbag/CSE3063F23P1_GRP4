@@ -1,0 +1,26 @@
+
+
+Use Case: Basic Course Registration System (Student Perspective)
+
+
+1. Actor: Student
+2. Preconditions: The student is logged into the course registration system.
+3.Postconditions: The student successfully sent the course registration request and the system saved it in the Json file
+
+Main Flow:
+1- Student-specific menu content is printed on the screen
+2- The student enters an input (selected courses tab order) from the keyboard.
+   2a- The student entered a value that is not in the menu
+   2b- Appropriate error message is printed on the screen
+   1- Student-specific menu content is printed on the screen
+3- The list of courses opened on the screen is printed.
+4- The student enters the numbers of the courses he or she wants to take from the keyboard.
+   4a- If a number that should not be entered is entered, the courses indicated by the valid numbers are added to the selection list. 
+       For others, the error message is printed on the screen.
+   4- The student enters the numbers of the courses he or she wants to take from the keyboard.
+5a- The student presses the save button
+5b- The student presses the cancel button
+   5ba- Cancellation confirmation text is printed on the screen
+   4- The student enters the numbers of the courses he or she wants to take from the keyboard.
+6- The student presses the send button for the advisor's approval.
+7- The registration request process ends successfully
