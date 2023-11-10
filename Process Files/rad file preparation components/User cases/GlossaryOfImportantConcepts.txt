@@ -9,15 +9,17 @@ GLOSARRY OF IMPORTANT CONCEPTS
 5-) Course : It is the integrity of information created by the combination of interconnected information.
 6-) Course Registration System : It is a system that students can request adding or removing courses, advisors can accept or 
 reject that requests.
-7-) Dropping course : Droppping course from courses have taken.
-8-) JSON : It is a file format that provide storing datas.
-9-) Lecturer : A person who is responsible for teaching courses.
-10-) Login : Accessing Course Registration System with correct combination of username and password.
-11-) Menu : It is a list of what the user can do in Course Registration System.
-12-) Password : It is a combination of characters that enable the use course registration system. 
-13-) Prerequisite Course : Before taking that course, other courses related to it must be taken.
-14-) Save button : Allows changes to be saved.
-15-) Student : A person who is responsible for completing courses.
-16-) Transcript : Students’ grade of lecture records
-17-) User : It is a person that try to use Course Registration System. It can be student, lecturer or advisor.
-18-) UserName : It is a name. The one of the factors that enable the use course registration system.
+7-) Course Section : Gives information about course.
+8-) Dropping course : Droppping course from courses have taken.
+9-) Grade : Indicator showing how successful a lesson was passed
+10-) JSON : It is a file format that provide storing datas.
+11-) Lecturer : A person who is responsible for teaching courses.
+12-) Login : Accessing Course Registration System with correct combination of username and password.
+13-) Menu : It is a list of what the user can do in Course Registration System.
+14-) Password : It is a combination of characters that enable the use course registration system. 
+15-) Prerequisite Course : Before taking that course, other courses related to it must be taken.
+16-) Save button : Allows changes to be saved.
+17-) Student : A person who is responsible for completing courses.
+18-) Transcript : Students’ grade of lecture records
+19-) User : It is a person that try to use Course Registration System. It can be student, lecturer or advisor.
+20-) UserName : It is a name. The one of the factors that enable the use course registration system.
