@@ -1,0 +1,22 @@
+Use Case UC1: Login System for User
+
+Primary Actor: User
+
+Stakeholders and Interests:
+	-Student: wants to log in to the system for class registration
+	-Advisor: wants to log in to the system for student's class registration approval or rejection
+	-Lecturer: wants to log in to the system to view the classroom content for each of their class
+
+Preconditions: The user should have their username and password saved in files.
+
+Postcondition: Login is confirmed. The system is reached by the user and the main menu is formed based on their user type such as student, advisor, or lecturer.
+
+Main Success Scenario:
+1. The user is welcomed by a login screen.
+2. The login screen displays an area for the user to enter their username and password.
+3. The user will enter their username and password information together.
+	1a. No such user exists; System gives a warning as "Incorrect Username/Password".
+	2a. The password doesn't match for the given username; System gives a warning as "Incorrect Username/Password".
+	2. The login screen displays an are for the user to enter their username and password.
+4. If username and password information are both correct and valid for the associated account, the login process occurs and the user will successfully reach their account for further actions.
+
