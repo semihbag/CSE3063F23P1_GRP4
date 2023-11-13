@@ -10,12 +10,10 @@ public abstract class Page {
 	private String content; 
 	
 	
-	// methods
+	// methodsaaa
 	// constructor
-	public Page(Scanner consoleScanner, PageType type, String name, String content) {
+	public Page(Scanner consoleScanner, String content) {
 		setConsoleScanner(consoleScanner);
-		setType(type);
-		setName(name);
 		setContent(content);
 	}
 	
