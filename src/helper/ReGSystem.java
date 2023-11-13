@@ -9,14 +9,14 @@ public class ReGSystem {
 	private UserInterface userInterface;
 	private Scanner scanner;
 	
-	public ReGSystem(UserInterface userInterface) {
-		this.userInterface = userInterface;
+	public ReGSystem(UserInterface u) {
+		this.userInterface = u;
 		scanner = new Scanner(System.in);
 		
 	}
 	
 	public boolean login(UserInfo userInfo) {
-		return true;
+		return false;
 	}
 	
 	

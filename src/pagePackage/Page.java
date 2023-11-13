@@ -2,19 +2,19 @@ package pagePackage;
 
 import java.util.Scanner;
 
+import helper.ReGSystem;
+
 public abstract class Page {
-//	private System system;
-	private Scanner consoleScanner;
+	private ReGSystem system;
 	private PageType type;
 	private String name;
 	private String content; 
 	
 	
-	// methodsaaa
 	// constructor
-	public Page(Scanner consoleScanner, String content) {
-		setConsoleScanner(consoleScanner);
+	public Page(ReGSystem system, String content) {
 		setContent(content);
+		setSystem(system);
 	}
 	
 	// the abstract method, this will be build later 
@@ -27,20 +27,26 @@ public abstract class Page {
 	
 	// 
 	public String takeInput() {
-		String inp = consoleScanner.nextLine();
+		String inp = system.getScanner().nextLine();
 		return inp;
 	}
 
 	
-	
-	
 
-	public void setConsoleScanner(Scanner consoleScanner) {
-		this.consoleScanner = consoleScanner;
-	}
+	
+	
+	// GETTER - SETTER METHODS
 
 	public PageType getType() {
 		return type;
+	}
+
+	public ReGSystem getSystem() {
+		return system;
+	}
+
+	public void setSystem(ReGSystem system) {
+		this.system = system;
 	}
 
 	public void setType(PageType type) {
@@ -67,7 +73,6 @@ public abstract class Page {
 	
 	
 	
-	// GETTER - SETTER METHODS
 	
 	
 	

@@ -6,14 +6,12 @@ import java.util.Scanner;
 
 public class UserInterface {
 	
-	private Scanner consoleScanner;
 	private ArrayList<Page> pages;
 	private Page currentPage;
 
 	
 	// constructor
 	public UserInterface() {
-		this.consoleScanner = new Scanner(System.in);
 		this.pages = new ArrayList<>();
 	}
 	
@@ -54,7 +52,7 @@ public class UserInterface {
 	// if not return false
 	public boolean setCurrentPage(PageType pageType) {
 		int len = pages.size();
-		
+
 		Page tempPage;
 		for(int i = 0; i < len; i++) {
 			tempPage = pages.get(i);
