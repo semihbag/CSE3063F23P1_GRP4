@@ -9,6 +9,13 @@ public class UserInfo {
 		setPassword(password);
 	}
 	
+	public void reset() {
+		setUsername(null);
+		setPassword(null);
+	}
+	
+	
+	
 	/// GETTER - SETTER METHODS
 	public String getUsername() {
 		return username;
