@@ -2,13 +2,14 @@ package pagePackage;
 
 import java.util.Scanner;
 
+import helper.ReGSystem;
 import userInfoPackage.UserInfo;
 
 public class LoginPage extends Page{
 	public UserInfo userInfo;
 
-	public LoginPage(Scanner consoleScanner, PageType type, String name, String content) {
-		super(consoleScanner, content);
+	public LoginPage(ReGSystem system, String content) {
+		super(system, content);
 		setType(PageType.LOGIN_PAGE);
 		setName("Login Page");
 		userInfo = new UserInfo(null, null);
