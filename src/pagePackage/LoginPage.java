@@ -32,17 +32,12 @@ public class LoginPage extends Page{
 		System.out.println("Password:");
 		userInfo.setPassword(takeInput());
 			
-		
-		/// burası halledilecek
-		boolean res = true;
-		//res = system.login(userInfo);		
-		
-		if (res) {
-			// system.getUserInterface.setCurrentPage(PageType.MAIN_MENU_PAGE);
+				
+		if (getSystem().login(userInfo)) {
+			getSystem().getUserInterface().setCurrentPage(PageType.MAIN_MENU_PAGE);
 		}
 		else {
-			// system.getUserInterface.setCurrentPage(PageType.ERROR_PAGE);
+			getSystem().getUserInterface().setCurrentPage(PageType.ERROR_PAGE);
 		}
 	}
-	
 }
