@@ -49,7 +49,6 @@ public class UserInterface {
 	}
 	
 	
-	
 	// to change displayed page
 	// if the pages list contains the selected page, replace the page and return true
 	// if not return false
@@ -67,4 +66,5 @@ public class UserInterface {
 		}
 		return false;
 	}
+	
 }
