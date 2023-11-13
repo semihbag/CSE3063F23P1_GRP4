@@ -30,4 +30,12 @@ public class UserInterface {
 		
 		return true;
 	}
+	
+	//////
+	//////
+	//////
+	public boolean addPage(Page page) {
+		
+		return true;
+	}
 }
