@@ -69,7 +69,25 @@ public class ReGSystem {
 			// conten üreten fonksiyon (zenep yazıyor) tekrar cagırılıp üretildiği
 			// string selecable page contentinin yeni değeri olacak
 			// bu işlemi yapmazsak sürekli aynı görüntü print edilir
+			// ayrıca sayfanın numberOdSelectableCourse değeri de güncellenmeli
+
 		}
+		
+		if (functionType == FunctionType.SELECT_COURSE ) {
+			//Student student = (Student)this.getCurrentUser();
+			
+			// burada studentin içinden secilen derslere gidip gelen
+			// input (index oluyor artık o) degerindeki course drop işlemi yapıcaz
+			
+			// ayrıca bu saatten sonra data değiştigi için sayfa contentini
+			// tekrar ayarlamak lazım.
+			// conten üreten fonksiyon (zenep yazıyor) tekrar cagırılıp üretildiği
+			// string selected page contentinin yeni değeri olacak
+			// bu işlemi yapmazsak sürekli aynı görüntü print edilir.
+			// ayrıca sayfanın numberOdDropableCourse değeri de güncellenmeli
+			
+		}
+
 
 	}
 	

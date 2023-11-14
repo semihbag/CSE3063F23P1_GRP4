@@ -19,7 +19,6 @@ public class SelectableCoursesPage extends Page{
 	public SystemMessage runPage() {
 		showContent();
 		String input;
-		ArrayList<Integer> selectedNumbers = new ArrayList<>();
 		
 		while(numberOfSelectableCourses > 0) {
 			input = takeInput();
