@@ -1,15 +1,13 @@
 package pagePackage;
 
-import java.util.Scanner;
-
-import helper.ReGSystem;
+import systemMessagePackage.*;
 import userInfoPackage.UserInfo;
 
 public class LoginPage extends Page{
 	public UserInfo userInfo;
 
-	public LoginPage(ReGSystem system, String content) {
-		super(system, content);
+	public LoginPage(String content) {
+		super(content);
 		setType(PageType.LOGIN_PAGE);
 		setName("Login Page");
 		userInfo = new UserInfo(null, null);
@@ -17,7 +15,7 @@ public class LoginPage extends Page{
 
 
 	@Override
-	public void runPage() {
+	public SystemMessage runPage() {
 		// set user info null because this func may not run one time
 		userInfo.reset();
 		
@@ -32,12 +30,12 @@ public class LoginPage extends Page{
 		System.out.println("Password:");
 		userInfo.setPassword(takeInput());
 			
-				
-		if (getSystem().login(userInfo)) {
-			getSystem().getUserInterface().setCurrentPage(PageType.MAIN_MENU_PAGE);
-		}
-		else {
-			System.out.println("Your info is wrong! Try again");
-		}
+		return new SystemMessage(FunctionType.LOGIN, null,userInfo);
 	}
+
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+	
+	
 }

@@ -1,15 +1,17 @@
 package userInterfacePackage;
 
 import pagePackage.*;
+import systemMessagePackage.*;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class UserInterface {
 	
 	private ArrayList<Page> pages;
 	private Page currentPage;
+	private SystemMessage systemMessage;
 
-	
+
 	// constructor
 	public UserInterface() {
 		pages = new ArrayList<>();
@@ -18,7 +20,7 @@ public class UserInterface {
 	
 	// this function calls runPage func of the current page
 	public void display() {
-		currentPage.runPage();
+		setSystemMessage(currentPage.runPage());
 	}
 
 	
@@ -83,10 +85,26 @@ public class UserInterface {
 		return null;
 	}
 
+
+
 	
 	
 	
 	
 	/////////////////
+	
+	public Page getCurrentPage() {
+		return currentPage;
+	}
+
+	public SystemMessage getSystemMessage() {
+		return systemMessage;
+	}
+
+	public void setSystemMessage(SystemMessage systemMessage) {
+		this.systemMessage = systemMessage;
+	}
+
+	
 	
 }

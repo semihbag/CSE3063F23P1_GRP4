@@ -2,27 +2,60 @@ package helper;
 
 import java.util.Scanner;
 
+import pagePackage.PageType;
+import systemMessagePackage.FunctionType;
+import systemMessagePackage.SystemMessage;
 import userInfoPackage.UserInfo;
 import userInterfacePackage.UserInterface;
 
 public class ReGSystem {
 	private UserInterface userInterface;
-	private Scanner scanner;
 	
 	public ReGSystem(UserInterface u) {
 		this.userInterface = u;
-		scanner = new Scanner(System.in);
 		
 	}
 	
+	
+	public void run() {
+		while (true) {
+			userInterface.display();
+			listenUserInterface(userInterface.getSystemMessage());
+		}
+		
+	}
 	public boolean login(UserInfo userInfo) {
+		
+		// true case
+		this.getUserInterface().setCurrentPage(PageType.MAIN_MENU_PAGE);
 		return true;
+		// false case
+		//this.getUserInterface().setCurrentPage(PageType.LOGIN_PAGE);
+		//return false;
 	}
 	
 	
 	
 	
-
+	public void listenUserInterface(SystemMessage sm) {
+		FunctionType functionType = sm.getFunctionType();
+		
+		if (functionType == FunctionType.NONE) {
+			return;
+		}
+		
+		if (functionType == FunctionType.LOGIN) {
+			UserInfo userInfo = (UserInfo)sm.getInput();
+			this.login(userInfo);
+			return;
+		}
+		
+		if (functionType == FunctionType.CHANGE_PAGE) {
+			
+		}
+	}
+	
+	
 	public UserInterface getUserInterface() {
 		return userInterface;
 	}
@@ -31,13 +64,7 @@ public class ReGSystem {
 		this.userInterface = userInterface;
 	}
 
-	public Scanner getScanner() {
-		return scanner;
-	}
-
-	public void setScanner(Scanner scanner) {
-		this.scanner = scanner;
-	}
+	
 	
 	
 	

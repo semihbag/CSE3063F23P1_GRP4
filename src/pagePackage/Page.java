@@ -1,24 +1,22 @@
 package pagePackage;
 
 import java.util.Scanner;
+import systemMessagePackage.*;
 
-import helper.ReGSystem;
 
 public abstract class Page {
-	private ReGSystem system;
 	private PageType type;
 	private String name;
 	private String content; 
 	
 	
 	// constructor
-	public Page(ReGSystem system, String content) {
+	public Page(String content) {
 		setContent(content);
-		setSystem(system);
 	}
 	
 	// the abstract method, this will be build later 
-	public abstract void runPage();
+	public abstract SystemMessage runPage();
 	
 	// this function print the content
 	public void showContent() {
@@ -27,8 +25,9 @@ public abstract class Page {
 	
 	// 
 	public String takeInput() {
-		String inp = system.getScanner().nextLine();
-		return inp;
+		Scanner scanner = new Scanner(System.in);
+		String input = scanner.nextLine();
+		return input;
 	}
 
 	
@@ -39,14 +38,6 @@ public abstract class Page {
 
 	public PageType getType() {
 		return type;
-	}
-
-	public ReGSystem getSystem() {
-		return system;
-	}
-
-	public void setSystem(ReGSystem system) {
-		this.system = system;
 	}
 
 	public void setType(PageType type) {

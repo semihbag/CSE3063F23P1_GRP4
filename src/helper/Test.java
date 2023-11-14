@@ -12,29 +12,31 @@ public class Test {
 		UserInterface ui = new UserInterface();
 		ReGSystem system = new ReGSystem(ui);
 		
-				
-		String loginCont = "kurs kayıt sistemine hoşgeldiniz lütfen username ve password giriniz";
-		LoginPage login = new LoginPage(system, loginCont);
 		
-		String errorCont = "hatali input girisi";
-		ErrorPage error = new ErrorPage(system, errorCont);
+		String loginCont = "welcome system!";
+		LoginPage login = new LoginPage(loginCont);
+		
+		String mainStudentCont = "1- See all courses \n2- See selectable courses \n3- See selected courses";
+		MainMenuPageStudent mainStudent = new MainMenuPageStudent(mainStudentCont);
 		
 		ui.addPage(login);
-		ui.addPage(error);
-		System.out.println("zort");
+		ui.addPage(mainStudent);
 		ui.setCurrentPage(PageType.LOGIN_PAGE);
 		
 		
+		system.run();
 		
-		ui.display();
-		ui.display();
+
+		
+		
+		
+	
 		
 	
 		
 		
 		
-		system.getScanner().close();
-		System.out.println("test basarili");
+		System.err.println("\ntest basarili");
 	}
 
 }
