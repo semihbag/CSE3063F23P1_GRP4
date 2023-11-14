@@ -12,7 +12,8 @@ public class UserInterface {
 	
 	// constructor
 	public UserInterface() {
-		this.pages = new ArrayList<>();
+		pages = new ArrayList<>();
+		currentPage = null;
 	}
 	
 	// this function calls runPage func of the current page
@@ -46,7 +47,7 @@ public class UserInterface {
 		}
 	}
 	
-	
+		
 	// to change displayed page
 	// if the pages list contains the selected page, replace the page and return true
 	// if not return false
@@ -67,7 +68,7 @@ public class UserInterface {
 	
 	
 	// this function return the selected page from page list if it in list
-	// if not return null
+	// if not return null	
 	public Page selectPage(PageType pageType) {
 		int len = pages.size();
 
@@ -81,4 +82,11 @@ public class UserInterface {
 		}
 		return null;
 	}
+
+	
+	
+	
+	
+	/////////////////
+	
 }
