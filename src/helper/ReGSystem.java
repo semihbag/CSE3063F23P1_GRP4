@@ -16,7 +16,6 @@ public class ReGSystem {
 		
 	}
 	
-	
 	public void run() {
 		while (true) {
 			userInterface.display();
@@ -24,6 +23,7 @@ public class ReGSystem {
 		}
 		
 	}
+	
 	public boolean login(UserInfo userInfo) {
 		
 		// true case
@@ -34,8 +34,7 @@ public class ReGSystem {
 		//return false;
 	}
 	
-	
-	
+		
 	
 	public void listenUserInterface(SystemMessage sm) {
 		FunctionType functionType = sm.getFunctionType();
@@ -58,6 +57,10 @@ public class ReGSystem {
 			this.userInterface.setCurrentPage(sm.getNextPageType());
 		}
 		
+		if (functionType == FunctionType.SELECT_COURSE ) {
+			
+		}
+
 	}
 	
 	
