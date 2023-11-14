@@ -13,8 +13,8 @@ public class ErrorPage extends Page{
 	
 	@Override
 	public void runPage() {
-		// TODO Auto-generated method stub
 		showContent();
+		
 	}
 	
 }
