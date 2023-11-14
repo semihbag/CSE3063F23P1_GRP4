@@ -34,3 +34,16 @@ public class Advisor extends Lecturer {
         }
         return awaitingStudent;
     }
+
+    // Find the correspondence index of Student Object
+    public int selectStudent(int index) {
+        
+        index = index - 1;
+        int numberOfStudents = awaitingStudents.size();
+        if (index >= numberOfStudents || index < 0) {
+            return -1;
+        }
+        else {
+            return index;
+        }
+    }
