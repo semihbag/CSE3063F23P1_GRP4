@@ -37,7 +37,7 @@ public class LoginPage extends Page{
 			getSystem().getUserInterface().setCurrentPage(PageType.MAIN_MENU_PAGE);
 		}
 		else {
-			getSystem().getUserInterface().setCurrentPage(PageType.ERROR_PAGE);
+			System.out.println("Your info is wrong! Try again");
 		}
 	}
 }

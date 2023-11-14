@@ -16,7 +16,7 @@ public class ReGSystem {
 	}
 	
 	public boolean login(UserInfo userInfo) {
-		return false;
+		return true;
 	}
 	
 	
