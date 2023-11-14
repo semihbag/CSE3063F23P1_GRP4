@@ -47,3 +47,31 @@ public class Advisor extends Lecturer {
             return index;
         }
     }
+
+    // Approve request of selected Student
+    public void Approve(Student student) {
+
+        ArrayList<Course> selectCourses = student.getSelectedCourses();
+        int numberOfCourses = selectCourses.size();
+        for(int index = 0 ; index < numberOfCourses ; index++) {
+            Course course = selectCourses.get(index);
+            student.addApprovedCourses(course);
+            student.dropSelectedCourses(course);
+        }
+        student.updateRequestNone();
+        this.removeAwaitingStudent(student);
+    }
+
+    // Dissapprove Student request
+    public void Disapprove(Student student) {
+
+        ArrayList<Course> selectCourses = student.getSelectedCourses();
+        int numberOfCourses = selectCourses.size();
+        for(int index = 0 ; index < numberOfCourses ; index++) {
+            Course course = selectCourses.get(index);
+            student.updateSelectableCourses(course);
+            student.dropSelectedCourses(course);
+        }
+        student.updateRequestFalse();
+        this.removeAwaitingStudent(student);
+    }
