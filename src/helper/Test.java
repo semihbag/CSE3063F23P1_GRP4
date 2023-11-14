@@ -14,7 +14,7 @@ public class Test {
 		
 		
 		String loginCont = "welcome system!";
-		LoginPage login = new LoginPage(loginCont);
+		Page login = new LoginPage(loginCont);
 		
 		String mainStudentCont = "1- See all courses \n2- See selectable courses \n3- See selected courses \n4- Exit";
 		MainMenuPageStudent mainStudent = new MainMenuPageStudent(mainStudentCont);

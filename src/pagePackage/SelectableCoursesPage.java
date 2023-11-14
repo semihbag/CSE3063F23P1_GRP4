@@ -21,7 +21,7 @@ public class SelectableCoursesPage extends Page{
 		String input;
 		ArrayList<Integer> selectedNumbers = new ArrayList<>();
 		
-		while(true) {
+		while(numberOfSelectableCourses > 0) {
 			input = takeInput();
 			
 			try {
@@ -31,22 +31,29 @@ public class SelectableCoursesPage extends Page{
 					System.out.println("Enter a valid number");
 					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTABLE_COURSES_PAGE, null);
 				}
-				
-				if (selectedNumbers.contains(selection)) {
-					System.out.println("You have already chosen this course");
-					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTABLE_COURSES_PAGE, null);
-				}
 				else {
-					selectedNumbers.add(selection);
 					return new SystemMessage(FunctionType.SELECT_COURSE, PageType.SELECTABLE_COURSES_PAGE, selection);
 				}
 			} 
 			catch (NumberFormatException e) {
-
-			}
+				if (input == "q") {
+					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
+				}
+				else {
+					System.out.println("Wrong Input");
+					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTABLE_COURSES_PAGE, null);
+				}
+			}	
 		}
 		
-		
+		input = takeInput();
+		if (input == "q") {
+			return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
+		}
+		else {
+			System.out.println("Wrong Input");
+			return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTABLE_COURSES_PAGE, null);
+		}		
 	}
 
 	
