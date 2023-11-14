@@ -66,8 +66,8 @@ public class UserInterface {
 	}
 	
 	
-	
-	// this function return the selected page from page list
+	// this function return the selected page from page list if it in list
+	// if not return null
 	public Page selectPage(PageType pageType) {
 		int len = pages.size();
 
