@@ -1,32 +1,35 @@
 package pagePackage;
 
+import systemMessagePackage.FunctionType;
 import systemMessagePackage.SystemMessage;
 
 public class MainMenuPageStudent extends Page{
-
+	
 	public MainMenuPageStudent(String content) {
 		super(content);
 		setType(PageType.MAIN_MENU_PAGE);
 		setName("Main Menu Page Student");
 	}
 
+	
 	@Override
 	public SystemMessage runPage() {
 		showContent();
-
+		
 		switch (takeInput()) {
 			case "1":
-				System.out.println(1);
-				break;
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.ALL_cOURSES_PAGE, null);
 			case "2":
-				System.out.println(2);
-				break;
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTABLE_COURSES_PAGE, null);
 			case "3":
-				System.out.println(3);
-				break;
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTED_COURSES_PAGE, null);
+			case "4":
+				return new SystemMessage(FunctionType.EXIT, null, null);
 			default:
-				System.out.println("aa");
+				System.out.println("Wrong Input!");
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.LOGIN_PAGE, null);
 		}
-		return null;
 	}
+	
+	
 }

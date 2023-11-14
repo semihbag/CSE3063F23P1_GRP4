@@ -50,9 +50,14 @@ public class ReGSystem {
 			return;
 		}
 		
-		if (functionType == FunctionType.CHANGE_PAGE) {
-			
+		if (functionType == FunctionType.EXIT) {
+			// exit
 		}
+		
+		if (functionType == FunctionType.CHANGE_PAGE) {
+			this.userInterface.setCurrentPage(sm.getNextPageType());
+		}
+		
 	}
 	
 	
