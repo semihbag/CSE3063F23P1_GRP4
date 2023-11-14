@@ -75,3 +75,39 @@ public class Advisor extends Lecturer {
         student.updateRequestFalse();
         this.removeAwaitingStudent(student);
     }
+
+    // Send Informative Message to the Student
+    public void sendNotification(String message, Student student, String type) {
+        
+        String defaultMessage = "";
+        if (message.isEmpty()) {
+            if(type == "A") {
+                defaultMessage = "The request is approved!";
+            }
+            else {
+                defaultMessage = "The request id disapproved!";
+            }
+        }
+        else {
+            defaultMessage = message;
+        }
+        student.updateMessage(defaultMessage);
+    }
+
+    public ArrayList<Student> getStudentList() {
+        return this.students;
+    }
+
+    public ArrayList<Student> getAwaitingStudents() {
+        return this.awaitingStudents;
+    }
+    
+    // After approve or disapprove, update the awaitingStudent 
+    public void removeAwaitingStudent(Student student) {
+        this.awaitingStudents.remove(student);
+    }
+    
+    public String getPassword() {
+        return password.getPassword();
+    }
+}
