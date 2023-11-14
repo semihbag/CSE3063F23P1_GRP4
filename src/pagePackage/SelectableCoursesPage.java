@@ -36,7 +36,8 @@ public class SelectableCoursesPage extends Page{
 				}
 			} 
 			catch (NumberFormatException e) {
-				if (input == "q") {
+				
+				if (input.equals("q")) {
 					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
 				}
 				else {
@@ -56,9 +57,6 @@ public class SelectableCoursesPage extends Page{
 		}		
 	}
 
-	
-	
-	
 	
 	/////////// GETTER - SETTER METHODS ////////////
 	

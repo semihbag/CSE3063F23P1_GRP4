@@ -14,7 +14,7 @@ public class Test {
 		
 		
 		String loginCont = "welcome system!";
-		Page login = new LoginPage(loginCont);
+		LoginPage login = new LoginPage(loginCont);
 		
 		String mainStudentCont = "1- See all courses \n2- See selectable courses \n3- See selected courses \n4- Exit";
 		MainMenuPageStudent mainStudent = new MainMenuPageStudent(mainStudentCont);
@@ -24,7 +24,6 @@ public class Test {
 
 		String selectabbleCourseCont = "==>List of all selectable courses<=="
 				+ "\nPress number to select course, "
-				+ "\nPress y to complete your selection,"
 				+ "\nPress q to exit."
 				+ "\n\n1- cse3131 \n2- cse6969 \n3- cse3169 \n\n"
 				+ "selected courses:"
