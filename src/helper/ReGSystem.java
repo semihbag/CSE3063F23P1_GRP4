@@ -58,7 +58,17 @@ public class ReGSystem {
 		}
 		
 		if (functionType == FunctionType.SELECT_COURSE ) {
+			//Student student = (Student)this.getCurrentUser();
 			
+			// burada studentin içinden secilebilen derslere gidip gelen
+			// input (index oluyor artık o) degerindeki course selected
+			// listesine atacagız
+			
+			// ayrıca bu saatten sonra data değiştigi için sayfa contentini
+			// tekrar ayarlamak lazım.
+			// conten üreten fonksiyon (zenep yazıyor) tekrar cagırılıp üretildiği
+			// string selecable page contentinin yeni değeri olacak
+			// bu işlemi yapmazsak sürekli aynı görüntü print edilir
 		}
 
 	}
