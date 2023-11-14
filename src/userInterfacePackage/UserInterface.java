@@ -65,4 +65,20 @@ public class UserInterface {
 		return false;
 	}
 	
+	
+	
+	// this function return the selected page from page list
+	public Page selectPage(PageType pageType) {
+		int len = pages.size();
+
+		Page tempPage;
+		for(int i = 0; i < len; i++) {
+			tempPage = pages.get(i);
+			
+			if (tempPage.getType() == pageType) {
+				return tempPage;
+			}
+		}
+		return null;
+	}
 }
