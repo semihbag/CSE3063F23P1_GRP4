@@ -7,7 +7,7 @@ public class Advisor extends Lecturer {
     private Password password;
 
     // Constructor
-    public Advisor(String FirstName, String LastName, int lecturerID, ArrayList<Student> students, ArrayList<Student> awaitingStudents, String password) {
+    public Advisor(String FirstName, String LastName, int lecturerID, ArrayList<Student> students, ArrayList<Student> awaitingStudents, Password password) {
 
         super(FirstName, LastName, lecturerID);
         if (students == null) {
@@ -56,8 +56,9 @@ public class Advisor extends Lecturer {
         for(int index = 0 ; index < numberOfCourses ; index++) {
             Course course = selectCourses.get(index);
             student.addApprovedCourses(course);
-            student.dropSelectedCourses(course);
+            course.enrollStudent(student);
         }
+        student.dropAllSelectedCourses();
         student.updateRequestNone();
         this.removeAwaitingStudent(student);
     }
@@ -66,12 +67,10 @@ public class Advisor extends Lecturer {
     public void Disapprove(Student student) {
 
         ArrayList<Course> selectCourses = student.getSelectedCourses();
-        int numberOfCourses = selectCourses.size();
-        for(int index = 0 ; index < numberOfCourses ; index++) {
-            Course course = selectCourses.get(index);
-            student.updateSelectableCourses(course);
-            student.dropSelectedCourses(course);
-        }
+
+        student.addAllSelectableCourses(selectCourses);
+        student.dropAllSelectedCourses(selectCourses);
+
         student.updateRequestFalse();
         this.removeAwaitingStudent(student);
     }
