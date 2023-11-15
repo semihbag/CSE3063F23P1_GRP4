@@ -3,10 +3,10 @@ import java.util.ArrayList;
 public class Transcript {
     private double GPA_100;
     private int year;
-    private ArrayList<id> passedCourses;
-    private ArrayList<id> failedCourses;
+    private ArrayList<ID> passedCourses;
+    private ArrayList<ID> failedCourses;
 
-    public Transcript(double GPA_100, int year, ArrayList<id> passedCourses, ArrayList<id> failedCourses) {
+    public Transcript(double GPA_100, int year, ArrayList<ID> passedCourses, ArrayList<ID> failedCourses) {
         this.GPA_100 = GPA_100;
         this.year = year;
         this.passedCourses = passedCourses;
@@ -29,19 +29,19 @@ public class Transcript {
         this.year = year;
     }
 
-    public ArrayList<id> getPassedCourses() {
+    public ArrayList<ID> getPassedCourses() {
         return passedCourses;
     }
 
-    public void setPassedCourses(ArrayList<id> passedCourses) {
+    public void setPassedCourses(ArrayList<ID> passedCourses) {
         this.passedCourses = passedCourses;
     }
 
-    public ArrayList<id> getFailedCourses() {
+    public ArrayList<ID> getFailedCourses() {
         return failedCourses;
     }
 
-    public void setFailedCourses(ArrayList<id> failedCourses) {
+    public void setFailedCourses(ArrayList<ID> failedCourses) {
         this.failedCourses = failedCourses;
     }
 }
