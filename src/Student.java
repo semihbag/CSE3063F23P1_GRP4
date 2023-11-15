@@ -12,14 +12,13 @@ public class Student extends Person {
     private Boolean request;
     private String notification;
 
-    public Student(String firstName, String lastName, Id studentID, Password password, int year, Advisor advisor, Transcript transcript, ArrayList<Course> selectableCourses, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, boolean request, String notification, ArrayList <Course> cirriculum) {
+    public Student(String firstName, String lastName, Id studentID, Password password, int year, Advisor advisor, Transcript transcript, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, boolean request, String notification, ArrayList <Course> cirriculum) {
         super(firstName, lastName);
         this.studentId = studentID;
         this.password = password;
         this.year = year;
         this.advisor = advisor;
         this.transcript = transcript;
-        this.selectableCourses = selectableCourses;
         this.selectedCourses = selectedCourses;
         this.approvedCourses = approvedCourses;
         this.request = request;
