@@ -18,11 +18,13 @@ public class Test {
 		
 		
 		String mainStudentCont = 
-				"1- See all courses "
+				"*** MAIN MENU STUDENT ***"
+				+ "\n1- See all courses "
 				+ "\n2- See selectable courses "
 				+ "\n3- See selected courses "
 				+ "\n4- See approved courses "
-				+ "\n5- Exit";
+				+ "\n5- Exit"
+				+ "\n";
 		MainMenuPageStudent mainStudent = new MainMenuPageStudent(mainStudentCont);
 		
 		
@@ -69,6 +71,27 @@ public class Test {
 				+ "\n\nPress any key to back main menu...";
 		ApprovedCoursesPage approved = new ApprovedCoursesPage(approvedCourseCont);
 		
+		//___________________________________________________________________________________________
+		
+
+		String mainAdvisorCont = 
+				"*** MAIN MENU ADVISOR ***"
+				+ "\n1- See all my students "
+				+ "\n2- See all my request "
+				+ "\n3- Evaluate request "
+				+ "\n4- Exit"
+				+ "\n";
+		MainMenuPageAdvisor mainAdvisor = new MainMenuPageAdvisor(mainAdvisorCont);
+		
+		
+		String myStudentsCont = 
+				"==>List of all students<=="
+				+ "\n1- semih "
+				+ "\n2- zenep "
+				+ "\n3- nidda "
+				+ "\n4- cece "
+				+ "\n\nPress any key to back main menu...";
+		MyStudentsPage myStudents = new MyStudentsPage(myStudentsCont);
 		
 		
 		ui.addPage(login);
@@ -77,6 +100,10 @@ public class Test {
 		ui.addPage(selectable);
 		ui.addPage(selected);
 		ui.addPage(approved);
+		
+		ui.addPage(mainAdvisor);
+		ui.addPage(myStudents);
+
 		
 		ui.setCurrentPage(PageType.LOGIN_PAGE);
 		
