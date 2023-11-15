@@ -27,8 +27,11 @@ public class ReGSystem {
 	public boolean login(UserInfo userInfo) {
 		
 		// true case
-		this.getUserInterface().setCurrentPage(PageType.MAIN_MENU_PAGE);
+		//this.getUserInterface().setCurrentPage(PageType.MAIN_MENU_PAGE_STUDENT);
+		this.getUserInterface().setCurrentPage(PageType.MAIN_MENU_PAGE_ADVISOR);
 		return true;
+		
+		
 		// false case
 		//this.getUserInterface().setCurrentPage(PageType.LOGIN_PAGE);
 		//return false;
@@ -73,7 +76,7 @@ public class ReGSystem {
 
 		}
 		
-		if (functionType == FunctionType.SELECT_COURSE ) {
+		if (functionType == FunctionType.DROP_COURSE ) {
 			//Student student = (Student)this.getCurrentUser();
 			
 			// burada studentin içinden secilen derslere gidip gelen

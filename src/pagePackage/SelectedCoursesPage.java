@@ -36,7 +36,7 @@ public class SelectedCoursesPage extends Page{
 			}
 			catch (NumberFormatException e) {
 				if (input.equals("q")) {
-					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
+					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
 				}
 				else {
 					System.out.println("Wrong Input");
@@ -48,7 +48,7 @@ public class SelectedCoursesPage extends Page{
 		
 		input = takeInput();
 		if (input == "q") {
-			return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
+			return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
 		}
 		else {
 			System.out.println("Wrong Input");

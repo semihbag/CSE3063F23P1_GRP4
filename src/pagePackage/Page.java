@@ -31,8 +31,6 @@ public abstract class Page {
 	}
 
 	
-
-	
 	
 	// GETTER - SETTER METHODS
 
@@ -58,13 +56,5 @@ public abstract class Page {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }

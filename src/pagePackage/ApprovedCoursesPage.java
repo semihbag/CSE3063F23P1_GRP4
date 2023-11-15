@@ -15,6 +15,6 @@ public class ApprovedCoursesPage extends Page{
 	public SystemMessage runPage() {
 		showContent();
 		takeInput();
-		return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
+		return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
 	}
 }

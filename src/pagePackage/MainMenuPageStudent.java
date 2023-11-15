@@ -7,7 +7,7 @@ public class MainMenuPageStudent extends Page{
 	
 	public MainMenuPageStudent(String content) {
 		super(content);
-		setType(PageType.MAIN_MENU_PAGE);
+		setType(PageType.MAIN_MENU_PAGE_STUDENT);
 		setName("Main Menu Page Student");
 	}
 
@@ -29,7 +29,7 @@ public class MainMenuPageStudent extends Page{
 				return new SystemMessage(FunctionType.EXIT, null, null);
 			default:
 				System.out.println("Wrong Input!");
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
 		}
 	}
 }
