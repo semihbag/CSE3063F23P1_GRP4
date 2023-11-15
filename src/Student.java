@@ -26,8 +26,18 @@ public class Student extends Person {
         this.notification = notification;
     }
 
+    public void addSelectableCourse(Course course){
+        selectedCourses.add(course);
+    }
 
+    public void addApprovedCourse(Course course){
+        approvedCourses.add(course);
+    }
 
+    public void dropAllSelectedCourses(){
+        selectedCourses.clear();
+    }
+    
 
     // Getter - Setter Methods
 
