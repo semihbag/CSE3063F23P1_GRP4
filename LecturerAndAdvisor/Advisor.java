@@ -4,10 +4,11 @@ public class Advisor extends Lecturer {
     
     private ArrayList<Student> students;
     private ArrayList<Student> awaitingStudents;
+    private Student selectStudent;
     private Password password;
 
     // Constructor
-    public Advisor(String FirstName, String LastName, int lecturerID, ArrayList<Student> students, ArrayList<Student> awaitingStudents, Password password) {
+    public Advisor(String FirstName, String LastName, LecturerID lecturerID, ArrayList<Student> students, ArrayList<Student> awaitingStudents, Password password) {
 
         super(FirstName, LastName, lecturerID);
         if (students == null) {
@@ -17,6 +18,7 @@ public class Advisor extends Lecturer {
             this.students = students;
         }
         this.awaitingStudents = findAwaitingStudents();
+        this.selectStudent = null;
         this.password = password;
 
     }
@@ -36,16 +38,12 @@ public class Advisor extends Lecturer {
     }
 
     // Find the correspondence index of Student Object
-    public int selectStudent(int index) {
+    public void selectStudent(int index) {
         
         index = index - 1;
-        int numberOfStudents = awaitingStudents.size();
-        if (index >= numberOfStudents || index < 0) {
-            return -1;
-        }
-        else {
-            return index;
-        }
+        Student currentStudent = getAwaitingStudents().get(index);
+        this.setSelectStudent(currentStudent);
+
     }
 
 // Approve request of selected Student
@@ -59,6 +57,7 @@ public class Advisor extends Lecturer {
         student.addApprovedCourses();
         student.dropAllSelectedCourses();
         student.setRequest(null);
+        this.setSelectStudent(null);
         this.removeAwaitingStudent(student);
     }
 
@@ -68,6 +67,7 @@ public class Advisor extends Lecturer {
         student.dropAllSelectedCourses();
 
         student.setRequest(false);
+        this.setSelectStudent(null);
         this.removeAwaitingStudent(student);
     }
 
@@ -100,6 +100,14 @@ public class Advisor extends Lecturer {
     // After approve or disapprove, update the awaitingStudent 
     public void removeAwaitingStudent(Student student) {
         this.awaitingStudents.remove(student);
+    }
+
+    public Student getSelectStudent() {
+        return this.selectStudent;
+    }
+
+    public void setSelectStudent(Student student) {
+        this.selectStudent = student;
     }
     
     public String getPassword() {
