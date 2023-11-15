@@ -48,30 +48,26 @@ public class Advisor extends Lecturer {
         }
     }
 
-    // Approve request of selected Student
+// Approve request of selected Student
     public void Approve(Student student) {
-
         ArrayList<Course> selectCourses = student.getSelectedCourses();
         int numberOfCourses = selectCourses.size();
         for(int index = 0 ; index < numberOfCourses ; index++) {
             Course course = selectCourses.get(index);
-            student.addApprovedCourses(course);
             course.enrollStudent(student);
         }
+        student.addApprovedCourses();
         student.dropAllSelectedCourses();
-        student.updateRequestNone();
+        student.setRequest(null);
         this.removeAwaitingStudent(student);
     }
 
     // Dissapprove Student request
     public void Disapprove(Student student) {
+        student.addAllSelectableCourses();
+        student.dropAllSelectedCourses();
 
-        ArrayList<Course> selectCourses = student.getSelectedCourses();
-
-        student.addAllSelectableCourses(selectCourses);
-        student.dropAllSelectedCourses(selectCourses);
-
-        student.updateRequestFalse();
+        student.setRequest(false);
         this.removeAwaitingStudent(student);
     }
 
