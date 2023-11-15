@@ -8,4 +8,7 @@ public class Id {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public Id(String id) {
+		this.id = id;
+	}
 }
