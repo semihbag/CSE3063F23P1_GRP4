@@ -39,37 +39,37 @@ public class Advisor extends Lecturer {
     }
 
 // Approve request of selected Student
-    public void Approve(Student student) {
+    public void Approve() {
         ArrayList<Course> selectCourses = student.getSelectedCourses();
         int numberOfCourses = selectCourses.size();
         for(int index = 0 ; index < numberOfCourses ; index++) {
             Course course = selectCourses.get(index);
-            student.addApprovedCourse(course);
-            course.enrollStudent(student);
+            this.selectStudent.addApprovedCourse(course);
+            course.enrollStudent(this.selectStudent);
         }
-        student.dropAllSelectedCourses();
-        student.setRequest(null);
+        this.selectStudent.dropAllSelectedCourses();
+        this.selectStudent.setRequest(null);
         this.setSelectStudent(null);
-        this.removeAwaitingStudent(student);
+        this.removeAwaitingStudent(this.selectStudent);
     }
 
     // Dissapprove Student request
-    public void Disapprove(Student student) {
+    public void Disapprove() {
         ArrayList<Course> selectCourses = student.getSelectedCourses();
         int numberOfCourses = selectCourses.size();
         for(int index = 0 ; index < numberOfCourses ; index++) {
             Course course = selectCourses.get(index);
-            student.addSelectableCourse(course);
+            this.selectStudent.addSelectableCourse(course);
             course.setQuota(course.getQuota() + 1)
         }
-        student.dropAllSelectedCourses();
-        student.setRequest(false);
+        this.selectStudent.dropAllSelectedCourses();
+        this.selectStudent.setRequest(false);
         this.setSelectStudent(null);
-        this.removeAwaitingStudent(student);
+        this.removeAwaitingStudent(this.selectStudent);
     }
 
     // Send Informative Message to the Student
-    public void sendNotification(String message, Student student, String type) {
+    public void sendNotification(String message, String type) {
         
         String defaultMessage = "";
         if (message.isEmpty()) {
@@ -83,7 +83,7 @@ public class Advisor extends Lecturer {
         else {
             defaultMessage = message;
         }
-        student.setNotification(defaultMessage);
+        this.selectStudent.setNotification(defaultMessage);
     }
 
     public ArrayList<Student> getStudentList() {
