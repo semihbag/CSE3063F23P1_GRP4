@@ -1,0 +1,34 @@
+{
+	"lecturers" : [
+		{
+			"name" : "Mustafa Borahan",
+			"surname" : "Tümer",
+			"lecturerId" : "1501003"
+		},
+		{
+			"name" : "Ömer",
+			"surname" : "Korçak",
+			"lecturerId" : "1501004"
+		},
+		{
+			"name" : "Murat Can",
+			"surname" : "Ganiz",
+			"lecturerId" : "1501006"
+		},
+		{
+			"name" : "Ali Haydar",
+			"surname" : "Özer",
+			"lecturerId" : "1501007"
+		},
+		{
+			"name" : "Haluk Rahmi",
+			"surname" : "Topçuoğlu",
+			"lecturerId" : "1501008"
+		},
+		{
+			"name" : "Çiğdem",
+			"surname" : "Eroğlu Erdem",
+			"lecturerId" : "1501009"
+		}
+	]
+}

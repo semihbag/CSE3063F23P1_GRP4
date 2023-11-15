@@ -1,0 +1,22 @@
+{
+	"advisors" : [
+		{
+			"name" : "Mustafa",
+			"surname" : "Ağaoğlu",
+			"advisorId" : "1501002",
+			"password" : "sql112233"
+		},
+		{
+			"name" : "Fatma",
+			"surname" : "Corut Ergin",
+			"advisorId" : "1501001",
+			"password" : "ruby99"
+		},
+		{
+			"name" : "Betül",
+			"surname" : "Boz",
+			"advisorId" : "1501005",
+			"password" : "assembly101"
+		}
+	]
+}

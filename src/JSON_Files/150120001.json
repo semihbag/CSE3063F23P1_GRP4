@@ -1,0 +1,41 @@
+{
+	"type" : "student",
+	"name" : "Ali",
+	"lastname" : "Veli",
+	"id" : "150120001",
+	"password" : "ali123",
+	"advisor" : "1501002",
+	"request" : "false",
+	"notification" : "",
+	"registration" : {
+		"selectedcourses" : [
+			"",
+			"",
+			"",
+			"",
+			""
+		],
+		"approvedcourses" : [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"transcript" : {
+		"gpa" : 3.2,
+		"year" : 3,
+		"completedcourses" : [
+			"CSE1200",
+			"CSE1241",
+			"CSE2023",
+			"CSE2138",
+			"CSE2260"
+		],
+		"failedcourses" : [
+			"CSE2225",
+			"CSE2246"
+		]
+	}
+}

@@ -1,0 +1,40 @@
+{
+	"type" : "student",
+	"name" : "Nida",
+	"lastname" : "Demirhan",
+	"id" : "150120042",
+	"password" : "nida123",
+	"advisor" : "1501005",
+	"request" : "false",
+	"notification" : "",
+	"registration" : {
+		"selectedcourses" : [
+			"",
+			"",
+			"",
+			"",
+			""
+		],
+		"approvedcourses" : [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"transcript" : {
+		"gpa" : 3.89,
+		"year" : 3,
+		"completedcourses" : [
+			"CSE1200",
+			"CSE1241",
+			"CSE2225",
+			"CSE2023",
+			"CSE2246",
+			"CSE2138",
+			"CSE2260"
+		],
+		"failedcourses" : []
+	}
+}
