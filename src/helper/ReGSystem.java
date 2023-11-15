@@ -53,7 +53,7 @@ public class ReGSystem {
 		}
 		
 		if (functionType == FunctionType.EXIT) {
-			// exit
+			System.exit(0);
 		}
 		
 		if (functionType == FunctionType.CHANGE_PAGE) {
