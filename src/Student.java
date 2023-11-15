@@ -24,6 +24,26 @@ public class Student extends Person {
         this.approvedCourses = approvedCourses;
         this.request = request;
         this.notification = notification;
+
+        filterCourses(cirriculum, transcript.getPassedCourses());
+
+    }
+
+    // Filters all courses in the curriculum according to the student's current semester and prerequisite course passing information
+    public void filterCourses(ArrayList<Course> curriculum, ArrayList<ID> passedCourses) {
+        for(int i = 0; i < curriculum.size() ; i++){
+            Course currCourse = curriculum.get(i);
+            if (currCourse.getYear() == year){
+                for (int k = 0; k < passedCourses.size(); k++){
+                    ID passedCourse = passedCourses.get(i);
+                    if ( !passedCourse.equals(currCourse.getCourseID())){
+                        if(isProvided(currCourse) && (currCourse.getStudentList().size() < currCourse.getQuota())){
+                            selectableCourses.add(currCourse);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void addSelectableCourse(Course course){
@@ -37,6 +57,11 @@ public class Student extends Person {
     public void dropAllSelectedCourses(){
         selectedCourses.clear();
     }
+
+    public void sendToApproval() {
+        request = Boolean.TRUE;
+    }
+
 
     // Adds each selected course from the selectableCourses to the selectedCourses and deletes it from the selectableCourses
     public void addSelectedCourse(Course course) {
