@@ -37,6 +37,24 @@ public class Student extends Person {
     public void dropAllSelectedCourses(){
         selectedCourses.clear();
     }
+
+    // Adds each selected course from the selectableCourses to the selectedCourses and deletes it from the selectableCourses
+    public void addSelectedCourse(Course course) {
+        int courseInd = selectableCourses.indexOf(course);
+        if (selectedCourses.size() < 5){
+            selectedCourses.add(course);
+            course.setQuota(course.getQuota()-1);
+            selectableCourses.remove(courseInd);
+        } else {
+            System.out.println("You exceed the course limits, you can just select five courses.");
+        }
+    }
+
+    // Deletes the course taken as a parameter from the selectedCourses
+    public void dropCourse(Course course) {
+        int droppedCourseInd = selectedCourses.indexOf(course);
+        selectedCourses.remove(droppedCourseInd);
+    }
     
 
     // Getter - Setter Methods
