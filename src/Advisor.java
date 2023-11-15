@@ -8,7 +8,7 @@ public class Advisor extends Lecturer {
     private Password password;
 
     // Constructor
-    public Advisor(String FirstName, String LastName, LecturerID lecturerID, Password password) {
+    public Advisor(String FirstName, String LastName, ID lecturerID, Password password) {
 
         super(FirstName, LastName, lecturerID);
         this.selectStudent = null;
