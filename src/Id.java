@@ -9,6 +9,7 @@ public class Id {
 		this.id = id;
 	}
 	public Id(String id) {
+		super();
 		this.id = id;
 	}
 }
