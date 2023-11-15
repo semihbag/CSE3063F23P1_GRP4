@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Student extends Person {
-    private ID studentId;
+    private Id studentId;
     private Password password;
     private int year;
     private Advisor advisor;
@@ -12,7 +12,7 @@ public class Student extends Person {
     private Boolean request;
     private String notification;
 
-    public Student(String firstName, String lastName, ID studentID, Password password, int year, Advisor advisor, Transcript transcript, ArrayList<Course> selectableCourses, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, boolean request, String notification, ArrayList <Course> cirriculum) {
+    public Student(String firstName, String lastName, Id studentID, Password password, int year, Advisor advisor, Transcript transcript, ArrayList<Course> selectableCourses, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, boolean request, String notification, ArrayList <Course> cirriculum) {
         super(firstName, lastName);
         this.studentId = studentID;
         this.password = password;
@@ -30,12 +30,12 @@ public class Student extends Person {
     }
 
     // Filters all courses in the curriculum according to the student's current semester and prerequisite course passing information
-    public void filterCourses(ArrayList<Course> curriculum, ArrayList<ID> passedCourses) {
+    public void filterCourses(ArrayList<Course> curriculum, ArrayList<Id> passedCourses) {
         for(int i = 0; i < curriculum.size() ; i++){
             Course currCourse = curriculum.get(i);
             if (currCourse.getYear() == year){
                 for (int k = 0; k < passedCourses.size(); k++){
-                    ID passedCourse = passedCourses.get(i);
+                    Id passedCourse = passedCourses.get(i);
                     if ( !passedCourse.equals(currCourse.getCourseID())){
                         if(isProvided(currCourse) && (currCourse.getStudentList().size() < currCourse.getQuota())){
                             selectableCourses.add(currCourse);
@@ -44,6 +44,20 @@ public class Student extends Person {
                 }
             }
         }
+    }
+
+    // Checks whether the student has passed the prerequisite courses to take the course
+    public boolean isProvided(Course course){
+        for(int i=0; i < course.getPrerequisiteCourses().size(); i++) {
+            Course preCourse = course.getPrerequisiteCourses().get(i);
+            for (int k = 0; k < transcript.getPassedCourses().size(); k++){
+                Id passCourse = transcript.getPassedCourses().get(k);
+                if (!passCourse.equals(preCourse.getCourseID())){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public void addSelectableCourse(Course course){
@@ -84,11 +98,11 @@ public class Student extends Person {
 
     // Getter - Setter Methods
 
-    public ID getStudentId() {
+    public Id getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(ID studentId) {
+    public void setStudentId(Id studentId) {
         this.studentId = studentId;
     }
 
