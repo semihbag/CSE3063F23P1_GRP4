@@ -40,7 +40,7 @@ public class Advisor extends Lecturer {
 
 // Approve request of selected Student
     public void Approve() {
-        ArrayList<Course> selectCourses = student.getSelectedCourses();
+        ArrayList<Course> selectCourses = this.selectStudent.getSelectedCourses();
         int numberOfCourses = selectCourses.size();
         for(int index = 0 ; index < numberOfCourses ; index++) {
             Course course = selectCourses.get(index);
@@ -55,7 +55,7 @@ public class Advisor extends Lecturer {
 
     // Dissapprove Student request
     public void Disapprove() {
-        ArrayList<Course> selectCourses = student.getSelectedCourses();
+        ArrayList<Course> selectCourses = this.selectStudent.getSelectedCourses();
         int numberOfCourses = selectCourses.size();
         for(int index = 0 ; index < numberOfCourses ; index++) {
             Course course = selectCourses.get(index);
