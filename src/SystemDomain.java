@@ -1,15 +1,13 @@
-import Draft_Classes.Advisor;
-import Draft_Classes.Course;
-import Draft_Classes.CourseSession;
-import Draft_Classes.Lecturer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SystemDomain {
 
@@ -127,6 +125,7 @@ public class SystemDomain {
         }
         return strings;
     }
+
 
 
 
