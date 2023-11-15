@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Student extends Person {
     private ID studentId;
     private Password password;
-    private int semester;
+    private int year;
     private Advisor advisor;
     private Transcript transcript;
     private ArrayList<Course> selectableCourses;
@@ -12,11 +12,11 @@ public class Student extends Person {
     private Boolean request;
     private String notification;
 
-    public Student(String firstName, String lastName, ID studentID, Password password, int semester, Advisor advisor, Transcript transcript, ArrayList<Course> selectableCourses, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, boolean request, String notification, ArrayList <Course> cirriculum) {
+    public Student(String firstName, String lastName, ID studentID, Password password, int year, Advisor advisor, Transcript transcript, ArrayList<Course> selectableCourses, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, boolean request, String notification, ArrayList <Course> cirriculum) {
         super(firstName, lastName);
         this.studentId = studentID;
         this.password = password;
-        this.semester = semester;
+        this.year = year;
         this.advisor = advisor;
         this.transcript = transcript;
         this.selectableCourses = selectableCourses;
@@ -26,11 +26,10 @@ public class Student extends Person {
         this.notification = notification;
     }
 
-  
+
 
 
     // Getter - Setter Methods
-
 
     public ID getStudentId() {
         return studentId;
@@ -48,12 +47,12 @@ public class Student extends Person {
         this.password = password;
     }
 
-    public int getSemester() {
-        return semester;
+    public int getYear() {
+        return year;
     }
 
-    public void setSemester(int semester) {
-        this.semester = semester;
+    public void setYear(int semester) {
+        this.year = semester;
     }
 
     public Advisor getAdvisor() {
