@@ -112,7 +112,7 @@ public class Test {
 				+ "\n2- Cece - request of cece"
 				+ "\n3- ali - request of ali";
 		EvaluateRequestsPage evaluateRequest = new EvaluateRequestsPage(evaluateRequestCont);
-		evaluateRequest.setNumberOfRequst(3);
+		evaluateRequest.setNumberOfRequest(3);
 		
 		String selectedStudentRequestCont = 
 				"==>Request Of Selected Student Page"
