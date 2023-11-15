@@ -2,25 +2,17 @@ import java.util.ArrayList;
 
 public class Advisor extends Lecturer {
     
-    private ArrayList<Student> students;
-    private ArrayList<Student> awaitingStudents;
+    private ArrayList<Student> students = new ArrayList<Student>();
+    private ArrayList<Student> awaitingStudents = new ArrayList<Student>();
     private Student selectStudent;
     private Password password;
 
     // Constructor
-    public Advisor(String FirstName, String LastName, LecturerID lecturerID, ArrayList<Student> students, ArrayList<Student> awaitingStudents, Password password) {
+    public Advisor(String FirstName, String LastName, LecturerID lecturerID, Password password) {
 
         super(FirstName, LastName, lecturerID);
-        if (students == null) {
-            this.students = new ArrayList<Student>();
-        }
-        else {
-            this.students = students;
-        }
-        this.awaitingStudents = findAwaitingStudents();
         this.selectStudent = null;
         this.password = password;
-
     }
 
     // Find Students that send their requests to the Advisor
@@ -52,9 +44,9 @@ public class Advisor extends Lecturer {
         int numberOfCourses = selectCourses.size();
         for(int index = 0 ; index < numberOfCourses ; index++) {
             Course course = selectCourses.get(index);
+            student.addApprovedCourse(course);
             course.enrollStudent(student);
         }
-        student.addApprovedCourses();
         student.dropAllSelectedCourses();
         student.setRequest(null);
         this.setSelectStudent(null);
@@ -63,9 +55,14 @@ public class Advisor extends Lecturer {
 
     // Dissapprove Student request
     public void Disapprove(Student student) {
-        student.addAllSelectableCourses();
+        ArrayList<Course> selectCourses = student.getSelectedCourses();
+        int numberOfCourses = selectCourses.size();
+        for(int index = 0 ; index < numberOfCourses ; index++) {
+            Course course = selectCourses.get(index);
+            student.addSelectableCourse(course);
+            course.setQuota(course.getQuota() + 1)
+        }
         student.dropAllSelectedCourses();
-
         student.setRequest(false);
         this.setSelectStudent(null);
         this.removeAwaitingStudent(student);
@@ -86,15 +83,23 @@ public class Advisor extends Lecturer {
         else {
             defaultMessage = message;
         }
-        student.updateMessage(defaultMessage);
+        student.setNotification(defaultMessage);
     }
 
     public ArrayList<Student> getStudentList() {
         return this.students;
     }
 
+    public void setStudents(ArrayList<Student> student) {
+        this.students = student;
+    }
+
     public ArrayList<Student> getAwaitingStudents() {
         return this.awaitingStudents;
+    }
+
+    public void setAwaitingStudents(ArrayList<Student> awaitingstudent) {
+        this.awaitingStudents = awaitingstudent;
     }
     
     // After approve or disapprove, update the awaitingStudent 
