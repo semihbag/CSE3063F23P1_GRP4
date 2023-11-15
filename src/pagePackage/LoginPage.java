@@ -4,7 +4,7 @@ import systemMessagePackage.*;
 import userInfoPackage.UserInfo;
 
 public class LoginPage extends Page{
-	public UserInfo userInfo;
+	private UserInfo userInfo;
 
 	public LoginPage(String content) {
 		super(content);
@@ -33,9 +33,13 @@ public class LoginPage extends Page{
 		return new SystemMessage(FunctionType.LOGIN, null,userInfo);
 	}
 
+	
+	//////// GETTER - SETTET METHODS ///////////
 	public UserInfo getUserInfo() {
 		return userInfo;
 	}
-	
-	
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+	}	
 }

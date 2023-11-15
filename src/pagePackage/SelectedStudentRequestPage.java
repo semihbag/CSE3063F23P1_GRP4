@@ -35,9 +35,5 @@ public class SelectedStudentRequestPage extends Page{
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTED_STUDENT_REQUEST_PAGE, null);
 			}
 		}
-		
-		
-		
-			
 	}
 }

@@ -3,7 +3,6 @@ package pagePackage;
 import java.util.Scanner;
 import systemMessagePackage.*;
 
-
 public abstract class Page {
 	private PageType type;
 	private String name;

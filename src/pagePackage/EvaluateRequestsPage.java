@@ -5,7 +5,7 @@ import systemMessagePackage.SystemMessage;
 
 public class EvaluateRequestsPage extends Page {
 	
-	private int numberOfRequst;
+	private int numberOfRequest;
 	
 	public EvaluateRequestsPage(String content) {
 		super(content);
@@ -18,13 +18,13 @@ public class EvaluateRequestsPage extends Page {
 		showContent();
 		String input;
 
-		while(numberOfRequst > 0) {
+		while(numberOfRequest > 0) {
 			input = takeInput();
 			
 			try {
 				int selection = Integer.parseInt(input);
 
-				if (selection > numberOfRequst) {
+				if (selection > numberOfRequest) {
 					System.out.println("Enter a valid number");
 					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.EVALUATE_REQUESTS_PAGE, null);
 				}
@@ -59,11 +59,11 @@ public class EvaluateRequestsPage extends Page {
 	
 	
 	
-	public int getNumberOfRequst() {
-		return numberOfRequst;
+	public int getNumberOfRequest() {
+		return numberOfRequest;
 	}
 
-	public void setNumberOfRequst(int numberOfRequst) {
-		this.numberOfRequst = numberOfRequst;
+	public void setNumberOfRequest(int numberOfRequest) {
+		this.numberOfRequest = numberOfRequest;
 	}
 }
