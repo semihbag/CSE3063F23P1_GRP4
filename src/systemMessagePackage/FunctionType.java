@@ -1,10 +1,18 @@
 package systemMessagePackage;
 
 public enum FunctionType {
+	// COMMEN
 	NONE,
 	LOGIN,
 	EXIT,
 	CHANGE_PAGE,
+	
+	// STUDENT
 	SELECT_COURSE,
-	DROP_COURSE;
+	DROP_COURSE,
+	
+	// ADVISOR
+	SELECET_STUDENT,
+	APPROVE_REQUEST,
+	DISAPPREOVE_REQUEST;
 }

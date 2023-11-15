@@ -54,10 +54,13 @@ public class ReGSystem {
 		
 		if (functionType == FunctionType.EXIT) {
 			System.exit(0);
+			return;
 		}
 		
 		if (functionType == FunctionType.CHANGE_PAGE) {
 			this.userInterface.setCurrentPage(sm.getNextPageType());
+			return;
+
 		}
 		
 		if (functionType == FunctionType.SELECT_COURSE ) {
@@ -73,6 +76,7 @@ public class ReGSystem {
 			// string selecable page contentinin yeni değeri olacak
 			// bu işlemi yapmazsak sürekli aynı görüntü print edilir
 			// ayrıca sayfanın numberOdSelectableCourse değeri de güncellenmeli
+			return;
 
 		}
 		
@@ -88,9 +92,49 @@ public class ReGSystem {
 			// string selected page contentinin yeni değeri olacak
 			// bu işlemi yapmazsak sürekli aynı görüntü print edilir.
 			// ayrıca sayfanın numberOdDropableCourse değeri de güncellenmeli
+			return;
 			
 		}
 
+		if (functionType == FunctionType.SELECET_STUDENT ) {
+			// burada advisorun select fonksiyonu çağırılacak parametre olarak sm.getInput() verilecek
+			
+			//Advisor advisor = (Adivor)this.getCurrentUser();
+			//advisor.selectStudent(sm.getInput);
+			
+			this.userInterface.setCurrentPage(sm.getNextPageType());
+			return;
+
+		}
+
+		if (functionType == FunctionType.APPROVE_REQUEST ) {
+			// burada seçilen req için onaylama istegi geliyor burada onaylamamız lazım.
+			// ayrıca artık req sayısı değiştiği için EVALUATE_REQUESTS_PAGE sayfası contenti güncellenmeli
+			// ayrıca SELECTED_STUDENT_REQUEST_PAGE contenti de değişecek
+			// zenepin yazdıgı fonk tekrar cağırılacak ve settet ile content degiştirilecek
+			
+			//Advisor advisor = (Adivor)this.getCurrentUser();
+			//advisor.approve();
+			System.out.println("---req approved");
+			this.userInterface.setCurrentPage(sm.getNextPageType());
+			return;
+
+		}
+
+		if (functionType == FunctionType.DISAPPREOVE_REQUEST ) {
+			// burada secilen req istegi reddedildi
+			// yani listeden kaldırldı
+			// yine yıkarıda oldugu gibi EVALUATE_REQUESTS_PAGE contenti değişecek
+			// ayrıca SELECTED_STUDENT_REQUEST_PAGE contenti de değişecek
+			// zenepin yazdıgı fonk tekrar cağırılacak ve settet ile content degiştirilecek
+
+			//Advisor advisor = (Advisor)this.getCurrentUser();
+			//advisor.disapprove();
+			System.out.println("---req disapproved");
+			this.userInterface.setCurrentPage(sm.getNextPageType());
+			return;
+
+		}
 
 	}
 	

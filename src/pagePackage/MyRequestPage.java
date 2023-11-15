@@ -7,7 +7,7 @@ public class MyRequestPage extends Page {
 	
 	public MyRequestPage(String content) {
 		super(content);
-		setType(PageType.MY_REQUESTS);
+		setType(PageType.MY_REQUESTS_PAGE);
 		setName("My Request");
 	}
 	

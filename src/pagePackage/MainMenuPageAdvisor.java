@@ -17,11 +17,11 @@ public class MainMenuPageAdvisor extends Page {
 		
 		switch (takeInput()) {
 			case "1":
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_STUDENTS, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_STUDENTS_PAGE, null);
 			case "2":
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_REQUESTS, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_REQUESTS_PAGE, null);
 			case "3":
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.EVALUATE_REQUESTS, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.EVALUATE_REQUESTS_PAGE, null);
 			case "4":
 				return new SystemMessage(FunctionType.EXIT, null, null);
 			default:

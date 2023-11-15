@@ -7,7 +7,7 @@ public class MyStudentsPage extends Page {
 	
 	public MyStudentsPage(String content) {
 		super(content);
-		setType(PageType.MY_STUDENTS);
+		setType(PageType.MY_STUDENTS_PAGE);
 		setName("All Students");
 	}
 	

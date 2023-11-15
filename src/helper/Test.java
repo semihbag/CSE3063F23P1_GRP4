@@ -105,8 +105,29 @@ public class Test {
 		
 		
 		String evaluateRequestCont =
-				"evaluate req";
+				"==>Evaluate requests"
+				+ "\nPress number to select student and requset, "
+				+ "\nPress q to exit\n"
+				+ "\n1- Semih - reuest of semih"
+				+ "\n2- Cece - request of cece"
+				+ "\n3- ali - request of ali";
 		EvaluateRequestsPage evaluateRequest = new EvaluateRequestsPage(evaluateRequestCont);
+		evaluateRequest.setNumberOfRequst(3);
+		
+		String selectedStudentRequestCont = 
+				"==>Request Of Selected Student Page"
+				+ "\n Name: Ali"
+				+ "\n Surname: Veli"
+				+ "\n\nCourses:"
+				+ "\n1-cse2232"
+				+ "\n2-cse3444"
+				+ "\n\nPress y to approve,"
+				+ "\nPress n to disapprove"
+				+ "\nPress q to exit";
+		SelectedStudentRequestPage selectedStudentRequest = new SelectedStudentRequestPage(selectedStudentRequestCont);
+		
+		
+		
 		
 		
 		ui.addPage(login);
@@ -120,6 +141,7 @@ public class Test {
 		ui.addPage(myStudents);
 		ui.addPage(myRequests);
 		ui.addPage(evaluateRequest);
+		ui.addPage(selectedStudentRequest);
 
 		
 		ui.setCurrentPage(PageType.LOGIN_PAGE);
