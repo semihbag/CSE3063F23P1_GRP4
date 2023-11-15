@@ -85,13 +85,28 @@ public class Test {
 		
 		
 		String myStudentsCont = 
-				"==>List of all students<=="
+				"==>List of all my students<=="
 				+ "\n1- semih "
 				+ "\n2- zenep "
 				+ "\n3- nidda "
 				+ "\n4- cece "
 				+ "\n\nPress any key to back main menu...";
 		MyStudentsPage myStudents = new MyStudentsPage(myStudentsCont);
+		
+	
+		String myRequestsCont = 
+				"==>List of all my request<=="
+				+ "\n1- semih -> cse3131, ee5555"
+				+ "\n2- zenep -> cse6634, math1021, ee2021"
+				+ "\n3- nidda -> cse6969, ata1000"
+				+ "\n4- cece -> cse2121, ger5500, ger3300, stat2031"
+				+ "\n\nPress any key to back main menu...";
+		MyRequestPage myRequests = new MyRequestPage(myRequestsCont);
+		
+		
+		String evaluateRequestCont =
+				"evaluate req";
+		EvaluateRequestsPage evaluateRequest = new EvaluateRequestsPage(evaluateRequestCont);
 		
 		
 		ui.addPage(login);
@@ -103,6 +118,8 @@ public class Test {
 		
 		ui.addPage(mainAdvisor);
 		ui.addPage(myStudents);
+		ui.addPage(myRequests);
+		ui.addPage(evaluateRequest);
 
 		
 		ui.setCurrentPage(PageType.LOGIN_PAGE);
