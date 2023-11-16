@@ -26,6 +26,8 @@ public class MainMenuPageStudent extends Page{
 			case "4":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.APPROVED_COURSES_PAGE, null);
 			case "5":
+				return new SystemMessage(FunctionType.LOGOUT, PageType.LOGIN_PAGE, null);
+			case "6":
 				return new SystemMessage(FunctionType.EXIT, null, null);
 			default:
 				System.out.println("Wrong Input!");

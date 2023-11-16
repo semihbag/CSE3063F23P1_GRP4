@@ -23,7 +23,8 @@ public class Test {
 				+ "\n2- See selectable courses "
 				+ "\n3- See selected courses "
 				+ "\n4- See approved courses "
-				+ "\n5- Exit"
+				+ "\n5- Logout"
+				+ "\n6- Exit"
 				+ "\n";
 		MainMenuPageStudent mainStudent = new MainMenuPageStudent(mainStudentCont);
 		
@@ -79,7 +80,8 @@ public class Test {
 				+ "\n1- See all my students "
 				+ "\n2- See all my request "
 				+ "\n3- Evaluate request "
-				+ "\n4- Exit"
+				+ "\n4- Logout "
+				+ "\n5- Exit"
 				+ "\n";
 		MainMenuPageAdvisor mainAdvisor = new MainMenuPageAdvisor(mainAdvisorCont);
 		

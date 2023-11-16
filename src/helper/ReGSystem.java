@@ -53,7 +53,7 @@ public class ReGSystem {
 		}
 		
 		if (functionType == FunctionType.LOGOUT) {
-			//setCurrentUser(null);
+			// this.logout();
 			this.userInterface.setCurrentPage(PageType.LOGIN_PAGE);
 		}
 
