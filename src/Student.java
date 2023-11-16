@@ -60,7 +60,7 @@ public class Student extends Person {
 
     public boolean isSelectedCourse(Course course){
         for(int i =0;  i < selectedCourses.size() ; i++) {
-            if(selectedCourses.get(i).getCourseID() == course.getCourseID()){
+            if(selectedCourses.get(i).getCourseId() == course.getCourseId()){
                 return true;
             }
         }
@@ -69,7 +69,7 @@ public class Student extends Person {
 
     public boolean isPassedCourse(Course course){
         for(int i= 0; i < transcript.getPassedCourses().size() ; i++){
-            if (transcript.getPassedCourses().get(i).getCourseID() == course.getCourseID()){
+            if (transcript.getPassedCourses().get(i).getCourseId() == course.getCourseId()){
                 return true;
             }
         }
@@ -97,7 +97,7 @@ public class Student extends Person {
     public boolean isFailedCourse(Course course) {
         for (int i = 0; i < transcript.getFailedCourses().size(); i++) {
             Course failedCourse = transcript.getFailedCourses().get(i);
-            if (failedCourse.getCourseID() == course.getCourseID()) {
+            if (failedCourse.getCourseId() == course.getCourseId()) {
                 return true;
             }
         }
@@ -142,7 +142,7 @@ public class Student extends Person {
     
     public void addAllSessions(Course course){
         for(int i = 0; i< curriculum.size(); i++){
-            if (course.getCourseID() == curriculum.get(i).getCourseID()){
+            if (course.getCourseId() == curriculum.get(i).getCourseId()){
                 selectableCourses.add(course);
             }
         }
@@ -150,7 +150,7 @@ public class Student extends Person {
 
     public void removeAllSessions(Course course){
         for(int i  = 0; i<selectableCourses.size(); i++){
-            if (course.getCourseID() == selectableCourses.get(i).getCourseID()){
+            if (course.getCourseId() == selectableCourses.get(i).getCourseId()){
                 selectableCourses.remove(course);
             }
         }

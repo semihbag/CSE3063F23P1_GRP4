@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Course {
-	private Id courseID;
+	private Id courseId;
 	private String courseName;
 	private int quota;
 	private int year;
@@ -11,10 +11,10 @@ public class Course {
     private Lecturer lecturer;
     
 	
-	public Course(Id courseID, String courseName, int quota, int year, String day_hour,
-			Lecturer lecturer) {
+	public Course(Id courseId, String courseName, int quota, int year, String day_hour,
+				  Lecturer lecturer) {
 		super();
-		this.courseID = courseID;
+		this.courseId = courseId;
 		this.courseName = courseName;
 		this.quota = quota;
 		this.year = year;
@@ -28,8 +28,8 @@ public class Course {
     	
     }
   
-	public Id getCourseID() {
-		return courseID;
+	public Id getCourseId() {
+		return courseId;
 	}
 	public String getCourseName() {
 		return courseName;
@@ -62,8 +62,8 @@ public class Course {
 		this.year = semester;
 	}
 
-	public void setCourseID(Id courseID) {
-		this.courseID = courseID;
+	public void setCourseId(Id courseId) {
+		this.courseId = courseId;
 	}
 
 	public void setCourseName(String courseName) {

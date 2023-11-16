@@ -1,20 +1,18 @@
-import java.util.ArrayList;
-
 public class CourseSession extends Course{
 
-	private Id sessionID;
+	private Id sessionId;
 
 
 	public CourseSession(Id courseID, String courseName, int quota, int year, String day_hour,
-						 Lecturer lecturer, Id sessionID) {
+						 Lecturer lecturer, Id sessionId) {
 		super(courseID, courseName, quota, year, day_hour, lecturer);
-		this.sessionID = sessionID;
+		this.sessionId = sessionId;
 	}
 
-	public Id getSessionID() {
-		return sessionID;
+	public Id getSessionId() {
+		return sessionId;
 	}
-	public void setSessionID(Id sessionID) {
-		this.sessionID = sessionID;
+	public void setSessionId(Id sessionId) {
+		this.sessionId = sessionId;
 	}
 }

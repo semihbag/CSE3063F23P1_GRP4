@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class PageContentCreator {
 
-	public  String crateMainMenuPageStudentContent()
+	public static String crateMainMenuPageStudentContent()
 	{
 		String str="---------MAIN MENU---------\n"+
 				"1) All Courses\n"+
@@ -11,7 +13,7 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public  String createMainMenuPageAdvisorContent()
+	public static String createMainMenuPageAdvisorContent()
 	{
 		String str="---------MAIN MENU---------\n"+
 				"1) Advised Student Information\n"+
@@ -23,18 +25,18 @@ public class PageContentCreator {
 	}
 
 
-	public  String createSelectedStudentsRequesPageContent (Student student)
+	public static String createSelectedStudentsRequesPageContent (Student student)
 	{
 		String str = "";
 		str="All course requests of "+student.getFirstName()+" "+student.getLastName()
-				+" number "+student.getStudentID().getId()
+				+" number "+student.getStudentId().getId()
 				+"\n"+courseListForContent(student.getSelectedCourses())+"\n"
 				+"Press 'y' to approve, 'n' to reject, 'q' to exit without taking any action.";
 
 		return str;
 	}
 
-	public  String createEvaluateRequestPageContent (ArrayList<Student> student) //take awaiting student as a parameter
+	public static String createEvaluateRequestPageContent (ArrayList<Student> student) //take awaiting student as a parameter
 	{
 		String str="";
 		if(student.size()==0)
@@ -48,7 +50,7 @@ public class PageContentCreator {
 
 			for(int a=0; a<student.size(); a++)
 			{
-				str+="\n"+(a+1)+"->"+student.get(a).getStudentID().getId()+" "+student.get(a).getFirstName()
+				str+="\n"+(a+1)+"->"+student.get(a).getStudentId().getId()+" "+student.get(a).getFirstName()
 						+" "+student.get(a).getLastName()
 						+" requested "+student.get(a).getSelectedCourses().size()+ " lessons: \n";
 				for(int i=0; i<student.get(a).getSelectedCourses().size(); i++)
@@ -65,24 +67,24 @@ public class PageContentCreator {
 	}
 
 
-	public   String createMyStudentsPageContent (ArrayList<Student> student)
+	public  static String createMyStudentsPageContent (ArrayList<Student> student)
 	{
 		String str="All students advised\n";
 		for (int i=1; i<=student.size() ; i++ )
 		{
 			str+= i+"->\n StudentID: "+
-					student.get(i-1).getStudentID().getId()
+					student.get(i-1).getStudentId().getId()
 					+"\n Full name: "+
 					student.get(i-1).getFirstName()+" "+
 					student.get(i-1).getLastName()
-					+"\n Semester: "+
+					+"\n Year: "+
 					student.get(i-1).getYear()+"\n"
 					+"--------------------------------------"+"\n";
 		}
 		return str;
 	}
 
-	public  String createSelectableCoursesPageContent  (ArrayList<Course> courses,ArrayList<Course> coursesSelected) {
+	public static String createSelectableCoursesPageContent  (ArrayList<Course> courses,ArrayList<Course> coursesSelected) {
 		String str="=>List of all selectable courses<=\n\n"+
 				"Press number to select course,\nPress q to exit\n"+
 				"-------------------------------------\n"
@@ -92,7 +94,7 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public  String createSelectedCoursesPageContent  (ArrayList<Course> courses) {
+	public static String createSelectedCoursesPageContent  (ArrayList<Course> courses) {
 		String str="";
 		if(courses.size()==0)
 		{
@@ -108,7 +110,7 @@ public class PageContentCreator {
 
 	}
 
-	public  String createAllCoursesPageContent   (ArrayList<Course> courses) {
+	public static String createAllCoursesPageContent   (ArrayList<Course> courses) {
 		String str="=>List of all courses<=\n"+
 				"-------------------------------------\n"+
 				courseListForContent(courses)+"\n"+
@@ -116,14 +118,14 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public  String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
+	public static String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
 		String str="=>List of all approved courses<=\n"+
 				"-------------------------------------\n"+
 				courseListForContent(courses);
 		return str;
 	}
 
-	public  String courseListForContent (ArrayList<Course> courses)
+	public static String courseListForContent (ArrayList<Course> courses)
 	{
 		String str="";
 		for (int i=1; i<=courses.size() ; i++ )
@@ -131,22 +133,23 @@ public class PageContentCreator {
 			if(courses.get(i-1) instanceof CourseSession)
 			{
 				CourseSession session = (CourseSession) courses.get(i-1);
-				str+= i+" -> "+courses.get(i-1).getCourseID().getId()
-						+session.getSessionID().getId()
+				str+= i+" -> "+courses.get(i-1).getCourseId().getId()
+						+session.getSessionId().getId()
 
 						// session idyide alsın
 						+"|"+courses.get(i-1).getCourseName()
-						+"|\n"+courses.get(i-1).getLecturer().getName()
+						+"|\n"+courses.get(i-1).getLecturer().getFirstName()
 						+"|\n"+courses.get(i-1).getQuota()+"\n"
 						+"--------------------------------------"+"\n";
 			}
 			else {
-				str+= i+" -> "+courses.get(i-1).getCourseID().getId()
+				str+= i+" -> "+courses.get(i-1).getCourseId().getId()
 						+"|"+courses.get(i-1).getCourseName()
-						+"|\n"+courses.get(i-1).getLecturer().getName()
+						+"|\n"+courses.get(i-1).getLecturer().getFirstName()
 						+"|\n"+courses.get(i-1).getQuota()+"\n"
 						+"--------------------------------------"+"\n";
 			}
+
 		}
 		return str;
 	}
