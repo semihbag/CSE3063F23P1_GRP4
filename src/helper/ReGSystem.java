@@ -22,6 +22,10 @@ public class ReGSystem {
 	}
 	
 	public void run() {
+		
+		
+		
+		
 		while (true) {
 			userInterface.display();
 			listenUserInterface(userInterface.getSystemMessage());
