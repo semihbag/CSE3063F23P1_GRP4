@@ -22,5 +22,39 @@ public class PageContentCreator {
 		return str;
 	}
 
+    public static String courseListForContent (ArrayList<Course> courses) 
+	{
+		String str="";
+		for (int i=1; i<=courses.size() ; i++ )
+		{	   
+			if(courses.get(i-1) instanceof CourseSession)
+			{
+				CourseSession session = (CourseSession) courses.get(i-1);
+				str+= i+" -> "+courses.get(i-1).getCourseID().getId()
+						+session.getSessionID().getId()
+						+"|"+courses.get(i-1).getCourseName()
+						+"|\n"+courses.get(i-1).getLecturer().getName()
+						+"|\n"+courses.get(i-1).getQuota()+"\n"
+						+"--------------------------------------"+"\n";	
+			}
+			else {
+				str+= i+" -> "+courses.get(i-1).getCourseID().getId()
+			+"|"+courses.get(i-1).getCourseName()
+			+"|\n"+courses.get(i-1).getLecturer().getName()
+			+"|\n"+courses.get(i-1).getQuota()+"\n"
+			+"--------------------------------------"+"\n";	
+			}
+			
+		}	
+		return str;	
+	}
+    public static String createAllCoursesPageContent   (ArrayList<Course> courses) {
+		String str="=>List of all courses<=\n"+
+		"-------------------------------------\n"+
+		courseListForContent(courses)+"\n"+
+		"Press any key to back to main menu...";	
+		return str;
+		}
+
 }
 
