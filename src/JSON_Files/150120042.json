@@ -5,7 +5,7 @@
 	"id" : "150120042",
 	"password" : "nida123",
 	"advisor" : "1501005",
-	"request" : "false",
+	"request" : false,
 	"notification" : "",
 	"registration" : {
 		"selectedcourses" : [

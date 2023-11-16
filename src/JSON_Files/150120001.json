@@ -5,7 +5,7 @@
 	"id" : "150120001",
 	"password" : "ali123",
 	"advisor" : "1501002",
-	"request" : "false",
+	"request" : false,
 	"notification" : "",
 	"registration" : {
 		"selectedcourses" : [
