@@ -9,23 +9,25 @@ public class Student extends Person {
     private ArrayList<Course> selectableCourses;
     private ArrayList<Course> selectedCourses;
     private ArrayList<Course> approvedCourses;
+    private ArrayList<Course> cirriculum;
     private Boolean request;
     private String notification;
 
-    public Student(String firstName, String lastName, Id studentID, Password password, int year, Advisor advisor, Transcript transcript, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, boolean request, String notification, ArrayList <Course> cirriculum) {
+    public Student(String firstName, String lastName, Id studentID, Password password, int year, Advisor advisor, Transcript transcript, ArrayList<Course> selectableCourses, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, Boolean request, String notification, ArrayList <Course> cirriculum) {
         super(firstName, lastName);
         this.studentId = studentID;
         this.password = password;
         this.year = year;
         this.advisor = advisor;
         this.transcript = transcript;
+        this.selectableCourses = selectableCourses;
         this.selectedCourses = selectedCourses;
         this.approvedCourses = approvedCourses;
         this.request = request;
         this.notification = notification;
+        this.cirriculum = cirriculum;
 
-        filterCourses(cirriculum, transcript.getPassedCourses());
-
+        filterCourses(cirriculum);
     }
 
     // Filters all courses in the curriculum according to the student's current semester and prerequisite course passing information
