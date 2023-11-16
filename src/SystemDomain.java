@@ -29,8 +29,7 @@ public class SystemDomain {
     }
 
     public void createLecturers() throws JSONException, IOException {
-        String content = null;
-        content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\lecturers.json")));
+        String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\lecturers.json")));
         JSONObject jsonObject = new JSONObject(content);
         JSONArray lecturerJSON = jsonObject.getJSONArray("lecturers");
         for(int i =0 ; i< lecturerJSON.length();i++){
@@ -42,8 +41,7 @@ public class SystemDomain {
     }
 
     private void createAdvisors() throws JSONException, IOException{
-        String content = null;
-        content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\advisors.json")));
+        String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\advisors.json")));
         JSONObject jsonObject = new JSONObject(content);
         JSONArray advisorJSON = jsonObject.getJSONArray("advisors");
         for(int i =0 ; i< advisorJSON.length();i++){
@@ -59,50 +57,79 @@ public class SystemDomain {
         File allStudentFiles = new File("src\\JSON_Files\\student_json.txt");
         Scanner allStudentFilesInput = new Scanner(allStudentFiles);
         while (allStudentFilesInput.hasNextLine()) {
+
             String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\" + allStudentFilesInput.nextLine())));
             JSONObject jsonStudent = new JSONObject(content);
             JSONObject transcript = jsonStudent.getJSONObject("transcript");
+            JSONObject registration = jsonStudent.getJSONObject("registration");
+
+            String id = jsonStudent.getString("id");
             String name = jsonStudent.getString("name");
             String lastname = jsonStudent.getString("lastname");
-            String id = jsonStudent.getString("id");
-            String password = jsonStudent.getString("password");
             String advisorID = jsonStudent.getString("advisor");
+            Boolean booleanValue = jsonStudent.getBoolean("request");
+            String notification = jsonStudent.getString("notification");
+            String password = jsonStudent.getString("password");
+
+            String[] failedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("failedcourses"));
+            String[] completedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("completedcourses"));
+            int year = transcript.getInt("year");
+            double gpa = transcript.getDouble("gpa");
+
+            String[] selectedCoursesAr = jsonArrToStrArr(registration.getJSONArray("selectedcourses"));
+            String[] approvedCoursesAr = jsonArrToStrArr(registration.getJSONArray("approvedcourses"));
+
+            ArrayList<Course> failedCourses = setTranscriptCourses(failedCoursesAr);
+            ArrayList<Course> completedCourses = setTranscriptCourses(completedCoursesAr);
+            ArrayList<Course> selectedCourses = setStudentCourses(selectedCoursesAr);
+            ArrayList<Course> approvedCourses = setStudentCourses(approvedCoursesAr);
+
             Advisor advisor = null;
             for (int i = 0; i < getAdvisors().size(); i++) {
                 if (getAdvisors().get(i).getId().getId().equals(advisorID)) {
                     advisor = getAdvisors().get(i);
                 }
             }
-            double gpa = transcript.getDouble("gpa");
-            int year = transcript.getInt("year");
 
-            String[] completedCoursesID = jsonArrToStrArr(transcript.getJSONArray("completedcourses"));
-            ArrayList<Course> completedCourses = new ArrayList<>();
-            for (String value : completedCoursesID) {
-                for (int j = 0; j < getCourses().size(); j++) {
-                    if (value.equals(getCourses().get(j).getCourseID().getId())) {
-                        completedCourses.add(getCourses().get(j));
-                    }
-                }
-            }
-
-            String[] failedCoursesID = jsonArrToStrArr(transcript.getJSONArray("failedcourses"));
-            ArrayList<Course> failedCourses = new ArrayList<>();
-            for (String s : failedCoursesID) {
-                for (int i = 0; i < courses.size(); i++) {
-                    if (s.equals(courses.get(i).getCourseID().getId())) {
-                        failedCourses.add(getCourses().get(i));
-                    }
-                }
-            }
-            students.add(new Student(name, lastname, new Id(id), new Password(password), advisor,
-                    new Transcript(gpa, year, completedCourses, failedCourses)));
+            Student crtStudent = new Student(name, lastname, new Id(id), new Password(password), advisor,
+                    new Transcript(gpa, year, completedCourses, failedCourses), courses);
+            crtStudent.setRequest(booleanValue);
+            crtStudent.setNotification(notification);
+            crtStudent.setSelectedCourses(selectedCourses);
+            crtStudent.setApprovedCourses(approvedCourses);
+            students.add(crtStudent);
         }
     }
 
+    private ArrayList<Course> setStudentCourses(String[] studentCoursesAr) {
+        ArrayList<Course> studentCoursesList = new ArrayList<>();
+        for (int i = 0; i < studentCoursesAr.length; i++) {
+            if (studentCoursesAr[i].equals("")) {
+                break;
+            }
+            for (int j = 0; j < getCourses().size(); j++) {
+                if (studentCoursesAr[i].equals(getCourses().get(j).getCourseID().getId())) {
+                    studentCoursesList.add(getCourses().get(j));
+                }
+            }
+        }
+        return studentCoursesList;
+    }
+
+    private ArrayList<Course> setTranscriptCourses(String[] transcriptCoursesAr) {
+        ArrayList<Course> transcriptCoursesList = new ArrayList<>();
+        for (int i = 0; i < transcriptCoursesAr.length; i++) {
+            for (int j = 0; j < getCourses().size(); j++) {
+                if (transcriptCoursesAr[i].equals(getCourses().get(j).getCourseID().getId())) {
+                    transcriptCoursesList.add(getCourses().get(j));
+                }
+            }
+        }
+        return transcriptCoursesList;
+    }
+
     private void createCourses() throws JSONException, IOException{
-        String content = null;
-        content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
+        String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
         JSONObject jsonObject = new JSONObject(content);
         JSONArray courseJSON = jsonObject.getJSONArray("courses");
         for(int i =0 ; i< courseJSON.length();i++){
@@ -175,7 +202,7 @@ public class SystemDomain {
         return strings;
     }
 
-    public void assignStudentsToAdvisor() {
+    private void assignStudentsToAdvisor() {
         for (Student student : students) {
             for (Advisor advisor : advisors) {
                 if (student.getAdvisor().getId().getId().equals(advisor.getId().getId())) {
@@ -186,7 +213,7 @@ public class SystemDomain {
         }
     }
 
-    public void assignCoursesToLecturer() {
+    private void assignCoursesToLecturer() {
         for (Course course : courses) {
             for (Lecturer lecturer : lecturers) {
                 if (course.getLecturer().getId().getId().equals(lecturer.getId().getId())) {
