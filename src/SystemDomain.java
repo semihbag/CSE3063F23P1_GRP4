@@ -16,7 +16,7 @@ public class SystemDomain {
     private ArrayList<Course> courses = new ArrayList<>();
     private ArrayList<Student> students = new ArrayList<>();
 
-    SystemDomain() throws JSONException, IOException {
+    public SystemDomain() throws JSONException, IOException {
         createLecturers();
         createAdvisors();
         for (int i = 0; i < getAdvisors().size(); i++) {
