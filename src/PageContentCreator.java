@@ -98,7 +98,8 @@ public class PageContentCreator {
 		String str="";
 		if(courses.size()==0)
 		{
-			str="NO COURSES SELECTED YET\n";
+			str="NO COURSES SELECTED YET\n"
+				+ "Press q to exit";
 
 		}
 		else {
