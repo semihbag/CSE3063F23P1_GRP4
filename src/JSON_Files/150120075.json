@@ -1,0 +1,28 @@
+{
+    "advisor": "1501002",
+    "request": false,
+    "notification": "",
+    "password": "duru12345",
+    "transcript": {
+        "failedcourses": [],
+        "completedcourses": [
+            "CSE1200",
+            "CSE1241",
+            "CSE2225",
+            "CSE2023",
+            "CSE2246",
+            "CSE2138",
+            "CSE2260"
+        ],
+        "year": 3,
+        "gpa": 90
+    },
+    "name": "Duru",
+    "registration": {
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150120075",
+    "type": "student",
+    "lastname": "Baştunalı"
+}
