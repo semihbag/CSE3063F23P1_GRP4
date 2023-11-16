@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Draft_Classes.*;
+
 public class SystemDomain {
     private ArrayList<Lecturer> lecturers = new ArrayList<>();
     private ArrayList<Advisor> advisors = new ArrayList<>();
