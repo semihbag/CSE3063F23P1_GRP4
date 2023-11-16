@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class PageContentCreator {
 
-	public static String crateMainMenuPageStudentContent()
+	public  String crateMainMenuPageStudentContent()
 	{
 		String str="---------MAIN MENU---------\n"+
 				"1) All Courses\n"+
@@ -13,7 +13,7 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public static String createMainMenuPageAdvisorContent()
+	public  String createMainMenuPageAdvisorContent()
 	{
 		String str="---------MAIN MENU---------\n"+
 				"1) Advised Student Information\n"+
@@ -25,7 +25,7 @@ public class PageContentCreator {
 	}
 
 
-	public static String createSelectedStudentsRequesPageContent (Student student)
+	public  String createSelectedStudentsRequesPageContent (Student student)
 	{
 		String str = "";
 		str="All course requests of "+student.getFirstName()+" "+student.getLastName()
@@ -36,7 +36,7 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public static String createEvaluateRequestPageContent (ArrayList<Student> student) //take awaiting student as a parameter
+	public  String createEvaluateRequestPageContent (ArrayList<Student> student) //take awaiting student as a parameter
 	{
 		String str="";
 		if(student.size()==0)
@@ -67,7 +67,7 @@ public class PageContentCreator {
 	}
 
 
-	public  static String createMyStudentsPageContent (ArrayList<Student> student)
+	public   String createMyStudentsPageContent (ArrayList<Student> student)
 	{
 		String str="All students advised\n";
 		for (int i=1; i<=student.size() ; i++ )
@@ -84,7 +84,7 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public static String createSelectableCoursesPageContent  (ArrayList<Course> courses,ArrayList<Course> coursesSelected) {
+	public  String createSelectableCoursesPageContent  (ArrayList<Course> courses,ArrayList<Course> coursesSelected) {
 		String str="=>List of all selectable courses<=\n\n"+
 				"Press number to select course,\nPress q to exit\n"+
 				"-------------------------------------\n"
@@ -94,7 +94,7 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public static String createSelectedCoursesPageContent  (ArrayList<Course> courses) {
+	public  String createSelectedCoursesPageContent  (ArrayList<Course> courses) {
 		String str="";
 		if(courses.size()==0)
 		{
@@ -110,7 +110,7 @@ public class PageContentCreator {
 
 	}
 
-	public static String createAllCoursesPageContent   (ArrayList<Course> courses) {
+	public  String createAllCoursesPageContent   (ArrayList<Course> courses) {
 		String str="=>List of all courses<=\n"+
 				"-------------------------------------\n"+
 				courseListForContent(courses)+"\n"+
@@ -118,14 +118,14 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public static String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
+	public  String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
 		String str="=>List of all approved courses<=\n"+
 				"-------------------------------------\n"+
 				courseListForContent(courses);
 		return str;
 	}
 
-	public static String courseListForContent (ArrayList<Course> courses)
+	public  String courseListForContent (ArrayList<Course> courses)
 	{
 		String str="";
 		for (int i=1; i<=courses.size() ; i++ )
