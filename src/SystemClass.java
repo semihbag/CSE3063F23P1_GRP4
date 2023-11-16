@@ -82,7 +82,6 @@ public class SystemClass {
                 curr.put("quota",domain.getCourses().get(j).getQuota());
                 j++;
             }
-
         }
         Files.write(Paths.get("src\\JSON_Files\\courses.json"),jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
 
@@ -102,7 +101,6 @@ public class SystemClass {
                 for(k=0;k<currCourseJSON.length();k++){
                     JSONObject currSession = currCourseJSON.getJSONObject(k);
                     currSession.put("studentList",studentToJsonArray(domain.getCourses().get(j).getStudentList()));
-
                 }
                 j=j+k;
             }
@@ -110,16 +108,8 @@ public class SystemClass {
                 curr.put("studentList",studentToJsonArray(domain.getCourses().get(i).getStudentList()));
                 j++;
             }
-
         }
         Files.write(Paths.get("src\\JSON_Files\\courses.json"),jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
-    }
-    public String[] studentToJsonArray(ArrayList<Student> students){
-        String[] studentIds = new String[students.size()];
-        for(int i=0; i<students.size();i++){
-            studentIds[i] = students.get(i).getStudentId().getId();
-        }
-        return  studentIds;
     }
 
     public void updateStudentJSON() throws JSONException, IOException {
@@ -129,20 +119,33 @@ public class SystemClass {
             String content = new String(Files.readAllBytes(path));
             JSONObject jsonStudent = new JSONObject(content);
             JSONObject registration = jsonStudent.getJSONObject("registration");
-            JSONArray selectedCourses = registration.getJSONArray("selectedcourses");
-            JSONArray approvedCourses = registration.getJSONArray("approvedcourses");
+
             ArrayList<Course> selected = domain.getStudents().get(i).getSelectedCourses();
             ArrayList<Course> approved = domain.getStudents().get(i).getApprovedCourses();
-            for (int j = 0; j < selected.size(); j++) {
-                selectedCourses.put(j, selected.get(i).getCourseID().getId());
-            }
-            for (int k = 0; k < approved.size(); k++) {
-                approvedCourses.put(k, approved.get(k).getCourseID().getId());
-            }
+
+            registration.put("selectedcourses",transcriptCourses(selected));
+            registration.put("approvedcourses", transcriptCourses(approved));
+
             jsonStudent.put("request", domain.getStudents().get(i).getRequest());
             jsonStudent.put("notification", domain.getStudents().get(i).getNotification());
             Files.write(path, jsonStudent.toString(4).getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
         }
+    }
+
+    private String[] studentToJsonArray(ArrayList<Student> students){
+        String[] studentIds = new String[students.size()];
+        for(int i=0; i<students.size();i++){
+            studentIds[i] = students.get(i).getStudentId().getId();
+        }
+        return  studentIds;
+    }
+
+    private String[] transcriptCourses(ArrayList<Course> transcriptCoursesList) {
+        String[] transcriptCoursesAr = new String[transcriptCoursesList.size()];
+        for (int i = 0; i < transcriptCoursesList.size(); i++) {
+            transcriptCoursesAr[i] = transcriptCoursesList.get(i).getCourseID().getId();
+        }
+        return transcriptCoursesAr;
     }
 
     public SystemDomain getDomain() {

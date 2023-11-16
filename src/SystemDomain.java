@@ -79,8 +79,8 @@ public class SystemDomain {
             String[] selectedCoursesAr = jsonArrToStrArr(registration.getJSONArray("selectedcourses"));
             String[] approvedCoursesAr = jsonArrToStrArr(registration.getJSONArray("approvedcourses"));
 
-            ArrayList<Course> failedCourses = setTranscriptCourses(failedCoursesAr);
-            ArrayList<Course> completedCourses = setTranscriptCourses(completedCoursesAr);
+            ArrayList<Course> failedCourses = setStudentCourses(failedCoursesAr);
+            ArrayList<Course> completedCourses = setStudentCourses(completedCoursesAr);
             ArrayList<Course> selectedCourses = setStudentCourses(selectedCoursesAr);
             ArrayList<Course> approvedCourses = setStudentCourses(approvedCoursesAr);
 
@@ -104,9 +104,6 @@ public class SystemDomain {
     private ArrayList<Course> setStudentCourses(String[] studentCoursesAr) {
         ArrayList<Course> studentCoursesList = new ArrayList<>();
         for (int i = 0; i < studentCoursesAr.length; i++) {
-            if (studentCoursesAr[i].equals("")) {
-                break;
-            }
             for (int j = 0; j < getCourses().size(); j++) {
                 if (studentCoursesAr[i].equals(getCourses().get(j).getCourseID().getId())) {
                     studentCoursesList.add(getCourses().get(j));
@@ -114,18 +111,6 @@ public class SystemDomain {
             }
         }
         return studentCoursesList;
-    }
-
-    private ArrayList<Course> setTranscriptCourses(String[] transcriptCoursesAr) {
-        ArrayList<Course> transcriptCoursesList = new ArrayList<>();
-        for (int i = 0; i < transcriptCoursesAr.length; i++) {
-            for (int j = 0; j < getCourses().size(); j++) {
-                if (transcriptCoursesAr[i].equals(getCourses().get(j).getCourseID().getId())) {
-                    transcriptCoursesList.add(getCourses().get(j));
-                }
-            }
-        }
-        return transcriptCoursesList;
     }
 
     private void createCourses() throws JSONException, IOException{
