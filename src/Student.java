@@ -13,14 +13,13 @@ public class Student extends Person {
     private Boolean request;
     private String notification;
 
-    public Student(String firstName, String lastName, Id studentID, Password password, int year, Advisor advisor, Transcript transcript, ArrayList<Course> selectableCourses, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, Boolean request, String notification, ArrayList <Course> cirriculum) {
+    public Student(String firstName, String lastName, Id studentID, Password password, int year, Advisor advisor, Transcript transcript, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, Boolean request, String notification, ArrayList <Course> cirriculum) {
         super(firstName, lastName);
         this.studentId = studentID;
         this.password = password;
         this.year = year;
         this.advisor = advisor;
         this.transcript = transcript;
-        this.selectableCourses = selectableCourses;
         this.selectedCourses = selectedCourses;
         this.approvedCourses = approvedCourses;
         this.request = request;
@@ -31,21 +30,37 @@ public class Student extends Person {
     }
 
     // Filters all courses in the curriculum according to the student's current semester and prerequisite course passing information
-    public void filterCourses(ArrayList<Course> curriculum, ArrayList<Id> passedCourses) {
-        for(int i = 0; i < curriculum.size() ; i++){
-            Course currCourse = curriculum.get(i);
-            if (currCourse.getYear() == year){
-                for (int k = 0; k < passedCourses.size(); k++){
-                    Id passedCourse = passedCourses.get(i);
-                    if ( !passedCourse.equals(currCourse.getCourseID())){
-                        if(isProvided(currCourse) && (currCourse.getStudentList().size() < currCourse.getQuota())){
-                            selectableCourses.add(currCourse);
+    public void filterCourses(ArrayList<Course> curriculum) {
+        for (int i = 0; i < curriculum.size() ; i++){
+            Course course = curriculum.get(i);
+            if(!isSelectedCourse(course)){
+                if(!isPassedCourse(course)){
+                    if(isPrerequisiteCoursesPassed(course)) {
+                        if(course.getYear() == year){
+                            if (isUnderQuota(course)) {
+                                selectableCourses.add(course);
+                            }
+                        }
+                        else if(course.getYear() == (year+1)){
+                            if (transcript.getGPA_100()>=75){
+                                if (isUnderQuota(course)) {
+                                    selectableCourses.add(course);
+                                }
+                            }
+                        }
+                        else if (course.getYear()<year){
+                            if (isFailedCourse(course)){
+                                if(isUnderQuota(course)){
+                                    selectableCourses.add(course);
+                                }
+                            }
                         }
                     }
                 }
             }
         }
     }
+
 
     public boolean isSelectedCourse(Course course){
         for(int i =0;  i < selectedCourses.size() ; i++) {
