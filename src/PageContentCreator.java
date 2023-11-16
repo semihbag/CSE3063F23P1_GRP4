@@ -56,5 +56,15 @@ public class PageContentCreator {
 		return str;
 		}
 
+    public static String createSelectableCoursesPageContent  (ArrayList<Course> courses,ArrayList<Course> coursesSelected) {
+		String str="=>List of all selectable courses<=\n\n"+
+	    "Press number to select course,\nPress q to exit\n"+
+		"-------------------------------------\n"
+		+courseListForContent(courses)+"\n\n\n\n"+
+		"=>List of all selected courses<=\n"+
+		courseListForContent(coursesSelected);		
+		return str;
+	}
+
 }
 
