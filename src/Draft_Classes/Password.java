@@ -1,3 +1,5 @@
+package Draft_Classes;
+
 public class Password {
     String password;
     public Password(String password) {
