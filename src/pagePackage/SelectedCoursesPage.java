@@ -40,7 +40,7 @@ public class SelectedCoursesPage extends Page{
 				}
 				else {
 					System.out.println("Wrong Input");
-					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTED_COURSES_PAGE, null);
+					return new SystemMessage(FunctionType.NONE, null, null);
 				}
 
 			}
@@ -52,7 +52,7 @@ public class SelectedCoursesPage extends Page{
 		}
 		else {
 			System.out.println("Wrong Input");
-			return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTED_COURSES_PAGE, null);
+			return new SystemMessage(FunctionType.NONE, null, null);
 		}		
 	}
 

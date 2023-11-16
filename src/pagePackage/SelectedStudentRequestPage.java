@@ -32,7 +32,7 @@ public class SelectedStudentRequestPage extends Page{
 			}
 			else {
 				System.out.println("Wrong Input");
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTED_STUDENT_REQUEST_PAGE, null);
+				return new SystemMessage(FunctionType.NONE, null, null);
 			}
 		}
 	}

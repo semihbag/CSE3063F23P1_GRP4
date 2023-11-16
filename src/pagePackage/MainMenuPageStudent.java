@@ -31,7 +31,7 @@ public class MainMenuPageStudent extends Page{
 				return new SystemMessage(FunctionType.EXIT, null, null);
 			default:
 				System.out.println("Wrong Input!");
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
+				return new SystemMessage(FunctionType.NONE, null, null);
 		}
 	}
 }

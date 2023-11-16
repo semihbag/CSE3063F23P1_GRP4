@@ -19,16 +19,14 @@ public class MainMenuPageAdvisor extends Page {
 			case "1":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_STUDENTS_PAGE, null);
 			case "2":
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_REQUESTS_PAGE, null);
-			case "3":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.EVALUATE_REQUESTS_PAGE, null);
-			case "4":
+			case "3":
 				return new SystemMessage(FunctionType.LOGOUT, PageType.LOGIN_PAGE, null);
-			case "5":
+			case "4":
 				return new SystemMessage(FunctionType.EXIT, null, null);
 			default:
 				System.out.println("Wrong Input!");
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_ADVISOR, null);
+				return new SystemMessage(FunctionType.NONE, null, null);
 		}	
 	}
 }

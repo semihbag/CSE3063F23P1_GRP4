@@ -38,7 +38,7 @@ public class EvaluateRequestsPage extends Page {
 				}
 				else {
 					System.out.println("Wrong Input");
-					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTABLE_COURSES_PAGE, null);
+					return new SystemMessage(FunctionType.NONE, null, null);
 				}
 			}
 		}
@@ -49,7 +49,7 @@ public class EvaluateRequestsPage extends Page {
 		}
 		else {
 			System.out.println("Wrong Input");
-			return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.EVALUATE_REQUESTS_PAGE, null);
+			return new SystemMessage(FunctionType.NONE, null, null);
 		}
 		
 	}

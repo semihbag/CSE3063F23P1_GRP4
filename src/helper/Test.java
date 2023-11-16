@@ -78,10 +78,9 @@ public class Test {
 		String mainAdvisorCont = 
 				"*** MAIN MENU ADVISOR ***"
 				+ "\n1- See all my students "
-				+ "\n2- See all my request "
-				+ "\n3- Evaluate request "
-				+ "\n4- Logout "
-				+ "\n5- Exit"
+				+ "\n2- Evaluate request "
+				+ "\n3- Logout "
+				+ "\n4- Exit"
 				+ "\n";
 		MainMenuPageAdvisor mainAdvisor = new MainMenuPageAdvisor(mainAdvisorCont);
 		

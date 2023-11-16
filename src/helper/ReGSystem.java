@@ -2,7 +2,12 @@ package helper;
 
 import java.util.Scanner;
 
+import pagePackage.EvaluateRequestsPage;
+import pagePackage.MainMenuPageAdvisor;
 import pagePackage.PageType;
+import pagePackage.SelectableCoursesPage;
+import pagePackage.SelectedCoursesPage;
+import pagePackage.SelectedStudentRequestPage;
 import systemMessagePackage.FunctionType;
 import systemMessagePackage.SystemMessage;
 import userInfoPackage.UserInfo;
@@ -53,14 +58,13 @@ public class ReGSystem {
 		}
 		
 		if (functionType == FunctionType.LOGOUT) {
-			// this.logout();
+//			this.logout();
 			this.userInterface.setCurrentPage(PageType.LOGIN_PAGE);
 		}
 
 		
 		if (functionType == FunctionType.EXIT) {
-			System.exit(0);
-			return;
+			//this.exit(0);
 		}
 		
 		if (functionType == FunctionType.CHANGE_PAGE) {
@@ -70,7 +74,25 @@ public class ReGSystem {
 		}
 		
 		if (functionType == FunctionType.SELECT_COURSE ) {
-			//Student student = (Student)this.getCurrentUser();
+			
+//			Student student = (Student) this.getCurrentUser();
+			
+//			student.addSelectedCourse(sm.getInput());
+	
+			// handling of selecteable course data
+			SelectableCoursesPage selectableCoursePage = (SelectableCoursesPage) this.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE);
+//			selectableCoursePage.setContent(this.pageContentCreator.createSelectableCoursePageContent(student.getSelectableCourses());
+//			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
+			
+			// handling selected course data
+			SelectedCoursesPage selectedCoursePage = (SelectedCoursesPage) this.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE);
+//			selectedCoursePage.setContent(this.pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
+//			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
+	
+			this.userInterface.setCurrentPage(sm.getNextPageType());
+
+			
+			
 			
 			// burada studentin içinden secilebilen derslere gidip gelen
 			// input (index oluyor artık o) degerindeki course selected
@@ -87,7 +109,25 @@ public class ReGSystem {
 		}
 		
 		if (functionType == FunctionType.DROP_COURSE ) {
-			//Student student = (Student)this.getCurrentUser();
+			//Student student = (Student) this.getCurrentUser();
+			
+			//student.dropCourse(sm.getInput());
+			
+			// handling selected course data
+			SelectedCoursesPage selectedCoursePage = (SelectedCoursesPage) this.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE);
+//			selectedCoursePage.setContent(this.pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
+//			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
+				
+			
+			// handling of selecteable course data
+			SelectableCoursesPage selectableCoursePage = (SelectableCoursesPage) this.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE);
+//			selectableCoursePage.setContent(this.pageContentCreator.createSelectableCoursePageContent(student.getSelectableCourses());
+//			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
+						
+			this.userInterface.setCurrentPage(sm.getNextPageType());
+
+			
+			
 			
 			// burada studentin içinden secilen derslere gidip gelen
 			// input (index oluyor artık o) degerindeki course drop işlemi yapıcaz
@@ -103,10 +143,14 @@ public class ReGSystem {
 		}
 
 		if (functionType == FunctionType.SELECET_STUDENT ) {
+//			Advisor advisor = (Advisor)this.getCurrentUser();
+			
+//			advisor.selectStudent(sm.getInput);
+			
+			
 			// burada advisorun select fonksiyonu çağırılacak parametre olarak sm.getInput() verilecek
 			
-			//Advisor advisor = (Adivor)this.getCurrentUser();
-			//advisor.selectStudent(sm.getInput);
+			
 			
 			this.userInterface.setCurrentPage(sm.getNextPageType());
 			return;
@@ -114,13 +158,26 @@ public class ReGSystem {
 		}
 
 		if (functionType == FunctionType.APPROVE_REQUEST ) {
+//			Advisor advisor = (Advisor)this.getCurrentUser();
+
+//			advisor.Approve();
+
+			// handling selected student request
+			SelectedStudentRequestPage selectedStdudentRequesPage = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
+//			selectedStdudentRequesPage.setContent(this.pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
+			
+			// handling evaluate request 
+			EvaluateRequestsPage evaluateRequestPage = (EvaluateRequestsPage) this.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE);
+//			evaluateRequestPage.setContent(this.pageContentCreator(advisor.getAwaitingStudents()));
+//			evaluateRequestPage.setNumberOfRequest(advisor.getAwaitingStudents(.size()));
+			
+			
 			// burada seçilen req için onaylama istegi geliyor burada onaylamamız lazım.
 			// ayrıca artık req sayısı değiştiği için EVALUATE_REQUESTS_PAGE sayfası contenti güncellenmeli
 			// ayrıca SELECTED_STUDENT_REQUEST_PAGE contenti de değişecek
 			// zenepin yazdıgı fonk tekrar cağırılacak ve settet ile content degiştirilecek
 			
-			//Advisor advisor = (Adivor)this.getCurrentUser();
-			//advisor.approve();
+		
 			System.out.println("---req approved");
 			this.userInterface.setCurrentPage(sm.getNextPageType());
 			return;
@@ -128,14 +185,33 @@ public class ReGSystem {
 		}
 
 		if (functionType == FunctionType.DISAPPREOVE_REQUEST ) {
+			
+//			Advisor advisor = (Advisor)this.getCurrentUser();
+
+//			advisor.Disapprove();
+			
+			// handling selected student request
+			SelectedStudentRequestPage selectedStdudentRequesPage = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
+//			selectedStdudentRequesPage.setContent(this.pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));	
+
+			// handling evaluate request 
+			EvaluateRequestsPage evaluateRequestPage = (EvaluateRequestsPage) this.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE);
+//			evaluateRequestPage.setContent(this.pageContentCreator(advisor.getAwaitingStudents()));
+//			evaluateRequestPage.setNumberOfRequest(advisor.getAwaitingStudents(.size()));
+			
+			
+			
+			
+			
+			
+			
 			// burada secilen req istegi reddedildi
 			// yani listeden kaldırldı
 			// yine yıkarıda oldugu gibi EVALUATE_REQUESTS_PAGE contenti değişecek
 			// ayrıca SELECTED_STUDENT_REQUEST_PAGE contenti de değişecek
 			// zenepin yazdıgı fonk tekrar cağırılacak ve settet ile content degiştirilecek
 
-			//Advisor advisor = (Advisor)this.getCurrentUser();
-			//advisor.disapprove();
+		
 			System.out.println("---req disapproved");
 			this.userInterface.setCurrentPage(sm.getNextPageType());
 			return;
