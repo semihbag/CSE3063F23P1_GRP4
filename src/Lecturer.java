@@ -9,11 +9,11 @@ public class Lecturer extends Person{
     }
 
     public String getLecturerID() {
-        return lecturerID.getID();
+        return lecturerID.getId();
     }
 
     public void setLecturerID(String id) {
-        lecturerID.setID(id);
+        lecturerID.setId(id);
     }
  
 }
