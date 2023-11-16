@@ -7,7 +7,7 @@ public class CourseSession extends Course{
 
 	public CourseSession(Id courseID, String courseName, int quota, int year, String day_hour,
 			Lecturer lecturer, Id sessionID) {
-		super(courseID, courseName, quota, year, day_hour, lecturer);
+		super(courseID, courseName, quota, year, day_hour,studentList, lecturer);
 		this.sessionID = sessionID;
 	}
 	
