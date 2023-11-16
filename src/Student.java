@@ -45,18 +45,14 @@ public class Student extends Person {
         }
     }
 
-    // Checks whether the student has passed the prerequisite courses to take the course
-    public boolean isProvided(Course course){
-        for(int i=0; i < course.getPrerequisiteCourses().size(); i++) {
-            Course preCourse = course.getPrerequisiteCourses().get(i);
-            for (int k = 0; k < transcript.getPassedCourses().size(); k++){
-                Id passCourse = transcript.getPassedCourses().get(k);
-                if (!passCourse.equals(preCourse.getCourseID())){
-                    return false;
-                }
+    public boolean isFailedCourse(Course course) {
+        for (int i = 0; i < transcript.getFailedCourses().size(); i++) {
+            Course failedCourse = transcript.getFailedCourses().get(i);
+            if (failedCourse.getCourseID() == course.getCourseID()) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public void addSelectableCourse(Course course){
