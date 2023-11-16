@@ -1,7 +1,6 @@
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,11 +9,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SystemDomain {
-
     private ArrayList<Lecturer> lecturers = new ArrayList<>();
     private ArrayList<Advisor> advisors = new ArrayList<>();
     private ArrayList<Course> courses = new ArrayList<>();
-
+    private ArrayList<Student> students = new ArrayList<>();
 
     SystemDomain() throws JSONException, IOException {
         createLecturers();
@@ -23,8 +21,9 @@ public class SystemDomain {
             getLecturers().add(getAdvisors().get(i));
         }
         createCourses();
-
-
+        createStudents();
+        assignCoursesToLecturer();
+        assignStudentsToAdvisor();
     }
 
     public void createLecturers() throws JSONException, IOException {
@@ -54,7 +53,40 @@ public class SystemDomain {
         }
     }
 
-
+    public void createStudents() throws JSONException, IOException {
+        File allStudentFiles = new File("src\\JSON_Files\\student_json.txt");
+        Scanner allStudentFilesInput = new Scanner(allStudentFiles);
+        while (allStudentFilesInput.hasNextLine()) {
+            String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\" + allStudentFilesInput.nextLine())));
+            JSONObject jsonStudent = new JSONObject(content);
+            JSONObject transcript = jsonStudent.getJSONObject("transcript");
+            String name = jsonStudent.getString("name");
+            String lastname = jsonStudent.getString("lastname");
+            String id = jsonStudent.getString("id");
+            String password = jsonStudent.getString("password");
+            String advisorID = jsonStudent.getString("advisor");
+            Advisor advisor = null;
+            for (int i = 0; i < getAdvisors().size(); i++) {
+                if (getAdvisors().get(i).getId().getId().equals(advisorID)) {
+                    advisor = getAdvisors().get(i);
+                }
+            }
+            double gpa = transcript.getDouble("gpa");
+            int year = transcript.getInt("year");
+            String[] completedCoursesID = jsonArrToStrArr(transcript.getJSONArray("completedcourses"));
+            ArrayList<Id> completedCourses = new ArrayList<>();
+            for (String s : completedCoursesID) {
+                completedCourses.add(new Id(s));
+            }
+            String[] failedCoursesID = jsonArrToStrArr(transcript.getJSONArray("failedcourses"));
+            ArrayList<Id> failedCourses = new ArrayList<>();
+            for (String s : failedCoursesID) {
+                failedCourses.add(new Id(s));
+            }
+            students.add(new Student(name, lastname, new Id(id), new Password(password), advisor,
+                    new Transcript(gpa, year, completedCourses, failedCourses)));
+        }
+    }
 
     private void createCourses() throws JSONException, IOException{
         String content = null;
@@ -80,7 +112,6 @@ public class SystemDomain {
                         }
                     }
                     CourseSession courseSession =new CourseSession(new Id(courseId),name,quota,year,day_hour, courseLecturer, new Id(sessionId));
-
                     for(String str: prequisiteId){
                         for(Course crs: courses){
                             if(str.equals(crs.getCourseID().getId())){
@@ -96,7 +127,6 @@ public class SystemDomain {
                 String day_hour = courseJSON.getJSONObject(i).getString("day_hour");
                 String[] prequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prequisite"));
                 Lecturer courseLecturer=null;
-
                 for (Lecturer lecturer : lecturers) {
                     if (lecturer.getId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
                         courseLecturer=lecturer;
@@ -104,8 +134,6 @@ public class SystemDomain {
                     }
                 }
                 Course course = new Course(new Id(courseId),name, quota, year ,day_hour,courseLecturer);
-
-
                 for(String str: prequisiteId){
                     for(Course crs: courses){
                         if(str.equals(crs.getCourseID().getId())){
@@ -126,14 +154,38 @@ public class SystemDomain {
         return strings;
     }
 
+    public void assignStudentsToAdvisor() {
+        for (Student student : students) {
+            for (Advisor advisor : advisors) {
+                if (student.getAdvisor().getId().getId().equals(advisor.getId().getId())) {
+                    advisor.getStudents().add(student);
+                    break;
+                }
+            }
+        }
+    }
 
+    public void assignCoursesToLecturer() {
+        for (Course course : courses) {
+            for (Lecturer lecturer : lecturers) {
+                if (course.getLecturer().getId().getId().equals(lecturer.getId().getId())) {
+                    lecturer.getGivenCourses().add(course);
+                }
+            }
+        }
+    }
 
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
 
     public ArrayList<Advisor> getAdvisors() {
         return advisors;
     }
 
-    public ArrayList<Course> getCourses() { return courses;}
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
 
     public ArrayList<Lecturer> getLecturers() {
         return lecturers;
