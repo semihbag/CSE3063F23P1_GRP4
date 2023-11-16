@@ -1,0 +1,39 @@
+{
+    "type": "student",
+    "id": "150120049",
+    "name": "Aksanur",
+    "lastname": "Konuk",
+    "advisor": "1501002",
+    "request": false,
+    "notification": "",
+    "password": "konukaksa49",
+    "transcript": {
+        "failedcourses": ["CSE2260"],
+        "completedcourses": [
+            "CSE1200",
+            "CSE1241",
+            "CSE2225",
+            "CSE2023",
+            "CSE2246",
+            "CSE2138"
+        ],
+        "year": 3,
+        "gpa": 85
+    },
+    "registration": {
+        "selectedcourses": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "approvedcourses": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    }
+}

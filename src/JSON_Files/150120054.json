@@ -31,11 +31,11 @@
       "CSE1241",
       "CSE2023",
       "CSE2138",
-      "CSE2260",
-      "CSE2246"
+      "CSE2260"
     ],
     "failedcourses" : [
-      "CSE2225"
+      "CSE2225",
+      "CSE2246"
     ]
   }
 }

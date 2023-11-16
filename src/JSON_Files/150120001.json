@@ -1,7 +1,7 @@
 {
 	"type" : "student",
 	"name" : "Ali",
-	"lastname" : "Veli",
+	"lastname" : "Korkmaz",
 	"id" : "150120001",
 	"password" : "ali123",
 	"advisor" : "1501002",

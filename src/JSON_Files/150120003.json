@@ -1,0 +1,40 @@
+{
+    "type": "student",
+    "id": "150120003",
+    "name": "Ayşe",
+    "lastname": "Kaya",
+    "advisor": "1501001",
+    "request": false,
+    "notification": "",
+    "password": "aysee9kaya",
+    "transcript": {
+        "failedcourses": [],
+        "completedcourses": [
+            "CSE1200",
+            "CSE1241",
+            "CSE2225",
+            "CSE2023",
+            "CSE2246",
+            "CSE2138",
+            "CSE2260"
+        ],
+        "year": 3,
+        "gpa": 74
+    },
+    "registration": {
+        "selectedcourses": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "approvedcourses": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    }
+}
