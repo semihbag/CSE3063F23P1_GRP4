@@ -133,13 +133,12 @@ public class PageContentCreator {
 			if(courses.get(i-1) instanceof CourseSession)
 			{
 				CourseSession session = (CourseSession) courses.get(i-1);
-				str+= i+" -> "+courses.get(i-1).getCourseId().getId()
+				str+= i+" -> "+courses.get(i-1).getCourseId().getId()+"."
 						+session.getSessionId().getId()
 
 						// session idyide alsın
 						+"|"+courses.get(i-1).getCourseName()
 						+"|\n"+courses.get(i-1).getLecturer().getFirstName()
-						+"|\n"+courses.get(i-1).getLecturer().getLastName()
 						+"|\n"+courses.get(i-1).getQuota()+"\n"
 						+"--------------------------------------"+"\n";
 			}
