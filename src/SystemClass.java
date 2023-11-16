@@ -59,8 +59,26 @@ public class SystemClass {
     }
 
     public void updateStudentJSON() throws JSONException, IOException {
-
-
+        for (int i = 0; i < domain.getStudents().size(); i++) {
+            String studentId = domain.getStudents().get(i).getStudentId().getId();
+            Path path = Path.of("src\\JSON_Files\\" + studentId + ".json");
+            String content = new String(Files.readAllBytes(path));
+            JSONObject jsonStudent = new JSONObject(content);
+            JSONObject registration = jsonStudent.getJSONObject("registration");
+            JSONArray selectedCourses = registration.getJSONArray("selectedcourses");
+            JSONArray approvedCourses = registration.getJSONArray("approvedcourses");
+            ArrayList<Course> selected = domain.getStudents().get(i).getSelectedCourses();
+            ArrayList<Course> approved = domain.getStudents().get(i).getApprovedCourses();
+            for (int j = 0; j < selected.size(); j++) {
+                selectedCourses.put(j, selected.get(i).getCourseID().getId());
+            }
+            for (int k = 0; k < approved.size(); k++) {
+                approvedCourses.put(k, approved.get(k).getCourseID().getId());
+            }
+            jsonStudent.put("request", domain.getStudents().get(i).getRequest());
+            jsonStudent.put("notification", domain.getStudents().get(i).getNotification());
+            Files.write(path, jsonStudent.toString(4).getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
+        }
     }
 
     public SystemDomain getDomain() {
