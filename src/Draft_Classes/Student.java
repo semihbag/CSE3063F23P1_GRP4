@@ -8,6 +8,7 @@ public class Student extends Person {
     private Advisor advisor;
     private Transcript transcript;
 
+    private ArrayList<Course> curriculum = new ArrayList<>();
     private ArrayList<Course> selectableCourses = new ArrayList<>();
     private ArrayList<Course> selectedCourses = new ArrayList<>();
     private ArrayList<Course> approvedCourses = new ArrayList<>();
@@ -15,12 +16,13 @@ public class Student extends Person {
     private String notification;
 
     public Student(String firstName, String lastName, Id studentId, Password password, Advisor advisor,
-                   Transcript transcript) {
+                   Transcript transcript, ArrayList<Course> curriculum) {
         super(firstName, lastName);
         this.studentId = studentId;
         this.password = password;
         this.advisor = advisor;
         this.transcript = transcript;
+        this.curriculum = curriculum;
     }
 
     public Id getStudentId() {
@@ -94,5 +96,13 @@ public class Student extends Person {
 
     public void setNotification(String notification) {
         this.notification = notification;
+    }
+
+    public ArrayList<Course> getCurriculum() {
+        return curriculum;
+    }
+
+    public void setCurriculum(ArrayList<Course> curriculum) {
+        this.curriculum = curriculum;
     }
 }
