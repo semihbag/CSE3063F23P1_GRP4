@@ -103,8 +103,10 @@ public class PageContentCreator {
 		}
 		else {
 			str="=>List of all selected courses<=\n"+
+			"Press q to exit\n"+
 					"-------------------------------------\n"+
 					courseListForContent(courses);
+
 		}
 		return str;
 
@@ -139,6 +141,7 @@ public class PageContentCreator {
 						// session idyide alsın
 						+"|"+courses.get(i-1).getCourseName()
 						+"|\n"+courses.get(i-1).getLecturer().getFirstName()
+						+"|\n"+courses.get(i-1).getLecturer().getLastName()
 						+"|\n"+courses.get(i-1).getQuota()+"\n"
 						+"--------------------------------------"+"\n";
 			}
@@ -146,6 +149,7 @@ public class PageContentCreator {
 				str+= i+" -> "+courses.get(i-1).getCourseId().getId()
 						+"|"+courses.get(i-1).getCourseName()
 						+"|\n"+courses.get(i-1).getLecturer().getFirstName()
+						+"|\n"+courses.get(i-1).getLecturer().getLastName()
 						+"|\n"+courses.get(i-1).getQuota()+"\n"
 						+"--------------------------------------"+"\n";
 			}
