@@ -11,5 +11,16 @@ public class PageContentCreator {
 		return str;
 	}
 
+    	public static String createMainMenuPageAdvisorContent() 
+	{
+		String str="---------MAIN MENU---------\n"+
+				    "1) Advised Student Information\n"+
+				    "2) View Course Requests\n"+
+				    "3) Evaluate Requests\n"+
+				    "4) Log out\n"+
+				    "5) Exit\n";
+		return str;
+	}
+
 }
 
