@@ -1,5 +1,5 @@
 package helper;
 
-public class Person {
+public abstract class Person {
 
 }

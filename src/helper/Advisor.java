@@ -1,5 +1,5 @@
 package helper;
 
-public class Advisor {
+public class Advisor extends Person{
 
 }
