@@ -1,9 +1,20 @@
 import org.json.JSONException;
 
+import userInterfacePackage.UserInterface;
+
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws JSONException, IOException {
-        new SystemClass();
+    
+    	try {
+    		UserInterface userInterface = new UserInterface();
+            SystemClass system = new SystemClass(userInterface);
+        
+    	}
+    	catch (Exception e) {
+    		 System.err.println("Hata yakalandı: " + e.getMessage());
+             e.printStackTrace();
+    	}
     }
 }

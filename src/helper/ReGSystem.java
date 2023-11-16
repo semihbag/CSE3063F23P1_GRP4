@@ -219,9 +219,7 @@ public class ReGSystem {
 			System.out.println("---req disapproved");
 			this.userInterface.setCurrentPage(sm.getNextPageType());
 			return;
-
 		}
-
 	}
 	
 	

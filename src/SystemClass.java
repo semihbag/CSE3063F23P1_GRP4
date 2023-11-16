@@ -1,10 +1,16 @@
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 
-import Draft_Classes.*;
+import systemMessagePackage.*;
+import userInfoPackage.*;
+import userInterfacePackage.*;
+import pagePackage.*;
+
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,13 +22,28 @@ import java.util.ArrayList;
 public class SystemClass {
     private SystemDomain domain;
     private Person currentUser;
+    private PageContentCreator pageContentCreator;
+    private UserInterface userInterface;
 
-    public SystemClass() throws JSONException, IOException {
-        domain = new SystemDomain();
-        UserInfo me = new UserInfo("o150120042","nida123");
-        login(me);
+    public SystemClass(UserInterface u) throws JSONException, IOException {
+        pageContentCreator = new PageContentCreator();
+    	userInterface = u;
+		LoginPage login = new LoginPage("welcome");
+		userInterface.addPage(login);
+		userInterface.setCurrentPage(PageType.LOGIN_PAGE);
+    	domain = new SystemDomain();
+    	
+//        UserInfo me = new UserInfo("o150120042","nida123");
+//        login(me);
     }
-
+    
+	public void run() {
+		while (true) {
+			userInterface.display();
+			listenUserInterface(userInterface.getSystemMessage());
+		}
+	}
+    
     public void login(UserInfo userInfo) {
         boolean userFound = false;
         if (userInfo.getUsername().charAt(0) == 'o') {
@@ -32,7 +53,8 @@ public class SystemClass {
                         student.getPassword().getPassword().equals(userInfo.getPassword())) {
                     setCurrentUser(student);
                     userFound = true;
-                    // this.getUserInterface().setCurrentPage(PageType.MAIN_MENU_PAGE_STUDENT);
+                    userInterface.setPages(domain.createPages(currentUser));
+                    userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE_STUDENT);
                 }
             }
         } else if (userInfo.getUsername().charAt(0) == 'a') {
@@ -42,7 +64,8 @@ public class SystemClass {
                         advisor.getPassword().getPassword().equals(userInfo.getPassword())) {
                     setCurrentUser(advisor);
                     userFound = true;
-                    // this.getUserInterface().setCurrentPage(PageType.MAIN_MENU_PAGE_ADVISOR);
+                    userInterface.setPages(domain.createPages(currentUser));
+                    userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE_ADVISOR);
                 }
             }
         } if (!userFound) {
@@ -51,6 +74,10 @@ public class SystemClass {
     }
 
     public void logout() {
+    	userInterface.resetPages();
+    	LoginPage login = new LoginPage("welcome");
+		userInterface.addPage(login);
+		userInterface.setCurrentPage(PageType.LOGIN_PAGE);
         setCurrentUser(null);
     }
 
@@ -162,7 +189,7 @@ public class SystemClass {
         }
 
         if (functionType == FunctionType.LOGOUT) {
-//			this.logout();
+			this.logout();
             this.userInterface.setCurrentPage(PageType.LOGIN_PAGE);
         }
 
@@ -179,145 +206,95 @@ public class SystemClass {
 
         if (functionType == FunctionType.SELECT_COURSE ) {
 
-//			Student student = (Student) this.getCurrentUser();
-
-//			student.addSelectedCourse(sm.getInput());
+			Student student = (Student) this.getCurrentUser();
+			student.addSelectedCourse((Integer)sm.getInput());
 
             // handling of selecteable course data
             SelectableCoursesPage selectableCoursePage = (SelectableCoursesPage) this.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE);
-//			selectableCoursePage.setContent(this.pageContentCreator.createSelectableCoursePageContent(student.getSelectableCourses());
-//			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
+			selectableCoursePage.setContent(this.pageContentCreator.createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
+			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
 
             // handling selected course data
             SelectedCoursesPage selectedCoursePage = (SelectedCoursesPage) this.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE);
-//			selectedCoursePage.setContent(this.pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
-//			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
+			selectedCoursePage.setContent(this.pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
+			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
 
             this.userInterface.setCurrentPage(sm.getNextPageType());
 
-
-
-
-            // burada studentin içinden secilebilen derslere gidip gelen
-            // input (index oluyor artık o) degerindeki course selected
-            // listesine atacagız
-
-            // ayrıca bu saatten sonra data değiştigi için sayfa contentini
-            // tekrar ayarlamak lazım.
-            // conten üreten fonksiyon (zenep yazıyor) tekrar cagırılıp üretildiği
-            // string selecable page contentinin yeni değeri olacak
-            // bu işlemi yapmazsak sürekli aynı görüntü print edilir
-            // ayrıca sayfanın numberOdSelectableCourse değeri de güncellenmeli
             return;
 
         }
 
         if (functionType == FunctionType.DROP_COURSE ) {
-            //Student student = (Student) this.getCurrentUser();
+            Student student = (Student) this.getCurrentUser();
 
-            //student.dropCourse(sm.getInput());
+            student.dropCourse((Integer)sm.getInput());
 
             // handling selected course data
             SelectedCoursesPage selectedCoursePage = (SelectedCoursesPage) this.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE);
-//			selectedCoursePage.setContent(this.pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
-//			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
+			selectedCoursePage.setContent(this.pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
+			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
 
 
             // handling of selecteable course data
             SelectableCoursesPage selectableCoursePage = (SelectableCoursesPage) this.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE);
-//			selectableCoursePage.setContent(this.pageContentCreator.createSelectableCoursePageContent(student.getSelectableCourses());
-//			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
+			selectableCoursePage.setContent(this.pageContentCreator.createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
+			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
 
             this.userInterface.setCurrentPage(sm.getNextPageType());
 
-
-
-
-            // burada studentin içinden secilen derslere gidip gelen
-            // input (index oluyor artık o) degerindeki course drop işlemi yapıcaz
-
-            // ayrıca bu saatten sonra data değiştigi için sayfa contentini
-            // tekrar ayarlamak lazım.
-            // conten üreten fonksiyon (zenep yazıyor) tekrar cagırılıp üretildiği
-            // string selected page contentinin yeni değeri olacak
-            // bu işlemi yapmazsak sürekli aynı görüntü print edilir.
-            // ayrıca sayfanın numberOdDropableCourse değeri de güncellenmeli
             return;
 
         }
 
         if (functionType == FunctionType.SELECET_STUDENT ) {
-//			Advisor advisor = (Advisor)this.getCurrentUser();
+			Advisor advisor = (Advisor)this.getCurrentUser();
 
-//			advisor.selectStudent(sm.getInput);
-
-
-            // burada advisorun select fonksiyonu çağırılacak parametre olarak sm.getInput() verilecek
-
-
+			advisor.selectStudent((Integer)sm.getInput());
 
             this.userInterface.setCurrentPage(sm.getNextPageType());
+            
             return;
 
         }
 
         if (functionType == FunctionType.APPROVE_REQUEST ) {
-//			Advisor advisor = (Advisor)this.getCurrentUser();
+			Advisor advisor = (Advisor)this.getCurrentUser();
 
-//			advisor.Approve();
+			advisor.Approve();
 
             // handling selected student request
             SelectedStudentRequestPage selectedStdudentRequesPage = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
-//			selectedStdudentRequesPage.setContent(this.pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
+			selectedStdudentRequesPage.setContent(this.pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
 
             // handling evaluate request
             EvaluateRequestsPage evaluateRequestPage = (EvaluateRequestsPage) this.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE);
-//			evaluateRequestPage.setContent(this.pageContentCreator(advisor.getAwaitingStudents()));
-//			evaluateRequestPage.setNumberOfRequest(advisor.getAwaitingStudents(.size()));
+			evaluateRequestPage.setContent(this.pageContentCreator.createEvaluateRequestPageContent(advisor.getAwaitingStudents()));
+			evaluateRequestPage.setNumberOfRequest(advisor.getAwaitingStudents().size());
 
-
-            // burada seçilen req için onaylama istegi geliyor burada onaylamamız lazım.
-            // ayrıca artık req sayısı değiştiği için EVALUATE_REQUESTS_PAGE sayfası contenti güncellenmeli
-            // ayrıca SELECTED_STUDENT_REQUEST_PAGE contenti de değişecek
-            // zenepin yazdıgı fonk tekrar cağırılacak ve settet ile content degiştirilecek
-
-
-            System.out.println("---req approved");
             this.userInterface.setCurrentPage(sm.getNextPageType());
+
             return;
 
         }
 
         if (functionType == FunctionType.DISAPPREOVE_REQUEST ) {
 
-//			Advisor advisor = (Advisor)this.getCurrentUser();
+			Advisor advisor = (Advisor)this.getCurrentUser();
 
-//			advisor.Disapprove();
+			advisor.Disapprove();
 
             // handling selected student request
             SelectedStudentRequestPage selectedStdudentRequesPage = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
-//			selectedStdudentRequesPage.setContent(this.pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
+			selectedStdudentRequesPage.setContent(this.pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
 
             // handling evaluate request
             EvaluateRequestsPage evaluateRequestPage = (EvaluateRequestsPage) this.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE);
-//			evaluateRequestPage.setContent(this.pageContentCreator(advisor.getAwaitingStudents()));
-//			evaluateRequestPage.setNumberOfRequest(advisor.getAwaitingStudents(.size()));
+			evaluateRequestPage.setContent(this.pageContentCreator.createEvaluateRequestPageContent(advisor.getAwaitingStudents()));
+			evaluateRequestPage.setNumberOfRequest(advisor.getAwaitingStudents().size());
 
-
-
-
-
-
-
-            // burada secilen req istegi reddedildi
-            // yani listeden kaldırldı
-            // yine yıkarıda oldugu gibi EVALUATE_REQUESTS_PAGE contenti değişecek
-            // ayrıca SELECTED_STUDENT_REQUEST_PAGE contenti de değişecek
-            // zenepin yazdıgı fonk tekrar cağırılacak ve settet ile content degiştirilecek
-
-
-            System.out.println("---req disapproved");
             this.userInterface.setCurrentPage(sm.getNextPageType());
+           
             return;
         }
     }
