@@ -6,24 +6,19 @@ public class Student extends Person {
     private int year;
     private Advisor advisor;
     private Transcript transcript;
-    private ArrayList<Course> selectableCourses;
-    private ArrayList<Course> selectedCourses;
-    private ArrayList<Course> approvedCourses;
-    private ArrayList<Course> curriculum;
+    private ArrayList<Course> selectableCourses = new ArrayList<Course>();
+    private ArrayList<Course> selectedCourses = new ArrayList<Course>();;
+    private ArrayList<Course> approvedCourses = new ArrayList<Course>();;
+    private ArrayList<Course> curriculum= new ArrayList<Course>();;
     private Boolean request;
     private String notification;
 
-    public Student(String firstName, String lastName, Id studentID, Password password, int year, Advisor advisor, Transcript transcript, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, Boolean request, String notification, ArrayList <Course> curriculum) {
+    public Student(String firstName, String lastName, Id studentID, Password password, Advisor advisor, Transcript transcript, ArrayList <Course> curriculum) {
         super(firstName, lastName);
         this.studentId = studentID;
         this.password = password;
-        this.year = year;
         this.advisor = advisor;
         this.transcript = transcript;
-        this.selectedCourses = selectedCourses;
-        this.approvedCourses = approvedCourses;
-        this.request = request;
-        this.notification = notification;
         this.curriculum = curriculum;
 
         filterCourses(curriculum);
