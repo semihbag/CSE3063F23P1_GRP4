@@ -66,5 +66,20 @@ public class PageContentCreator {
 		return str;
 	}
 
+    	
+	public static String createSelectedCoursesPageContent  (ArrayList<Course> courses) {
+		String str="=>List of all selected courses<=\n"+
+		"-------------------------------------\n"+
+		courseListForContent(courses);	
+		return str;	
+		}
+
+    public static String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
+		String str="=>List of all approved courses<=\n"+
+		"-------------------------------------\n"+
+		courseListForContent(courses);	
+		return str;	
+		}
+
 }
 
