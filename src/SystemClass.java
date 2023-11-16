@@ -57,7 +57,35 @@ public class SystemClass {
     public void exit() throws JSONException, IOException {
         updateStudentJSON();
         updateCourseStudentData();
+        updateCourseQuotaData();
         System.exit(0);
+    }
+    public void updateCourseQuotaData() throws IOException, JSONException {
+        String content = null;
+        content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
+        JSONObject jsonObject = new JSONObject(content);
+        JSONArray courseJSON = jsonObject.getJSONArray("courses");
+
+        int j=0;
+        for(int i=0; i<courseJSON.length();i++){
+            JSONObject curr = courseJSON.getJSONObject(i);
+            if(curr.getBoolean("hasSession")){
+                JSONArray currCourseJSON = courseJSON.getJSONObject(i).getJSONArray("session");
+                int k=0;
+                for(k=0;k<currCourseJSON.length();k++){
+                    JSONObject currSession = currCourseJSON.getJSONObject(k);
+                    currSession.put("quota",domain.getCourses().get(j).getQuota());
+                }
+                j=j+k;
+            }
+            else{
+                curr.put("quota",domain.getCourses().get(j).getQuota());
+                j++;
+            }
+
+        }
+        Files.write(Paths.get("src\\JSON_Files\\courses.json"),jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
+
     }
     public void updateCourseStudentData() throws IOException, JSONException {
         String content = null;
