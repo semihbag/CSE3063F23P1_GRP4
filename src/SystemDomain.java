@@ -8,8 +8,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Draft_Classes.*;
-
 public class SystemDomain {
     private ArrayList<Lecturer> lecturers = new ArrayList<>();
     private ArrayList<Advisor> advisors = new ArrayList<>();
@@ -36,7 +34,7 @@ public class SystemDomain {
             String name = lecturerJSON.getJSONObject(i).getString("name");
             String surname = lecturerJSON.getJSONObject(i).getString("surname");
             String lecturerId = lecturerJSON.getJSONObject(i).getString("lecturerId");
-            lecturers.add(new Lecturer(new Id(lecturerId),name,surname));
+            lecturers.add(new Lecturer(name,surname,new Id(lecturerId)));
         }
     }
 
@@ -86,7 +84,7 @@ public class SystemDomain {
 
             Advisor advisor = null;
             for (int i = 0; i < getAdvisors().size(); i++) {
-                if (getAdvisors().get(i).getId().getId().equals(advisorID)) {
+                if (getAdvisors().get(i).getLecturerId().equals(advisorID)) {
                     advisor = getAdvisors().get(i);
                 }
             }
@@ -130,7 +128,7 @@ public class SystemDomain {
                     String sessionId = sessionJSON.getJSONObject(j).getString("sessionId");
                     Lecturer courseLecturer=null;
                     for (Lecturer lecturer : lecturers) {
-                        if (lecturer.getId().getId().equals(sessionJSON.getJSONObject(j).getString("lecturer"))) {
+                        if (lecturer.getLecturerId().getId().equals(sessionJSON.getJSONObject(j).getString("lecturer"))) {
                             courseLecturer=lecturer;
                             break;
                         }
@@ -154,7 +152,7 @@ public class SystemDomain {
                 String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
                 Lecturer courseLecturer=null;
                 for (Lecturer lecturer : lecturers) {
-                    if (lecturer.getId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
+                    if (lecturer.getLecturerId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
                         courseLecturer=lecturer;
                         break;
                     }
@@ -184,8 +182,8 @@ public class SystemDomain {
     private void assignStudentsToAdvisor() {
         for (Student student : students) {
             for (Advisor advisor : advisors) {
-                if (student.getAdvisor().getId().getId().equals(advisor.getId().getId())) {
-                    advisor.getStudents().add(student);
+                if (student.getAdvisor().getLecturerId().getId().equals(advisor.getLecturerId().getId())) {
+                    advisor.getStudentList().add(student);
                     break;
                 }
             }
@@ -195,7 +193,7 @@ public class SystemDomain {
     private void assignCoursesToLecturer() {
         for (Course course : courses) {
             for (Lecturer lecturer : lecturers) {
-                if (course.getLecturer().getId().getId().equals(lecturer.getId().getId())) {
+                if (course.getLecturer().getLecturerId().getId().equals(lecturer.getLecturerId().getId())) {
                     lecturer.getGivenCourses().add(course);
                 }
             }
