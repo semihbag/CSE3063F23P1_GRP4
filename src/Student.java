@@ -13,6 +13,7 @@ public class Student extends Person {
     private Boolean request;
     private String notification;
 
+
     public Student(String firstName, String lastName, Id studentID, Password password, Advisor advisor, Transcript transcript, ArrayList <Course> curriculum) {
         super(firstName, lastName);
         this.studentId = studentID;
@@ -158,6 +159,14 @@ public class Student extends Person {
 
     // Getter - Setter Methods
 
+    public ArrayList<Course> getCurriculum() {
+        return curriculum;
+    }
+
+    public void setCurriculum(ArrayList<Course> curriculum) {
+        this.curriculum = curriculum;
+    }
+    
     public Id getStudentId() {
         return studentId;
     }
