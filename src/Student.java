@@ -9,11 +9,11 @@ public class Student extends Person {
     private ArrayList<Course> selectableCourses;
     private ArrayList<Course> selectedCourses;
     private ArrayList<Course> approvedCourses;
-    private ArrayList<Course> cirriculum;
+    private ArrayList<Course> curriculum;
     private Boolean request;
     private String notification;
 
-    public Student(String firstName, String lastName, Id studentID, Password password, int year, Advisor advisor, Transcript transcript, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, Boolean request, String notification, ArrayList <Course> cirriculum) {
+    public Student(String firstName, String lastName, Id studentID, Password password, int year, Advisor advisor, Transcript transcript, ArrayList<Course> selectedCourses, ArrayList<Course> approvedCourses, Boolean request, String notification, ArrayList <Course> curriculum) {
         super(firstName, lastName);
         this.studentId = studentID;
         this.password = password;
@@ -24,9 +24,9 @@ public class Student extends Person {
         this.approvedCourses = approvedCourses;
         this.request = request;
         this.notification = notification;
-        this.cirriculum = cirriculum;
+        this.curriculum = curriculum;
 
-        filterCourses(cirriculum);
+        filterCourses(curriculum);
     }
 
     // Filters all courses in the curriculum according to the student's current semester and prerequisite course passing information
@@ -93,7 +93,7 @@ public class Student extends Person {
 
     public boolean isUnderQuota (Course course) {
         if(0 < course.getQuota()){
-            return true; //yer var
+            return true;
         }
         return false;
     }
@@ -145,8 +145,8 @@ public class Student extends Person {
     }
     
     public void addAllSessions(Course course){
-        for(int i  = 0; i< cirriculum.size(); i++){
-            if (course.getCourseID() == cirriculum.get(i).getCourseID()){
+        for(int i = 0; i< curriculum.size(); i++){
+            if (course.getCourseID() == curriculum.get(i).getCourseID()){
                 selectableCourses.add(course);
             }
         }
