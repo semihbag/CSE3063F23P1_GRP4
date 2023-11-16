@@ -47,6 +47,15 @@ public class Student extends Person {
         }
     }
 
+    public boolean isSelectedCourse(Course course){
+        for(int i =0;  i < selectedCourses.size() ; i++) {
+            if(selectedCourses.get(i).getCourseID() == course.getCourseID()){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean isPassedCourse(Course course){
         for(int i= 0; i < transcript.getPassedCourses().size() ; i++){
             if (transcript.getPassedCourses().get(i).getCourseID() == course.getCourseID()){
@@ -55,7 +64,7 @@ public class Student extends Person {
         }
         return false;
     }
-    
+
     // Checks whether the student has passed the prerequisite courses to take the course
     public boolean isPrerequisiteCoursesPassed(Course course){
         for(int i=0; i < course.getPrerequisiteCourses().size(); i++) {
