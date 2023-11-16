@@ -138,9 +138,9 @@ public class Student extends Person {
     }
 
     // Deletes the course taken as a parameter from the selectedCourses
-    public void dropCourse(Course course) {
-        int droppedCourseInd = selectedCourses.indexOf(course);
-        selectedCourses.remove(droppedCourseInd);
+    public void dropCourse(int i) {
+        Course course = selectedCourses.get(i-1);
+        selectedCourses.remove(i-1);
         addAllSessions(course);
     }
     
