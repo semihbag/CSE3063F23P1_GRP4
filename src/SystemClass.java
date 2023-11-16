@@ -54,6 +54,7 @@ public class SystemClass {
                     setCurrentUser(student);
                     userFound = true;
                     userInterface.setPages(domain.createPages(currentUser));
+                    System.err.println("aaa");
                     userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE_STUDENT);
                 }
             }

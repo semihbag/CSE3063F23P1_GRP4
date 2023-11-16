@@ -10,6 +10,7 @@ public class Main {
     	try {
     		UserInterface userInterface = new UserInterface();
             SystemClass system = new SystemClass(userInterface);
+            system.run();
         
     	}
     	catch (Exception e) {
