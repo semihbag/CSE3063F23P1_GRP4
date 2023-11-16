@@ -1,7 +1,5 @@
 package Draft_Classes;
 
-import Draft_Classes.Course;
-
 import java.util.ArrayList;
 
 public class Lecturer extends Person {

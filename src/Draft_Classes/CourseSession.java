@@ -1,7 +1,5 @@
 package Draft_Classes;
 
-import Draft_Classes.Course;
-
 public class CourseSession extends Course {
     private Id sessionId;
 
