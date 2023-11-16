@@ -104,7 +104,7 @@ public class PageContentCreator {
 		
 		for(int a=0; a<student.size(); a++)
 		{
-			str+=(a+1)+"->"+student.get(a).studentID.getId()+" "+student.get(a).getFirstName()
+			str+="\n"+(a+1)+"->"+student.get(a).studentID.getId()+" "+student.get(a).getFirstName()
 					+" "+student.get(a).getLastName()
 					+" requested "+student.get(a).getSelectedCourses().size()+ " lessons: \n";
 					for(int i=0; i<student.get(a).selectedCourses.size(); i++)
