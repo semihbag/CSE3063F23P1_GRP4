@@ -38,7 +38,7 @@ public class SystemClass {
         } else if (userInfo.getUsername().charAt(0) == 'a') {
             ArrayList<Advisor> advisors = domain.getAdvisors();
             for (Advisor advisor : advisors) {
-                if (("o" + advisor.getId().getId()).equals(userInfo.getUsername()) &&
+                if (("o" + advisor.getLecturerId().getId()).equals(userInfo.getUsername()) &&
                         advisor.getPassword().getPassword().equals(userInfo.getPassword())) {
                     setCurrentUser(advisor);
                     userFound = true;

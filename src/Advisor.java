@@ -115,7 +115,7 @@ public class Advisor extends Lecturer {
         this.selectStudent = student;
     }
     
-    public String getPassword() {
-        return password.getPassword();
+    public Password getPassword() {
+        return password;
     }
 }

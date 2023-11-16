@@ -11,7 +11,7 @@ public class Course {
     private Lecturer lecturer;
     
 	
-	public Course(Id courseID, String courseName, int quota, int year, String day_hour, ArrayList<Student> studentList,
+	public Course(Id courseID, String courseName, int quota, int year, String day_hour,
 			Lecturer lecturer) {
 		super();
 		this.courseID = courseID;
@@ -19,7 +19,6 @@ public class Course {
 		this.quota = quota;
 		this.year = year;
 		this.day_hour = day_hour;
-	       studentList=new ArrayList<Student>();
 		this.lecturer = lecturer;
 }
 	
