@@ -85,7 +85,9 @@ public class UserInterface {
 		return null;
 	}
 
-
+	public void resetPages() {
+		pages.clear();
+	}
 
 	
 	
