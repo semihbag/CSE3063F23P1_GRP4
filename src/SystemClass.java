@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
@@ -55,7 +56,42 @@ public class SystemClass {
 
     public void exit() throws JSONException, IOException {
         updateStudentJSON();
+        updateCourseStudentData();
         System.exit(0);
+    }
+    public void updateCourseStudentData() throws IOException, JSONException {
+        String content = null;
+        content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
+        JSONObject jsonObject = new JSONObject(content);
+        JSONArray courseJSON = jsonObject.getJSONArray("courses");
+
+        int j=0;
+        for(int i=0; i<courseJSON.length();i++){
+            JSONObject curr = courseJSON.getJSONObject(i);
+            if(curr.getBoolean("hasSession")){
+                JSONArray currCourseJSON = courseJSON.getJSONObject(i).getJSONArray("session");
+                int k=0;
+                for(k=0;k<currCourseJSON.length();k++){
+                    JSONObject currSession = currCourseJSON.getJSONObject(k);
+                    currSession.put("studentList",studentToJsonArray(domain.getCourses().get(j).getStudentList()));
+
+                }
+                j=j+k;
+            }
+            else{
+                curr.put("studentList",studentToJsonArray(domain.getCourses().get(i).getStudentList()));
+                j++;
+            }
+
+        }
+        Files.write(Paths.get("src\\JSON_Files\\courses.json"),jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
+    }
+    public String[] studentToJsonArray(ArrayList<Student> students){
+        String[] studentIds = new String[students.size()];
+        for(int i=0; i<students.size();i++){
+            studentIds[i] = students.get(i).getStudentId().getId();
+        }
+        return  studentIds;
     }
 
     public void updateStudentJSON() throws JSONException, IOException {
