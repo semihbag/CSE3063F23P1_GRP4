@@ -6,6 +6,7 @@ public enum FunctionType {
 	LOGIN,
 	EXIT,
 	CHANGE_PAGE,
+	LOGOUT,
 	
 	// STUDENT
 	SELECT_COURSE,
