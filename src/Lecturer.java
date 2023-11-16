@@ -1,9 +1,9 @@
 
 public class Lecturer extends Person{
 
-    private ID lecturerID;
+    private Id lecturerID;
 
-    public Lecturer(String FirstName, String LastName, ID lecturerID) {
+    public Lecturer(String FirstName, String LastName, Id lecturerID) {
         super(FirstName, LastName);
         this.lecturerID = lecturerID;
     }
