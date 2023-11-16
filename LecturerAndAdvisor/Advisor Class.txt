@@ -1,0 +1,27 @@
+-- Advisor Class --
+
+1-) findAwaitingStudents() :
+For each initialization of Advisor Object, we also initialize
+awaitingStudents arraylist According to request data field of students.
+If the Request is true for student, this student is added to awaitingStudents
+
+2-) selectStudent(index: int) :
+When we print the request list of students to the screen for advisor. We ask advisor to
+Which one do you want to progress, and he/she answers with index of requests.
+In that method, we also check the given index value is valid or not. If it is not,
+we return -1 that indicate something went wrong.
+Otherwise, we return the index of that student
+
+3-) Approve(student: Student) :
+Transfer each lesson in selectedCourses to the ApprovedCourses and remove each lesson
+from selectedCourses. After finishing all of them, set the request value of student to
+his/her process is done. Lastly, remove that student from awaitingStudent.
+
+4-) DisApprove(student: Student) :
+Tranfser each lesson in selectedCourses to the selectableCourses and remove each lesson from
+selectedCourses. After finishin all of them, set the request value of student to the false.
+Lastly, remove that student from awaitingStudent
+
+5-) sendNotification(message: String, student: Student, type: Sting) :
+When advisor is approved or disapproved request of the student, he/she sends a message to the student to inform him or her. 
+The advisor can send it's own message or defaulty can be sended to the student.
