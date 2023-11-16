@@ -2,9 +2,14 @@
 // then press Enter. You can now see whitespace characters in your code.
 
 import Draft_Classes.*;
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class SystemClass {
@@ -42,6 +47,20 @@ public class SystemClass {
         } if (!userFound) {
             System.out.println("Username/Password incorrect.");
         }
+    }
+
+    public void logout() {
+        setCurrentUser(null);
+    }
+
+    public void exit() throws JSONException, IOException {
+        updateStudentJSON();
+        System.exit(0);
+    }
+
+    public void updateStudentJSON() throws JSONException, IOException {
+
+
     }
 
     public SystemDomain getDomain() {
