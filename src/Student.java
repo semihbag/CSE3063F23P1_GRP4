@@ -45,6 +45,17 @@ public class Student extends Person {
         }
     }
 
+    // Checks whether the student has passed the prerequisite courses to take the course
+    public boolean isPrerequisiteCoursesPassed(Course course){
+        for(int i=0; i < course.getPrerequisiteCourses().size(); i++) {
+            Course preCourse = course.getPrerequisiteCourses().get(i);
+            if (!isPassedCourse(preCourse)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean isUnderQuota (Course course) {
         if(0 < course.getQuota()){
             return true; //yer var
