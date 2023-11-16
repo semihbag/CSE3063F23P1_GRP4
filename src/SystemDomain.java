@@ -126,8 +126,11 @@ public class SystemDomain {
                     CourseSession courseSession =new CourseSession(new Id(courseId),name,quota,year,day_hour, courseLecturer, new Id(sessionId));
                     for(String str: prequisiteId){
                         for(Course crs: courses){
-                            if(str.equals(crs.getCourseID().getId())){
-                                courseSession.getPrequisiteCourses().add(crs.getCourseID());
+                            for(Course prequisiteCourse: courses){
+                                if(crs.getCourseID().getId().equals(prequisiteCourse.getCourseID().getId())){
+                                    courseSession.getPrequisiteCourses().add(prequisiteCourse);
+                                    break;
+                                }
                             }
                         }
                     }
@@ -149,7 +152,13 @@ public class SystemDomain {
                 for(String str: prequisiteId){
                     for(Course crs: courses){
                         if(str.equals(crs.getCourseID().getId())){
-                            course.getPrequisiteCourses().add(crs.getCourseID());
+                            for(Course prequisiteCourse: courses){
+                                if(crs.getCourseID().getId().equals(prequisiteCourse.getCourseID().getId())){
+                                    course.getPrequisiteCourses().add(prequisiteCourse);
+                                    break;
+                                }
+                            }
+
                         }
                     }
                 }
