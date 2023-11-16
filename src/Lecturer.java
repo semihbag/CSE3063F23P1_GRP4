@@ -10,12 +10,12 @@ public class Lecturer extends Person{
         this.lecturerId = lecturerId;
     }
 
-    public String getLecturerId() {
-        return lecturerId.getId();
+    public Id getLecturerId() {
+        return lecturerId;
     }
 
-    public void setLecturerId(String id) {
-        lecturerId.setId(id);
+    public void setLecturerId (Id id) {
+        this.lecturerId = id;
     }
 
     public ArrayList<Course> getGivenCourses() {
