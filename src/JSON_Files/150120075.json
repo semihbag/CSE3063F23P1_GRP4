@@ -1,8 +1,4 @@
 {
-    "type": "student",
-    "id": "150120075",
-    "name": "Duru",
-    "lastname": "Baştunalı",
     "advisor": "1501002",
     "request": false,
     "notification": "",
@@ -21,20 +17,12 @@
         "year": 3,
         "gpa": 90
     },
+    "name": "Duru",
     "registration": {
-        "selectedcourses": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ],
-        "approvedcourses": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
-    }
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150120075",
+    "type": "student",
+    "lastname": "Baştunalı"
 }

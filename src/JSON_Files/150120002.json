@@ -1,8 +1,4 @@
 {
-    "type": "student",
-    "id": "150120002",
-    "name": "Mehmet",
-    "lastname": "Çınar",
     "advisor": "1501005",
     "request": false,
     "notification": "",
@@ -22,20 +18,12 @@
         "year": 3,
         "gpa": 43
     },
+    "name": "Mehmet",
     "registration": {
-        "selectedcourses": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ],
-        "approvedcourses": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
-    }
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150120002",
+    "type": "student",
+    "lastname": "Çınar"
 }

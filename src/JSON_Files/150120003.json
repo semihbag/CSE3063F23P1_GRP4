@@ -1,8 +1,4 @@
 {
-    "type": "student",
-    "id": "150120003",
-    "name": "Ayşe",
-    "lastname": "Kaya",
     "advisor": "1501001",
     "request": false,
     "notification": "",
@@ -21,20 +17,12 @@
         "year": 3,
         "gpa": 74
     },
+    "name": "Ayşe",
     "registration": {
-        "selectedcourses": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ],
-        "approvedcourses": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
-    }
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150120003",
+    "type": "student",
+    "lastname": "Kaya"
 }

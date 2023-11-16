@@ -1,41 +1,29 @@
 {
-	"type" : "student",
-	"name" : "Ali",
-	"lastname" : "Korkmaz",
-	"id" : "150120001",
-	"password" : "ali123",
-	"advisor" : "1501002",
-	"request" : false,
-	"notification" : "",
-	"registration" : {
-		"selectedcourses" : [
-			"",
-			"",
-			"",
-			"",
-			""
-		],
-		"approvedcourses" : [
-			"",
-			"",
-			"",
-			"",
-			""
-		]
-	},
-	"transcript" : {
-		"gpa" : 60,
-		"year" : 3,
-		"completedcourses" : [
-			"CSE1200",
-			"CSE1241",
-			"CSE2023",
-			"CSE2138",
-			"CSE2260"
-		],
-		"failedcourses" : [
-			"CSE2225",
-			"CSE2246"
-		]
-	}
+    "advisor": "1501002",
+    "request": false,
+    "notification": "",
+    "password": "ali123",
+    "transcript": {
+        "failedcourses": [
+            "CSE2225",
+            "CSE2246"
+        ],
+        "completedcourses": [
+            "CSE1200",
+            "CSE1241",
+            "CSE2023",
+            "CSE2138",
+            "CSE2260"
+        ],
+        "year": 3,
+        "gpa": 60
+    },
+    "name": "Ali",
+    "registration": {
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150120001",
+    "type": "student",
+    "lastname": "Korkmaz"
 }

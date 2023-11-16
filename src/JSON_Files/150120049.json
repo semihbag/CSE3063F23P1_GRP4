@@ -1,8 +1,4 @@
 {
-    "type": "student",
-    "id": "150120049",
-    "name": "Aksanur",
-    "lastname": "Konuk",
     "advisor": "1501002",
     "request": false,
     "notification": "",
@@ -20,20 +16,12 @@
         "year": 3,
         "gpa": 85
     },
+    "name": "Aksanur",
     "registration": {
-        "selectedcourses": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ],
-        "approvedcourses": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
-    }
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150120049",
+    "type": "student",
+    "lastname": "Konuk"
 }
