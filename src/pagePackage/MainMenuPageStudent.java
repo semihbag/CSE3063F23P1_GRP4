@@ -22,7 +22,7 @@ public class MainMenuPageStudent extends Page{
 			case "2":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTABLE_COURSES_PAGE, null);
 			case "3":
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.APPROVED_COURSES_PAGE, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTED_COURSES_PAGE, null);
 			case "4":
 				return new SystemMessage(FunctionType.LOGOUT, PageType.LOGIN_PAGE, null);
 			case "5":

@@ -90,7 +90,7 @@ public class PageContentCreator {
 				"-------------------------------------\n"
 				+courseListForContent(courses)+"\n\n\n\n"+
 				"=>List of all selected courses<=\n"+
-				courseListForContent(coursesSelected);
+				createSelectedCoursesPageContent(coursesSelected);
 		return str;
 	}
 
@@ -139,6 +139,7 @@ public class PageContentCreator {
 						// session idyide alsın
 						+"|"+courses.get(i-1).getCourseName()
 						+"|\n"+courses.get(i-1).getLecturer().getFirstName()
+						+"|\n"+courses.get(i-1).getLecturer().getLastName()
 						+"|\n"+courses.get(i-1).getQuota()+"\n"
 						+"--------------------------------------"+"\n";
 			}
