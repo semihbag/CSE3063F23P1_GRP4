@@ -129,6 +129,22 @@ public class Student extends Person {
         addAllSessions(course);
     }
     
+    public void addAllSessions(Course course){
+        for(int i  = 0; i< cirriculum.size(); i++){
+            if (course.getCourseID() == cirriculum.get(i).getCourseID()){
+                selectableCourses.add(course);
+            }
+        }
+    }
+
+    public void removeAllSessions(Course course){
+        for(int i  = 0; i<selectableCourses.size(); i++){
+            if (course.getCourseID() == selectableCourses.get(i).getCourseID()){
+                selectableCourses.remove(course);
+            }
+        }
+    }
+    
 
     // Getter - Setter Methods
 
