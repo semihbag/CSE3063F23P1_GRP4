@@ -75,15 +75,25 @@ public class SystemDomain {
             }
             double gpa = transcript.getDouble("gpa");
             int year = transcript.getInt("year");
+
             String[] completedCoursesID = jsonArrToStrArr(transcript.getJSONArray("completedcourses"));
-            ArrayList<Id> completedCourses = new ArrayList<>();
-            for (String s : completedCoursesID) {
-                completedCourses.add(new Id(s));
+            ArrayList<Course> completedCourses = new ArrayList<>();
+            for (String value : completedCoursesID) {
+                for (int j = 0; j < getCourses().size(); j++) {
+                    if (value.equals(getCourses().get(j).getCourseID().getId())) {
+                        completedCourses.add(getCourses().get(j));
+                    }
+                }
             }
+
             String[] failedCoursesID = jsonArrToStrArr(transcript.getJSONArray("failedcourses"));
-            ArrayList<Id> failedCourses = new ArrayList<>();
+            ArrayList<Course> failedCourses = new ArrayList<>();
             for (String s : failedCoursesID) {
-                failedCourses.add(new Id(s));
+                for (int i = 0; i < courses.size(); i++) {
+                    if (s.equals(courses.get(i).getCourseID().getId())) {
+                        failedCourses.add(getCourses().get(i));
+                    }
+                }
             }
             students.add(new Student(name, lastname, new Id(id), new Password(password), advisor,
                     new Transcript(gpa, year, completedCourses, failedCourses)));
