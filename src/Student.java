@@ -45,6 +45,13 @@ public class Student extends Person {
         }
     }
 
+    public boolean isUnderQuota (Course course) {
+        if(0 < course.getQuota()){
+            return true; //yer var
+        }
+        return false;
+    }
+
     public boolean isFailedCourse(Course course) {
         for (int i = 0; i < transcript.getFailedCourses().size(); i++) {
             Course failedCourse = transcript.getFailedCourses().get(i);
