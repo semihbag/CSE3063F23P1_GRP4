@@ -1,0 +1,41 @@
+{
+  "type" : "student",
+  "name" : "Elife",
+  "lastname" : "Kocabey",
+  "id" : "150120054",
+  "password" : "kcby_e",
+  "advisor" : "1501001",
+  "request" : false,
+  "notification" : "",
+  "registration" : {
+    "selectedcourses" : [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "approvedcourses" : [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "transcript" : {
+    "gpa" : 75,
+    "year" : 3,
+    "completedcourses" : [
+      "CSE1200",
+      "CSE1241",
+      "CSE2023",
+      "CSE2138",
+      "CSE2260",
+      "CSE2246"
+    ],
+    "failedcourses" : [
+      "CSE2225"
+    ]
+  }
+}

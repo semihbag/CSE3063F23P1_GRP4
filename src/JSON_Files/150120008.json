@@ -1,0 +1,41 @@
+{
+  "type" : "student",
+  "name" : "Eren",
+  "lastname" : "Çetin",
+  "id" : "150120008",
+  "password" : "10cetin",
+  "advisor" : "1501001",
+  "request" : false,
+  "notification" : "",
+  "registration" : {
+    "selectedcourses" : [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "approvedcourses" : [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "transcript" : {
+    "gpa" : 80,
+    "year" : 3,
+    "completedcourses" : [
+      "CSE1200",
+      "CSE1241",
+      "CSE2023",
+      "CSE2246",
+      "CSE2260",
+      "CSE2225"
+    ],
+    "failedcourses" : [
+      "CSE2138"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "type" : "student",
+  "name" : "Semih",
+  "lastname" : "Bağ",
+  "id" : "150120070",
+  "password" : "monkey20",
+  "advisor" : "1501001",
+  "request" : false,
+  "notification" : "",
+  "registration" : {
+    "selectedcourses" : [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "approvedcourses" : [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "transcript" : {
+    "gpa" : 68,
+    "year" : 3,
+    "completedcourses" : [
+      "CSE1200",
+      "CSE1241",
+      "CSE2023",
+      "CSE2246",
+      "CSE2138",
+      "CSE2225"
+    ],
+    "failedcourses" : [
+      "CSE2260"
+    ]
+  }
+}
