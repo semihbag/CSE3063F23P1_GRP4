@@ -95,6 +95,14 @@ public class UserInterface {
 	
 	/////////////////
 	
+	public ArrayList<Page> getPages() {
+		return pages;
+	}
+
+	public void setPages(ArrayList<Page> pages) {
+		this.pages = pages;
+	}
+	
 	public Page getCurrentPage() {
 		return currentPage;
 	}
