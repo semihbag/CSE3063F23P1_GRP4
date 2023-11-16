@@ -9,7 +9,7 @@ public class Lecturer extends Person {
 
     private ArrayList<Course> givenCourses = new ArrayList<>();
 
-    Lecturer(Id id, String name, String surname){
+    public Lecturer(Id id, String name, String surname){
         super(name, surname);
         this.id= id;
     }

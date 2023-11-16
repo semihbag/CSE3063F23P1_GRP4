@@ -7,7 +7,7 @@ public class Advisor extends Lecturer {
     private ArrayList<Student> awaitingStudents = new ArrayList<>();
     private Password password;
 
-    Advisor(String name, String surname, Id advisorId, Password password){
+    public Advisor(String name, String surname, Id advisorId, Password password){
         super(advisorId,name, surname);
         this.password= password;
     }
