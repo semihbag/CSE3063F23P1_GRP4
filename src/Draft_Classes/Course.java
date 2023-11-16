@@ -6,7 +6,7 @@ public class Course {
     private Lecturer lecturer;
     private Id courseId;
     private String courseName;
-    private ArrayList<Course> prequisiteCourses = new ArrayList<>();
+    private ArrayList<Course> prerequisiteCourses = new ArrayList<>();
     private ArrayList<Student> studentList = new ArrayList<>();
     private String day_hour;
     private int quota;
@@ -54,12 +54,12 @@ public class Course {
         this.studentList = studentList;
     }
 
-    public ArrayList<Course> getPrequisiteCourses() {
-        return prequisiteCourses;
+    public ArrayList<Course> getPrerequisiteCourses() {
+        return prerequisiteCourses;
     }
 
-    public void setPrequisiteCourses(ArrayList<Course> prequisiteCourses) {
-        this.prequisiteCourses = prequisiteCourses;
+    public void setPrerequisiteCourses(ArrayList<Course> prerequisiteCourses) {
+        this.prerequisiteCourses = prerequisiteCourses;
     }
 
     public String getCourseName() {

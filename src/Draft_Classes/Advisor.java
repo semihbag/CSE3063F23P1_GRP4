@@ -12,10 +12,6 @@ public class Advisor extends Lecturer {
         this.password= password;
     }
 
-
-
-
-
     public ArrayList<Student> getStudents() {
         return students;
     }

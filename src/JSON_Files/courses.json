@@ -7,7 +7,7 @@
 		"studentList": [],
 		"lecturer": "1501001",
 		"id": "CSE1200",
-		"prequisite": [],
+		"prerequisite": [],
 		"day_hour": "Monday - 9:30am"
 	},
 	{
@@ -18,7 +18,7 @@
 		"studentList": [],
 		"lecturer": "1501002",
 		"id": "CSE1241",
-		"prequisite": [],
+		"prerequisite": [],
 		"day_hour": "Monday - 10:30am"
 	},
 	{
@@ -29,7 +29,7 @@
 		"studentList": [],
 		"lecturer": "1501002",
 		"id": "CSE2023",
-		"prequisite": [],
+		"prerequisite": [],
 		"day_hour": "Monday - 11:30am"
 	},
 	{
@@ -40,7 +40,7 @@
 		"studentList": [],
 		"lecturer": "1501003",
 		"id": "CSE2225",
-		"prequisite": ["CSE1241"],
+		"prerequisite": ["CSE1241"],
 		"day_hour": "Monday - 01:00pm"
 	},
 	{
@@ -51,7 +51,7 @@
 		"studentList": [],
 		"lecturer": "1501004",
 		"id": "CSE2246",
-		"prequisite": ["CSE2225"],
+		"prerequisite": ["CSE2225"],
 		"day_hour": "Monday - 02:00pm"
 	},
 	{
@@ -62,7 +62,7 @@
 		"studentList": [],
 		"lecturer": "1501005",
 		"id": "CSE2138",
-		"prequisite": [],
+		"prerequisite": [],
 		"day_hour": "Monday - 03:00pm"
 	},
 	{
@@ -73,7 +73,7 @@
 		"studentList": [],
 		"lecturer": "1501001",
 		"id": "CSE2260",
-		"prequisite": ["CSE1241"],
+		"prerequisite": ["CSE1241"],
 		"day_hour": "Monday - 04:00pm"
 	},
 	{
@@ -84,7 +84,7 @@
 		"studentList": [],
 		"lecturer": "1501005",
 		"id": "CSE3215",
-		"prequisite": [],
+		"prerequisite": [],
 		"day_hour": "Monday - 05:00pm"
 	},
 	{
@@ -95,7 +95,7 @@
 		"studentList": [],
 		"lecturer": "1501006",
 		"id": "CSE3063",
-		"prequisite": ["CSE1241"],
+		"prerequisite": ["CSE1241"],
 		"day_hour": "Tuesday - 09:30am"
 	},
 	{
@@ -106,7 +106,7 @@
 		"studentList": [],
 		"lecturer": "1501001",
 		"id": "CSE3055",
-		"prequisite": ["CSE2225"],
+		"prerequisite": ["CSE2225"],
 		"day_hour": "Tuesday - 10:30am"
 	},
 	{
@@ -130,7 +130,7 @@
 		"hasSession": true,
 		"name": "Operating Systems",
 		"id": "CSE3033",
-		"prequisite": ["CSE2225"]
+		"prerequisite": ["CSE2225"]
 	},
 	{
 		"year": 3,
@@ -140,7 +140,7 @@
 		"studentList": [],
 		"lecturer": "1501008",
 		"id": "CSE3038",
-		"prequisite": ["CSE2138"],
+		"prerequisite": ["CSE2138"],
 		"day_hour": "Tuesday - 02:00pm"
 	},
 	{
@@ -151,7 +151,7 @@
 		"studentList": [],
 		"lecturer": "1501003",
 		"id": "CSE3044",
-		"prequisite": ["CSE3055"],
+		"prerequisite": ["CSE3055"],
 		"day_hour": "Tuesday - 03:00pm"
 	},
 	{
@@ -162,7 +162,7 @@
 		"studentList": [],
 		"lecturer": "1501007",
 		"id": "CSE3264",
-		"prequisite": ["CSE2023"],
+		"prerequisite": ["CSE2023"],
 		"day_hour": "Tuesday - 04:00pm"
 	},
 	{
@@ -173,7 +173,7 @@
 		"studentList": [],
 		"lecturer": "1501004",
 		"id": "CSE4074",
-		"prequisite": [],
+		"prerequisite": [],
 		"day_hour": "Tuesday - 05:00am"
 	},
 	{
@@ -184,7 +184,7 @@
 		"studentList": [],
 		"lecturer": "1501009",
 		"id": "CSE4288",
-		"prequisite": [],
+		"prerequisite": [],
 		"day_hour": "Wednesday - 10:30am"
 	}
 ]}

@@ -138,7 +138,7 @@ public class SystemDomain {
             int year = courseJSON.getJSONObject(i).getInt("year");
             if(courseJSON.getJSONObject(i).getBoolean("hasSession")){
                 JSONArray sessionJSON = courseJSON.getJSONObject(i).getJSONArray("session");
-                String[] prequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prequisite"));
+                String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
                 for(int j =0 ; j< sessionJSON.length();j++){
                     int quota = sessionJSON.getJSONObject(j).getInt("quota");
                     String day_hour=sessionJSON.getJSONObject(j).getString("day_hour");
@@ -151,11 +151,11 @@ public class SystemDomain {
                         }
                     }
                     CourseSession courseSession =new CourseSession(new Id(courseId),name,quota,year,day_hour, courseLecturer, new Id(sessionId));
-                    for(String str: prequisiteId){
+                    for(String str: prerequisiteId){
                         for(Course crs: courses){
-                            for(Course prequisiteCourse: courses){
-                                if(crs.getCourseID().getId().equals(prequisiteCourse.getCourseID().getId())){
-                                    courseSession.getPrequisiteCourses().add(prequisiteCourse);
+                            for(Course prerequisiteCourse: courses){
+                                if(crs.getCourseID().getId().equals(prerequisiteCourse.getCourseID().getId())){
+                                    courseSession.getPrerequisiteCourses().add(prerequisiteCourse);
                                     break;
                                 }
                             }
@@ -167,7 +167,7 @@ public class SystemDomain {
             else{
                 int quota = courseJSON.getJSONObject(i).getInt("quota");
                 String day_hour = courseJSON.getJSONObject(i).getString("day_hour");
-                String[] prequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prequisite"));
+                String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
                 Lecturer courseLecturer=null;
                 for (Lecturer lecturer : lecturers) {
                     if (lecturer.getId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
@@ -176,12 +176,12 @@ public class SystemDomain {
                     }
                 }
                 Course course = new Course(new Id(courseId),name, quota, year ,day_hour,courseLecturer);
-                for(String str: prequisiteId){
+                for(String str: prerequisiteId){
                     for(Course crs: courses){
                         if(str.equals(crs.getCourseID().getId())){
-                            for(Course prequisiteCourse: courses){
-                                if(crs.getCourseID().getId().equals(prequisiteCourse.getCourseID().getId())){
-                                    course.getPrequisiteCourses().add(prequisiteCourse);
+                            for(Course prerequisite: courses){
+                                if(crs.getCourseID().getId().equals(prerequisite.getCourseID().getId())){
+                                    course.getPrerequisiteCourses().add(prerequisite);
                                     break;
                                 }
                             }

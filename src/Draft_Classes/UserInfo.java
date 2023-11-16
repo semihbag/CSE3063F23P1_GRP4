@@ -13,9 +13,7 @@ public class UserInfo {
 		setUsername(null);
 		setPassword(null);
 	}
-	
-	
-	
+
 	/// GETTER - SETTER METHODS
 	public String getUsername() {
 		return username;
