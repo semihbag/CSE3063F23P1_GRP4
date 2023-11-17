@@ -26,6 +26,7 @@ public class SystemDomain {
         createStudents();
         assignCoursesToLecturer();
         assignStudentsToAdvisor();
+        fillStudentListCourse();
     }
 
     public void createLecturers() throws JSONException, IOException {
@@ -67,7 +68,7 @@ public class SystemDomain {
             String name = jsonStudent.getString("name");
             String lastname = jsonStudent.getString("lastname");
             String advisorID = jsonStudent.getString("advisor");
-            Boolean booleanValue = jsonStudent.getBoolean("request");
+            String booleanString = jsonStudent.getString("request");
             String notification = jsonStudent.getString("notification");
             String password = jsonStudent.getString("password");
 
@@ -93,10 +94,20 @@ public class SystemDomain {
 
             Student crtStudent = new Student(name, lastname, new Id(id), new Password(password), advisor,
                     new Transcript(gpa, year, completedCourses, failedCourses), courses);
-            crtStudent.setRequest(booleanValue);
+
+            /* JSON'dan String okuyup Boolean döndürüyoruz burada = ÖNCEKİ HALİ
+            switch (booleanString) {
+                case "true" -> crtStudent.setRequest(true);
+                case "false" -> crtStudent.setRequest(false);
+                case "null" -> crtStudent.setRequest(null);
+            } */
+
+            //JSON'dan String okuyup String döndürüyoruz = GÜNCEL EN SON YAPALIM DEDİĞİMİZ HAL
+            crtStudent.setRequest(booleanString);
             crtStudent.setNotification(notification);
             crtStudent.setSelectedCourses(selectedCourses);
             crtStudent.setApprovedCourses(approvedCourses);
+            crtStudent.filterCourses(getCourses());
             students.add(crtStudent);
         }
     }
@@ -173,6 +184,47 @@ public class SystemDomain {
         }
     }
 
+    public void fillStudentListCourse() throws JSONException, IOException{
+        String content = null;
+        content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
+        JSONObject jsonObject = new JSONObject(content);
+        JSONArray courseJSON = jsonObject.getJSONArray("courses");
+
+        int j=0;
+        for(int i=0; i<courseJSON.length();i++){
+            JSONObject currentCourse = courseJSON.getJSONObject(i);
+            if(currentCourse.getBoolean("hasSession")){
+                JSONArray currSessionJSON = currentCourse.getJSONArray("session");
+                int k=0;
+                for(k=0;k<currSessionJSON.length();k++){
+                    JSONObject currSession = currSessionJSON.getJSONObject(k);
+                    String[] courseStudentsId = jsonArrToStrArr(currSession.getJSONArray("studentList"));
+                    for(int x=0; x<courseStudentsId.length;x++ ){
+                        for(Student st: students){
+                            if(st.getStudentId().getId().equals(courseStudentsId[x])&&(!(courses.get(j+k).getStudentList().contains(st)))){
+                                courses.get(j+k).getStudentList().add(st);
+                                break;
+                            }
+                        }
+                    }
+                }
+                j=j+k;
+            }
+            else{
+                String[] courseStudentsId = jsonArrToStrArr(currentCourse.getJSONArray("studentList"));
+                for(int x=0; x<courseStudentsId.length;x++ ){
+                    for(Student st: students){
+                        if(st.getStudentId().getId().equals(courseStudentsId[x])&&(!(courses.get(j).getStudentList().contains(st)))){
+                            courses.get(j).getStudentList().add(st);
+                            break;
+                        }
+                    }
+                }
+                j++;
+            }
+        }
+    }
+
     public String[] jsonArrToStrArr(JSONArray jsonArray) throws JSONException {
         String[] strings = new String[jsonArray.length()];
         for(int i=0; i<jsonArray.length();i++){
@@ -225,7 +277,6 @@ public class SystemDomain {
 
 			ApprovedCoursesPage approved = new ApprovedCoursesPage(pageContentCreator.createApprovedCoursesPageContent(student.getApprovedCourses()));
 			pages.add(approved);
-
 		}
 		
 		if (currentUser instanceof Advisor) {
@@ -243,8 +294,6 @@ public class SystemDomain {
 
 			SelectedStudentRequestPage selectedStudentRequest = new SelectedStudentRequestPage(pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
 			pages.add(selectedStudentRequest);
-
-			
 		}
 		
 		return pages;

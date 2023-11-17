@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Student extends Person {
     private Id studentId;
     private Password password;
-    private int year;
+
     private Advisor advisor;
     private Transcript transcript;
     private ArrayList<Course> selectableCourses = new ArrayList<Course>();
@@ -21,9 +21,6 @@ public class Student extends Person {
         this.advisor = advisor;
         this.transcript = transcript;
         this.curriculum = curriculum;
-        this.year = transcript.getYear();
-
-        filterCourses(curriculum);
     }
 
     // Filters all courses in the curriculum according to the student's current semester and prerequisite course passing information
@@ -33,20 +30,19 @@ public class Student extends Person {
             if(!isSelectedCourse(course)){
                 if(!isPassedCourse(course)){
                     if(isPrerequisiteCoursesPassed(course)) {
-                        //System.out.println(year);
-                        if(course.getYear() == year){
+                        if(course.getYear() == transcript.getYear()){
                             if (isUnderQuota(course)) {
                                 selectableCourses.add(course);
                             }
                         }
-                        else if(course.getYear() == (year+1)){
+                        else if(course.getYear() == (transcript.getYear()+1)){
                             if (transcript.getGPA_100()>=75){
                                 if (isUnderQuota(course)) {
                                     selectableCourses.add(course);
                                 }
                             }
                         }
-                        else if (course.getYear()<year){
+                        else if (course.getYear()<transcript.getYear()){
                             if (isFailedCourse(course)){
                                 if(isUnderQuota(course)){
                                     selectableCourses.add(course);
@@ -191,13 +187,6 @@ public class Student extends Person {
         this.password = password;
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int semester) {
-        this.year = semester;
-    }
 
     public Advisor getAdvisor() {
         return advisor;

@@ -32,7 +32,6 @@ public class SystemClass {
 		userInterface.addPage(login);
 		userInterface.setCurrentPage(PageType.LOGIN_PAGE);
     	domain = new SystemDomain();
-
     }
     
 	public void run() {
@@ -87,20 +86,7 @@ public class SystemClass {
         updateStudentJSON();
         updateCourseStudentData();
         updateCourseQuotaData();
-        updateAwaitingStudentsData();
         System.exit(0);
-    }
-    public void updateAwaitingStudentsData()throws IOException, JSONException {
-        String content = null;
-        content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\advisors.json")));
-        JSONObject jsonObject = new JSONObject(content);
-        JSONArray advisorJSON = jsonObject.getJSONArray("advisors");
-
-        for(int i=0;i<advisorJSON.length();i++){
-            JSONObject curr = advisorJSON.getJSONObject(i);
-            curr.put("awaitingStudents",studentToJsonArray(domain.getAdvisors().get(i).getAwaitingStudents()));
-        }
-        Files.write(Paths.get("src\\JSON_Files\\advisors.json"),jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
     }
 
     public void updateCourseQuotaData() throws IOException, JSONException {
@@ -169,6 +155,7 @@ public class SystemClass {
             registration.put("selectedcourses",transcriptCourses(selected));
             registration.put("approvedcourses", transcriptCourses(approved));
 
+            //REQUEST'i String'e çevirirken burda değişiklik olmuyor!
             jsonStudent.put("request", domain.getStudents().get(i).getRequest());
             jsonStudent.put("notification", domain.getStudents().get(i).getNotification());
             Files.write(path, jsonStudent.toString(4).getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
