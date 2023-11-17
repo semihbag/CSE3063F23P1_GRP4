@@ -21,6 +21,7 @@ public class Student extends Person {
         this.advisor = advisor;
         this.transcript = transcript;
         this.curriculum = curriculum;
+        this.year = transcript.getYear();
 
         filterCourses(curriculum);
     }
@@ -32,6 +33,7 @@ public class Student extends Person {
             if(!isSelectedCourse(course)){
                 if(!isPassedCourse(course)){
                     if(isPrerequisiteCoursesPassed(course)) {
+                        //System.out.println(year);
                         if(course.getYear() == year){
                             if (isUnderQuota(course)) {
                                 selectableCourses.add(course);
@@ -60,7 +62,7 @@ public class Student extends Person {
 
     public boolean isSelectedCourse(Course course){
         for(int i =0;  i < selectedCourses.size() ; i++) {
-            if(selectedCourses.get(i).getCourseId() == course.getCourseId()){
+            if(selectedCourses.get(i).getCourseId().equals(course.getCourseId())){
                 return true;
             }
         }
@@ -69,7 +71,7 @@ public class Student extends Person {
 
     public boolean isPassedCourse(Course course){
         for(int i= 0; i < transcript.getPassedCourses().size() ; i++){
-            if (transcript.getPassedCourses().get(i).getCourseId() == course.getCourseId()){
+            if (transcript.getPassedCourses().get(i).getCourseId().equals(course.getCourseId())){
                 return true;
             }
         }
@@ -97,7 +99,7 @@ public class Student extends Person {
     public boolean isFailedCourse(Course course) {
         for (int i = 0; i < transcript.getFailedCourses().size(); i++) {
             Course failedCourse = transcript.getFailedCourses().get(i);
-            if (failedCourse.getCourseId() == course.getCourseId()) {
+            if (failedCourse.getCourseId().equals(course.getCourseId())) {
                 return true;
             }
         }
@@ -139,10 +141,10 @@ public class Student extends Person {
         selectedCourses.remove(i-1);
         addAllSessions(course);
     }
-    
+
     public void addAllSessions(Course course){
         for(int i = 0; i< curriculum.size(); i++){
-            if (course.getCourseId() == curriculum.get(i).getCourseId()){
+            if (course.getCourseId().equals( curriculum.get(i).getCourseId())){
                 selectableCourses.add(course);
             }
         }
@@ -150,12 +152,12 @@ public class Student extends Person {
 
     public void removeAllSessions(Course course){
         for(int i  = 0; i<selectableCourses.size(); i++){
-            if (course.getCourseId() == selectableCourses.get(i).getCourseId()){
+            if (course.getCourseId().equals(selectableCourses.get(i).getCourseId())){
                 selectableCourses.remove(course);
             }
         }
     }
-    
+
 
     // Getter - Setter Methods
 
@@ -166,7 +168,7 @@ public class Student extends Person {
     public void setCurriculum(ArrayList<Course> curriculum) {
         this.curriculum = curriculum;
     }
-    
+
     public Id getStudentId() {
         return studentId;
     }
