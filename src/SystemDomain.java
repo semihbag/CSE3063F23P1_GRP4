@@ -95,14 +95,6 @@ public class SystemDomain {
             Student crtStudent = new Student(name, lastname, new Id(id), new Password(password), advisor,
                     new Transcript(gpa, year, completedCourses, failedCourses), courses);
 
-            /* JSON'dan String okuyup Boolean döndürüyoruz burada = ÖNCEKİ HALİ
-            switch (booleanString) {
-                case "true" -> crtStudent.setRequest(true);
-                case "false" -> crtStudent.setRequest(false);
-                case "null" -> crtStudent.setRequest(null);
-            } */
-
-            //JSON'dan String okuyup String döndürüyoruz = GÜNCEL EN SON YAPALIM DEDİĞİMİZ HAL
             crtStudent.setRequest(booleanString);
             crtStudent.setNotification(notification);
             crtStudent.setSelectedCourses(selectedCourses);

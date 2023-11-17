@@ -155,7 +155,6 @@ public class SystemClass {
             registration.put("selectedcourses",transcriptCourses(selected));
             registration.put("approvedcourses", transcriptCourses(approved));
 
-            //REQUEST'i String'e çevirirken burda değişiklik olmuyor!
             jsonStudent.put("request", domain.getStudents().get(i).getRequest());
             jsonStudent.put("notification", domain.getStudents().get(i).getNotification());
             Files.write(path, jsonStudent.toString(4).getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
