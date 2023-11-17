@@ -144,16 +144,17 @@ public class Student extends Person {
 
     public void addAllSessions(Course course){
         for(int i = 0; i< curriculum.size(); i++){
-            if (course.getCourseId().equals( curriculum.get(i).getCourseId())){
+            if (course.getCourseId().getId().equals( curriculum.get(i).getCourseId().getId())){
                 selectableCourses.add(course);
             }
         }
     }
 
-    public void removeAllSessions(Course course){
-        for(int i  = 0; i<selectableCourses.size(); i++){
-            if (course.getCourseId().equals(selectableCourses.get(i).getCourseId())){
-                selectableCourses.remove(course);
+    public void removeAllSessions(Course course) {
+        for (int i = 0; i < selectableCourses.size(); i++) {
+            if (course.getCourseId().getId().equals(selectableCourses.get(i).getCourseId().getId())) {
+                selectableCourses.remove(i);
+                i--;
             }
         }
     }

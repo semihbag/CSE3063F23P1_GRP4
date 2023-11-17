@@ -21,7 +21,7 @@ public class Advisor extends Lecturer {
         for (int index = 0 ; index < numberOfStudents ; index++) {
             Student student = students.get(index);
             System.out.println(student.getRequest());
-            if (student.getSelectedCourses().size() > 0) {
+            if (student.getRequest() == true) {
             	
                 awaitingStudents.add(student);
             }      

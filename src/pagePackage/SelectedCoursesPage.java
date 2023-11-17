@@ -35,6 +35,11 @@ public class SelectedCoursesPage extends Page{
 
 			}
 			catch (NumberFormatException e) {
+				if (input.equals("a")) {
+					System.out.println("sended");
+					return new SystemMessage(FunctionType.SEND_APPROVE, PageType.MAIN_MENU_PAGE_STUDENT, null);
+				}
+				
 				if (input.equals("q")) {
 					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
 				}

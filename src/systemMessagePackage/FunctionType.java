@@ -11,6 +11,7 @@ public enum FunctionType {
 	// STUDENT
 	SELECT_COURSE,
 	DROP_COURSE,
+	SEND_APPROVE,
 	
 	// ADVISOR
 	SELECET_STUDENT,

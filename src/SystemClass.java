@@ -254,6 +254,12 @@ public class SystemClass {
             return;
 
         }
+        if (functionType == FunctionType.SEND_APPROVE ) {
+            Student student = (Student) this.getCurrentUser();
+
+            student.sendToApproval();
+        }
+
 
         if (functionType == FunctionType.SELECET_STUDENT ) {
 			Advisor advisor = (Advisor)this.getCurrentUser();
