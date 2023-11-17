@@ -5,8 +5,7 @@
     "password": "kcby_e",
     "transcript": {
         "failedcourses": [
-            "CSE2225",
-            "CSE2246"
+            "CSE2225"
         ],
         "completedcourses": [
             "CSE1200",

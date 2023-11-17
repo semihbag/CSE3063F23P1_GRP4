@@ -5,10 +5,7 @@
     "password": "mehmet.cinar",
     "transcript": {
         "failedcourses": [
-            "CSE1241",
-            "CSE2225",
-            "CSE2246",
-            "CSE2260"
+            "CSE1241"
         ],
         "completedcourses": [
             "CSE1200",

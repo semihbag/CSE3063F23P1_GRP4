@@ -86,9 +86,9 @@ public class PageContentCreator {
 					student.get(i-1).getLastName()
 					+"\n Year: "+
 					student.get(i-1).getYear()+"\n"
-					+"--------------------------------------"+"\n"
-					+"Press any key to back to main menu...";
+					+"--------------------------------------"+"\n";
 		}
+		str += "Press any key to back to main menu...";
 		return str;
 	}
 

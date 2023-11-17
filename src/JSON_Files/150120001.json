@@ -5,8 +5,7 @@
     "password": "ali123",
     "transcript": {
         "failedcourses": [
-            "CSE2225",
-            "CSE2246"
+            "CSE2225"
         ],
         "completedcourses": [
             "CSE1200",

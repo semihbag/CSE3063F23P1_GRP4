@@ -147,17 +147,6 @@
         "year": 3,
         "quota": 15,
         "hasSession": false,
-        "name": "Software Engineering",
-        "studentList": [],
-        "prerequisite": ["CSE3055"],
-        "lecturer": "1501003",
-        "id": "CSE3044",
-        "day_hour": "Tuesday - 03:00pm"
-    },
-    {
-        "year": 3,
-        "quota": 15,
-        "hasSession": false,
         "name": "Formal Languages and Automata Theory",
         "studentList": [],
         "prerequisite": ["CSE2023"],
