@@ -126,14 +126,16 @@ public class Student extends Person {
 
     // Adds each selected course from the selectableCourses to the selectedCourses and deletes it from the selectableCourses
     public void addSelectedCourse(int i) {
-        Course course = selectableCourses.get(i-1);
-        if (selectedCourses.size() < 5){
-            selectedCourses.add(course);
-            course.setQuota(course.getQuota()-1);
-            removeAllSessions(course);
-        } else {
-            System.out.println("You exceed the course limits, you can just select five courses.");
-        }
+    	if (this.getRequest() == false) {
+		   Course course = selectableCourses.get(i-1);
+	        if (selectedCourses.size() < 5){
+	            selectedCourses.add(course);
+	            course.setQuota(course.getQuota()-1);
+	            removeAllSessions(course);
+	        } else {
+	            System.out.println("You exceed the course limits, you can just select five courses.");
+	        }
+    	}
     }
 
     // Deletes the course taken as a parameter from the selectedCourses
