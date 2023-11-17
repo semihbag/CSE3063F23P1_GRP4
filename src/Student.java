@@ -10,8 +10,9 @@ public class Student extends Person {
     private ArrayList<Course> selectedCourses = new ArrayList<Course>();;
     private ArrayList<Course> approvedCourses = new ArrayList<Course>();;
     private ArrayList<Course> curriculum= new ArrayList<Course>();;
-    private Boolean request;
+    private String request;
     private String notification;
+
 
 
     public Student(String firstName, String lastName, Id studentID, Password password, Advisor advisor, Transcript transcript, ArrayList <Course> curriculum) {
@@ -58,7 +59,7 @@ public class Student extends Person {
 
     public boolean isSelectedCourse(Course course){
         for(int i =0;  i < selectedCourses.size() ; i++) {
-            if(selectedCourses.get(i).getCourseId().equals(course.getCourseId())){
+            if(selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())){
                 return true;
             }
         }
@@ -67,7 +68,7 @@ public class Student extends Person {
 
     public boolean isPassedCourse(Course course){
         for(int i= 0; i < transcript.getPassedCourses().size() ; i++){
-            if (transcript.getPassedCourses().get(i).getCourseId().equals(course.getCourseId())){
+            if (transcript.getPassedCourses().get(i).getCourseId().getId().equals(course.getCourseId().getId())){
                 return true;
             }
         }
@@ -95,7 +96,7 @@ public class Student extends Person {
     public boolean isFailedCourse(Course course) {
         for (int i = 0; i < transcript.getFailedCourses().size(); i++) {
             Course failedCourse = transcript.getFailedCourses().get(i);
-            if (failedCourse.getCourseId().equals(course.getCourseId())) {
+            if (failedCourse.getCourseId().getId().equals(course.getCourseId().getId())) {
                 return true;
             }
         }
@@ -115,23 +116,23 @@ public class Student extends Person {
     }
 
     public void sendToApproval() {
-    	System.err.println("akemnflakfmp");
-        request = Boolean.TRUE;
+        System.err.println("akemnflakfmp");
+        request = "true";
     }
 
 
     // Adds each selected course from the selectableCourses to the selectedCourses and deletes it from the selectableCourses
     public void addSelectedCourse(int i) {
-    	if (this.getRequest() == false) {
-		   Course course = selectableCourses.get(i-1);
-	        if (selectedCourses.size() < 5){
-	            selectedCourses.add(course);
-	            course.setQuota(course.getQuota()-1);
-	            removeAllSessions(course);
-	        } else {
-	            System.out.println("You exceed the course limits, you can just select five courses.");
-	        }
-    	}
+        if (this.getRequest().equals("false")) {
+            Course course = selectableCourses.get(i-1);
+            if (selectedCourses.size() < 5){
+                selectedCourses.add(course);
+                course.setQuota(course.getQuota()-1);
+                removeAllSessions(course);
+            } else {
+                System.out.println("You exceed the course limits, you can just select five courses.");
+            }
+        }
     }
 
     // Deletes the course taken as a parameter from the selectedCourses
@@ -228,11 +229,11 @@ public class Student extends Person {
         this.approvedCourses = approvedCourses;
     }
 
-    public Boolean getRequest() {
+    public String getRequest() {
         return request;
     }
 
-    public void setRequest(Boolean request) {
+    public void setRequest(String request) {
         this.request = request;
     }
 
