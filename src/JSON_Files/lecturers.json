@@ -2,12 +2,12 @@
 	"lecturers" : [
 		{
 			"name" : "Mustafa Borahan",
-			"surname" : "Tümer",
+			"surname" : "Tumer",
 			"lecturerId" : "1501003"
 		},
 		{
-			"name" : "Ömer",
-			"surname" : "Korçak",
+			"name" : "Omer",
+			"surname" : "Korcak",
 			"lecturerId" : "1501004"
 		},
 		{
@@ -17,17 +17,17 @@
 		},
 		{
 			"name" : "Ali Haydar",
-			"surname" : "Özer",
+			"surname" : "Ozer",
 			"lecturerId" : "1501007"
 		},
 		{
 			"name" : "Haluk Rahmi",
-			"surname" : "Topçuoğlu",
+			"surname" : "Topcuoglu",
 			"lecturerId" : "1501008"
 		},
 		{
-			"name" : "Çiğdem",
-			"surname" : "Eroğlu Erdem",
+			"name" : "Cigdem",
+			"surname" : "Eroglu Erdem",
 			"lecturerId" : "1501009"
 		}
 	]

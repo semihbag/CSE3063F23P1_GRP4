@@ -18,14 +18,10 @@
     },
     "name": "Semih",
     "registration": {
-        "selectedcourses": [
-            "CSE2260",
-            "CSE3215",
-            "CSE3063"
-        ],
+        "selectedcourses": [],
         "approvedcourses": []
     },
     "id": "150120070",
     "type": "student",
-    "lastname": "Bağ"
+    "lastname": "Bag"
 }

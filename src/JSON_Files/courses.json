@@ -167,7 +167,7 @@
     },
     {
         "year": 4,
-        "quota": 15,
+        "quota": 14,
         "hasSession": false,
         "name": "Introduction to Machine Learning",
         "studentList": [],
