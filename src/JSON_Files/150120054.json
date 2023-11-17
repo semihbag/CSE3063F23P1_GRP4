@@ -4,9 +4,7 @@
     "notification": "",
     "password": "kcby_e",
     "transcript": {
-        "failedcourses": [
-            "CSE2225"
-        ],
+        "failedcourses": ["CSE2225"],
         "completedcourses": [
             "CSE1200",
             "CSE1241",

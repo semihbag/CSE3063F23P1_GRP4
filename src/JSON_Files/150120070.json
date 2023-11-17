@@ -18,7 +18,11 @@
     },
     "name": "Semih",
     "registration": {
-        "selectedcourses": [],
+        "selectedcourses": [
+            "CSE2260",
+            "CSE3215",
+            "CSE3063"
+        ],
         "approvedcourses": []
     },
     "id": "150120070",

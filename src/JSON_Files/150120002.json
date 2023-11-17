@@ -4,9 +4,7 @@
     "notification": "",
     "password": "mehmet.cinar",
     "transcript": {
-        "failedcourses": [
-            "CSE1241"
-        ],
+        "failedcourses": ["CSE1241"],
         "completedcourses": [
             "CSE1200",
             "CSE2023",

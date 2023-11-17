@@ -117,6 +117,7 @@ public class PageContentCreator {
 					"-------------------------------------\n"+
 					courseListForContent(courses)
 					+ "Press number to drop course "
+					+ "Press a to send approve"
 					+ "Press q to exit";
 ;
 
