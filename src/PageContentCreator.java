@@ -77,7 +77,7 @@ public class PageContentCreator {
 	public   String createMyStudentsPageContent (ArrayList<Student> student)
 	{
 		String str="All students advised\n";
-		for (int i=1; i<=student.size() ; i++ )
+		for (int i=1; i<=student.size() ; i++ )  
 		{
 			str+= i+"->\n StudentID: "+
 					student.get(i-1).getStudentId().getId()
@@ -94,11 +94,12 @@ public class PageContentCreator {
 
 	public  String createSelectableCoursesPageContent  (ArrayList<Course> courses,ArrayList<Course> coursesSelected) {
 		String str="=>List of all selectable courses<=\n\n"+
-				"Press number to select course,\nPress q to exit\n"+
 				"-------------------------------------\n"
 				+courseListForContent(courses)+"\n\n\n\n"+
 				"=>List of all selected courses<=\n"+
-				createSelectedCoursesPageContent(coursesSelected);
+				createSelectedCoursesPageContent(coursesSelected)
+				+"\nPress number to select course,\nPress q to exit\n"
+;
 		return str;
 	}
 
@@ -107,13 +108,17 @@ public class PageContentCreator {
 		if(courses.size()==0)
 		{
 			str="NO COURSES SELECTED YET\n"
-				+ "Press q to exit";
+			+ "Press q to exit";
+
 
 		}
 		else {
 			str="=>List of all selected courses<=\n"+
 					"-------------------------------------\n"+
-					courseListForContent(courses);
+					courseListForContent(courses)
+					+ "Press number to drop course "
+					+ "Press q to exit";
+;
 
 		}
 		return str;
