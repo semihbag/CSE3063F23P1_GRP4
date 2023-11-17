@@ -16,17 +16,16 @@ public class Advisor extends Lecturer {
     }
 
     // Find Students that send their requests to the Advisor
-    public ArrayList<Student> findAwaitingStudents() {
-
-        ArrayList<Student> awaitingStudent = new ArrayList<Student>();
+    public void findAwaitingStudents() {
         int numberOfStudents = students.size();
         for (int index = 0 ; index < numberOfStudents ; index++) {
             Student student = students.get(index);
-            if (student.getRequest() == true) {
-                awaitingStudent.add(student);
+            System.out.println(student.getRequest());
+            if (student.getSelectedCourses().size() > 0) {
+            	
+                awaitingStudents.add(student);
             }      
         }
-        return awaitingStudent;
     }
 
     // Find the correspondence index of Student Object

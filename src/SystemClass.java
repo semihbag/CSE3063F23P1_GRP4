@@ -64,6 +64,7 @@ public class SystemClass {
                 if (("a" + advisor.getLecturerId().getId()).equals(userInfo.getUsername()) &&
                         advisor.getPassword().getPassword().equals(userInfo.getPassword())) {
                     advisor.findAwaitingStudents();
+                    System.err.println(advisor.getAwaitingStudents().size());
                 	setCurrentUser(advisor);
                     userFound = true;
                     userInterface.setPages(domain.createPages(currentUser));
