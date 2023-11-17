@@ -48,8 +48,8 @@ public class Advisor extends Lecturer {
         }
         this.selectStudent.dropAllSelectedCourses();
         this.selectStudent.setRequest("null");
-        this.setSelectStudent(null);
         this.removeAwaitingStudent(this.selectStudent);
+        this.setSelectStudent(null);
     }
 
     // Dissapprove Student request
@@ -63,8 +63,8 @@ public class Advisor extends Lecturer {
         }
         this.selectStudent.dropAllSelectedCourses();
         this.selectStudent.setRequest("false");
-        this.setSelectStudent(null);
         this.removeAwaitingStudent(this.selectStudent);
+        this.setSelectStudent(null);
     }
 
     // Send Informative Message to the Student
@@ -103,7 +103,8 @@ public class Advisor extends Lecturer {
     
     // After approve or disapprove, update the awaitingStudent 
     public void removeAwaitingStudent(Student student) {
-        this.awaitingStudents.remove(student);
+    	int ind = awaitingStudents.indexOf(student);
+        this.awaitingStudents.remove(ind);
     }
 
     public Student getSelectStudent() {
