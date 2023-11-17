@@ -28,7 +28,8 @@ public class PageContentCreator {
 	{			
 		String str = "";
 		if (student == null) {
-			str = "Not selected yet";
+			str = "Not selected yet"
+					+ "\nPress q to quit";
 			return str;
 		}
 		else {

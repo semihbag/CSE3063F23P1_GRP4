@@ -257,7 +257,9 @@ public class SystemClass {
         if (functionType == FunctionType.SEND_APPROVE ) {
             Student student = (Student) this.getCurrentUser();
 
-            student.sendToApproval();
+            if (student.getRequest() == false) {
+                student.sendToApproval();
+            }
         }
 
 
