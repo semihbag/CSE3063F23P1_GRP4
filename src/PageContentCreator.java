@@ -139,7 +139,8 @@ public class PageContentCreator {
 	public  String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
 		String str="=>List of all approved courses<=\n"+
 				"-------------------------------------\n"+
-				courseListForContent(courses);
+				courseListForContent(courses)+
+				"Press any key to back to main menu...";
 		return str;
 	}
 
@@ -164,7 +165,7 @@ public class PageContentCreator {
 						// session idyide alsÄ±n
 						+"|"+courses.get(i-1).getCourseName()
 						+"|\n"+courses.get(i-1).getLecturer().getFirstName()
-						+"|\n"+courses.get(i-1).getLecturer().getLastName()
+						+" "+courses.get(i-1).getLecturer().getLastName()
 						+"|\n"+courses.get(i-1).getQuota()+"\n"
 						+"--------------------------------------"+"\n";
 			}
@@ -172,7 +173,7 @@ public class PageContentCreator {
 				str+= i+" -> "+courses.get(i-1).getCourseId().getId()
 						+"|"+courses.get(i-1).getCourseName()
 						+"|\n"+courses.get(i-1).getLecturer().getFirstName()
-						+"|\n"+courses.get(i-1).getLecturer().getLastName()
+						+" "+courses.get(i-1).getLecturer().getLastName()
 						+"|\n"+courses.get(i-1).getQuota()+"\n"
 						+"--------------------------------------"+"\n";
 			}
