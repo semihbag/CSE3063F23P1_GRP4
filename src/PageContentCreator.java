@@ -94,11 +94,16 @@ public class PageContentCreator {
 	}
 
 	public  String createSelectableCoursesPageContent  (ArrayList<Course> courses,ArrayList<Course> coursesSelected) {
-		String str="=>List of all selectable courses<=\n\n"+
-				"-------------------------------------\n"
-				+courseListForContent(courses)+"\n\n\n\n"+
-				createSelectedCoursesPageContent(coursesSelected)
-;
+		String str="=>List of all selectable courses<=\n"+
+				"-------------------------------------\n"+
+				courseListForContent(courses)+"\n"+
+				"=>List of all selected courses<=\n"+
+				"-------------------------------------\n"+
+				courseListForContent(coursesSelected)
+				+"\nTo select a course, press the number of the courses offered.\n\n"	
+				+"Press q to exit";
+
+
 		return str;
 	}
 
@@ -108,17 +113,15 @@ public class PageContentCreator {
 		{
 			str="NO COURSES SELECTED YET\n"
 			+ "Press q to exit";
-
-
 		}
 		else {
 			str="=>List of all selected courses<=\n"+
 					"-------------------------------------\n"+
 					courseListForContent(courses)
-					+ "Press number to drop course "
-					+ "Press a to send approve"
-					+ "Press q to exit";
-;
+					+ "\nPress number to drop course \n"
+					+ "Press a to send approve\n"
+					+ "Press q to exit\n";
+
 
 		}
 		return str;
@@ -143,7 +146,14 @@ public class PageContentCreator {
 	public  String courseListForContent (ArrayList<Course> courses)
 	{
 		String str="";
-		for (int i=1; i<=courses.size() ; i++ )
+		if(courses.size()==0)
+		{
+			str="NO COURSES SELECTED YET\n";
+
+
+		}
+		else {
+			for (int i=1; i<=courses.size() ; i++ )
 		{
 			if(courses.get(i-1) instanceof CourseSession)
 			{
@@ -151,10 +161,10 @@ public class PageContentCreator {
 				str+= i+" -> "+courses.get(i-1).getCourseId().getId()+"."
 						+session.getSessionId().getId()
 
-						// session idyide alsın
+						// session idyide alsÄ±n
 						+"|"+courses.get(i-1).getCourseName()
 						+"|\n"+courses.get(i-1).getLecturer().getFirstName()
-						+ " " + courses.get(i-1).getLecturer().getLastName()
+						+"|\n"+courses.get(i-1).getLecturer().getLastName()
 						+"|\n"+courses.get(i-1).getQuota()+"\n"
 						+"--------------------------------------"+"\n";
 			}
@@ -162,12 +172,15 @@ public class PageContentCreator {
 				str+= i+" -> "+courses.get(i-1).getCourseId().getId()
 						+"|"+courses.get(i-1).getCourseName()
 						+"|\n"+courses.get(i-1).getLecturer().getFirstName()
-						+" "+courses.get(i-1).getLecturer().getLastName()
+						+"|\n"+courses.get(i-1).getLecturer().getLastName()
 						+"|\n"+courses.get(i-1).getQuota()+"\n"
 						+"--------------------------------------"+"\n";
 			}
 
 		}
+
+		}
+		
 		return str;
 	}
 }
