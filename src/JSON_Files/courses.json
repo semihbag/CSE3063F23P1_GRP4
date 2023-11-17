@@ -78,7 +78,7 @@
     },
     {
         "year": 3,
-        "quota": 14,
+        "quota": 13,
         "hasSession": false,
         "name": "Digital Logic Design",
         "studentList": [],
@@ -89,7 +89,7 @@
     },
     {
         "year": 3,
-        "quota": 14,
+        "quota": 13,
         "hasSession": false,
         "name": "Object-Oriented Software Design",
         "studentList": [],
@@ -100,7 +100,7 @@
     },
     {
         "year": 3,
-        "quota": 15,
+        "quota": 14,
         "hasSession": false,
         "name": "Database Systems",
         "studentList": [],
@@ -113,14 +113,14 @@
         "year": 3,
         "session": [
             {
-                "quota": 15,
+                "quota": 14,
                 "studentList": [],
                 "lecturer": "1501006",
                 "sessionId": "1",
                 "day_hour": "Tuesday - 11:30am"
             },
             {
-                "quota": 15,
+                "quota": 14,
                 "studentList": [],
                 "lecturer": "1501007",
                 "sessionId": "2",
@@ -134,7 +134,7 @@
     },
     {
         "year": 3,
-        "quota": 15,
+        "quota": 14,
         "hasSession": false,
         "name": "Computer Organization",
         "studentList": [],
