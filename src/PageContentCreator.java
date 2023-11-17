@@ -97,9 +97,7 @@ public class PageContentCreator {
 		String str="=>List of all selectable courses<=\n\n"+
 				"-------------------------------------\n"
 				+courseListForContent(courses)+"\n\n\n\n"+
-				"=>List of all selected courses<=\n"+
 				createSelectedCoursesPageContent(coursesSelected)
-				+"\nPress number to select course,\nPress q to exit\n"
 ;
 		return str;
 	}
