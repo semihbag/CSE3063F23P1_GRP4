@@ -267,8 +267,9 @@ public class SystemClass {
 			Advisor advisor = (Advisor)this.getCurrentUser();
 
 			advisor.selectStudent((Integer)sm.getInput());
-
-            this.userInterface.setCurrentPage(sm.getNextPageType());
+			SelectedStudentRequestPage s = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
+            s.setContent(pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
+			this.userInterface.setCurrentPage(sm.getNextPageType());
             
             return;
 
