@@ -21,7 +21,7 @@ public class Advisor extends Lecturer {
         for (int index = 0 ; index < numberOfStudents ; index++) {
             Student student = students.get(index);
             System.out.println(student.getRequest());
-            if (student.getRequest() == true) {
+            if (student.getRequest().equals("true")) {
             	
                 awaitingStudents.add(student);
             }      
@@ -47,7 +47,7 @@ public class Advisor extends Lecturer {
             course.enrollStudent(this.selectStudent);
         }
         this.selectStudent.dropAllSelectedCourses();
-        this.selectStudent.setRequest(null);
+        this.selectStudent.setRequest("null");
         this.setSelectStudent(null);
         this.removeAwaitingStudent(this.selectStudent);
     }
@@ -62,7 +62,7 @@ public class Advisor extends Lecturer {
             course.setQuota(course.getQuota() + 1);
         }
         this.selectStudent.dropAllSelectedCourses();
-        this.selectStudent.setRequest(false);
+        this.selectStudent.setRequest("false");
         this.setSelectStudent(null);
         this.removeAwaitingStudent(this.selectStudent);
     }
