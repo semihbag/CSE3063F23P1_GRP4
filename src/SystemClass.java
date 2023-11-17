@@ -195,7 +195,11 @@ public class SystemClass {
 
 
         if (functionType == FunctionType.EXIT) {
-            //this.exit(0);
+            try {
+            	this.exit();
+            }
+        	catch (Exception e){
+        	}
         }
 
         if (functionType == FunctionType.CHANGE_PAGE) {

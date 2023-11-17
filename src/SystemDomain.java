@@ -218,7 +218,7 @@ public class SystemDomain {
 			SelectableCoursesPage selectable = new SelectableCoursesPage(pageContentCreator.createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
 			selectable.setNumberOfSelectableCourses(student.getSelectableCourses().size());
 			pages.add(selectable);
-
+			
 			SelectedCoursesPage selected = new SelectedCoursesPage(pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
 			selected.setNumberOfDropableCourses(student.getSelectedCourses().size());
 			pages.add(selected);

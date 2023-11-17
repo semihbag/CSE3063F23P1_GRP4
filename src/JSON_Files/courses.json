@@ -1,190 +1,190 @@
 {"courses": [
-	{
-		"year": 1,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Introduction to Computer Engineering",
-		"studentList": [],
-		"lecturer": "1501001",
-		"id": "CSE1200",
-		"prerequisite": [],
-		"day_hour": "Monday - 9:30am"
-	},
-	{
-		"year": 1,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Computer Programming",
-		"studentList": [],
-		"lecturer": "1501002",
-		"id": "CSE1241",
-		"prerequisite": [],
-		"day_hour": "Monday - 10:30am"
-	},
-	{
-		"year": 2,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Discrete Computational Structures",
-		"studentList": [],
-		"lecturer": "1501002",
-		"id": "CSE2023",
-		"prerequisite": [],
-		"day_hour": "Monday - 11:30am"
-	},
-	{
-		"year": 2,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Data Structures",
-		"studentList": [],
-		"lecturer": "1501003",
-		"id": "CSE2225",
-		"prerequisite": ["CSE1241"],
-		"day_hour": "Monday - 01:00pm"
-	},
-	{
-		"year": 2,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Analysis of Algorithm",
-		"studentList": [],
-		"lecturer": "1501004",
-		"id": "CSE2246",
-		"prerequisite": ["CSE2225"],
-		"day_hour": "Monday - 02:00pm"
-	},
-	{
-		"year": 2,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Systems Programming",
-		"studentList": [],
-		"lecturer": "1501005",
-		"id": "CSE2138",
-		"prerequisite": [],
-		"day_hour": "Monday - 03:00pm"
-	},
-	{
-		"year": 2,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Principles of Programming Languages",
-		"studentList": [],
-		"lecturer": "1501001",
-		"id": "CSE2260",
-		"prerequisite": ["CSE1241"],
-		"day_hour": "Monday - 04:00pm"
-	},
-	{
-		"year": 3,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Digital Logic Design",
-		"studentList": [],
-		"lecturer": "1501005",
-		"id": "CSE3215",
-		"prerequisite": [],
-		"day_hour": "Monday - 05:00pm"
-	},
-	{
-		"year": 3,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Object-Oriented Software Design",
-		"studentList": [],
-		"lecturer": "1501006",
-		"id": "CSE3063",
-		"prerequisite": ["CSE1241"],
-		"day_hour": "Tuesday - 09:30am"
-	},
-	{
-		"year": 3,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Database Systems",
-		"studentList": [],
-		"lecturer": "1501001",
-		"id": "CSE3055",
-		"prerequisite": ["CSE2225"],
-		"day_hour": "Tuesday - 10:30am"
-	},
-	{
-		"year": 3,
-		"session": [
-			{
-				"quota": 15,
-				"studentList": [],
-				"lecturer": "1501006",
-				"sessionId": "1",
-				"day_hour": "Tuesday - 11:30am"
-			},
-			{
-				"quota": 15,
-				"studentList": [],
-				"lecturer": "1501007",
-				"sessionId": "2",
-				"day_hour": "Tuesday - 01:00pm"
-			}
-		],
-		"hasSession": true,
-		"name": "Operating Systems",
-		"id": "CSE3033",
-		"prerequisite": ["CSE2225"]
-	},
-	{
-		"year": 3,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Computer Organization",
-		"studentList": [],
-		"lecturer": "1501008",
-		"id": "CSE3038",
-		"prerequisite": ["CSE2138"],
-		"day_hour": "Tuesday - 02:00pm"
-	},
-	{
-		"year": 3,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Software Engineering",
-		"studentList": [],
-		"lecturer": "1501003",
-		"id": "CSE3044",
-		"prerequisite": ["CSE3055"],
-		"day_hour": "Tuesday - 03:00pm"
-	},
-	{
-		"year": 3,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Formal Languages and Automata Theory",
-		"studentList": [],
-		"lecturer": "1501007",
-		"id": "CSE3264",
-		"prerequisite": ["CSE2023"],
-		"day_hour": "Tuesday - 04:00pm"
-	},
-	{
-		"year": 4,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Computer Networks",
-		"studentList": [],
-		"lecturer": "1501004",
-		"id": "CSE4074",
-		"prerequisite": [],
-		"day_hour": "Tuesday - 05:00am"
-	},
-	{
-		"year": 4,
-		"quota": 15,
-		"hasSession": false,
-		"name": "Introduction to Machine Learning",
-		"studentList": [],
-		"lecturer": "1501009",
-		"id": "CSE4288",
-		"prerequisite": [],
-		"day_hour": "Wednesday - 10:30am"
-	}
+    {
+        "year": 1,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Introduction to Computer Engineering",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1501001",
+        "id": "CSE1200",
+        "day_hour": "Monday - 9:30am"
+    },
+    {
+        "year": 1,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Computer Programming",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1501002",
+        "id": "CSE1241",
+        "day_hour": "Monday - 10:30am"
+    },
+    {
+        "year": 2,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Discrete Computational Structures",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1501002",
+        "id": "CSE2023",
+        "day_hour": "Monday - 11:30am"
+    },
+    {
+        "year": 2,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Data Structures",
+        "studentList": [],
+        "prerequisite": ["CSE1241"],
+        "lecturer": "1501003",
+        "id": "CSE2225",
+        "day_hour": "Monday - 01:00pm"
+    },
+    {
+        "year": 2,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Analysis of Algorithm",
+        "studentList": [],
+        "prerequisite": ["CSE2225"],
+        "lecturer": "1501004",
+        "id": "CSE2246",
+        "day_hour": "Monday - 02:00pm"
+    },
+    {
+        "year": 2,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Systems Programming",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1501005",
+        "id": "CSE2138",
+        "day_hour": "Monday - 03:00pm"
+    },
+    {
+        "year": 2,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Principles of Programming Languages",
+        "studentList": [],
+        "prerequisite": ["CSE1241"],
+        "lecturer": "1501001",
+        "id": "CSE2260",
+        "day_hour": "Monday - 04:00pm"
+    },
+    {
+        "year": 3,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Digital Logic Design",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1501005",
+        "id": "CSE3215",
+        "day_hour": "Monday - 05:00pm"
+    },
+    {
+        "year": 3,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Object-Oriented Software Design",
+        "studentList": [],
+        "prerequisite": ["CSE1241"],
+        "lecturer": "1501006",
+        "id": "CSE3063",
+        "day_hour": "Tuesday - 09:30am"
+    },
+    {
+        "year": 3,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Database Systems",
+        "studentList": [],
+        "prerequisite": ["CSE2225"],
+        "lecturer": "1501001",
+        "id": "CSE3055",
+        "day_hour": "Tuesday - 10:30am"
+    },
+    {
+        "year": 3,
+        "session": [
+            {
+                "quota": 15,
+                "studentList": [],
+                "lecturer": "1501006",
+                "sessionId": "1",
+                "day_hour": "Tuesday - 11:30am"
+            },
+            {
+                "quota": 15,
+                "studentList": [],
+                "lecturer": "1501007",
+                "sessionId": "2",
+                "day_hour": "Tuesday - 01:00pm"
+            }
+        ],
+        "hasSession": true,
+        "name": "Operating Systems",
+        "prerequisite": ["CSE2225"],
+        "id": "CSE3033"
+    },
+    {
+        "year": 3,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Computer Organization",
+        "studentList": [],
+        "prerequisite": ["CSE2138"],
+        "lecturer": "1501008",
+        "id": "CSE3038",
+        "day_hour": "Tuesday - 02:00pm"
+    },
+    {
+        "year": 3,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Software Engineering",
+        "studentList": [],
+        "prerequisite": ["CSE3055"],
+        "lecturer": "1501003",
+        "id": "CSE3044",
+        "day_hour": "Tuesday - 03:00pm"
+    },
+    {
+        "year": 3,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Formal Languages and Automata Theory",
+        "studentList": [],
+        "prerequisite": ["CSE2023"],
+        "lecturer": "1501007",
+        "id": "CSE3264",
+        "day_hour": "Tuesday - 04:00pm"
+    },
+    {
+        "year": 4,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Computer Networks",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1501004",
+        "id": "CSE4074",
+        "day_hour": "Tuesday - 05:00am"
+    },
+    {
+        "year": 4,
+        "quota": 15,
+        "hasSession": false,
+        "name": "Introduction to Machine Learning",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1501009",
+        "id": "CSE4288",
+        "day_hour": "Wednesday - 10:30am"
+    }
 ]}
