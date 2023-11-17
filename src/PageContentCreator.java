@@ -17,10 +17,9 @@ public class PageContentCreator {
 	{
 		String str="---------MAIN MENU---------\n"+
 				"1) Advised Student Information\n"+
-				"2) View Course Requests\n"+
-				"3) Evaluate Requests\n"+
-				"4) Log out\n"+
-				"5) Exit\n";
+				"2) Evaluate Requests\n"+
+				"3) Log out\n"+
+				"4) Exit\n";
 		return str;
 	}
 
@@ -48,7 +47,8 @@ public class PageContentCreator {
 		String str="";
 		if(student.size()==0)
 		{
-			str = "NO LESSON REQUESTS YET\n";
+			str = "NO LESSON REQUESTS YET\n"
+			+ "Press q to exit";
 
 		}
 		else
@@ -86,7 +86,8 @@ public class PageContentCreator {
 					student.get(i-1).getLastName()
 					+"\n Year: "+
 					student.get(i-1).getYear()+"\n"
-					+"--------------------------------------"+"\n";
+					+"--------------------------------------"+"\n"
+					+"Press any key to back to main menu...";
 		}
 		return str;
 	}
