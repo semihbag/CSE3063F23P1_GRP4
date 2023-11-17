@@ -172,9 +172,13 @@ public class SystemClass {
     private String[] transcriptCourses(ArrayList<Course> transcriptCoursesList) {
         String[] transcriptCoursesAr = new String[transcriptCoursesList.size()];
         for (int i = 0; i < transcriptCoursesList.size(); i++) {
-            transcriptCoursesAr[i] = transcriptCoursesList.get(i).getCourseId().getId();
-        }
-        return transcriptCoursesAr;
+            if (transcriptCoursesList.get(i) instanceof CourseSession) {
+                CourseSession crsSession = (CourseSession) transcriptCoursesList.get(i);
+                transcriptCoursesAr[i] = crsSession.getCourseId().getId() + "." + crsSession.getSessionId().getId();
+            } else {
+                transcriptCoursesAr[i] = transcriptCoursesList.get(i).getCourseId().getId();
+            }
+        } return transcriptCoursesAr;
     }
 
     public void listenUserInterface(SystemMessage sm) {
@@ -255,23 +259,20 @@ public class SystemClass {
 
         if (functionType == FunctionType.SEND_APPROVE ) {
             Student student = (Student) this.getCurrentUser();
-
             if (student.getRequest().equals("false")) {
                 student.sendToApproval();
             }
+            this.userInterface.setCurrentPage(sm.getNextPageType());
         }
 
 
         if (functionType == FunctionType.SELECET_STUDENT ) {
 			Advisor advisor = (Advisor)this.getCurrentUser();
-
 			advisor.selectStudent((Integer)sm.getInput());
 			SelectedStudentRequestPage s = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
             s.setContent(pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
 			this.userInterface.setCurrentPage(sm.getNextPageType());
-            
             return;
-
         }
 
         if (functionType == FunctionType.APPROVE_REQUEST ) {

@@ -108,8 +108,15 @@ public class SystemDomain {
         ArrayList<Course> studentCoursesList = new ArrayList<>();
         for (int i = 0; i < studentCoursesAr.length; i++) {
             for (int j = 0; j < getCourses().size(); j++) {
-                if (studentCoursesAr[i].equals(getCourses().get(j).getCourseId().getId())) {
-                    studentCoursesList.add(getCourses().get(j));
+                if(getCourses().get(j) instanceof CourseSession){
+                    if((getCourses().get(j).getCourseId().getId()+"."+((CourseSession)getCourses().get(j)).getSessionId().getId()).equals(studentCoursesAr[i])){
+                        studentCoursesList.add(getCourses().get(j));
+                    }
+                } else {
+                    if (studentCoursesAr[i].equals(getCourses().get(j).getCourseId().getId())) {
+                        studentCoursesList.add(getCourses().get(j));
+
+                    }
                 }
             }
         }
