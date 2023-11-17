@@ -16,6 +16,7 @@ public class SystemDomain {
     private ArrayList<Course> courses = new ArrayList<>();
     private ArrayList<Student> students = new ArrayList<>();
 
+    //Create all objects and fill their attributes
     public SystemDomain() throws JSONException, IOException {
         createLecturers();
         createAdvisors();
@@ -29,6 +30,7 @@ public class SystemDomain {
         fillStudentListCourse();
     }
 
+    //Create all lecturer objects
     public void createLecturers() throws JSONException, IOException {
         String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\lecturers.json")));
         JSONObject jsonObject = new JSONObject(content);
@@ -41,6 +43,7 @@ public class SystemDomain {
         }
     }
 
+    //Create all advisor objects
     private void createAdvisors() throws JSONException, IOException{
         String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\advisors.json")));
         JSONObject jsonObject = new JSONObject(content);
@@ -54,6 +57,7 @@ public class SystemDomain {
         }
     }
 
+    //Create all student objects
     public void createStudents() throws JSONException, IOException {
         File allStudentFiles = new File("src\\JSON_Files\\student_json.txt");
         Scanner allStudentFilesInput = new Scanner(allStudentFiles);
@@ -104,6 +108,7 @@ public class SystemDomain {
         }
     }
 
+    //Assign variable course types to students
     private ArrayList<Course> setStudentCourses(String[] studentCoursesAr) {
         ArrayList<Course> studentCoursesList = new ArrayList<>();
         for (int i = 0; i < studentCoursesAr.length; i++) {
@@ -123,6 +128,7 @@ public class SystemDomain {
         return studentCoursesList;
     }
 
+    //Create all courses
     private void createCourses() throws JSONException, IOException{
         String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
         JSONObject jsonObject = new JSONObject(content);
@@ -183,6 +189,7 @@ public class SystemDomain {
         }
     }
 
+    //Fill the classroom information
     public void fillStudentListCourse() throws JSONException, IOException{
         String content = null;
         content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
@@ -253,6 +260,7 @@ public class SystemDomain {
         }
     }
 
+    //PAGE MERGE WITH SYSTEM DOMAIN
 	public ArrayList<Page> createPages(Person currentUser){
 		PageContentCreator pageContentCreator = new PageContentCreator();
 		ArrayList<Page> pages = new ArrayList();

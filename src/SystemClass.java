@@ -25,6 +25,7 @@ public class SystemClass {
     private PageContentCreator pageContentCreator;
     private UserInterface userInterface;
 
+    //Constructor
     public SystemClass(UserInterface u) throws JSONException, IOException {
         pageContentCreator = new PageContentCreator();
     	userInterface = u;
@@ -33,14 +34,16 @@ public class SystemClass {
 		userInterface.setCurrentPage(PageType.LOGIN_PAGE);
     	domain = new SystemDomain();
     }
-    
+
+    //Start running the code
 	public void run() {
 		while (true) {
 			userInterface.display();
 			listenUserInterface(userInterface.getSystemMessage());
 		}
 	}
-    
+
+    //Login with the given user info
     public void login(UserInfo userInfo) {
         boolean userFound = false;
         if (userInfo.getUsername().charAt(0) == 'o') {
@@ -74,6 +77,7 @@ public class SystemClass {
         }
     }
 
+    //Logout from an account
     public void logout() {
     	userInterface.resetPages();
     	LoginPage login = new LoginPage("welcome");
@@ -82,6 +86,7 @@ public class SystemClass {
         setCurrentUser(null);
     }
 
+    //Exit the system
     public void exit() throws JSONException, IOException {
         updateStudentJSON();
         updateCourseStudentData();
@@ -89,6 +94,7 @@ public class SystemClass {
         System.exit(0);
     }
 
+    //Update course quota after selections in JSON files
     public void updateCourseQuotaData() throws IOException, JSONException {
         String content = null;
         content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
@@ -115,6 +121,8 @@ public class SystemClass {
         Files.write(Paths.get("src\\JSON_Files\\courses.json"),jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
 
     }
+
+    //Update courses student lists after selection in JSON files
     public void updateCourseStudentData() throws IOException, JSONException {
         String content = null;
         content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
@@ -141,6 +149,7 @@ public class SystemClass {
         Files.write(Paths.get("src\\JSON_Files\\courses.json"),jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
     }
 
+    //Update student infos in JSON files
     public void updateStudentJSON() throws JSONException, IOException {
         for (int i = 0; i < domain.getStudents().size(); i++) {
             String studentId = domain.getStudents().get(i).getStudentId().getId();
@@ -161,6 +170,7 @@ public class SystemClass {
         }
     }
 
+    //Create an array for JSON files update
     private String[] studentToJsonArray(ArrayList<Student> students){
         String[] studentIds = new String[students.size()];
         for(int i=0; i<students.size();i++){
@@ -169,6 +179,7 @@ public class SystemClass {
         return  studentIds;
     }
 
+    //Create an array for JSON files update
     private String[] transcriptCourses(ArrayList<Course> transcriptCoursesList) {
         String[] transcriptCoursesAr = new String[transcriptCoursesList.size()];
         for (int i = 0; i < transcriptCoursesList.size(); i++) {
@@ -181,6 +192,7 @@ public class SystemClass {
         } return transcriptCoursesAr;
     }
 
+    //PAGE MERGE WITH SYSTEM PROCESSES
     public void listenUserInterface(SystemMessage sm) {
         FunctionType functionType = sm.getFunctionType();
 

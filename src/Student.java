@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Student extends Person {
     private Id studentId;
     private Password password;
-
     private Advisor advisor;
     private Transcript transcript;
     private ArrayList<Course> selectableCourses = new ArrayList<Course>();
@@ -12,7 +11,6 @@ public class Student extends Person {
     private ArrayList<Course> curriculum= new ArrayList<Course>();;
     private String request;
     private String notification;
-
 
 
     public Student(String firstName, String lastName, Id studentID, Password password, Advisor advisor, Transcript transcript, ArrayList <Course> curriculum) {
@@ -104,7 +102,7 @@ public class Student extends Person {
     }
 
     public void addSelectableCourse(Course course){
-        selectedCourses.add(course);
+        selectableCourses.add(course);
     }
 
     public void addApprovedCourse(Course course){
