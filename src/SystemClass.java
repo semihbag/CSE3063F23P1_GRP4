@@ -33,6 +33,11 @@ public class SystemClass {
 		userInterface.setCurrentPage(PageType.LOGIN_PAGE);
     	domain = new SystemDomain();
     	
+    	for (int i = 0; i < domain.getStudents().size(); i++) {
+    		domain.getStudents().get(i).filterCourses(domain.getCourses());
+    	}
+    	
+    	
 //        UserInfo me = new UserInfo("o150120042","nida123");
 //        login(me);
     }
