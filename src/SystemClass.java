@@ -33,11 +33,6 @@ public class SystemClass {
 		userInterface.setCurrentPage(PageType.LOGIN_PAGE);
     	domain = new SystemDomain();
     	
-    	for (int i = 0; i < domain.getStudents().size(); i++) {
-    		domain.getStudents().get(i).filterCourses(domain.getCourses());
-    	}
-    	
-    	
 //        UserInfo me = new UserInfo("o150120042","nida123");
 //        login(me);
     }
@@ -57,6 +52,8 @@ public class SystemClass {
                 if (("o" + student.getStudentId().getId()).equals(userInfo.getUsername()) &&
                         student.getPassword().getPassword().equals(userInfo.getPassword())) {
                     setCurrentUser(student);
+                    System.err.println(student.getSelectableCourses().size());
+                    System.err.println(student.getSelectedCourses().size());
                     userFound = true;
                     userInterface.setPages(domain.createPages(currentUser));
                     userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE_STUDENT);
@@ -67,7 +64,8 @@ public class SystemClass {
             for (Advisor advisor : advisors) {
                 if (("o" + advisor.getLecturerId().getId()).equals(userInfo.getUsername()) &&
                         advisor.getPassword().getPassword().equals(userInfo.getPassword())) {
-                    setCurrentUser(advisor);
+                    advisor.findAwaitingStudents();
+                	setCurrentUser(advisor);
                     userFound = true;
                     userInterface.setPages(domain.createPages(currentUser));
                     userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE_ADVISOR);
