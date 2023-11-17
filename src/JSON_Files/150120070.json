@@ -1,6 +1,5 @@
 {
     "advisor": "1501001",
-    "request": false,
     "notification": "",
     "password": "monkey20",
     "transcript": {
@@ -18,12 +17,11 @@
     },
     "name": "Semih",
     "registration": {
-        "selectedcourses": [
+        "selectedcourses": [],
+        "approvedcourses": [
             "CSE2260",
-            "CSE3215",
             "CSE3063"
-        ],
-        "approvedcourses": []
+        ]
     },
     "id": "150120070",
     "type": "student",
