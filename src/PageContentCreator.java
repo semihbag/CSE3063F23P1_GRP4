@@ -26,14 +26,21 @@ public class PageContentCreator {
 
 
 	public  String createSelectedStudentsRequesPageContent (Student student)
-	{
+	{			
 		String str = "";
-		str="All course requests of "+student.getFirstName()+" "+student.getLastName()
-				+" number "+student.getStudentId().getId()
-				+"\n"+courseListForContent(student.getSelectedCourses())+"\n"
-				+"Press 'y' to approve, 'n' to reject, 'q' to exit without taking any action.";
+		if (student == null) {
+			str = "Not selected yet";
+			return str;
+		}
+		else {
+			str="All course requests of "+student.getFirstName()+" "+student.getLastName()
+					+" number "+student.getStudentId().getId()
+					+"\n"+courseListForContent(student.getSelectedCourses())+"\n"
+					+"Press 'y' to approve, 'n' to reject, 'q' to exit without taking any action.";
 
-		return str;
+			return str;
+		}
+
 	}
 
 	public  String createEvaluateRequestPageContent (ArrayList<Student> student) //take awaiting student as a parameter
