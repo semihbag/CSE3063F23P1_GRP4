@@ -104,7 +104,6 @@ public class PageContentCreator {
 		}
 		else {
 			str="=>List of all selected courses<=\n"+
-			"Press q to exit\n"+
 					"-------------------------------------\n"+
 					courseListForContent(courses);
 
