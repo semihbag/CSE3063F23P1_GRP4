@@ -253,10 +253,11 @@ public class SystemClass {
             return;
 
         }
+
         if (functionType == FunctionType.SEND_APPROVE ) {
             Student student = (Student) this.getCurrentUser();
 
-            if (student.getRequest() == false) {
+            if (student.getRequest().equals("false")) {
                 student.sendToApproval();
             }
         }
