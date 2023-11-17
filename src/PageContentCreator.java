@@ -2,13 +2,15 @@ import java.util.ArrayList;
 
 public class PageContentCreator {
 
-	public  String crateMainMenuPageStudentContent() {
+	public  String crateMainMenuPageStudentContent()
+	{
 		String str="---------MAIN MENU---------\n"+
 				"1) All Courses\n"+
-				"2) Offered Courses\n"+
-				"3) Selected Courses\n"+
-				"4) Log out\n"+
-				"5) Exit";
+				"2) Approved Courses\n"+
+				"3) Offered Courses\n"+
+				"4) Selected Courses\n"+
+				"5) Log out\n"+
+				"6) Exit";
 		return str;
 	}
 
@@ -106,7 +108,7 @@ public class PageContentCreator {
 		String str="";
 		if(courses.size()==0)
 		{
-			str="NO COURSES SELECTED YET\n"
+			str="NO COURSE TO SHOW\n"
 			+ "Press q to exit";
 		}
 		else {
@@ -140,7 +142,7 @@ public class PageContentCreator {
 	{
 		String str="";
 		if(courses.size()==0) {
-			str="NO COURSES SELECTED YET\n";
+			str="NO COURSE TO SHOW\n";
 		}
 		else {
 			for (int i=1; i<=courses.size() ; i++ ) {
