@@ -26,7 +26,7 @@ public class SelectableCoursesPage extends Page{
 			try {
 				int selection = Integer.parseInt(input);
 				
-				if (selection > numberOfSelectableCourses) {
+				if (selection > numberOfSelectableCourses && selection < 0) {
 					System.out.println("Enter a valid number");
 					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTABLE_COURSES_PAGE, null);
 				}

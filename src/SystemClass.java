@@ -52,8 +52,6 @@ public class SystemClass {
                 if (("o" + student.getStudentId().getId()).equals(userInfo.getUsername()) &&
                         student.getPassword().getPassword().equals(userInfo.getPassword())) {
                     setCurrentUser(student);
-                    System.err.println(student.getSelectableCourses().size());
-                    System.err.println(student.getSelectedCourses().size());
                     userFound = true;
                     userInterface.setPages(domain.createPages(currentUser));
                     userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE_STUDENT);
