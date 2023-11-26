@@ -1,4 +1,4 @@
-package systemMessagePackage;
+package SystemMessage;
 
 public enum FunctionType {
 	// COMMEN

@@ -5,12 +5,9 @@ public class Student extends Person {
     private Password password;
     private Advisor advisor;
     private Transcript transcript;
-    private ArrayList<Course> selectableCourses = new ArrayList<Course>();
-    private ArrayList<Course> selectedCourses = new ArrayList<Course>();;
-    private ArrayList<Course> approvedCourses = new ArrayList<Course>();;
-    private ArrayList<Course> curriculum= new ArrayList<Course>();;
-    private String request;
-    private String notification;
+    private ArrayList<Course> selectableCourses = new ArrayList<Course>(), selectedCourses = new ArrayList<Course>(),
+            approvedCourses = new ArrayList<Course>(), curriculum= new ArrayList<Course>();;
+    private String request, notification;
 
 
     public Student(String firstName, String lastName, Id studentID, Password password, Advisor advisor, Transcript transcript, ArrayList <Course> curriculum) {
@@ -23,45 +20,23 @@ public class Student extends Person {
     }
 
     // Filters all courses in the curriculum according to the student's current semester and prerequisite course passing information
-    public void filterCourses(ArrayList<Course> curriculum) {
+    public void filterCourses() {
         for (int i = 0; i < curriculum.size() ; i++){
             Course course = curriculum.get(i);
-            if(!isSelectedCourse(course)){
-                if(!isPassedCourse(course)){
-                    if(isPrerequisiteCoursesPassed(course)) {
-                        if(course.getYear() == transcript.getYear()){
-                            if (isUnderQuota(course)) {
-                                selectableCourses.add(course);
-                            }
-                        }
-                        else if(course.getYear() == (transcript.getYear()+1)){
-                            if (transcript.getGPA_100()>=75){
-                                if (isUnderQuota(course)) {
-                                    selectableCourses.add(course);
-                                }
-                            }
-                        }
-                        else if (course.getYear()<transcript.getYear()){
-                            if (isFailedCourse(course)){
-                                if(isUnderQuota(course)){
-                                    selectableCourses.add(course);
-                                }
-                            }
-                        }
-                    }
-                }
+            if (!isSelectedCourse(course) && !isPassedCourse(course) && isPrerequisiteCoursesPassed(course) && isUnderQuota(course)
+                && (course.getYear() == transcript.getYear() || ((course.getYear() == (transcript.getYear() + 1)) &&
+                    (transcript.getGPA_100() >= 75)) || isFailedCourse(course))){
+                selectableCourses.add(course);
             }
         }
     }
-
 
     public boolean isSelectedCourse(Course course){
         for(int i =0;  i < selectedCourses.size() ; i++) {
             if(selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())){
                 return true;
             }
-        }
-        return false;
+        } return false;
     }
 
     public boolean isPassedCourse(Course course){
@@ -69,8 +44,7 @@ public class Student extends Person {
             if (transcript.getPassedCourses().get(i).getCourseId().getId().equals(course.getCourseId().getId())){
                 return true;
             }
-        }
-        return false;
+        } return false;
     }
 
     // Checks whether the student has passed the prerequisite courses to take the course
@@ -80,15 +54,13 @@ public class Student extends Person {
             if (!isPassedCourse(preCourse)) {
                 return false;
             }
-        }
-        return true;
+        } return true;
     }
 
     public boolean isUnderQuota (Course course) {
         if(0 < course.getQuota()){
             return true;
-        }
-        return false;
+        } return false;
     }
 
     public boolean isFailedCourse(Course course) {
@@ -97,8 +69,7 @@ public class Student extends Person {
             if (failedCourse.getCourseId().getId().equals(course.getCourseId().getId())) {
                 return true;
             }
-        }
-        return false;
+        } return false;
     }
 
     public void addSelectableCourse(Course course){
@@ -158,9 +129,7 @@ public class Student extends Person {
         }
     }
 
-
     // Getter - Setter Methods
-
     public ArrayList<Course> getCurriculum() {
         return curriculum;
     }

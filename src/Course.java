@@ -2,10 +2,8 @@ import java.util.ArrayList;
 
 public class Course {
 	private Id courseId;
-	private String courseName;
-	private int quota;
-	private int year;
-	private String day_hour;
+	private String courseName, day_hour;
+	private int quota, year;
     private ArrayList<Course> prerequisiteCourses=new ArrayList<>() ;
     private ArrayList<Student> studentList=new ArrayList<>();
     private Lecturer lecturer;
@@ -22,15 +20,14 @@ public class Course {
 		this.lecturer = lecturer;
 }
 	
-    public void  enrollStudent ( Student student )
-    {	
+    public void  enrollStudent (Student student) {
 		studentList.add(student);
-    	
     }
   
 	public Id getCourseId() {
 		return courseId;
 	}
+
 	public String getCourseName() {
 		return courseName;
 	}
@@ -42,6 +39,7 @@ public class Course {
 	public int getYear() {
 		return year;
 	}
+
 	public String getDay_hour() {
 		return day_hour;
 	}
@@ -58,36 +56,11 @@ public class Course {
 		return lecturer;
 	}
 
-	public void setSemester(int semester) {
-		this.year = semester;
-	}
-
-	public void setCourseId(Id courseId) {
-		this.courseId = courseId;
-	}
-
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
-	}
-
 	public void setQuota(int quota) {
 		this.quota = quota;
-	}
-
-	public void setDay_hour(String day_hour) {
-		this.day_hour = day_hour;
-	}
-
-	public void setPrerequisiteCourses(ArrayList<Course> prerequisiteCourses) {
-		this.prerequisiteCourses = prerequisiteCourses;
 	}
 
 	public void setStudentList(ArrayList<Student> studentList) {
 		this.studentList = studentList;
 	}
-
-	public void setLecturer(Lecturer lecturer) {
-		this.lecturer = lecturer;
-	}
-	
 }

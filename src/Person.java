@@ -1,6 +1,5 @@
 abstract class Person {
-    private String firstName;
-    private String lastName;
+    private String firstName, lastName;
 
     public Person(String firstName, String lastName) {
         this.firstName = firstName;

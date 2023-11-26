@@ -1,15 +1,12 @@
 import java.util.ArrayList;
 
 public class Advisor extends Lecturer {
-    
-    private ArrayList<Student> students = new ArrayList<Student>();
-    private ArrayList<Student> awaitingStudents = new ArrayList<Student>();
+    private ArrayList<Student> students = new ArrayList<Student>(), awaitingStudents = new ArrayList<Student>();
     private Student selectStudent;
     private Password password;
 
     // Constructor
     public Advisor(String FirstName, String LastName, Id lecturerID, Password password) {
-
         super(FirstName, LastName, lecturerID);
         this.selectStudent = null;
         this.password = password;
@@ -28,14 +25,12 @@ public class Advisor extends Lecturer {
 
     // Find the correspondence index of Student Object
     public void selectStudent(int index) {
-        
         index = index - 1;
         Student currentStudent = getAwaitingStudents().get(index);
         this.setSelectStudent(currentStudent);
-
     }
 
-// Approve request of selected Student
+    // Approve request of selected Student
     public void Approve() {
         ArrayList<Course> selectCourses = this.selectStudent.getSelectedCourses();
         int numberOfCourses = selectCourses.size();

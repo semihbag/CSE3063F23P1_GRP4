@@ -1,6 +1,6 @@
-package pagePackage;
+package Page;
 
-import systemMessagePackage.*;
+import SystemMessage.*;
 
 public class AllCoursesPage extends Page{
 	

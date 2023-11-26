@@ -1,6 +1,6 @@
-package systemMessagePackage;
+package SystemMessage;
 
-import pagePackage.PageType;
+import Page.PageType;
 
 public class SystemMessage {
 	private FunctionType functionType;

@@ -1,4 +1,4 @@
-package pagePackage;
+package Page;
 
 public enum PageType {
 	// COMMEN

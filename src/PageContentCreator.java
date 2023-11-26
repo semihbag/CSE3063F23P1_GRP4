@@ -138,35 +138,42 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public  String courseListForContent (ArrayList<Course> courses)
-	{
+	public  String courseListForContent (ArrayList<Course> courses) {
 		String str="";
 		if(courses.size()==0) {
 			str="NO COURSE TO SHOW\n";
 		}
 		else {
 			for (int i=1; i<=courses.size() ; i++ ) {
-				if(courses.get(i-1) instanceof CourseSession) {
-					CourseSession session = (CourseSession) courses.get(i-1);
-					str+= i+" -> "+courses.get(i-1).getCourseId().getId()+"."
-						+session.getSessionId().getId()
-						// session idyide alsÄ±n
-						+"|"+courses.get(i-1).getCourseName()
-						+"|\n"+courses.get(i-1).getLecturer().getFirstName()
-						+" "+courses.get(i-1).getLecturer().getLastName()
-						+"|\n"+courses.get(i-1).getQuota()+"\n"
-						+"--------------------------------------"+"\n";
+				if(courses.get(i - 1) instanceof CourseSession session) {
+					str +=  i + blankAfterI(i) +
+						courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId() + "    " +
+						courses.get(i-1).getCourseName() + blankAfterCourseName(courses.get(i-1)) + " " +
+						courses.get(i-1).getLecturer().getFirstName() + " "+
+						courses.get(i-1).getLecturer().getLastName() + "\n";
 				}
 				else {
-					str+= i+" -> "+courses.get(i-1).getCourseId().getId()
-						+"|"+courses.get(i-1).getCourseName()
-						+"|\n"+courses.get(i-1).getLecturer().getFirstName()
-						+" "+courses.get(i-1).getLecturer().getLastName()
-						+"|\n"+courses.get(i-1).getQuota()+"\n"
-						+"--------------------------------------"+"\n";
+					str +=  i + blankAfterI(i) +
+						courses.get(i-1).getCourseId().getId() + "      " +
+						courses.get(i-1).getCourseName() + blankAfterCourseName(courses.get(i-1)) + " " +
+						courses.get(i-1).getLecturer().getFirstName() + " "+
+						courses.get(i-1).getLecturer().getLastName() + "\n";
 				}
 			}
 		}
 		return str;
+	}
+
+	public String blankAfterCourseName(Course course) {
+		String str = "";
+		for (int i = 0; i < 40 - course.getCourseName().length(); i++) {
+			str += " ";
+		} return str;
+	}
+
+	public String blankAfterI(int i) {
+		if (i < 10) {
+			return "    ";
+		} return "   ";
 	}
 }

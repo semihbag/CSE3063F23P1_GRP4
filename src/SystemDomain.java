@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import pagePackage.*;
+import Page.*;
 
 public class SystemDomain {
     private ArrayList<Lecturer> lecturers = new ArrayList<>();
@@ -103,7 +103,7 @@ public class SystemDomain {
             crtStudent.setNotification(notification);
             crtStudent.setSelectedCourses(selectedCourses);
             crtStudent.setApprovedCourses(approvedCourses);
-            crtStudent.filterCourses(getCourses());
+            crtStudent.filterCourses();
             students.add(crtStudent);
         }
     }

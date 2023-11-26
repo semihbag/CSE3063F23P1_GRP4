@@ -1,4 +1,4 @@
-package Draft_Classes;
+package UserInfo;
 
 public class UserInfo {
 	private String username;
@@ -13,7 +13,9 @@ public class UserInfo {
 		setUsername(null);
 		setPassword(null);
 	}
-
+	
+	
+	
 	/// GETTER - SETTER METHODS
 	public String getUsername() {
 		return username;

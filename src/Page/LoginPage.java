@@ -1,7 +1,7 @@
-package pagePackage;
+package Page;
 
-import systemMessagePackage.*;
-import userInfoPackage.UserInfo;
+import SystemMessage.*;
+import UserInfo.UserInfo;
 
 public class LoginPage extends Page{
 	private UserInfo userInfo;

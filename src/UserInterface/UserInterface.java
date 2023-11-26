@@ -1,7 +1,7 @@
-package userInterfacePackage;
+package UserInterface;
 
-import pagePackage.*;
-import systemMessagePackage.*;
+import Page.*;
+import SystemMessage.*;
 import java.util.ArrayList;
 
 

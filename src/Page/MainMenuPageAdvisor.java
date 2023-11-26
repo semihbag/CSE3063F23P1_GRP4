@@ -1,7 +1,7 @@
-package pagePackage;
+package Page;
 
-import systemMessagePackage.FunctionType;
-import systemMessagePackage.SystemMessage;
+import SystemMessage.FunctionType;
+import SystemMessage.SystemMessage;
 
 public class MainMenuPageAdvisor extends Page {
 	

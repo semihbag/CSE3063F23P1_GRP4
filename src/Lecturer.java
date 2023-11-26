@@ -14,10 +14,6 @@ public class Lecturer extends Person{
         return lecturerId;
     }
 
-    public void setLecturerId (Id id) {
-        this.lecturerId = id;
-    }
-
     public ArrayList<Course> getGivenCourses() {
         return givenCourses;
     }

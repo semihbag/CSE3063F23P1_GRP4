@@ -1,9 +1,7 @@
-package pagePackage;
+package Page;
 
-import java.util.ArrayList;
-
-import systemMessagePackage.FunctionType;
-import systemMessagePackage.SystemMessage;
+import SystemMessage.FunctionType;
+import SystemMessage.SystemMessage;
 
 public class SelectableCoursesPage extends Page{
 	
