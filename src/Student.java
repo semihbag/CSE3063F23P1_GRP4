@@ -58,9 +58,7 @@ public class Student extends Person {
     }
 
     public boolean isUnderQuota (Course course) {
-        if(0 < course.getQuota()){
-            return true;
-        } return false;
+        return 0 < course.getQuota();
     }
 
     public boolean isFailedCourse(Course course) {
@@ -87,7 +85,6 @@ public class Student extends Person {
     public void sendToApproval() {
         request = "true";
     }
-
 
     // Adds each selected course from the selectableCourses to the selectedCourses and deletes it from the selectableCourses
     public void addSelectedCourse(int i) {
@@ -134,16 +131,8 @@ public class Student extends Person {
         return curriculum;
     }
 
-    public void setCurriculum(ArrayList<Course> curriculum) {
-        this.curriculum = curriculum;
-    }
-
     public Id getStudentId() {
         return studentId;
-    }
-
-    public void setStudentId(Id studentId) {
-        this.studentId = studentId;
     }
 
     public Password getPassword() {
@@ -154,29 +143,27 @@ public class Student extends Person {
         this.password = password;
     }
 
-
     public Advisor getAdvisor() {
         return advisor;
     }
 
+    /* KULLANILMIYO OLMASI LAZIM?
     public void setAdvisor(Advisor advisor) {
         this.advisor = advisor;
     }
-
+*/
     public Transcript getTranscript() {
         return transcript;
     }
 
+        /* KULLANILMIYO OLMASI LAZIM?
     public void setTranscript(Transcript transcript) {
         this.transcript = transcript;
     }
+*/
 
     public ArrayList<Course> getSelectableCourses() {
         return selectableCourses;
-    }
-
-    public void setSelectableCourses(ArrayList<Course> selectableCourses) {
-        this.selectableCourses = selectableCourses;
     }
 
     public ArrayList<Course> getSelectedCourses() {

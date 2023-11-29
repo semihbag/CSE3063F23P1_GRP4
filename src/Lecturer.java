@@ -21,5 +21,4 @@ public class Lecturer extends Person{
     public void setGivenCourses(ArrayList<Course> givenCourses) {
         this.givenCourses = givenCourses;
     }
-
 }

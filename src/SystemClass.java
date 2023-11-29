@@ -29,7 +29,7 @@ public class SystemClass {
     public SystemClass(UserInterface u) throws JSONException, IOException {
         pageContentCreator = new PageContentCreator();
     	userInterface = u;
-		LoginPage login = new LoginPage("welcome");
+		LoginPage login = new LoginPage("Welcome! Please enter your username/password.");
 		userInterface.addPage(login);
 		userInterface.setCurrentPage(PageType.LOGIN_PAGE);
     	domain = new SystemDomain();
@@ -80,7 +80,7 @@ public class SystemClass {
     //Logout from an account
     public void logout() {
     	userInterface.resetPages();
-    	LoginPage login = new LoginPage("welcome");
+    	LoginPage login = new LoginPage("Welcome! Please enter your username/password.");
 		userInterface.addPage(login);
 		userInterface.setCurrentPage(PageType.LOGIN_PAGE);
         setCurrentUser(null);
