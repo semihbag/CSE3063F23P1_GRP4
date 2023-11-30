@@ -35,11 +35,11 @@ public class SelectedCoursesPage extends Page{
 
 			}
 			catch (NumberFormatException e) {
-				if (input.equals("a")) {
+				if (input.toLowerCase().equals("a")) {
 					return new SystemMessage(FunctionType.SEND_APPROVE, PageType.MAIN_MENU_PAGE_STUDENT, null);
 				}
 				
-				if (input.equals("q")) {
+				if (input.toLowerCase().equals("q")) {
 					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
 				}
 				else {
@@ -51,7 +51,7 @@ public class SelectedCoursesPage extends Page{
 		}
 		
 		input = takeInput();
-		if (input.equals("q")) {
+		if (input.toLowerCase().equals("q")) {
 			return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
 		}
 		else {

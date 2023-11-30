@@ -19,15 +19,15 @@ public class SelectedStudentRequestPage extends Page{
 		while (true) {
 			input = takeInput();
 
-			if (input.equals("y")) {
+			if (input.toLowerCase().equals("y")) {
 				return new SystemMessage(FunctionType.APPROVE_REQUEST, PageType.EVALUATE_REQUESTS_PAGE, null);
 			}
 			
-			if (input.equals("n")) {
+			if (input.toLowerCase().equals("r")) {
 				return new SystemMessage(FunctionType.DISAPPREOVE_REQUEST, PageType.EVALUATE_REQUESTS_PAGE, null);
 			}
 			
-			if (input.equals("q")) {
+			if (input.toLowerCase().equals("q")) {
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.EVALUATE_REQUESTS_PAGE, null);
 			}
 			else {

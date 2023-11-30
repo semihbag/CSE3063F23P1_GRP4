@@ -33,7 +33,7 @@ public class EvaluateRequestsPage extends Page {
 				}
 			}
 			catch (NumberFormatException e) {
-				if (input.equals("q")) {
+				if (input.toLowerCase().equals("q")) {
 					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_ADVISOR, null);
 				}
 				else {
@@ -44,7 +44,7 @@ public class EvaluateRequestsPage extends Page {
 		}
 
 		input = takeInput();
-		if (input.equals("q")) {
+		if (input.toLowerCase().equals("q")) {
 			return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_ADVISOR, null);
 		}
 		else {
