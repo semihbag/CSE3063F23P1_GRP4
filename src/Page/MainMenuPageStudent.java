@@ -16,7 +16,8 @@ public class MainMenuPageStudent extends Page{
 	public SystemMessage runPage() {
 		showContent();
 
-		switch (takeInput()) {
+		while (true) {
+			switch (takeInput()) {
 			case "1":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.ALL_cOURSES_PAGE, null);
 			case "2":
@@ -31,7 +32,8 @@ public class MainMenuPageStudent extends Page{
 				return new SystemMessage(FunctionType.EXIT, null, null);
 			default:
 				System.out.println("Wrong Input!");
-				return new SystemMessage(FunctionType.NONE, null, null);
+				continue;
+			}
 		}
 	}
 }

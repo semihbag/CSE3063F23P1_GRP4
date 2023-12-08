@@ -14,8 +14,9 @@ public class MainMenuPageAdvisor extends Page {
 	@Override
 	public SystemMessage runPage() {
 		showContent();
-		
-		switch (takeInput()) {
+
+		while (true) {
+			switch (takeInput()) {
 			case "1":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_STUDENTS_PAGE, null);
 			case "2":
@@ -26,7 +27,8 @@ public class MainMenuPageAdvisor extends Page {
 				return new SystemMessage(FunctionType.EXIT, null, null);
 			default:
 				System.out.println("Wrong Input!");
-				return new SystemMessage(FunctionType.NONE, null, null);
-		}	
+				continue;
+			}
+		}
 	}
 }

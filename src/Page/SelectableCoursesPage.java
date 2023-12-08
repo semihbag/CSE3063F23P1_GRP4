@@ -18,7 +18,7 @@ public class SelectableCoursesPage extends Page{
 		showContent();
 		String input;
 		
-		while(numberOfSelectableCourses > 0) {
+		while(true) {		
 			input = takeInput();
 			
 			try {
@@ -26,7 +26,7 @@ public class SelectableCoursesPage extends Page{
 				
 				if (selection > numberOfSelectableCourses || selection < 0) {
 					System.out.println("Enter a valid number");
-					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SELECTABLE_COURSES_PAGE, null);
+					continue;
 				}
 				else {
 					return new SystemMessage(FunctionType.SELECT_COURSE, PageType.SELECTABLE_COURSES_PAGE, selection);
@@ -39,18 +39,9 @@ public class SelectableCoursesPage extends Page{
 				}
 				else {
 					System.out.println("Wrong Input");
-					return new SystemMessage(FunctionType.NONE, null, null);
+					continue;
 				}
 			}	
-		}
-		
-		input = takeInput();
-		if (input.equals("q")) {
-			return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
-		}
-		else {
-			System.out.println("Wrong Input");
-			return new SystemMessage(FunctionType.NONE, null, null);
 		}		
 	}
 
