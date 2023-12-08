@@ -36,7 +36,7 @@ public class SystemClass {
     }
 
     //Start running the code
-	public void run() {
+	public void run() throws JSONException, IOException {
 		while (true) {
 			userInterface.display();
 			listenUserInterface(userInterface.getSystemMessage());
@@ -62,7 +62,6 @@ public class SystemClass {
                 if (("a" + advisor.getLecturerId().getId()).equals(userInfo.getUsername()) &&
                         advisor.getPassword().getPassword().equals(userInfo.getPassword())) {
                     advisor.findAwaitingStudents();
-                    System.err.println(advisor.getAwaitingStudents().size());
                 	setCurrentUser(advisor);
                     userFound = true;
                     userInterface.setPages(domain.createPages(currentUser));
@@ -71,7 +70,7 @@ public class SystemClass {
                 }
             }
         } if (!userFound) {
-            System.out.println("Username/Password incorrect.");
+            System.out.println("Username/Password incorrect.\n");
         }
     }
 
@@ -87,36 +86,24 @@ public class SystemClass {
     //Exit the system
     public void exit() throws JSONException, IOException {
         updateStudentJSON();
-        updateCourseStudentData();
-        updateCourseQuotaData();
+        updateCourseJSON();
         System.exit(0);
     }
 
     //Update course quota after selections in JSON files
-    public void updateCourseQuotaData() throws IOException, JSONException {
-        String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
+    public void updateCourseJSON() throws IOException, JSONException {
+        Path path = Path.of("src\\JSON_Files\\courses.json");
+        String content = new String(Files.readAllBytes(path));
         JSONObject jsonObject = new JSONObject(content);
         JSONArray courseJSON = jsonObject.getJSONArray("courses");
-
-        for(int i=0; i<courseJSON.length();i++){
+        for(int i = 0; i < courseJSON.length(); i++){
             JSONObject currentCourse = courseJSON.getJSONObject(i);
             currentCourse.put("quota",domain.getCourses().get(i).getQuota());
-        }
-        Files.write(Paths.get("src\\JSON_Files\\courses.json"),jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
-    }
-
-    //Update courses student lists after selection in JSON files
-    public void updateCourseStudentData() throws IOException, JSONException {
-        String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
-        JSONObject jsonObject = new JSONObject(content);
-        JSONArray courseJSON = jsonObject.getJSONArray("courses");
-        for(int i=0; i<courseJSON.length();i++){
-            JSONObject currentCourse = courseJSON.getJSONObject(i);
             currentCourse.put("studentList",studentToJsonArray(domain.getCourses().get(i).getStudentList()));
         }
-
-        Files.write(Paths.get("src\\JSON_Files\\courses.json"),jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
+        Files.write(path,jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
     }
+
 
     //Update student infos in JSON files
     public void updateStudentJSON() throws JSONException, IOException {
@@ -152,8 +139,7 @@ public class SystemClass {
     private String[] transcriptCourses(ArrayList<Course> transcriptCoursesList) {
         String[] transcriptCoursesAr = new String[transcriptCoursesList.size()];
         for (int i = 0; i < transcriptCoursesList.size(); i++) {
-            if (transcriptCoursesList.get(i) instanceof CourseSession) {
-                CourseSession crsSession = (CourseSession) transcriptCoursesList.get(i);
+            if (transcriptCoursesList.get(i) instanceof CourseSession crsSession) {
                 transcriptCoursesAr[i] = crsSession.getCourseId().getId() + "." + crsSession.getSessionId().getId();
             } else {
                 transcriptCoursesAr[i] = transcriptCoursesList.get(i).getCourseId().getId();
@@ -162,7 +148,7 @@ public class SystemClass {
     }
 
     //PAGE MERGE WITH SYSTEM PROCESSES
-    public void listenUserInterface(SystemMessage sm) {
+    public void listenUserInterface(SystemMessage sm) throws JSONException, IOException {
         FunctionType functionType = sm.getFunctionType();
         if (functionType == FunctionType.LOGIN) {
             UserInfo userInfo = (UserInfo)sm.getInput();
@@ -173,11 +159,7 @@ public class SystemClass {
             this.userInterface.setCurrentPage(PageType.LOGIN_PAGE);
         }
         else if (functionType == FunctionType.EXIT) {
-            try {
-            	this.exit();
-            }
-        	catch (Exception e){
-        	}
+            exit();
         }
         else if (functionType == FunctionType.CHANGE_PAGE) {
             this.userInterface.setCurrentPage(sm.getNextPageType());

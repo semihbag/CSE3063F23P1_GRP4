@@ -147,20 +147,13 @@ public class Student extends Person {
         return advisor;
     }
 
-    /* KULLANILMIYO OLMASI LAZIM?
-    public void setAdvisor(Advisor advisor) {
-        this.advisor = advisor;
-    }
-*/
     public Transcript getTranscript() {
         return transcript;
     }
 
-        /* KULLANILMIYO OLMASI LAZIM?
     public void setTranscript(Transcript transcript) {
         this.transcript = transcript;
     }
-*/
 
     public ArrayList<Course> getSelectableCourses() {
         return selectableCourses;

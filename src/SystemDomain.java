@@ -22,9 +22,6 @@ public class SystemDomain {
         createAdvisors();
         createCourses();
         createStudents();
-        assignCoursesToLecturer();
-        assignStudentsToAdvisor();
-        fillStudentListCourse();
     }
 
     //Create all lecturer objects
@@ -54,6 +51,49 @@ public class SystemDomain {
             advisors.add(advisor);
             lecturers.add(advisor);
         }
+    }
+
+    //Create all courses
+    private void createCourses() throws JSONException, IOException{
+        String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
+        JSONObject jsonObject = new JSONObject(content);
+        JSONArray courseJSON = jsonObject.getJSONArray("courses");
+        for(int i =0 ; i< courseJSON.length();i++){
+            String courseId =courseJSON.getJSONObject(i).getString("id");
+            String name = courseJSON.getJSONObject(i).getString("name");
+            int year = courseJSON.getJSONObject(i).getInt("year");
+            int quota = courseJSON.getJSONObject(i).getInt("quota");
+            String day_hour = courseJSON.getJSONObject(i).getString("day_hour");
+            String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
+
+            Lecturer courseLecturer=null;
+            for (Lecturer lecturer : lecturers) {
+                if (lecturer.getLecturerId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
+                    courseLecturer=lecturer;
+                    break;
+                }
+            }
+
+            Course course = null;
+            if(courseJSON.getJSONObject(i).getBoolean("isSession")){
+                String sessionId = courseJSON.getJSONObject(i).getString("sessionId");
+                course = new CourseSession(new Id(courseId),name, quota, year ,day_hour,courseLecturer,new Id(sessionId));
+            }
+            else {
+                course = new Course(new Id(courseId),name, quota, year, day_hour, courseLecturer);
+            }
+
+            for(String str: prerequisiteId){
+                for(Course crs: courses){
+                    if(crs.getCourseId().getId().equals(str)){
+                        course.getPrerequisiteCourses().add(crs);
+                        break;
+                    }
+                }
+            }
+            courses.add(course);
+        }
+        assignCoursesToLecturer();
     }
 
     //Create all student objects
@@ -88,14 +128,7 @@ public class SystemDomain {
             ArrayList<Course> selectedCourses = setStudentCourses(selectedCoursesAr);
             ArrayList<Course> approvedCourses = setStudentCourses(approvedCoursesAr);
 
-            Advisor advisor = null;
-            for (int i = 0; i < getAdvisors().size(); i++) {
-                if (getAdvisors().get(i).getLecturerId().getId().equals(advisorID)) {
-                    advisor = getAdvisors().get(i);
-                }
-            }
-
-            Student crtStudent = new Student(name, lastname, new Id(id), new Password(password), advisor,
+            Student crtStudent = new Student(name, lastname, new Id(id), new Password(password), findAdvisor(advisorID),
                     new Transcript(gpa, year, completedCourses, failedCourses), courses);
 
             crtStudent.setRequest(booleanString);
@@ -105,6 +138,8 @@ public class SystemDomain {
             crtStudent.filterCourses();
             students.add(crtStudent);
         }
+        assignStudentsToAdvisor();
+        fillStudentListCourse();
     }
 
     private ArrayList<Course> setStudentCourses(String[] studentCoursesAr) {
@@ -119,45 +154,6 @@ public class SystemDomain {
                 }
             }
         } return studentCoursesList;
-    }
-
-    //Create all courses
-    private void createCourses() throws JSONException, IOException{
-        String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
-        JSONObject jsonObject = new JSONObject(content);
-        JSONArray courseJSON = jsonObject.getJSONArray("courses");
-        for(int i =0 ; i< courseJSON.length();i++){
-            String courseId =courseJSON.getJSONObject(i).getString("id");
-            String name = courseJSON.getJSONObject(i).getString("name");
-            int year = courseJSON.getJSONObject(i).getInt("year");
-            int quota = courseJSON.getJSONObject(i).getInt("quota");
-            String day_hour = courseJSON.getJSONObject(i).getString("day_hour");
-            String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
-            Lecturer courseLecturer=null;
-                for (Lecturer lecturer : lecturers) {
-                    if (lecturer.getLecturerId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
-                        courseLecturer=lecturer;
-                        break;
-                    }
-                }
-            Course course = null;
-            if(courseJSON.getJSONObject(i).getBoolean("isSession")){
-                String sessionId = courseJSON.getJSONObject(i).getString("sessionId");
-                course = new CourseSession(new Id(courseId),name, quota, year ,day_hour,courseLecturer,new Id(sessionId));
-            }
-            else{
-                course = new Course(new Id(courseId),name, quota, year ,day_hour,courseLecturer);
-            }
-                for(String str: prerequisiteId){
-                    for(Course crs: courses){
-                        if(crs.getCourseId().getId().equals(str)){
-                            course.getPrerequisiteCourses().add(crs);
-                            break;
-                        }
-                    }
-                }
-            courses.add(course);
-        }
     }
 
     //Fill the classroom information
@@ -208,24 +204,31 @@ public class SystemDomain {
         }
     }
 
+    private Advisor findAdvisor(String advisorID) {
+        Advisor advisor = null;
+        for (int i = 0; i < getAdvisors().size(); i++) {
+            if (getAdvisors().get(i).getLecturerId().getId().equals(advisorID)) {
+                advisor = getAdvisors().get(i);
+            }
+        }
+        return advisor;
+    }
+
     //PAGE MERGE WITH SYSTEM DOMAIN
 	public ArrayList<Page> createPages(Person currentUser){
 		PageContentCreator pageContentCreator = new PageContentCreator();
-		ArrayList<Page> pages = new ArrayList();
-		
-		if (currentUser instanceof Student) {
-			Student student = (Student) currentUser;
-			
-			MainMenuPageStudent mainStudent = new MainMenuPageStudent(pageContentCreator.crateMainMenuPageStudentContent());
+		ArrayList<Page> pages = new ArrayList<>();
+		if (currentUser instanceof Student student) {
+            MainMenuPageStudent mainStudent = new MainMenuPageStudent(pageContentCreator.crateMainMenuPageStudentContent());
 			pages.add(mainStudent);
-			
+
 			AllCoursesPage allCourses = new AllCoursesPage(pageContentCreator.createAllCoursesPageContent(student.getCurriculum()));
 			pages.add(allCourses);
-		
+
 			SelectableCoursesPage selectable = new SelectableCoursesPage(pageContentCreator.createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
 			selectable.setNumberOfSelectableCourses(student.getSelectableCourses().size());
 			pages.add(selectable);
-			
+
 			SelectedCoursesPage selected = new SelectedCoursesPage(pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
 			selected.setNumberOfDropableCourses(student.getSelectedCourses().size());
 			pages.add(selected);
@@ -233,11 +236,8 @@ public class SystemDomain {
 			ApprovedCoursesPage approved = new ApprovedCoursesPage(pageContentCreator.createApprovedCoursesPageContent(student.getApprovedCourses()));
 			pages.add(approved);
 		}
-		
-		if (currentUser instanceof Advisor) {
-			Advisor advisor = (Advisor) currentUser;
-			
-			MainMenuPageAdvisor mainAdvisor = new MainMenuPageAdvisor(pageContentCreator.createMainMenuPageAdvisorContent());
+		else if (currentUser instanceof Advisor advisor) {
+            MainMenuPageAdvisor mainAdvisor = new MainMenuPageAdvisor(pageContentCreator.createMainMenuPageAdvisorContent());
 			pages.add(mainAdvisor);
 
 			MyStudentsPage myStudents = new MyStudentsPage(pageContentCreator.createMyStudentsPageContent(advisor.getStudentList()));
@@ -250,7 +250,6 @@ public class SystemDomain {
 			SelectedStudentRequestPage selectedStudentRequest = new SelectedStudentRequestPage(pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
 			pages.add(selectedStudentRequest);
 		}
-		
 		return pages;
 	}
 
