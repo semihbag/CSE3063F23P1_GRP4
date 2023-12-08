@@ -15,7 +15,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
@@ -207,7 +206,7 @@ public class SystemClass {
 			Advisor advisor = (Advisor)this.getCurrentUser();
 			advisor.selectStudent((Integer)sm.getInput());
 			SelectedStudentRequestPage s = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
-            s.setContent(pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
+            s.setContent(pageContentCreator.createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
 			this.userInterface.setCurrentPage(sm.getNextPageType());
         }
         else if (functionType == FunctionType.APPROVE_REQUEST ) {
@@ -216,7 +215,7 @@ public class SystemClass {
 
             // handling selected student request
             SelectedStudentRequestPage selectedStdudentRequesPage = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
-			selectedStdudentRequesPage.setContent(this.pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
+			selectedStdudentRequesPage.setContent(this.pageContentCreator.createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
 
             // handling evaluate request
             EvaluateRequestsPage evaluateRequestPage = (EvaluateRequestsPage) this.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE);
@@ -230,7 +229,7 @@ public class SystemClass {
 
             // handling selected student request
             SelectedStudentRequestPage selectedStdudentRequesPage = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
-			selectedStdudentRequesPage.setContent(this.pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
+			selectedStdudentRequesPage.setContent(this.pageContentCreator.createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
 
             // handling evaluate request
             EvaluateRequestsPage evaluateRequestPage = (EvaluateRequestsPage) this.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE);

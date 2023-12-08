@@ -25,57 +25,41 @@ public class PageContentCreator {
 	}
 
 
-	public  String createSelectedStudentsRequesPageContent (Student student) {
+	public  String createSelectedStudentsRequestPageContent(Student student) {
 		String str = "";
 		if (student == null) {
 			str = "No course has been selected yet.\n"
 					+ "Quit: Q";
-			return str;
 		}
 		else {
-			str="All course requests of "+student.getFirstName()+" "+student.getLastName()
-					+" number "+student.getStudentId().getId()
+			str="\nRequests of " + student.getFirstName() + " " + student.getLastName()
+					+ " " + student.getStudentId().getId()
 					+"\n"+courseListForContent(student.getSelectedCourses())+"\n"
-					+"Approve: Y\n Reject: R\n Quit: Q\n";
-
-			return str;
+					+"Approve: Y\nReject: R\nQuit: Q\n";
 		}
-
+		return str;
 	}
 
 	public  String createEvaluateRequestPageContent (ArrayList<Student> student) {
 		String str="";
-		if(student.size()==0) {
+		if (student.size()==0) {
 			str = "No request to show.\n"
 			+ "Quit: Q";
 		}
 		else {
 			for(int a=0; a<student.size(); a++) {
-				str+="\n"+(a+1)+"->"+student.get(a).getStudentId().getId()+" "+student.get(a).getFirstName()
-						+" "+student.get(a).getLastName()
-						+" requested "+student.get(a).getSelectedCourses().size()+ " lessons: \n";
-				for(int i=0; i<student.get(a).getSelectedCourses().size(); i++) {
-					str+= "  *"+ student.get(a).getSelectedCourses().get(i).getCourseName()
-							+"\n";
-				}
+				str += (a+1) + ")  " + student.get(a).getStudentId().getId() + " - " +
+						student.get(a).getFirstName() + " " + student.get(a).getLastName() + "\n";
 			}
 			str+="\r\n"+ "Select one of student.\nQuit: Q";
 		}
 		return str;
 	}
 
-
 	public   String createMyStudentsPageContent (ArrayList<Student> student) {
 		String str="STUDENT ID        NAME SURNAME                  YEAR\n";
 		for (int i=1; i<=student.size() ; i++ ) {
 			String fullName = student.get(i-1).getFirstName()+ " " + student.get(i-1).getLastName();
-			/*str+= i+ "->\n StudentID: "+
-					student.get(i-1).getStudentId().getId()
-					+"\n Full name: "+
-					student.get(i-1).getFirstName()+" "+
-					student.get(i-1).getLastName()
-					+"\n Year: "+
-					student.get(i-1).getTranscript().getYear()+"\n" */
 			str += student.get(i-1).getStudentId().getId() + "         " +
 					fullName + blankFullName(fullName) + " " +
 					student.get(i-1).getTranscript().getYear()+"\n";
@@ -110,8 +94,7 @@ public class PageContentCreator {
 
 	public  String createSelectedCoursesPageContent  (ArrayList<Course> courses) {
 		String str="";
-		if(courses.size()==0)
-		{
+		if(courses.size()==0) {
 			str="No course to show.\n"
 			+ "Press q to exit";
 		}
