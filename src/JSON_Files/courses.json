@@ -133,7 +133,6 @@
         "prerequisite": ["CSE2225"],
         "id": "CSE3033"
     },
-
     {
         "year": 3,
         "quota": 14,
@@ -178,4 +177,5 @@
         "id": "CSE4288",
         "day_hour": "Wednesday - 10:30am"
     }
-]}
+]
+}

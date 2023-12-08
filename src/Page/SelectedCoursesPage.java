@@ -1,5 +1,3 @@
-//47-30
-
 package Page;
 
 import SystemMessage.FunctionType;
@@ -20,41 +18,32 @@ public class SelectedCoursesPage extends Page{
 	public SystemMessage runPage() {
 		showContent();
 		String input;
-		
 		while(true) {
 			input = takeInput();
-			
 			try {
 				int selection = Integer.parseInt(input);
-
 				if (selection > numberOfDropableCourses || selection < 0) {
 					System.out.println("Enter a valid number");
-					continue; //CONTINUE ÖNEMSİZ
 				}
 				else {
 					return new SystemMessage(FunctionType.DROP_COURSE, PageType.SELECTED_COURSES_PAGE, selection);
 				}
-
 			}
 			catch (NumberFormatException e) {
-				if (input.toLowerCase().equals("a")) {
+				if (input.equalsIgnoreCase("a")) {
 					return new SystemMessage(FunctionType.SEND_APPROVE, PageType.MAIN_MENU_PAGE_STUDENT, null);
 				}
-				
-				if (input.toLowerCase().equals("q")) {
+				else if (input.equalsIgnoreCase("q")) {
 					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
 				}
 				else {
 					System.out.println("Wrong Input");
-					continue;
 				}
 			}
 		}		
 	}
-
 	
 	/////////// GETTER - SETTER METHODS ////////////
-	
 	public int getNumberOfDropableCourses() {
 		return numberOfDropableCourses;
 	}

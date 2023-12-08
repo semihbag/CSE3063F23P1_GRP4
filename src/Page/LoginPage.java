@@ -29,12 +29,12 @@ public class LoginPage extends Page{
 		// take password
 		System.out.println("Password:");
 		userInfo.setPassword(takeInput());
-			
+
 		return new SystemMessage(FunctionType.LOGIN, null,userInfo);
 	}
 
 	
-	//////// GETTER - SETTET METHODS ///////////
+	//////// GETTER - SETTER METHODS ///////////
 	public UserInfo getUserInfo() {
 		return userInfo;
 	}

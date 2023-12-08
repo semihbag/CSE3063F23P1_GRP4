@@ -1,5 +1,3 @@
-//35
-
 package Page;
 
 import SystemMessage.FunctionType;
@@ -13,11 +11,9 @@ public class MainMenuPageStudent extends Page{
 		setName("Main Menu Page Student");
 	}
 
-
 	@Override
 	public SystemMessage runPage() {
 		showContent();
-
 		while (true) {
 			switch (takeInput()) {
 			case "1":
@@ -34,7 +30,6 @@ public class MainMenuPageStudent extends Page{
 				return new SystemMessage(FunctionType.EXIT, null, null);
 			default:
 				System.out.println("Wrong Input!");
-				continue; //CONTINUE BİR ÖNEM İFADE EMTİOR
 			}
 		}
 	}

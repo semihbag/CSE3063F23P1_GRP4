@@ -1,8 +1,7 @@
 package UserInfo;
 
 public class UserInfo {
-	private String username;
-	private String password;
+	private String username, password;
 	
 	public UserInfo(String username, String password) {
 		setUsername(username);
@@ -13,9 +12,7 @@ public class UserInfo {
 		setUsername(null);
 		setPassword(null);
 	}
-	
-	
-	
+
 	/// GETTER - SETTER METHODS
 	public String getUsername() {
 		return username;
@@ -32,6 +29,4 @@ public class UserInfo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 }

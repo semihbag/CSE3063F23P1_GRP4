@@ -21,18 +21,14 @@ public abstract class Page {
 	public void showContent() {
 		System.out.println(getContent());
 	}
-	
-	// 
+
 	public String takeInput() {
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
 		return input;
 	}
-
-	
 	
 	// GETTER - SETTER METHODS
-
 	public PageType getType() {
 		return type;
 	}

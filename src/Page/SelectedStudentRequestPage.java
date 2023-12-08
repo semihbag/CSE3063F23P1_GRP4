@@ -1,5 +1,3 @@
-//35
-
 package Page;
 
 import SystemMessage.FunctionType;
@@ -17,24 +15,19 @@ public class SelectedStudentRequestPage extends Page{
 	public SystemMessage runPage() {
 		showContent();		
 		String input;
-		
 		while (true) {
 			input = takeInput();
-
-			if (input.toLowerCase().equals("y")) {
+			if (input.equalsIgnoreCase("y")) {
 				return new SystemMessage(FunctionType.APPROVE_REQUEST, PageType.EVALUATE_REQUESTS_PAGE, null);
 			}
-			
-			if (input.toLowerCase().equals("r")) {
+			else if (input.equalsIgnoreCase("r")) {
 				return new SystemMessage(FunctionType.DISAPPREOVE_REQUEST, PageType.EVALUATE_REQUESTS_PAGE, null);
 			}
-			
-			if (input.toLowerCase().equals("q")) {
+			else if (input.equalsIgnoreCase("q")) {
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.EVALUATE_REQUESTS_PAGE, null);
 			}
 			else {
 				System.out.println("Wrong Input");
-				continue; //CONTINUE ÖNEMSİZ
 			}
 		}
 	}
