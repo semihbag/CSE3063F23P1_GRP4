@@ -47,8 +47,7 @@ public class SystemClass {
     public void login(UserInfo userInfo) {
         boolean userFound = false;
         if (userInfo.getUsername().charAt(0) == 'o') {
-            ArrayList<Student> students = domain.getStudents();
-            for (Student student : students) {
+            for (Student student : domain.getStudents()) {
                 if (("o" + student.getStudentId().getId()).equals(userInfo.getUsername()) &&
                         student.getPassword().getPassword().equals(userInfo.getPassword())) {
                     setCurrentUser(student);
@@ -59,8 +58,7 @@ public class SystemClass {
                 }
             }
         } else if (userInfo.getUsername().charAt(0) == 'a') {
-            ArrayList<Advisor> advisors = domain.getAdvisors();
-            for (Advisor advisor : advisors) {
+            for (Advisor advisor : domain.getAdvisors()) {
                 if (("a" + advisor.getLecturerId().getId()).equals(userInfo.getUsername()) &&
                         advisor.getPassword().getPassword().equals(userInfo.getPassword())) {
                     advisor.findAwaitingStudents();
@@ -119,7 +117,6 @@ public class SystemClass {
             }
         }
         Files.write(Paths.get("src\\JSON_Files\\courses.json"),jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
-
     }
 
     //Update courses student lists after selection in JSON files
@@ -195,39 +192,25 @@ public class SystemClass {
     //PAGE MERGE WITH SYSTEM PROCESSES
     public void listenUserInterface(SystemMessage sm) {
         FunctionType functionType = sm.getFunctionType();
-
-        if (functionType == FunctionType.NONE) {
-            return;
-        }
-
         if (functionType == FunctionType.LOGIN) {
             UserInfo userInfo = (UserInfo)sm.getInput();
             this.login(userInfo);
-            return;
         }
-
-        if (functionType == FunctionType.LOGOUT) {
+        else if (functionType == FunctionType.LOGOUT) {
 			this.logout();
             this.userInterface.setCurrentPage(PageType.LOGIN_PAGE);
         }
-
-
-        if (functionType == FunctionType.EXIT) {
+        else if (functionType == FunctionType.EXIT) {
             try {
             	this.exit();
             }
         	catch (Exception e){
         	}
         }
-
-        if (functionType == FunctionType.CHANGE_PAGE) {
+        else if (functionType == FunctionType.CHANGE_PAGE) {
             this.userInterface.setCurrentPage(sm.getNextPageType());
-            return;
-
         }
-
-        if (functionType == FunctionType.SELECT_COURSE ) {
-
+        else if (functionType == FunctionType.SELECT_COURSE ) {
 			Student student = (Student) this.getCurrentUser();
 			student.addSelectedCourse((Integer)sm.getInput());
 
@@ -242,14 +225,9 @@ public class SystemClass {
 			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
 
             this.userInterface.setCurrentPage(sm.getNextPageType());
-
-            return;
-
         }
-
-        if (functionType == FunctionType.DROP_COURSE ) {
+        else if (functionType == FunctionType.DROP_COURSE ) {
             Student student = (Student) this.getCurrentUser();
-
             student.dropCourse((Integer)sm.getInput());
 
             // handling selected course data
@@ -257,39 +235,29 @@ public class SystemClass {
 			selectedCoursePage.setContent(this.pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
 			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
 
-
             // handling of selecteable course data
             SelectableCoursesPage selectableCoursePage = (SelectableCoursesPage) this.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE);
 			selectableCoursePage.setContent(this.pageContentCreator.createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
 			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
 
             this.userInterface.setCurrentPage(sm.getNextPageType());
-
-            return;
-
         }
-
-        if (functionType == FunctionType.SEND_APPROVE ) {
+        else if (functionType == FunctionType.SEND_APPROVE ) {
             Student student = (Student) this.getCurrentUser();
             if (student.getRequest().equals("false")) {
                 student.sendToApproval();
             }
             this.userInterface.setCurrentPage(sm.getNextPageType());
         }
-
-
-        if (functionType == FunctionType.SELECET_STUDENT ) {
+        else if (functionType == FunctionType.SELECET_STUDENT ) {
 			Advisor advisor = (Advisor)this.getCurrentUser();
 			advisor.selectStudent((Integer)sm.getInput());
 			SelectedStudentRequestPage s = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
             s.setContent(pageContentCreator.createSelectedStudentsRequesPageContent(advisor.getSelectStudent()));
 			this.userInterface.setCurrentPage(sm.getNextPageType());
-            return;
         }
-
-        if (functionType == FunctionType.APPROVE_REQUEST ) {
+        else if (functionType == FunctionType.APPROVE_REQUEST ) {
 			Advisor advisor = (Advisor)this.getCurrentUser();
-
 			advisor.Approve();
 
             // handling selected student request
@@ -300,17 +268,10 @@ public class SystemClass {
             EvaluateRequestsPage evaluateRequestPage = (EvaluateRequestsPage) this.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE);
 			evaluateRequestPage.setContent(this.pageContentCreator.createEvaluateRequestPageContent(advisor.getAwaitingStudents()));
 			evaluateRequestPage.setNumberOfRequest(advisor.getAwaitingStudents().size());
-
             this.userInterface.setCurrentPage(sm.getNextPageType());
-
-            return;
-
         }
-
-        if (functionType == FunctionType.DISAPPREOVE_REQUEST ) {
-
+        else if (functionType == FunctionType.DISAPPREOVE_REQUEST ) {
 			Advisor advisor = (Advisor)this.getCurrentUser();
-
 			advisor.Disapprove();
 
             // handling selected student request
@@ -323,8 +284,6 @@ public class SystemClass {
 			evaluateRequestPage.setNumberOfRequest(advisor.getAwaitingStudents().size());
 
             this.userInterface.setCurrentPage(sm.getNextPageType());
-           
-            return;
         }
     }
 
