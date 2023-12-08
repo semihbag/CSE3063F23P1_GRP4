@@ -94,55 +94,27 @@ public class SystemClass {
 
     //Update course quota after selections in JSON files
     public void updateCourseQuotaData() throws IOException, JSONException {
-        String content = null;
-        content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
+        String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
         JSONObject jsonObject = new JSONObject(content);
         JSONArray courseJSON = jsonObject.getJSONArray("courses");
 
-        int j=0;
         for(int i=0; i<courseJSON.length();i++){
-            JSONObject curr = courseJSON.getJSONObject(i);
-            if(curr.getBoolean("hasSession")){
-                JSONArray currCourseJSON = courseJSON.getJSONObject(i).getJSONArray("session");
-                int k=0;
-                for(k=0;k<currCourseJSON.length();k++){
-                    JSONObject currSession = currCourseJSON.getJSONObject(k);
-                    currSession.put("quota",domain.getCourses().get(j).getQuota());
-                }
-                j=j+k;
-            }
-            else{
-                curr.put("quota",domain.getCourses().get(j).getQuota());
-                j++;
-            }
+            JSONObject currentCourse = courseJSON.getJSONObject(i);
+            currentCourse.put("quota",domain.getCourses().get(i).getQuota());
         }
         Files.write(Paths.get("src\\JSON_Files\\courses.json"),jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
     }
 
     //Update courses student lists after selection in JSON files
     public void updateCourseStudentData() throws IOException, JSONException {
-        String content = null;
-        content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
+        String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
         JSONObject jsonObject = new JSONObject(content);
         JSONArray courseJSON = jsonObject.getJSONArray("courses");
-
-        int j=0;
         for(int i=0; i<courseJSON.length();i++){
-            JSONObject curr = courseJSON.getJSONObject(i);
-            if(curr.getBoolean("hasSession")){
-                JSONArray currCourseJSON = courseJSON.getJSONObject(i).getJSONArray("session");
-                int k=0;
-                for(k=0;k<currCourseJSON.length();k++){
-                    JSONObject currSession = currCourseJSON.getJSONObject(k);
-                    currSession.put("studentList",studentToJsonArray(domain.getCourses().get(j).getStudentList()));
-                }
-                j=j+k;
-            }
-            else{
-                curr.put("studentList",studentToJsonArray(domain.getCourses().get(i).getStudentList()));
-                j++;
-            }
+            JSONObject currentCourse = courseJSON.getJSONObject(i);
+            currentCourse.put("studentList",studentToJsonArray(domain.getCourses().get(i).getStudentList()));
         }
+
         Files.write(Paths.get("src\\JSON_Files\\courses.json"),jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
     }
 

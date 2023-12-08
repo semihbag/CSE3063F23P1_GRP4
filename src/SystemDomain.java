@@ -130,45 +130,24 @@ public class SystemDomain {
             String courseId =courseJSON.getJSONObject(i).getString("id");
             String name = courseJSON.getJSONObject(i).getString("name");
             int year = courseJSON.getJSONObject(i).getInt("year");
-            if(courseJSON.getJSONObject(i).getBoolean("hasSession")){
-                JSONArray sessionJSON = courseJSON.getJSONObject(i).getJSONArray("session");
-                String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
-                for(int j =0 ; j< sessionJSON.length();j++){
-                    int quota = sessionJSON.getJSONObject(j).getInt("quota");
-                    String day_hour=sessionJSON.getJSONObject(j).getString("day_hour");
-                    String sessionId = sessionJSON.getJSONObject(j).getString("sessionId");
-                    Lecturer courseLecturer=null;
-                    for (Lecturer lecturer : lecturers) {
-                        if (lecturer.getLecturerId().getId().equals(sessionJSON.getJSONObject(j).getString("lecturer"))) {
-                            courseLecturer=lecturer;
-                            break;
-                        }
-                    }
-                    CourseSession courseSession =new CourseSession(new Id(courseId),name,quota,year,day_hour, courseLecturer, new Id(sessionId));
-                    for(String str: prerequisiteId){
-                        for(Course crs: courses){
-                            if(crs.getCourseId().getId().equals(str)){
-                                courseSession.getPrerequisiteCourses().add(crs);
-                                break;
-                            }
-
-                        }
-                    }
-                    courses.add(courseSession);
-                }
-            }
-            else{
-                int quota = courseJSON.getJSONObject(i).getInt("quota");
-                String day_hour = courseJSON.getJSONObject(i).getString("day_hour");
-                String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
-                Lecturer courseLecturer=null;
+            int quota = courseJSON.getJSONObject(i).getInt("quota");
+            String day_hour = courseJSON.getJSONObject(i).getString("day_hour");
+            String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
+            Lecturer courseLecturer=null;
                 for (Lecturer lecturer : lecturers) {
                     if (lecturer.getLecturerId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
                         courseLecturer=lecturer;
                         break;
                     }
                 }
-                Course course = new Course(new Id(courseId),name, quota, year ,day_hour,courseLecturer);
+            Course course = null;
+            if(courseJSON.getJSONObject(i).getBoolean("isSession")){
+                String sessionId = courseJSON.getJSONObject(i).getString("sessionId");
+                course = new CourseSession(new Id(courseId),name, quota, year ,day_hour,courseLecturer,new Id(sessionId));
+            }
+            else{
+                course = new Course(new Id(courseId),name, quota, year ,day_hour,courseLecturer);
+            }
                 for(String str: prerequisiteId){
                     for(Course crs: courses){
                         if(crs.getCourseId().getId().equals(str)){
@@ -177,49 +156,25 @@ public class SystemDomain {
                         }
                     }
                 }
-                courses.add(course);
-            }
+            courses.add(course);
         }
     }
 
     //Fill the classroom information
     public void fillStudentListCourse() throws JSONException, IOException{
-        String content = null;
-        content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
+        String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
         JSONObject jsonObject = new JSONObject(content);
         JSONArray courseJSON = jsonObject.getJSONArray("courses");
-
-        int j=0;
         for(int i=0; i<courseJSON.length();i++){
             JSONObject currentCourse = courseJSON.getJSONObject(i);
-            if(currentCourse.getBoolean("hasSession")){
-                JSONArray currSessionJSON = currentCourse.getJSONArray("session");
-                int k=0;
-                for(k=0;k<currSessionJSON.length();k++){
-                    JSONObject currSession = currSessionJSON.getJSONObject(k);
-                    String[] courseStudentsId = jsonArrToStrArr(currSession.getJSONArray("studentList"));
-                    for(int x=0; x<courseStudentsId.length;x++ ){
-                        for(Student st: students){
-                            if(st.getStudentId().getId().equals(courseStudentsId[x])&&(!(courses.get(j+k).getStudentList().contains(st)))){
-                                courses.get(j+k).getStudentList().add(st);
-                                break;
-                            }
-                        }
+            String[] courseStudentsId = jsonArrToStrArr(currentCourse.getJSONArray("studentList"));
+            for (String currStudentId : courseStudentsId) {
+                for (Student st : students) {
+                    if (st.getStudentId().getId().equals(currStudentId) && (!(courses.get(i).getStudentList().contains(st)))) {
+                        courses.get(i).getStudentList().add(st);
+                        break;
                     }
                 }
-                j=j+k;
-            }
-            else{
-                String[] courseStudentsId = jsonArrToStrArr(currentCourse.getJSONArray("studentList"));
-                for(int x=0; x<courseStudentsId.length;x++ ){
-                    for(Student st: students){
-                        if(st.getStudentId().getId().equals(courseStudentsId[x])&&(!(courses.get(j).getStudentList().contains(st)))){
-                            courses.get(j).getStudentList().add(st);
-                            break;
-                        }
-                    }
-                }
-                j++;
             }
         }
     }
