@@ -31,7 +31,7 @@ public class Advisor extends Lecturer {
     }
 
     // Approve request of selected Student
-    public void Approve() {
+    public void approve() {
         ArrayList<Course> selectCourses = this.selectStudent.getSelectedCourses();
         int numberOfCourses = selectCourses.size();
         for(int index = 0 ; index < numberOfCourses ; index++) {
@@ -46,7 +46,7 @@ public class Advisor extends Lecturer {
     }
 
     // Dissapprove Student request
-    public void Disapprove() {
+    public void disapprove() {
         ArrayList<Course> selectCourses = this.selectStudent.getSelectedCourses();
         int numberOfCourses = selectCourses.size();
         for(int index = 0 ; index < numberOfCourses ; index++) {
@@ -69,7 +69,7 @@ public class Advisor extends Lecturer {
                 defaultMessage = "The request is approved!";
             }
             else {
-                defaultMessage = "The request id disapproved!";
+                defaultMessage = "The request is disapproved!";
             }
         }
         else {

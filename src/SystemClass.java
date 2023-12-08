@@ -258,7 +258,7 @@ public class SystemClass {
         }
         else if (functionType == FunctionType.APPROVE_REQUEST ) {
 			Advisor advisor = (Advisor)this.getCurrentUser();
-			advisor.Approve();
+			advisor.approve();
 
             // handling selected student request
             SelectedStudentRequestPage selectedStdudentRequesPage = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
@@ -272,7 +272,7 @@ public class SystemClass {
         }
         else if (functionType == FunctionType.DISAPPREOVE_REQUEST ) {
 			Advisor advisor = (Advisor)this.getCurrentUser();
-			advisor.Disapprove();
+			advisor.disapprove();
 
             // handling selected student request
             SelectedStudentRequestPage selectedStdudentRequesPage = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
