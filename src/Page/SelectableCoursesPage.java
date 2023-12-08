@@ -26,7 +26,7 @@ public class SelectableCoursesPage extends Page{
 				
 				if (selection > numberOfSelectableCourses || selection < 0) {
 					System.out.println("Enter a valid number");
-					continue;
+					continue; //CONTINUE ÖNEMSİZ
 				}
 				else {
 					return new SystemMessage(FunctionType.SELECT_COURSE, PageType.SELECTABLE_COURSES_PAGE, selection);
@@ -39,7 +39,7 @@ public class SelectableCoursesPage extends Page{
 				}
 				else {
 					System.out.println("Wrong Input");
-					continue;
+					continue; //CONTINUE ÖNEMSİZ
 				}
 			}	
 		}		

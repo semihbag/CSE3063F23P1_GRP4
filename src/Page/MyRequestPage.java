@@ -1,3 +1,5 @@
+//CONSTRUCTOR HİÇBİR ZAMAN KULLANILMIYOR
+
 package Page;
 
 import SystemMessage.FunctionType;

@@ -27,7 +27,7 @@ public class SelectedCoursesPage extends Page{
 
 				if (selection > numberOfDropableCourses || selection < 0) {
 					System.out.println("Enter a valid number");
-					continue;
+					continue; //CONTINUE ÖNEMSİZ
 				}
 				else {
 					return new SystemMessage(FunctionType.DROP_COURSE, PageType.SELECTED_COURSES_PAGE, selection);

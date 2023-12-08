@@ -1,3 +1,5 @@
+//30
+
 package Page;
 
 import SystemMessage.FunctionType;
@@ -27,7 +29,7 @@ public class MainMenuPageAdvisor extends Page {
 				return new SystemMessage(FunctionType.EXIT, null, null);
 			default:
 				System.out.println("Wrong Input!");
-				continue;
+				continue; //CONTINUE BİR ÖNEM İFADE ETMİYOR
 			}
 		}
 	}

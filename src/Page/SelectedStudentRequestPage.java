@@ -32,7 +32,7 @@ public class SelectedStudentRequestPage extends Page{
 			}
 			else {
 				System.out.println("Wrong Input");
-				continue;
+				continue; //CONTINUE ÖNEMSİZ
 			}
 		}
 	}

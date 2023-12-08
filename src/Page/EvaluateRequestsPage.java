@@ -1,3 +1,5 @@
+//29-41
+
 package Page;
 
 import SystemMessage.FunctionType;
@@ -20,13 +22,13 @@ public class EvaluateRequestsPage extends Page {
 
 		while(true) {
 			input = takeInput();
-			
+
 			try {
 				int selection = Integer.parseInt(input);
 
 				if (selection > numberOfRequest || selection < 0) {
 					System.out.println("Enter a valid number");
-					continue;
+					continue; //CONTINUE BİR ÖNEM İFADE ETMİYOR
 				}
 				else {
 					return new SystemMessage(FunctionType.SELECET_STUDENT, PageType.SELECTED_STUDENT_REQUEST_PAGE, selection);
@@ -38,16 +40,11 @@ public class EvaluateRequestsPage extends Page {
 				}
 				else {
 					System.out.println("Wrong Input");
-					continue;
+					continue; //CONTINUE BİR ÖNEM İFADE ETMİYOR
 				}
 			}
 		}
 	}
-
-	
-	
-	
-	
 	
 	public int getNumberOfRequest() {
 		return numberOfRequest;

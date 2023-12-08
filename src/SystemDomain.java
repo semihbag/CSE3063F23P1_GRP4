@@ -20,9 +20,6 @@ public class SystemDomain {
     public SystemDomain() throws JSONException, IOException {
         createLecturers();
         createAdvisors();
-        for (int i = 0; i < getAdvisors().size(); i++) {
-            getLecturers().add(getAdvisors().get(i));
-        }
         createCourses();
         createStudents();
         assignCoursesToLecturer();
@@ -53,7 +50,9 @@ public class SystemDomain {
             String surname = advisorJSON.getJSONObject(i).getString("surname");
             String advisorId = advisorJSON.getJSONObject(i).getString("advisorId");
             String password = advisorJSON.getJSONObject(i).getString("password");
-            advisors.add(new Advisor(name,surname,new Id(advisorId),new Password(password)));
+            Advisor advisor = new Advisor(name,surname,new Id(advisorId),new Password(password));
+            advisors.add(advisor);
+            lecturers.add(advisor);
         }
     }
 
