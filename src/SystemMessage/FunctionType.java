@@ -1,8 +1,7 @@
 package SystemMessage;
 
 public enum FunctionType {
-	// COMMEN
-	NONE,
+	//COMMON
 	LOGIN,
 	EXIT,
 	CHANGE_PAGE,
