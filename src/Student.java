@@ -42,6 +42,20 @@ public class Student extends Person {
         }
     }
 
+    public boolean exceedNTE(){ //
+        int ct = 0;
+        for(int i= 0; i < transcript.getPassedCourses().size(); i++) {
+            if(transcript.getPassedCourses().get(i).getType() == CourseType.NTE){
+                ct++;
+            }
+        }
+
+        if(ct == 2){
+            return true;
+        }
+        return false;
+    }
+
     public boolean isSelectedCourse(Course course) {
         for (int i = 0; i < selectedCourses.size(); i++) {
             if (selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
@@ -117,6 +131,34 @@ public class Student extends Person {
             } else {
                 System.out.println("You exceed the course limits, you can just select five courses.");
             }
+        }
+    }
+
+    public boolean checkCourseType(CourseType courseType){ //
+        if(courseType == CourseType.NTE){
+            checkNTE();
+        }
+        else if(courseType == CourseType.TE){
+
+        }
+        return true;
+    }
+
+    public boolean checkNTE(){ //
+        int ct = 0;
+
+        //selected da iki tane
+        for(int i = 0;  i < selectedCourses.size(); i++){
+            if(selectedCourses.get(i).getCourseType == CourseType.NTE) {
+                ct++;
+            }
+        }
+
+        if(ct == 0){
+            return true;
+        } else{
+            System.out.println("You cannot select NTE course more than 1 at one term");
+            return false;
         }
     }
 
@@ -268,3 +310,4 @@ public class Student extends Person {
     }
 
 }
+
