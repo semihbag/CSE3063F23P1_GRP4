@@ -3,13 +3,23 @@ import java.util.ArrayList;
 public class Transcript {
     private double GPA_100;
     private int year;
+    private int totalCredit; //
     private ArrayList<Course> passedCourses, failedCourses;
 
     public Transcript(double GPA_100, int year, ArrayList<Course> passedCourses, ArrayList<Course> failedCourses) {
         this.GPA_100 = GPA_100;
         this.year = year;
+        totalCredit = 0;
         this.passedCourses = passedCourses;
         this.failedCourses = failedCourses;
+
+    }
+
+    public void calculateTotalCredit() {
+
+        for(int i = 0 ; i < passedCourses.size() ; i++) {
+            totalCredit += passedCourses.get(i).getCredit(); //
+        }
     }
 
     public double getGPA_100() {
@@ -34,5 +44,13 @@ public class Transcript {
 
     public ArrayList<Course> getFailedCourses() {
         return failedCourses;
+    }
+
+    public int getTotalCredit() { //
+        return totalCredit;
+    }
+
+    public void setTotalCredit(int totalCredit) { //
+        this.totalCredit = totalCredit;
     }
 }
