@@ -10,7 +10,7 @@ public class Student extends Person {
     private ArrayList<String> unreadNotifications; //
     private ArrayList<String> readNotifications; //
     private ArrayList<Course> selectableCourses = new ArrayList<Course>(), selectedCourses = new ArrayList<Course>(),
-            approvedCourses = new ArrayList<Course>(), curriculum = new ArrayList<Course>();;
+            approvedCourses = new ArrayList<Course>(), curriculum = new ArrayList<Course>();
     private String request;
 
     public Student(String firstName, String lastName, Id studentID, Password password, Advisor advisor,
