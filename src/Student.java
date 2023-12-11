@@ -5,59 +5,74 @@ public class Student extends Person {
     private Password password;
     private Advisor advisor;
     private Transcript transcript;
+    private Syllabus syllabus; //
+    private int selectedCourseCredit; //
+    private ArrayList<String> unreadNotifications; //
+    private ArrayList<String> readNotifications; //
     private ArrayList<Course> selectableCourses = new ArrayList<Course>(), selectedCourses = new ArrayList<Course>(),
-            approvedCourses = new ArrayList<Course>(), curriculum= new ArrayList<Course>();;
-    private String request, notification;
+            approvedCourses = new ArrayList<Course>(), curriculum = new ArrayList<Course>();;
+    private String request;
 
-
-    public Student(String firstName, String lastName, Id studentID, Password password, Advisor advisor, Transcript transcript, ArrayList <Course> curriculum) {
+    public Student(String firstName, String lastName, Id studentID, Password password, Advisor advisor,
+                   Transcript transcript, Syllabus syllabus, ArrayList<Course> curriculum, ArrayList<String> readNotifications,
+                   ArrayList<String> unreadNotification) {
         super(firstName, lastName);
         this.studentId = studentID;
         this.password = password;
         this.advisor = advisor;
         this.transcript = transcript;
+        this.syllabus = syllabus; // Sorulacak
+        this.selectedCourseCredit = 0; //
+        this.unreadNotifications = unreadNotifications; //
+        this.readNotifications = readNotifications; //
         this.curriculum = curriculum;
     }
 
-    // Filters all courses in the curriculum according to the student's current semester and prerequisite course passing information
+    // Filters all courses in the curriculum according to the student's current
+    // semester and prerequisite course passing information
     public void filterCourses() {
-        for (int i = 0; i < curriculum.size() ; i++){
+        for (int i = 0; i < curriculum.size(); i++) {
             Course course = curriculum.get(i);
-            if (!isSelectedCourse(course) && !isPassedCourse(course) && isPrerequisiteCoursesPassed(course) && isUnderQuota(course)
-                && (course.getYear() == transcript.getYear() || ((course.getYear() == (transcript.getYear() + 1)) &&
-                    (transcript.getGPA_100() >= 75)) || isFailedCourse(course))){
+            if (!isSelectedCourse(course) && !isPassedCourse(course) && isPrerequisiteCoursesPassed(course)
+                    && isUnderQuota(course)
+                    && (course.getYear() == transcript.getYear() || ((course.getYear() == (transcript.getYear() + 1)) &&
+                    (transcript.getGPA_100() >= 75)) || isFailedCourse(course)) && !exceedNTE()) { //
                 selectableCourses.add(course);
             }
         }
     }
 
-    public boolean isSelectedCourse(Course course){
-        for(int i =0;  i < selectedCourses.size() ; i++) {
-            if(selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())){
+    public boolean isSelectedCourse(Course course) {
+        for (int i = 0; i < selectedCourses.size(); i++) {
+            if (selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
                 return true;
             }
-        } return false;
+        }
+        return false;
     }
 
-    public boolean isPassedCourse(Course course){
-        for(int i= 0; i < transcript.getPassedCourses().size() ; i++){
-            if (transcript.getPassedCourses().get(i).getCourseId().getId().equals(course.getCourseId().getId())){
+    public boolean isPassedCourse(Course course) {
+        for (int i = 0; i < transcript.getPassedCourses().size(); i++) {
+            if (transcript.getPassedCourses().get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
                 return true;
             }
-        } return false;
+        }
+        return false;
     }
 
-    // Checks whether the student has passed the prerequisite courses to take the course
-    public boolean isPrerequisiteCoursesPassed(Course course){
-        for(int i=0; i < course.getPrerequisiteCourses().size(); i++) {
+    // Checks whether the student has passed the prerequisite courses to take the
+    // course
+    public boolean isPrerequisiteCoursesPassed(Course course) {
+        for (int i = 0; i < course.getPrerequisiteCourses().size(); i++) {
             Course preCourse = course.getPrerequisiteCourses().get(i);
             if (!isPassedCourse(preCourse)) {
                 return false;
             }
-        } return true;
+        }
+        return true;
     }
 
-    public boolean isUnderQuota (Course course) {
+    public boolean isUnderQuota(Course course) {
         return 0 < course.getQuota();
     }
 
@@ -67,32 +82,37 @@ public class Student extends Person {
             if (failedCourse.getCourseId().getId().equals(course.getCourseId().getId())) {
                 return true;
             }
-        } return false;
+        }
+        return false;
     }
 
-    public void addSelectableCourse(Course course){
+    public void addSelectableCourse(Course course) {
         selectableCourses.add(course);
     }
 
-    public void addApprovedCourse(Course course){
+    public void addApprovedCourse(Course course) {
         approvedCourses.add(course);
     }
 
-    public void dropAllSelectedCourses(){
+    public void dropAllSelectedCourses() {
         selectedCourses.clear();
+        selectedCourseCredit = 0;
     }
 
     public void sendToApproval() {
         request = "true";
     }
 
-    // Adds each selected course from the selectableCourses to the selectedCourses and deletes it from the selectableCourses
+    // Adds each selected course from the selectableCourses to the selectedCourses
+    // and deletes it from the selectableCourses
     public void addSelectedCourse(int i) {
-        if (this.getRequest().equals("false")) {
-            Course course = selectableCourses.get(i-1);
-            if (selectedCourses.size() < 5){
+        Course course = selectableCourses.get(i - 1);
+
+        if (this.getRequest().equals("false") && !syllabus.checkConflict(course)) {
+            if (selectedCourseCredit + course.getCredit() < 40 && checkTermProject(course, transcript.getTotalCredit() && checkCourseType(course.getType()))) { //
                 selectedCourses.add(course);
-                course.setQuota(course.getQuota()-1);
+                selectedCourseCredit += course.getCredit();
+                course.setQuota(course.getQuota() - 1);
                 removeAllSessions(course);
             } else {
                 System.out.println("You exceed the course limits, you can just select five courses.");
@@ -100,10 +120,36 @@ public class Student extends Person {
         }
     }
 
+    public boolean checkTermProject(Course course, int totalCredit){ //
+        if(course.getCourseName().equals("Engineering Project 1")){
+            if(totalCredit < 165){
+                System.out.println("You don't have enough credit for Engineering Project 1\n");
+                return false;
+            }
+        }
+        else if(course.getCourseName().equals("Engineering Project 2")){
+            if(totalCredit < 180){
+                System.out.println("You don't have enough credit for Engineering Project 2\n");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void clearUnreadNotification(){ //
+        readNotifications.addAll(unreadNotifications);
+        unreadNotifications.clear();
+    }
+
+    void addUnreadNotification(String notification){ //
+        unreadNotifications.add(notification);
+    }
+
     // Deletes the course taken as a parameter from the selectedCourses
     public void dropCourse(int i) {
-        Course course = selectedCourses.get(i-1);
-        selectedCourses.remove(i-1);
+        Course course = selectedCourses.get(i - 1);
+        selectedCourses.remove(i - 1);
+        selectedCourseCredit -= course.getCredit();
         addAllSessions(course);
     }
 
@@ -125,6 +171,7 @@ public class Student extends Person {
             }
         }
     }
+
 
     // Getter - Setter Methods
     public ArrayList<Course> getCurriculum() {
@@ -183,11 +230,41 @@ public class Student extends Person {
         this.request = request;
     }
 
-    public String getNotification() {
-        return notification;
+    //
+    public Syllabus getSyllabus() {
+        return syllabus;
+    }
+    //
+    public void setSyllabus(Syllabus syllabus) {
+        this.syllabus = syllabus;
     }
 
-    public void setNotification(String notification) {
-        this.notification = notification;
+    //
+    public int getSelectedCourseCredit() {
+        return selectedCourseCredit;
     }
+
+    //
+    public void setSelectedCourseCredit(int selectedCourseCredit) {
+        this.selectedCourseCredit = selectedCourseCredit;
+    }
+
+    //
+    public ArrayList<String> getUnreadNotifications() {
+        return unreadNotifications;
+    }
+    //
+    public void setUnreadNotifications(ArrayList<String> unreadNotifications) {
+        this.unreadNotifications = unreadNotifications;
+    }
+
+    //
+    public ArrayList<String> getReadNotifications() {
+        return readNotifications;
+    }
+    //
+    public void setReadNotifications(ArrayList<String> readNotifications) {
+        this.readNotifications = readNotifications;
+    }
+
 }
