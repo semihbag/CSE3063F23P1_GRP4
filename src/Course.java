@@ -2,22 +2,22 @@ import java.util.ArrayList;
 
 public class Course {
 	private Id courseId;
-	private String courseName, day_hour;
+	private String courseName;
 	private int quota, year;
     private ArrayList<Course> prerequisiteCourses=new ArrayList<>() ;
     private ArrayList<Student> studentList=new ArrayList<>();
+	private ArrayList<CourseSchedule> courseSchedules; 
     private Lecturer lecturer;
     
 	
-	public Course(Id courseId, String courseName, int quota, int year, String day_hour,
-				  Lecturer lecturer) {
-		super();
+	public Course(Id courseId, String courseName, int quota, int year,  
+				  Lecturer lecturer,ArrayList<CourseSchedule> courseSchedules) { 
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.quota = quota;
 		this.year = year;
-		this.day_hour = day_hour;
 		this.lecturer = lecturer;
+		this.courseSchedules = courseSchedules;
 }
 	
     public void  enrollStudent (Student student) {
@@ -40,10 +40,6 @@ public class Course {
 		return year;
 	}
 
-	public String getDay_hour() {
-		return day_hour;
-	}
-
 	public ArrayList<Course> getPrerequisiteCourses() {
 		return prerequisiteCourses;
 	}
@@ -63,4 +59,14 @@ public class Course {
 	public void setStudentList(ArrayList<Student> studentList) {
 		this.studentList = studentList;
 	}
+
+	public ArrayList<CourseSchedule> getCourseSchedules() { //
+        return courseSchedules;
+    }
+
+
+    public void setCourseSchedules(ArrayList<CourseSchedule> courseSchedules) { //
+        this.courseSchedules = courseSchedules;
+    }
+
 }
