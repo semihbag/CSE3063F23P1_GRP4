@@ -75,7 +75,8 @@ public class Advisor extends Lecturer {
         else {
             defaultMessage = message;
         }
-        this.selectStudent.setNotification(defaultMessage);
+        
+        this.selectStudent.addUnreadNotification(defaultMessage);
     }
 
     public ArrayList<Student> getStudentList() {
