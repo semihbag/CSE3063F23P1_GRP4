@@ -336,10 +336,11 @@ public class SystemDomain {
 			pages.add(cPassword);
 			
 			MyCoursesPage myCourses = new MyCoursesPage(pageContentCreator.createMyCoursesPageContent(lecturer));
+			myCourses.setNumberOfCourses(lecturer.getGivenCourses().size());
 			pages.add(myCourses);
 			
-			
-		
+			SelectedMyCoursePage selectedCourse = new SelectedMyCoursePage(pageContentCreator.createSelectedMyCoursePage(lecturer.getSelectedCourse()));
+			pages.add(selectedCourse);
 		}
 		return pages;
 	}

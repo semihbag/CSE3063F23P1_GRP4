@@ -154,13 +154,22 @@ public class PageContentCreator {
 				"Q: Quit\n";
 	}
 	
+///////////////////////////////////////////////
+	public String createChangePasswordPage() {
+		return "bu şu anlık durakoysın";
+	}
+	
+///////////////////////////////////////////////	 burda verilen derslerin bilgileri olcak
 	public String createMyCoursesPageContent(Lecturer lecturer) {
 		return "duru burası sende";
 	}
 	
-	public String createChangePasswordPage() {
-		return "bu şu anlık durakoysın";
+///////////////////////////////////////////////	 burda seçilen  derslerin bilgileri olcak öğrencileri falan görebilicez
+// çıkmak için herhangi bir tuşa basması yeterli olacak allcourses mantıgı gibi
+	public String createSelectedMyCoursePage(Course course) {
+		return "duru burası sende";
 	}
+
 	
 	public  String courseListForContent (ArrayList<Course> courses) {
 		String str="";

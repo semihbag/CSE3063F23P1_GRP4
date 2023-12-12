@@ -203,6 +203,8 @@ public class SystemClass {
         else if (functionType == FunctionType.SELECET_STUDENT ) {
 			Advisor advisor = (Advisor)this.getCurrentUser();
 			advisor.selectStudent((Integer)sm.getInput());
+			
+			// handling selected request 
 			SelectedStudentRequestPage s = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
             s.setContent(pageContentCreator.createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
 			this.userInterface.setCurrentPage(sm.getNextPageType());
@@ -238,9 +240,13 @@ public class SystemClass {
         }
         else if (functionType == FunctionType.SELECT_MY_COURSE ) {
 			Lecturer lecturer = (Lecturer)this.getCurrentUser();
-//bu yorum satırları kaldırılacak			
-//			lecturer.selectCourse((Integer)sm.getInput());
+			lecturer.selectCourse((Integer)sm.getInput());
 			
+			// handling selected my course
+			SelectedMyCoursePage selectedMyCourse = (SelectedMyCoursePage) this.userInterface.selectPage(PageType.SELECTED_MY_COURSE_PAGE);
+			selectedMyCourse.setContent(this.pageContentCreator.createSelectedMyCoursePage(lecturer.getSelectedCourse()));
+			
+			this.userInterface.setCurrentPage(sm.getNextPageType());			
         }
         else if (functionType == FunctionType.CHECK_PASSWORD ) {
         	////// eklenecek
