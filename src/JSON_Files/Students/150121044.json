@@ -9,12 +9,12 @@
         "year": 1,
         "gpa": 0
     },
-    "name": "Ferhat",
+    "name": "Hande",
     "registration": {
         "selectedcourses": [],
         "approvedcourses": []
     },
     "id": "150121044",
     "type": "student",
-    "lastname": "Telli"
+    "lastname": "Dogan"
 }
