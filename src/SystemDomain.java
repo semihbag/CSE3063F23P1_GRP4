@@ -237,6 +237,9 @@ public class SystemDomain {
 
 			ApprovedCoursesPage approved = new ApprovedCoursesPage(pageContentCreator.createApprovedCoursesPageContent(student.getApprovedCourses()));
 			pages.add(approved);
+			
+			ProfilePageStudent profile = new ProfilePageStudent(pageContentCreator.createProfilePageStudentContent(student));
+			pages.add(profile);
 		}
 		else if (currentUser instanceof Advisor advisor) {
             MainMenuPageAdvisor mainAdvisor = new MainMenuPageAdvisor(pageContentCreator.createMainMenuPageAdvisorContent());
@@ -251,6 +254,9 @@ public class SystemDomain {
 
 			SelectedStudentRequestPage selectedStudentRequest = new SelectedStudentRequestPage(pageContentCreator.createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
 			pages.add(selectedStudentRequest);
+			
+			ProfilePageAdvisor profile = new ProfilePageAdvisor(pageContentCreator.createProfilePageStudentContent(advisor));
+			pages.add(profile);
 		}
 		return pages;
 	}
