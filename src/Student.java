@@ -38,7 +38,7 @@ public class Student extends Person {
     public boolean exceedNTE(){ //
         int ct = 0;
         for(int i= 0; i < transcript.getPassedCourses().size(); i++) {
-            if(transcript.getPassedCourses().get(i).getCourseType() == CourseType.NONTECHNICAL){
+            if(transcript.getPassedCourses().get(i).getCourse().getCourseType() == CourseType.NONTECHNICAL){
                 ct++;
             }
         }
@@ -60,7 +60,7 @@ public class Student extends Person {
 
     public boolean isPassedCourse(Course course) {
         for (int i = 0; i < transcript.getPassedCourses().size(); i++) {
-            if (transcript.getPassedCourses().get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
+            if (transcript.getPassedCourses().get(i).getCourse().getCourseId().getId().equals(course.getCourseId().getId())) {
                 return true;
             }
         }
@@ -85,8 +85,8 @@ public class Student extends Person {
 
     public boolean isFailedCourse(Course course) {
         for (int i = 0; i < transcript.getFailedCourses().size(); i++) {
-            Course failedCourse = transcript.getFailedCourses().get(i);
-            if (failedCourse.getCourseId().getId().equals(course.getCourseId().getId())) {
+            GradeClass failedCourse = transcript.getFailedCourses().get(i);
+            if (failedCourse.getCourse().getCourseId().getId().equals(course.getCourseId().getId())) {
                 return true;
             }
         }

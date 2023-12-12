@@ -76,7 +76,7 @@ public class SystemDomain {
                 }
             }
             ArrayList<CourseSchedule> courseSchedule = new ArrayList<CourseSchedule>();
-
+            fillCourseSchedule(courseJSON.getJSONObject(i).getJSONArray("day"),courseJSON.getJSONObject(i).getJSONArray("hour"),courseSchedule);
 
             Course course = null;
             if(courseJSON.getJSONObject(i).getBoolean("isSession")){
