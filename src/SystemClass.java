@@ -108,7 +108,7 @@ public class SystemClass {
     public void updateStudentJSON() throws JSONException, IOException {
         for (int i = 0; i < domain.getStudents().size(); i++) {
             String studentId = domain.getStudents().get(i).getStudentId().getId();
-            Path path = Path.of("src\\JSON_Files\\" + studentId + ".json");
+            Path path = Path.of("src\\JSON_Files\\Students\\" + studentId + ".json");
             String content = new String(Files.readAllBytes(path));
             JSONObject jsonStudent = new JSONObject(content);
             JSONObject registration = jsonStudent.getJSONObject("registration");

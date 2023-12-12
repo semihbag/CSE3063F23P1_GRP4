@@ -106,7 +106,7 @@ public class SystemDomain {
         Scanner allStudentFilesInput = new Scanner(allStudentFiles);
         while (allStudentFilesInput.hasNextLine()) {
 
-            String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\" + allStudentFilesInput.nextLine())));
+            String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\Students\\" + allStudentFilesInput.nextLine())));
             JSONObject jsonStudent = new JSONObject(content);
             JSONObject transcript = jsonStudent.getJSONObject("transcript");
             JSONObject registration = jsonStudent.getJSONObject("registration");
