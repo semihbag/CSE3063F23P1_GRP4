@@ -3,13 +3,11 @@ import java.util.ArrayList;
 public class Advisor extends Lecturer {
     private ArrayList<Student> students = new ArrayList<Student>(), awaitingStudents = new ArrayList<Student>();
     private Student selectStudent;
-    private Password password;
 
     // Constructor
     public Advisor(String FirstName, String LastName, Id lecturerID, Password password) {
-        super(FirstName, LastName, lecturerID);
+        super(FirstName, LastName, lecturerID,password);
         this.selectStudent = null;
-        this.password = password;
     }
 
     // Find Students that send their requests to the Advisor
@@ -109,7 +107,5 @@ public class Advisor extends Lecturer {
         this.selectStudent = student;
     }
     
-    public Password getPassword() {
-        return password;
-    }
+
 }

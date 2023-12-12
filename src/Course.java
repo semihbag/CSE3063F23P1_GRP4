@@ -4,7 +4,8 @@ public class Course {
 	private Id courseId;
 	private String courseName;
 	private int quota, year;
-    private ArrayList<Course> prerequisiteCourses=new ArrayList<>() ;
+	private CourseType courseType;
+	private ArrayList<Course> prerequisiteCourses=new ArrayList<>() ;
     private ArrayList<Student> studentList=new ArrayList<>();
 	private ArrayList<CourseSchedule> courseSchedules; 
     private Lecturer lecturer;
@@ -68,5 +69,12 @@ public class Course {
     public void setCourseSchedules(ArrayList<CourseSchedule> courseSchedules) { //
         this.courseSchedules = courseSchedules;
     }
+	public CourseType getCourseType() {
+		return this.courseType;
+	}
+
+	public void setCourseType(CourseType type) {
+		this.courseType = type;
+	}
 
 }

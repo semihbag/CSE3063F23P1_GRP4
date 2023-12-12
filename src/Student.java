@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Student extends Person {
     private Id studentId;
-    private Password password;
     private Advisor advisor;
     private Transcript transcript;
     private Syllabus syllabus; //
@@ -16,9 +15,8 @@ public class Student extends Person {
     public Student(String firstName, String lastName, Id studentID, Password password, Advisor advisor,
                    Transcript transcript, Syllabus syllabus, ArrayList<Course> curriculum, ArrayList<String> readNotifications,
                    ArrayList<String> unreadNotification) {
-        super(firstName, lastName);
+        super(firstName, lastName,password);
         this.studentId = studentID;
-        this.password = password;
         this.advisor = advisor;
         this.transcript = transcript;
         this.syllabus = syllabus; // Sorulacak
@@ -45,7 +43,7 @@ public class Student extends Person {
     public boolean exceedNTE(){ //
         int ct = 0;
         for(int i= 0; i < transcript.getPassedCourses().size(); i++) {
-            if(transcript.getPassedCourses().get(i).getType() == CourseType.NTE){
+            if(transcript.getPassedCourses().get(i).getCourseType() == CourseType.NONTECHNICAL){
                 ct++;
             }
         }
@@ -123,7 +121,7 @@ public class Student extends Person {
         Course course = selectableCourses.get(i - 1);
 
         if (this.getRequest().equals("false") && !syllabus.checkConflict(course)) {
-            if (selectedCourseCredit + course.getCredit() < 40 && checkTermProject(course, transcript.getTotalCredit() && checkCourseType(course.getType()))) { //
+            if (selectedCourseCredit + course.getCredit() < 40 && checkTermProject(course, transcript.getTotalCredit()) && checkCourseType(course.getCourseType())) { //
                 selectedCourses.add(course);
                 selectedCourseCredit += course.getCredit();
                 course.setQuota(course.getQuota() - 1);
@@ -135,10 +133,10 @@ public class Student extends Person {
     }
 
     public boolean checkCourseType(CourseType courseType){ //
-        if(courseType == CourseType.NTE){
+        if(courseType == CourseType.NONTECHNICAL){
             checkNTE();
         }
-        else if(courseType == CourseType.TE){
+        else if(courseType == CourseType.TECHNICAL){
 
         }
         return true;
@@ -149,7 +147,7 @@ public class Student extends Person {
 
         //selected da iki tane
         for(int i = 0;  i < selectedCourses.size(); i++){
-            if(selectedCourses.get(i).getCourseType == CourseType.NTE) {
+            if(selectedCourses.get(i).getCourseType() == CourseType.NONTECHNICAL) {
                 ct++;
             }
         }
@@ -224,13 +222,6 @@ public class Student extends Person {
         return studentId;
     }
 
-    public Password getPassword() {
-        return password;
-    }
-
-    public void setPassword(Password password) {
-        this.password = password;
-    }
 
     public Advisor getAdvisor() {
         return advisor;

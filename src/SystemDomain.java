@@ -33,7 +33,8 @@ public class SystemDomain {
             String name = lecturerJSON.getJSONObject(i).getString("name");
             String surname = lecturerJSON.getJSONObject(i).getString("surname");
             String lecturerId = lecturerJSON.getJSONObject(i).getString("lecturerId");
-            lecturers.add(new Lecturer(name,surname,new Id(lecturerId)));
+            String password = lecturerJSON.getJSONObject(i).getString("password");
+            lecturers.add(new Lecturer(name,surname,new Id(lecturerId),new Password(password)));
         }
     }
 
@@ -63,7 +64,6 @@ public class SystemDomain {
             String name = courseJSON.getJSONObject(i).getString("name");
             int year = courseJSON.getJSONObject(i).getInt("year");
             int quota = courseJSON.getJSONObject(i).getInt("quota");
-            String day_hour = courseJSON.getJSONObject(i).getString("day_hour");
             String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
 
             Lecturer courseLecturer=null;
@@ -73,14 +73,16 @@ public class SystemDomain {
                     break;
                 }
             }
+            ArrayList<CourseSchedule> courseSchedule = new ArrayList<CourseSchedule>();
+
 
             Course course = null;
             if(courseJSON.getJSONObject(i).getBoolean("isSession")){
                 String sessionId = courseJSON.getJSONObject(i).getString("sessionId");
-                course = new CourseSession(new Id(courseId),name, quota, year ,day_hour,courseLecturer,new Id(sessionId));
+                course = new CourseSession(new Id(courseId),name, quota, year,courseLecturer,new Id(sessionId),courseSchedule);
             }
             else {
-                course = new Course(new Id(courseId),name, quota, year, day_hour, courseLecturer);
+                course = new Course(new Id(courseId),name, quota, year,courseLecturer,courseSchedule);
             }
 
             for(String str: prerequisiteId){
@@ -252,6 +254,64 @@ public class SystemDomain {
 		}
 		return pages;
 	}
+
+    public void fillCourseSchedule(JSONArray dayJsonArr,JSONArray hourJsonArr,ArrayList<CourseSchedule> courseSchedules) throws JSONException {
+        String[] dayStrArr = jsonArrToStrArr(dayJsonArr);
+        for(int i=0;i<dayJsonArr.length();i++){
+            Day currentDay = getCourseDay(dayStrArr[i]);
+            ArrayList<Hour> hours = new ArrayList<>();
+            JSONArray currentHourJsonArr= hourJsonArr.getJSONArray(i);
+            for(int j=0;j<currentHourJsonArr.length();j++){
+                hours.add(getCourseHour(currentHourJsonArr.getString(j)));
+            }
+            courseSchedules.add(new CourseSchedule(currentDay,hours));
+        }
+
+    }
+    public Grade getCourseGrade(String strGrade){
+        return switch (strGrade.toUpperCase()) {
+            case "AA" -> Grade.AA;
+            case "BA" -> Grade.BA;
+            case "BB" -> Grade.BB;
+            case "CB" -> Grade.CB;
+            case "CC" -> Grade.CC;
+            case "DC" -> Grade.DC;
+            case "DD" -> Grade.DD;
+            case "FD" -> Grade.FD;
+            case "FF" -> Grade.FF;
+            case "DZ" -> Grade.DZ;
+            default -> null;
+        };
+    }
+    public Day getCourseDay(String strDay){
+        return switch (strDay.toUpperCase()) {
+            case "MONDAY" -> Day.MONDAY;
+            case "TUESDAY" -> Day.TUESDAY;
+            case "WEDNESDAY" -> Day.WEDNESDAY;
+            case "THURSDAY" -> Day.THURSDAY;
+            case "FRIDAY" -> Day.FRIDAY;
+            default -> null;
+        };
+    }
+
+    public Hour getCourseHour(String strHour){
+        return switch (strHour.toUpperCase()) {
+            case "8.30" -> Hour.H_08_30_09_20;
+            case "9.30" -> Hour.H_09_30_10_20;
+            case "10.30" -> Hour.H_10_30_11_20;
+            case "11.30" -> Hour.H_11_30_12_20;
+            case "13.00" -> Hour.H_13_00_13_50;
+            case "14.00" -> Hour.H_14_00_14_50;
+            case "15.00" -> Hour.H_15_00_15_50;
+            case "16.00" -> Hour.H_16_00_16_50;
+            case "17.00" -> Hour.H_17_00_17_50;
+            case "18.00" -> Hour.H_18_00_18_50;
+            case "19.00" -> Hour.H_19_00_19_50;
+            case "20.00" -> Hour.H_20_00_20_50;
+            case "21.00" -> Hour.H_21_00_21_50;
+            default -> null;
+        };
+    }
 
     public ArrayList<Student> getStudents() {
         return students;

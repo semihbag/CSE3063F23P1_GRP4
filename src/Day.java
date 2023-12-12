@@ -5,5 +5,3 @@ public enum Day {
     THURSDAY,
     FRIDAY;
 }
-
-
