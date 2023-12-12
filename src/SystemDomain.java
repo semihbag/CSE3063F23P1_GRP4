@@ -282,9 +282,15 @@ public class SystemDomain {
 		PageContentCreator pageContentCreator = new PageContentCreator();
 		ArrayList<Page> pages = new ArrayList<>();
 		if (currentUser instanceof Student student) {
-            MainMenuPageStudent mainStudent = new MainMenuPageStudent(pageContentCreator.crateMainMenuPageStudentContent());
+            MainMenuPageStudent mainStudent = new MainMenuPageStudent(pageContentCreator.createMainMenuPageStudentContent());
 			pages.add(mainStudent);
 
+			ProfilePageStudent profile = new ProfilePageStudent(pageContentCreator.createProfilePageStudentContent(student));
+			pages.add(profile);
+			
+			ChangePasswaordPage cPassword = new ChangePasswaordPage(pageContentCreator.createChangePasswordPage());
+			pages.add(cPassword);
+			
 			AllCoursesPage allCourses = new AllCoursesPage(pageContentCreator.createAllCoursesPageContent(student.getCurriculum()));
 			pages.add(allCourses);
 
@@ -298,18 +304,17 @@ public class SystemDomain {
 
 			ApprovedCoursesPage approved = new ApprovedCoursesPage(pageContentCreator.createApprovedCoursesPageContent(student.getApprovedCourses()));
 			pages.add(approved);
-			
-			ProfilePageStudent profile = new ProfilePageStudent(pageContentCreator.createProfilePageStudentContent(student));
-			pages.add(profile);
-			
-			ChangePasswaordPage cPassword = new ChangePasswaordPage(pageContentCreator.createChangePasswordPage());
-			pages.add(cPassword);
-			
 		}
 		else if (currentUser instanceof Advisor advisor) {
             MainMenuPageAdvisor mainAdvisor = new MainMenuPageAdvisor(pageContentCreator.createMainMenuPageAdvisorContent());
 			pages.add(mainAdvisor);
 
+			ProfilePageAdvisor profile = new ProfilePageAdvisor(pageContentCreator.createProfilePageAdvisorContent(advisor));
+			pages.add(profile);
+			
+			ChangePasswaordPage cPassword = new ChangePasswaordPage(pageContentCreator.createChangePasswordPage());
+			pages.add(cPassword);
+			
 			MyStudentsPage myStudents = new MyStudentsPage(pageContentCreator.createMyStudentsPageContent(advisor.getStudentList()));
 			pages.add(myStudents);
 
@@ -319,13 +324,22 @@ public class SystemDomain {
 
 			SelectedStudentRequestPage selectedStudentRequest = new SelectedStudentRequestPage(pageContentCreator.createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
 			pages.add(selectedStudentRequest);
+		}
+		else if (currentUser instanceof Lecturer lecturer) {
+			MainMenuPageLecturer mainLecturer = new MainMenuPageLecturer(pageContentCreator.createMainMenuPageLecturerContent());
+			pages.add(mainLecturer);
 			
-			ProfilePageAdvisor profile = new ProfilePageAdvisor(pageContentCreator.createProfilePageAdvisorContent(advisor));
+			ProfilePageLecturer profile = new ProfilePageLecturer(pageContentCreator.createProfilePageLecturerContent(lecturer));
 			pages.add(profile);
 			
 			ChangePasswaordPage cPassword = new ChangePasswaordPage(pageContentCreator.createChangePasswordPage());
 			pages.add(cPassword);
 			
+			MyCoursesPage myCourses = new MyCoursesPage(pageContentCreator.createMyCoursesPageContent(lecturer));
+			pages.add(myCourses);
+			
+			
+		
 		}
 		return pages;
 	}

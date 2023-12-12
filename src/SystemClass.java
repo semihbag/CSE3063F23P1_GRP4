@@ -236,12 +236,19 @@ public class SystemClass {
 
             this.userInterface.setCurrentPage(sm.getNextPageType());
         }
+        else if (functionType == FunctionType.SELECT_MY_COURSE ) {
+			Lecturer lecturer = (Lecturer)this.getCurrentUser();
+//bu yorum satırları kaldırılacak			
+//			lecturer.selectCourse((Integer)sm.getInput());
+			
+        }
         else if (functionType == FunctionType.CHECK_PASSWORD ) {
         	////// eklenecek
         }
         else if (functionType == FunctionType.CHANGE_PASSWORD ) {
         	////// eklenecek
         }
+        
 
     }
 

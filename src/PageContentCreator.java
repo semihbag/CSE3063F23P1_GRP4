@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class PageContentCreator {
 
-	public  String crateMainMenuPageStudentContent()
+	public  String createMainMenuPageStudentContent()
 	{
 		String str="---------MAIN MENU---------\n"+
 				"1) Profile\n" +
@@ -154,8 +154,12 @@ public class PageContentCreator {
 				"Q: Quit\n";
 	}
 	
+	public String createMyCoursesPageContent(Lecturer lecturer) {
+		return "duru burası sende";
+	}
+	
 	public String createChangePasswordPage() {
-		return null;
+		return "bu şu anlık durakoysın";
 	}
 	
 	public  String courseListForContent (ArrayList<Course> courses) {
