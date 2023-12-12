@@ -131,6 +131,10 @@ public class PageContentCreator {
 		return "buralar hep dutluktu";
 	}
 	
+	public String createChangePasswordPage() {
+		return null;
+	}
+	
 	public  String courseListForContent (ArrayList<Course> courses) {
 		String str="";
 		if(courses.size()==0) {

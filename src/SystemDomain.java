@@ -269,6 +269,10 @@ public class SystemDomain {
 			
 			ProfilePageStudent profile = new ProfilePageStudent(pageContentCreator.createProfilePageStudentContent(student));
 			pages.add(profile);
+			
+			ChangePasswaordPage cPassword = new ChangePasswaordPage(pageContentCreator.createChangePasswordPage());
+			pages.add(cPassword);
+			
 		}
 		else if (currentUser instanceof Advisor advisor) {
             MainMenuPageAdvisor mainAdvisor = new MainMenuPageAdvisor(pageContentCreator.createMainMenuPageAdvisorContent());
@@ -286,6 +290,10 @@ public class SystemDomain {
 			
 			ProfilePageAdvisor profile = new ProfilePageAdvisor(pageContentCreator.createProfilePageStudentContent(advisor));
 			pages.add(profile);
+			
+			ChangePasswaordPage cPassword = new ChangePasswaordPage(pageContentCreator.createChangePasswordPage());
+			pages.add(cPassword);
+			
 		}
 		return pages;
 	}
