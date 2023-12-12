@@ -67,7 +67,7 @@ public class SystemDomain {
             int year = courseJSON.getJSONObject(i).getInt("year");
             int quota = courseJSON.getJSONObject(i).getInt("quota");
             String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
-
+            int credit = courseJSON.getJSONObject(i).getInt("credit");
             Lecturer courseLecturer=null;
             for (Lecturer lecturer : lecturers) {
                 if (lecturer.getLecturerId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
@@ -81,10 +81,10 @@ public class SystemDomain {
             Course course = null;
             if(courseJSON.getJSONObject(i).getBoolean("isSession")){
                 String sessionId = courseJSON.getJSONObject(i).getString("sessionId");
-                course = new CourseSession(new Id(courseId),name, quota, year,courseLecturer,new Id(sessionId),courseSchedule);
+                course = new CourseSession(new Id(courseId),name, quota, year,courseLecturer,new Id(sessionId),courseSchedule,credit);
             }
             else {
-                course = new Course(new Id(courseId),name, quota, year,courseLecturer,courseSchedule);
+                course = new Course(new Id(courseId),name, quota, year,courseLecturer,courseSchedule,credit);
             }
 
             for(String str: prerequisiteId){
@@ -153,7 +153,36 @@ public class SystemDomain {
     }
 
     private double calculateGPA(ArrayList<GradeClass> passedCourses, ArrayList<GradeClass> failedCourses) {
-        return 0;
+        double gpa=0;
+        int totalCredit=0;
+        for(GradeClass current: passedCourses){
+            gpa += (current.getCourse().getCredit())*(letterToGrade(current.getGrade()));
+            totalCredit+=current.getCourse().getCredit();
+        }
+        for(GradeClass current: failedCourses){
+            gpa += (current.getCourse().getCredit())*(letterToGrade(current.getGrade()));
+            totalCredit+=current.getCourse().getCredit();
+        }
+        if(totalCredit==0){
+            return 0;
+        }
+        else{
+            return gpa/totalCredit;
+        }
+    }
+
+    private double letterToGrade(Grade grade){
+        return switch (grade){
+            case AA -> 4.0;
+            case BA -> 3.5;
+            case BB -> 3.0;
+            case CB -> 2.5;
+            case CC -> 2.0;
+            case DC -> 1.5;
+            case DD -> 1.0;
+            case FD -> 0.5;
+            case FF, DZ -> 0.0;
+        };
     }
 
     private ArrayList<GradeClass> setTranscriptCourses(String[] transcriptCourses, String[] grades) {
