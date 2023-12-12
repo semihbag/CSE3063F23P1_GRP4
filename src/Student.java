@@ -19,34 +19,20 @@ public class Student extends Person {
         this.advisor = advisor;
         this.transcript = transcript;
         this.curriculum = curriculum;
+        this.syllabus = new Syllabus();
     }
 
     // Filters all courses in the curriculum according to the student's current
     // semester and prerequisite course passing information
     public void filterCourses() {
+        syllabus.fillSyllabus(selectedCourses);
         for (int i = 0; i < curriculum.size(); i++) {
             Course course = curriculum.get(i);
-            if (!isSelectedCourse(course) && !isPassedCourse(course) && isPrerequisiteCoursesPassed(course)
-                    && isUnderQuota(course)
-                    && (course.getYear() == transcript.getYear() || ((course.getYear() == (transcript.getYear() + 1)) &&
-                    (transcript.getGPA_100() >= 75)) || isFailedCourse(course)) && !exceedNTE()) { //
+            if (!isSelectedCourse(course) && !isPassedCourse(course) && isPrerequisiteCoursesPassed(course) && isUnderQuota(course)
+                    && (checkCourseType(course)  || isFailedCourse(course)) ){ //
                 selectableCourses.add(course);
             }
         }
-    }
-
-    public boolean exceedNTE(){ //
-        int ct = 0;
-        for(int i= 0; i < transcript.getPassedCourses().size(); i++) {
-            if(transcript.getPassedCourses().get(i).getCourse().getCourseType() == CourseType.NONTECHNICAL){
-                ct++;
-            }
-        }
-
-        if(ct == 2){
-            return true;
-        }
-        return false;
     }
 
     public boolean isSelectedCourse(Course course) {
@@ -86,7 +72,8 @@ public class Student extends Person {
     public boolean isFailedCourse(Course course) {
         for (int i = 0; i < transcript.getFailedCourses().size(); i++) {
             GradeClass failedCourse = transcript.getFailedCourses().get(i);
-            if (failedCourse.getCourse().getCourseId().getId().equals(course.getCourseId().getId())) {
+            if (failedCourse.getCourse().getCourseId().getId().equals(course.getCourseId().getId()) &&
+                    transcript.getYear()%2 == course.getYear()%2) { // tek çift dönem olayı eklendi
                 return true;
             }
         }
@@ -127,48 +114,43 @@ public class Student extends Person {
         }
     }
 
-    public boolean checkCourseType(CourseType courseType){ //
+    public boolean checkCourseType(Course course){ // dönemini ve üsten alma olayı içeriyor (mandatoryde hem üst hem kendi dönemi olayı var))
+        CourseType courseType = course.getCourseType();
         if(courseType == CourseType.NONTECHNICAL){
-            checkNTE();
+            if(!exceed(courseType, 2) && !exceedTerm(courseType)) { //eğitim hayatı boyunca max 2, her dönemde max 1 alır
+                return true;
+            }
         }
         else if(courseType == CourseType.TECHNICAL){
-
+            if((transcript.getYear() == 7 || transcript.getYear() == 8) && !exceedTerm(courseType)){
+                return true;
+            }
         }
-        return true;
+        else if(courseType == CourseType.FACULTY){
+            if(transcript.getYear() == 7  && !exceedTerm(courseType)){
+                return true;
+            }
+        }
+        else if(courseType == CourseType.MANDATORY && (( transcript.getYear() >= 3 && course.getYear() == transcript.getYear() +2 && transcript.getGPA_100() > 75  ) ||
+                course.getYear() == transcript.getYear())){
+            return true;
+        }
+        return false;
     }
 
-    public boolean checkNTE(){ //
-        int ct = 0;
 
-        //selected da iki tane
-        for(int i = 0;  i < selectedCourses.size(); i++){
-            if(selectedCourses.get(i).getCourseType() == CourseType.NONTECHNICAL) {
+    public boolean exceed(CourseType type, int limit){ //Bugüne kadar bu tipdeki dersten kaç tane aldığını söylüyor
+        int ct = 0;
+        for(int i= 0; i < transcript.getPassedCourses().size(); i++) {
+            if(transcript.getPassedCourses().get(i).getCourse().getCourseType() == type){
                 ct++;
             }
         }
 
-        if(ct == 0){
+        if(ct == limit){
             return true;
-        } else{
-            System.out.println("You cannot select NTE course more than 1 at one term");
-            return false;
         }
-    }
-
-    public boolean checkTermProject(Course course, int totalCredit){ //
-        if(course.getCourseName().equals("Engineering Project 1")){
-            if(totalCredit < 165){
-                System.out.println("You don't have enough credit for Engineering Project 1\n");
-                return false;
-            }
-        }
-        else if(course.getCourseName().equals("Engineering Project 2")){
-            if(totalCredit < 180){
-                System.out.println("You don't have enough credit for Engineering Project 2\n");
-                return false;
-            }
-        }
-        return true;
+        return false;
     }
 
     void clearUnreadNotification(){ //

@@ -17,7 +17,7 @@ public class Transcript {
 
     public void calculateTotalCredit() {
         for(int i = 0 ; i < passedCourses.size() ; i++) {
-            totalCredit += passedCourses.get(i).getCredit(); //
+            totalCredit += passedCourses.get(i).getCourse().getCredit(); //
         }
     }
 
@@ -53,3 +53,4 @@ public class Transcript {
         this.totalCredit = totalCredit;
     }
 }
+

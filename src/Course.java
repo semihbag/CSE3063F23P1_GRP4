@@ -6,25 +6,27 @@ public class Course {
 	private int quota, year;
 	private CourseType courseType;
 	private ArrayList<Course> prerequisiteCourses=new ArrayList<>() ;
-    private ArrayList<Student> studentList=new ArrayList<>();
-	private ArrayList<CourseSchedule> courseSchedules; 
-    private Lecturer lecturer;
-    
-	
-	public Course(Id courseId, String courseName, int quota, int year,  
-				  Lecturer lecturer,ArrayList<CourseSchedule> courseSchedules) { 
+	private ArrayList<Student> studentList=new ArrayList<>();
+	private ArrayList<CourseSchedule> courseSchedules;
+	private Lecturer lecturer;
+	private int credit;
+
+
+	public Course(Id courseId, String courseName, int quota, int year,
+				  Lecturer lecturer,ArrayList<CourseSchedule> courseSchedules, int credit) {
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.quota = quota;
 		this.year = year;
 		this.lecturer = lecturer;
 		this.courseSchedules = courseSchedules;
-}
-	
-    public void  enrollStudent (Student student) {
+		this.credit = credit;
+	}
+
+	public void  enrollStudent (Student student) {
 		studentList.add(student);
-    }
-  
+	}
+
 	public Id getCourseId() {
 		return courseId;
 	}
@@ -32,11 +34,11 @@ public class Course {
 	public String getCourseName() {
 		return courseName;
 	}
-	
+
 	public int getQuota() {
 		return quota;
 	}
-    
+
 	public int getYear() {
 		return year;
 	}
@@ -44,11 +46,11 @@ public class Course {
 	public ArrayList<Course> getPrerequisiteCourses() {
 		return prerequisiteCourses;
 	}
-	
+
 	public ArrayList<Student> getStudentList() {
 		return studentList;
 	}
-	
+
 	public Lecturer getLecturer() {
 		return lecturer;
 	}
@@ -62,13 +64,13 @@ public class Course {
 	}
 
 	public ArrayList<CourseSchedule> getCourseSchedules() { //
-        return courseSchedules;
-    }
+		return courseSchedules;
+	}
 
 
-    public void setCourseSchedules(ArrayList<CourseSchedule> courseSchedules) { //
-        this.courseSchedules = courseSchedules;
-    }
+	public void setCourseSchedules(ArrayList<CourseSchedule> courseSchedules) { //
+		this.courseSchedules = courseSchedules;
+	}
 	public CourseType getCourseType() {
 		return this.courseType;
 	}
@@ -77,4 +79,11 @@ public class Course {
 		this.courseType = type;
 	}
 
+	public int getCredit() {
+		return credit;
+	}
+
+	public void setCredit(int credit) {
+		this.credit = credit;
+	}
 }
