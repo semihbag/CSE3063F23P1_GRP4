@@ -5,7 +5,7 @@ public class Student extends Person {
     private Advisor advisor;
     private Transcript transcript;
     private Syllabus syllabus; //
-    private int selectedCourseCredit; //
+    private int selectedCourseCredit = 0; //
     private ArrayList<String> unreadNotifications; //
     private ArrayList<String> readNotifications; //
     private ArrayList<Course> selectableCourses = new ArrayList<Course>(), selectedCourses = new ArrayList<Course>(),
@@ -13,16 +13,11 @@ public class Student extends Person {
     private String request;
 
     public Student(String firstName, String lastName, Id studentID, Password password, Advisor advisor,
-                   Transcript transcript, Syllabus syllabus, ArrayList<Course> curriculum, ArrayList<String> readNotifications,
-                   ArrayList<String> unreadNotification) {
-        super(firstName, lastName,password);
+                   Transcript transcript, ArrayList<Course> curriculum) {
+        super(firstName, lastName, password);
         this.studentId = studentID;
         this.advisor = advisor;
         this.transcript = transcript;
-        this.syllabus = syllabus; // Sorulacak
-        this.selectedCourseCredit = 0; //
-        this.unreadNotifications = unreadNotifications; //
-        this.readNotifications = readNotifications; //
         this.curriculum = curriculum;
     }
 
