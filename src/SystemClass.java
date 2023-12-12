@@ -238,6 +238,13 @@ public class SystemClass {
 
             this.userInterface.setCurrentPage(sm.getNextPageType());
         }
+        else if (functionType == FunctionType.CHECK_PASSWORD ) {
+        	////// eklenecek
+        }
+        else if (functionType == FunctionType.CHANGE_PASSWORD ) {
+        	////// eklenecek
+        }
+
     }
 
     public SystemDomain getDomain() {
