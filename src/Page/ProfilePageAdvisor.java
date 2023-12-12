@@ -9,7 +9,6 @@ public class ProfilePageAdvisor extends Page{
 		super(content);
 		setType(PageType.PROFILE_PAGE_ADVISOR);
 		setName("Profile Page Advisor");
-		
 	}
 	
 	@Override 
