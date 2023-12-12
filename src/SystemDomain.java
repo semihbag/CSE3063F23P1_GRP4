@@ -125,20 +125,20 @@ public class SystemDomain {
             String[] gradesPassed = jsonArrToStrArr(transcript.getJSONArray("gradesPassed"));
             String[] gradesFailed = jsonArrToStrArr(transcript.getJSONArray("gradesFailed"));
 
-            int year = transcript.getInt("year");
-            double gpa = transcript.getDouble("gpa");
-
             String[] selectedCoursesAr = jsonArrToStrArr(registration.getJSONArray("selectedcourses"));
             String[] approvedCoursesAr = jsonArrToStrArr(registration.getJSONArray("approvedcourses"));
 
             ArrayList<GradeClass> failedCourses = setTranscriptCourses(failedCoursesAr, gradesFailed);
-            ArrayList<GradeClass> completedCourses = setTranscriptCourses(completedCoursesAr, gradesPassed);
+            ArrayList<GradeClass> passedCourses = setTranscriptCourses(completedCoursesAr, gradesPassed);
 
             ArrayList<Course> selectedCourses = setStudentCourses(selectedCoursesAr);
             ArrayList<Course> approvedCourses = setStudentCourses(approvedCoursesAr);
 
+            int year = transcript.getInt("year");
+            double gpa = calculateGPA(passedCourses, failedCourses);
+
             Student crtStudent = new Student(name, lastname, new Id(id), new Password(password), findAdvisor(advisorID),
-                    new Transcript(gpa, year, completedCourses, failedCourses), courses);
+                    new Transcript(gpa, year, passedCourses, failedCourses), courses);
 
             crtStudent.setRequest(booleanString);
             crtStudent.setReadNotifications(new ArrayList<>(Arrays.asList(readNotifications)));
@@ -150,6 +150,10 @@ public class SystemDomain {
         }
         assignStudentsToAdvisor();
         fillStudentListCourse();
+    }
+
+    private double calculateGPA(ArrayList<GradeClass> passedCourses, ArrayList<GradeClass> failedCourses) {
+        return 0;
     }
 
     private ArrayList<GradeClass> setTranscriptCourses(String[] transcriptCourses, String[] grades) {
