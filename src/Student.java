@@ -103,7 +103,7 @@ public class Student extends Person {
         Course course = selectableCourses.get(i - 1);
 
         if (this.getRequest().equals("false") && !syllabus.checkConflict(course)) {
-            if (selectedCourseCredit + course.getCredit() < 40 && checkTermProject(course, transcript.getTotalCredit()) && checkCourseType(course.getCourseType())) { //
+            if (selectedCourseCredit + course.getCredit() < 40 && checkTermProject(course, transcript.getTotalCredit()) && checkCourseType(course)) { //
                 selectedCourses.add(course);
                 selectedCourseCredit += course.getCredit();
                 course.setQuota(course.getQuota() - 1);
@@ -151,6 +151,40 @@ public class Student extends Person {
             return true;
         }
         return false;
+    }
+
+    public boolean exceedTerm(CourseType courseType){ //bu dönemdeki seçtiklerini kontrol ediyor
+        int ct = 0;
+
+        //selected da iki tane
+        for(int i = 0;  i < selectedCourses.size(); i++){
+            if(selectedCourses.get(i).getCourseType() == courseType) {
+                ct++;
+            }
+        }
+
+        if(ct == 0){
+            return true;
+        } else{
+            System.out.println("You cannot select NTE course more than 1 at one term");
+            return false;
+        }
+    }
+
+    public boolean checkTermProject(Course course, int totalCredit){ //
+        if(course.getCourseName().equals("Engineering Project 1")){
+            if(totalCredit < 165){
+                System.out.println("You don't have enough credit for Engineering Project 1\n");
+                return false;
+            }
+        }
+        else if(course.getCourseName().equals("Engineering Project 2")){
+            if(totalCredit < 180){
+                System.out.println("You don't have enough credit for Engineering Project 2\n");
+                return false;
+            }
+        }
+        return true;
     }
 
     void clearUnreadNotification(){ //
@@ -278,4 +312,3 @@ public class Student extends Person {
     }
 
 }
-
