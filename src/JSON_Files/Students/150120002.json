@@ -22,8 +22,7 @@
             "DC","BA","BB","CC",
             "BA","BB"],
         "gradesFailed":["FF"],
-        "year": 3,
-        "gpa": 0
+        "year": 3
     },
     "name": "Mehmet",
     "registration": {

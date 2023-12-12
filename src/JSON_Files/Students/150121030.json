@@ -1,22 +1,30 @@
 {
     "advisor": "1501001",
     "request": "false",
-    "notification": "",
+    "unreadNotification": [],
+    "readNotification": [],
     "password": "Mirel123.",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": ["ATA121" 
-                             ,"MBG1201"
-                             ,"CSE1200"
-                             ,"CSE1241"
-                             ,"MATH1001"
-                             ,"PHYS1101"
-                             ,"PHYS1103"
-                             ,"TRD121"
-                             ,"ATA122"
-                             ,"CSE1242"],
-        "year": 1,
-        "gpa": 0
+        "failedcourses": [
+            "CSE1242",
+            "MATH2256"
+        ],
+        "completedcourses": [
+            "ATA121","MBG1201","CSE1200","CSE1241",
+            "MATH1001","PHYS1101","PHYS1103","TRD121",
+            "ATA122","MATH1002", "PHYS1102","PHYS1104",
+            "TRD122","HR1013"
+        ],
+        "gradesPassed":[
+            "BB","BB","BA","AA",
+            "CC","AA","BB","BA",
+            "DC","BA","AA","AA",
+            "AA","AA"
+        ],
+        "gradesFailed":[
+            "FF","FF"
+        ],
+        "year": 2
     },
     "name": "Mirel",
     "registration": {

@@ -1,13 +1,15 @@
 {
     "advisor": "1501002",
     "request": "false",
-    "notification": "",
+    "unreadNotification": [],
+    "readNotification": [],
     "password": "Nihal.123",
     "transcript": {
         "failedcourses": [],
         "completedcourses": [],
-        "year": 1,
-        "gpa": 0
+        "gradesPassed":[],
+        "gradesFailed":[],
+        "year": 1
     },
     "name": "Nihal",
     "registration": {
