@@ -119,6 +119,18 @@ public class PageContentCreator {
 		return str;
 	}
 
+	public String createProfilePageStudentContent (Student student) {
+		return "buralar hep dutluktu";
+	}
+
+	public String createProfilePageAdvisorContent (Advisor adviosr) {
+		return "buralar hep dutluktu";
+	}
+	
+	public String createProfilePageStudentContent (Lecturer lecturer) {
+		return "buralar hep dutluktu";
+	}
+	
 	public  String courseListForContent (ArrayList<Course> courses) {
 		String str="";
 		if(courses.size()==0) {
