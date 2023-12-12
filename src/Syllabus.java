@@ -1,11 +1,8 @@
+import java.util.ArrayList;
 
 public class Syllabus {
 
-    private Course[][] syllabus;
-
-    public Syllabus() {
-        syllabus = new Course[13][5];
-    }
+    private Course[][] syllabus = new Course[13][5];
 
     public int returnIndexDay(Day day) {
 
@@ -93,6 +90,42 @@ public class Syllabus {
             }
         }
         return false;
+    }
+
+    // fill 
+    public void fillSyllabus(ArrayList<Course> selectedCourses) {
+
+        int totalSelectedCourses = selectedCourses.size();
+        for (int i = 0 ; i < totalSelectedCourses ; i++) {
+            Course selectCourse = selectedCourses.get(i);
+            int totalCourseSchedules = selectCourse.getCourseSchedules().size();
+            for (int j = 0 ; j < totalCourseSchedules ; j++) {
+                CourseSchedule courseSchedule = selectCourse.getCourseSchedules().get(j);
+                Day courseDay = courseSchedule.getCourseDay();
+                int totalTimeCourseDay = courseSchedule.getCourseHours().size();
+                for (int k = 0 ; k < totalTimeCourseDay ; k++) {
+                    int hour_row = returnIndexHour(courseSchedule.getCourseHours().get(k));
+                    int day_column = returnIndexDay(courseDay);
+                    syllabus[hour_row][day_column] = selectCourse;
+                }
+            }
+        }
+
+    }
+    // delete
+    public void removeCourseFromSyllabus(Course course) {
+
+        int totalCourseSchedules = course.getCourseSchedules().size();
+        for (int i = 0 ; i < totalCourseSchedules ; i++ ) {
+            CourseSchedule courseSchedule = course.getCourseSchedules().get(i);
+            Day courseDay = courseSchedule.getCourseDay();
+            int totalTimeCourseDay = courseSchedule.getCourseHours().size();
+            for(int j = 0 ; j < totalTimeCourseDay ; j++) {
+                int hour_row = returnIndexHour(courseSchedule.getCourseHours().get(j));
+                int day_column = returnIndexDay(courseDay);
+                syllabus[hour_row][day_column] = null;
+            }
+        }
     }
 
   public boolean isEmpty(int rowIndex, int columnIndex) {
