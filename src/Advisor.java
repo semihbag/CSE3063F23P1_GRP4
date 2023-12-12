@@ -51,6 +51,7 @@ public class Advisor extends Lecturer {
             Course course = selectCourses.get(index);
             this.selectStudent.addSelectableCourse(course);
             course.setQuota(course.getQuota() + 1);
+            this.selectStudent.getSyllabus().removeCourseFromSyllabus(course);
         }
         this.selectStudent.dropAllSelectedCourses();
         this.selectStudent.setRequest("false");
