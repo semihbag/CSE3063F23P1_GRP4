@@ -19,34 +19,20 @@ public class Student extends Person {
         this.advisor = advisor;
         this.transcript = transcript;
         this.curriculum = curriculum;
+        this.syllabus = new Syllabus();
     }
 
     // Filters all courses in the curriculum according to the student's current
     // semester and prerequisite course passing information
     public void filterCourses() {
+        syllabus.fillSyllabus(selectedCourses);
         for (int i = 0; i < curriculum.size(); i++) {
             Course course = curriculum.get(i);
-            if (!isSelectedCourse(course) && !isPassedCourse(course) && isPrerequisiteCoursesPassed(course)
-                    && isUnderQuota(course)
-                    && (course.getYear() == transcript.getYear() || ((course.getYear() == (transcript.getYear() + 1)) &&
-                    (transcript.getGPA_100() >= 75)) || isFailedCourse(course)) && !exceedNTE()) { //
+            if (!isSelectedCourse(course) && !isPassedCourse(course) && isPrerequisiteCoursesPassed(course) && isUnderQuota(course)
+                    && (checkCourseType(course)  || isFailedCourse(course)) ){ //
                 selectableCourses.add(course);
             }
         }
-    }
-
-    public boolean exceedNTE(){ //
-        int ct = 0;
-        for(int i= 0; i < transcript.getPassedCourses().size(); i++) {
-            if(transcript.getPassedCourses().get(i).getCourse().getCourseType() == CourseType.NONTECHNICAL){
-                ct++;
-            }
-        }
-
-        if(ct == 2){
-            return true;
-        }
-        return false;
     }
 
     public boolean isSelectedCourse(Course course) {
@@ -86,7 +72,8 @@ public class Student extends Person {
     public boolean isFailedCourse(Course course) {
         for (int i = 0; i < transcript.getFailedCourses().size(); i++) {
             GradeClass failedCourse = transcript.getFailedCourses().get(i);
-            if (failedCourse.getCourse().getCourseId().getId().equals(course.getCourseId().getId())) {
+            if (failedCourse.getCourse().getCourseId().getId().equals(course.getCourseId().getId()) &&
+                    transcript.getYear()%2 == course.getYear()%2) { // tek çift dönem olayı eklendi
                 return true;
             }
         }
@@ -116,7 +103,7 @@ public class Student extends Person {
         Course course = selectableCourses.get(i - 1);
 
         if (this.getRequest().equals("false") && !syllabus.checkConflict(course)) {
-            if (selectedCourseCredit + course.getCredit() < 40 && checkTermProject(course, transcript.getTotalCredit()) && checkCourseType(course.getCourseType())) { //
+            if (selectedCourseCredit + course.getCredit() < 40 && checkTermProject(course, transcript.getTotalCredit()) && checkCourseType(course)) { //
                 selectedCourses.add(course);
                 selectedCourseCredit += course.getCredit();
                 course.setQuota(course.getQuota() - 1);
@@ -127,22 +114,51 @@ public class Student extends Person {
         }
     }
 
-    public boolean checkCourseType(CourseType courseType){ //
+    public boolean checkCourseType(Course course){ // dönemini ve üsten alma olayı içeriyor (mandatoryde hem üst hem kendi dönemi olayı var))
+        CourseType courseType = course.getCourseType();
         if(courseType == CourseType.NONTECHNICAL){
-            checkNTE();
+            if(!exceed(courseType, 2) && !exceedTerm(courseType)) { //eğitim hayatı boyunca max 2, her dönemde max 1 alır
+                return true;
+            }
         }
         else if(courseType == CourseType.TECHNICAL){
-
+            if((transcript.getYear() == 7 || transcript.getYear() == 8) && !exceedTerm(courseType)){
+                return true;
+            }
         }
-        return true;
+        else if(courseType == CourseType.FACULTY){
+            if(transcript.getYear() == 7  && !exceedTerm(courseType)){
+                return true;
+            }
+        }
+        else if(courseType == CourseType.MANDATORY && (( transcript.getYear() >= 3 && course.getYear() == transcript.getYear() +2 && transcript.getGPA_100() > 75  ) ||
+                course.getYear() == transcript.getYear())){
+            return true;
+        }
+        return false;
     }
 
-    public boolean checkNTE(){ //
+
+    public boolean exceed(CourseType type, int limit){ //Bugüne kadar bu tipdeki dersten kaç tane aldığını söylüyor
+        int ct = 0;
+        for(int i= 0; i < transcript.getPassedCourses().size(); i++) {
+            if(transcript.getPassedCourses().get(i).getCourse().getCourseType() == type){
+                ct++;
+            }
+        }
+
+        if(ct == limit){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean exceedTerm(CourseType courseType){ //bu dönemdeki seçtiklerini kontrol ediyor
         int ct = 0;
 
         //selected da iki tane
         for(int i = 0;  i < selectedCourses.size(); i++){
-            if(selectedCourses.get(i).getCourseType() == CourseType.NONTECHNICAL) {
+            if(selectedCourses.get(i).getCourseType() == courseType) {
                 ct++;
             }
         }
@@ -296,4 +312,3 @@ public class Student extends Person {
     }
 
 }
-

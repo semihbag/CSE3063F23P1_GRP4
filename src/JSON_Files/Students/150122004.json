@@ -1,0 +1,22 @@
+{
+    "advisor": "1501002",
+    "request": "false",
+    "unreadNotification": [],
+    "readNotification": [],
+    "password": "Nihal.123",
+    "transcript": {
+        "failedcourses": [],
+        "completedcourses": [],
+        "gradesPassed":[],
+        "gradesFailed":[],
+        "year": 1
+    },
+    "name": "Nihal",
+    "registration": {
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150122004",
+    "type": "student",
+    "lastname": "Akduran"
+}

@@ -1,20 +1,22 @@
 {
     "advisor": "1501001",
     "request": "false",
-    "notification": "",
-    "password": "Nisa123_",
+    "unreadNotification": [],
+    "readNotification": [],
+    "password": "Ferhat678.",
     "transcript": {
         "failedcourses": [],
         "completedcourses": [],
-        "year": 1,
-        "gpa": 0
+        "gradesPassed":[],
+        "gradesFailed":[],
+        "year": 1
     },
-    "name": "Nisa",
+    "name": "Ferhat",
     "registration": {
         "selectedcourses": [],
         "approvedcourses": []
     },
-    "id": "150122025",
+    "id": "150122010",
     "type": "student",
-    "lastname": "Yıldız"
+    "lastname": "Telli"
 }

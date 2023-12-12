@@ -1,0 +1,35 @@
+{
+    "advisor": "1501005",
+    "request": "false",
+    "unreadNotification": [],
+    "readNotification": [],
+    "password": "Mehmet.cinar",
+    "transcript": {
+        "failedcourses": ["CSE1241"],
+        "completedcourses": [
+            "ATA121","MBG1201","CSE1200","MATH1001",
+            "PHYS1101","PHYS1103","TRD121","ATA122",
+            "MATH1002","MATH2256","PHYS1102","PHYS1104",
+            "TRD122","CAS3044","CSE2023","ECON2004",
+            "EE2031","MATH2055","MATH2059","EE2032",
+            "CSE2138","STAT2253"
+            ],
+        "gradesPassed":[
+            "AA","CC","BB","CB",
+            "DC","BB","AA","AA",
+            "CB","CC","DC","BA",
+            "AA","BA","CB","CC",
+            "DC","BA","BB","CC",
+            "BA","BB"],
+        "gradesFailed":["FF"],
+        "year": 3
+    },
+    "name": "Mehmet",
+    "registration": {
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150120002",
+    "type": "student",
+    "lastname": "Cinar"
+}

@@ -1,0 +1,43 @@
+{
+    "advisor": "1501005",
+    "request": "false",
+    "unreadNotification": [],
+    "readNotification": [],
+    "password": "Serhan_12345",
+    "transcript": {
+        "failedcourses": ["STAT2253","CSE2138"],
+        "completedcourses": [
+            ["ATA121", "MBG1201", "CSE1200", "CSE1241",
+            "MATH1001", "PHYS1101", "PHYS1103", "TRD121",
+            "ATA122", "CSE1242", "MATH1002", "MATH2256",
+            "PHYS1102", "PHYS1104", "TRD122", "BUS1004",
+            "CSE2023", "CSE2225", "ECON2004", "EE2031",
+            "MATH2055", "MATH2059", "CSE2246", "CSE3215",
+            "CSE2260", "EE2032", "IE3235", "COM2202",
+            "CSE3033", "CSE3055", "CSE3063", "CSE3264",
+            "CSE3044", "CSE3048"
+           ]
+        ],
+        "gradesPassed": [
+            "DC","AA","AA","AA",
+            "AA","AA","AA","CC",
+            "AA","AA","AA","AA",
+            "AA","AA","AA","AA",
+            "BB","BB","BA","AA",
+            "AA","AA","AA","BB",
+            "BA","BA","AA","BB",
+            "AA","AA","AA","AA",
+            "BB","CB"
+        ],
+        "gradesFailed":["FF","FF"],
+        "year": 4
+    },
+    "name": "Serhan",
+    "registration": {
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150119006",
+    "type": "student",
+    "lastname": "Aksak"
+}

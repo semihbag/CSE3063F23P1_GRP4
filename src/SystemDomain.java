@@ -67,7 +67,7 @@ public class SystemDomain {
             int year = courseJSON.getJSONObject(i).getInt("year");
             int quota = courseJSON.getJSONObject(i).getInt("quota");
             String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
-
+            int credit = courseJSON.getJSONObject(i).getInt("credit");
             Lecturer courseLecturer=null;
             for (Lecturer lecturer : lecturers) {
                 if (lecturer.getLecturerId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
@@ -81,10 +81,10 @@ public class SystemDomain {
             Course course = null;
             if(courseJSON.getJSONObject(i).getBoolean("isSession")){
                 String sessionId = courseJSON.getJSONObject(i).getString("sessionId");
-                course = new CourseSession(new Id(courseId),name, quota, year,courseLecturer,new Id(sessionId),courseSchedule);
+                course = new CourseSession(new Id(courseId),name, quota, year,courseLecturer,new Id(sessionId),courseSchedule,credit);
             }
             else {
-                course = new Course(new Id(courseId),name, quota, year,courseLecturer,courseSchedule);
+                course = new Course(new Id(courseId),name, quota, year,courseLecturer,courseSchedule,credit);
             }
 
             for(String str: prerequisiteId){
@@ -106,7 +106,7 @@ public class SystemDomain {
         Scanner allStudentFilesInput = new Scanner(allStudentFiles);
         while (allStudentFilesInput.hasNextLine()) {
 
-            String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\" + allStudentFilesInput.nextLine())));
+            String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\Students\\" + allStudentFilesInput.nextLine())));
             JSONObject jsonStudent = new JSONObject(content);
             JSONObject transcript = jsonStudent.getJSONObject("transcript");
             JSONObject registration = jsonStudent.getJSONObject("registration");
@@ -125,20 +125,20 @@ public class SystemDomain {
             String[] gradesPassed = jsonArrToStrArr(transcript.getJSONArray("gradesPassed"));
             String[] gradesFailed = jsonArrToStrArr(transcript.getJSONArray("gradesFailed"));
 
-            int year = transcript.getInt("year");
-            double gpa = transcript.getDouble("gpa");
-
             String[] selectedCoursesAr = jsonArrToStrArr(registration.getJSONArray("selectedcourses"));
             String[] approvedCoursesAr = jsonArrToStrArr(registration.getJSONArray("approvedcourses"));
 
             ArrayList<GradeClass> failedCourses = setTranscriptCourses(failedCoursesAr, gradesFailed);
-            ArrayList<GradeClass> completedCourses = setTranscriptCourses(completedCoursesAr, gradesPassed);
+            ArrayList<GradeClass> passedCourses = setTranscriptCourses(completedCoursesAr, gradesPassed);
 
             ArrayList<Course> selectedCourses = setStudentCourses(selectedCoursesAr);
             ArrayList<Course> approvedCourses = setStudentCourses(approvedCoursesAr);
 
+            int year = transcript.getInt("year");
+            double gpa = calculateGPA(passedCourses, failedCourses);
+
             Student crtStudent = new Student(name, lastname, new Id(id), new Password(password), findAdvisor(advisorID),
-                    new Transcript(gpa, year, completedCourses, failedCourses), courses);
+                    new Transcript(gpa, year, passedCourses, failedCourses), courses);
 
             crtStudent.setRequest(booleanString);
             crtStudent.setReadNotifications(new ArrayList<>(Arrays.asList(readNotifications)));
@@ -150,6 +150,39 @@ public class SystemDomain {
         }
         assignStudentsToAdvisor();
         fillStudentListCourse();
+    }
+
+    private double calculateGPA(ArrayList<GradeClass> passedCourses, ArrayList<GradeClass> failedCourses) {
+        double gpa=0;
+        int totalCredit=0;
+        for(GradeClass current: passedCourses){
+            gpa += (current.getCourse().getCredit())*(letterToGrade(current.getGrade()));
+            totalCredit+=current.getCourse().getCredit();
+        }
+        for(GradeClass current: failedCourses){
+            gpa += (current.getCourse().getCredit())*(letterToGrade(current.getGrade()));
+            totalCredit+=current.getCourse().getCredit();
+        }
+        if(totalCredit==0){
+            return 0;
+        }
+        else{
+            return gpa/totalCredit;
+        }
+    }
+
+    private double letterToGrade(Grade grade){
+        return switch (grade){
+            case AA -> 4.0;
+            case BA -> 3.5;
+            case BB -> 3.0;
+            case CB -> 2.5;
+            case CC -> 2.0;
+            case DC -> 1.5;
+            case DD -> 1.0;
+            case FD -> 0.5;
+            case FF, DZ -> 0.0;
+        };
     }
 
     private ArrayList<GradeClass> setTranscriptCourses(String[] transcriptCourses, String[] grades) {
