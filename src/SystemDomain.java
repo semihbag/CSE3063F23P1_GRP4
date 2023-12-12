@@ -3,9 +3,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import Page.*;
@@ -114,19 +116,24 @@ public class SystemDomain {
             String lastname = jsonStudent.getString("lastname");
             String advisorID = jsonStudent.getString("advisor");
             String booleanString = jsonStudent.getString("request");
-            String notification = jsonStudent.getString("notification");
+            String[] readNotifications = jsonArrToStrArr(jsonStudent.getJSONArray("readNotifications"));
+            String[] unreadNotification = jsonArrToStrArr(jsonStudent.getJSONArray("unreadNotification"));
             String password = jsonStudent.getString("password");
 
             String[] failedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("failedcourses"));
             String[] completedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("completedcourses"));
+            String[] gradesPassed = jsonArrToStrArr(transcript.getJSONArray("gradesPassed"));
+            String[] gradesFailed = jsonArrToStrArr(transcript.getJSONArray("gradesFailed"));
+
             int year = transcript.getInt("year");
             double gpa = transcript.getDouble("gpa");
 
             String[] selectedCoursesAr = jsonArrToStrArr(registration.getJSONArray("selectedcourses"));
             String[] approvedCoursesAr = jsonArrToStrArr(registration.getJSONArray("approvedcourses"));
 
-            ArrayList<Course> failedCourses = setStudentCourses(failedCoursesAr);
-            ArrayList<Course> completedCourses = setStudentCourses(completedCoursesAr);
+            ArrayList<GradeClass> failedCourses = setTranscriptCourses(failedCoursesAr, gradesFailed);
+            ArrayList<GradeClass> completedCourses = setTranscriptCourses(completedCoursesAr, gradesPassed);
+
             ArrayList<Course> selectedCourses = setStudentCourses(selectedCoursesAr);
             ArrayList<Course> approvedCourses = setStudentCourses(approvedCoursesAr);
 
@@ -134,7 +141,8 @@ public class SystemDomain {
                     new Transcript(gpa, year, completedCourses, failedCourses), courses);
 
             crtStudent.setRequest(booleanString);
-            crtStudent.setNotification(notification);
+            crtStudent.setReadNotifications(new ArrayList<>(Arrays.asList(readNotifications)));
+            crtStudent.setUnreadNotifications(new ArrayList<>(Arrays.asList(unreadNotification)));
             crtStudent.setSelectedCourses(selectedCourses);
             crtStudent.setApprovedCourses(approvedCourses);
             crtStudent.filterCourses();
@@ -144,6 +152,28 @@ public class SystemDomain {
         fillStudentListCourse();
     }
 
+    private ArrayList<GradeClass> setTranscriptCourses(String[] transcriptCourses, String[] grades) {
+        ArrayList<GradeClass> transcriptCourseList = new ArrayList<>();
+        for (int i = 0; i < transcriptCourses.length; i++) {
+            for (Course course : courses) {
+                if (course.getCourseId().getId().equals(transcriptCourses[i])
+                        && !courseExists(course, transcriptCourseList)) {
+                    transcriptCourseList.add(new GradeClass(course, getCourseGrade(grades[i])));
+                }
+            }
+        }
+        return transcriptCourseList;
+    }
+
+    private boolean courseExists(Course course, ArrayList<GradeClass> transcriptCourseList) {
+        for (GradeClass gradeClass : transcriptCourseList) {
+            if (course.getCourseId().getId().equals(gradeClass.getCourse().getCourseId().getId())) {
+                return true;
+            }
+        } return false;
+    }
+
+
     private ArrayList<Course> setStudentCourses(String[] studentCoursesAr) {
         ArrayList<Course> studentCoursesList = new ArrayList<>();
         for (String s : studentCoursesAr) {
@@ -152,7 +182,6 @@ public class SystemDomain {
                         (getCourses().get(j).getCourseId().getId() + "." + ((CourseSession) getCourses().get(j)).getSessionId().getId()).equals(s))
                         || s.equals(getCourses().get(j).getCourseId().getId())) {
                     studentCoursesList.add(getCourses().get(j));
-
                 }
             }
         } return studentCoursesList;

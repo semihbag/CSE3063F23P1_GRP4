@@ -9,5 +9,4 @@ public enum Grade {
     FD, //0.5
     FF, //0.0
     DZ //fail due to absence
-
 }
