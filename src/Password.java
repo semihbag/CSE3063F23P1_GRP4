@@ -14,6 +14,7 @@ public class Password {
     }
 
     public boolean comparePreviousPassword(String newPassword){
+
         return newPassword.equals(password);
     }
 

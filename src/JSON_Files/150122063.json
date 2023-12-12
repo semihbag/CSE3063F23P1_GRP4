@@ -1,0 +1,20 @@
+{
+    "advisor": "1501005",
+    "request": "false",
+    "notification": "",
+    "password": "Sude987.",
+    "transcript": {
+        "failedcourses": [],
+        "completedcourses": [],
+        "year": 1,
+        "gpa": 0
+    },
+    "name": "Sude",
+    "registration": {
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150122063",
+    "type": "student",
+    "lastname": "Sevecen"
+}
