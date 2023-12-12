@@ -99,7 +99,7 @@ public class Student extends Person {
 
     // Adds each selected course from the selectableCourses to the selectedCourses
     // and deletes it from the selectableCourses
-    public void addSelectedCourse(int i) {
+    public boolean addSelectedCourse(int i) {
         Course course = selectableCourses.get(i - 1);
 
         if (this.getRequest().equals("false") && !syllabus.checkConflict(course)) {
@@ -108,10 +108,10 @@ public class Student extends Person {
                 selectedCourseCredit += course.getCredit();
                 course.setQuota(course.getQuota() - 1);
                 removeAllSessions(course);
-            } else {
-                System.out.println("You exceed the course limits, you can just select five courses.");
+                return true;
             }
         }
+        return false;
     }
 
     public boolean checkCourseType(Course course){ // dönemini ve üsten alma olayı içeriyor (mandatoryde hem üst hem kendi dönemi olayı var))

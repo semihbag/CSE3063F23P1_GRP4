@@ -53,6 +53,7 @@ public class SystemClass {
                     userFound = true;
                     userInterface.setPages(domain.createPages(currentUser));
                     userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE_STUDENT);
+                    System.out.println("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
                     break;
                 }
             }
@@ -65,11 +66,12 @@ public class SystemClass {
                     userFound = true;
                     userInterface.setPages(domain.createPages(currentUser));
                     userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE_ADVISOR);
+                    System.out.println("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
                     break;
                 }
             }
         } if (!userFound) {
-            System.out.println("Username/Password incorrect.\n");
+        	System.out.println("\u001B[33;1mUsername/Password incorrect.\n\u001B[0m");
         }
     }
 
@@ -153,17 +155,39 @@ public class SystemClass {
         }
         else if (functionType == FunctionType.LOGOUT) {
 			this.logout();
+	        System.out.println("\u001B[31;1mLOGOUT SUCCESSFUL - GOODBYE"+ currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
             this.userInterface.setCurrentPage(PageType.LOGIN_PAGE);
         }
         else if (functionType == FunctionType.EXIT) {
-            exit();
+            try {
+    	        System.out.println("\u001B[31;1mSYSTEM EXITING\u001B[0m");
+            	Thread.sleep(500);
+    	        System.out.println("\u001B[31;1mSYSTEM EXITING.\u001B[0m");
+            	Thread.sleep(500);
+    	        System.out.println("\u001B[31;1mSYSTEM EXITING..\u001B[0m");
+            	Thread.sleep(500);
+    	        System.out.println("\u001B[31;1mSYSTEM EXITING...\u001B[0m");
+            }
+            catch (Exception e){	
+            }
+            finally {
+                exit();
+            }
         }
         else if (functionType == FunctionType.CHANGE_PAGE) {
             this.userInterface.setCurrentPage(sm.getNextPageType());
         }
         else if (functionType == FunctionType.SELECT_COURSE ) {
-			Student student = (Student) this.getCurrentUser();
-			student.addSelectedCourse((Integer)sm.getInput());
+			Student student = (Student) this.getCurrentUser(); 
+			String courseName = student.getSelectableCourses().get((Integer)sm.getInput()).getCourseName();
+			
+			if (student.addSelectedCourse((Integer)sm.getInput())) {
+                System.out.println("\u001B[32;1mCourse Addition Is Succesful - " + courseName + "\u001B[0m");
+
+			}
+			else {
+    	        System.out.println("\u001B[33;1mCourse Addition Is Not Succesful - " + courseName + "\u001B[0m");
+			}
 
             // handling of selecteable course data
             SelectableCoursesPage selectableCoursePage = (SelectableCoursesPage) this.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE);
@@ -179,7 +203,10 @@ public class SystemClass {
         }
         else if (functionType == FunctionType.DROP_COURSE ) {
             Student student = (Student) this.getCurrentUser();
+			String courseName = student.getSelectedCourses().get((Integer)sm.getInput()).getCourseName();
+
             student.dropCourse((Integer)sm.getInput());
+            System.out.println("\u001B[32;1mCourse Dropping Is Succesful - " + courseName + "\u001B[0m");
 
             // handling selected course data
             SelectedCoursesPage selectedCoursePage = (SelectedCoursesPage) this.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE);
@@ -197,6 +224,10 @@ public class SystemClass {
             Student student = (Student) this.getCurrentUser();
             if (student.getRequest().equals("false")) {
                 student.sendToApproval();
+                System.out.println("\u001B[32;1mYou have successfully sent your course selection list for advisor approval!\u001B[0m");
+            }
+            else {
+                System.out.println("\u001B[33;1mYou have already successfully sent your course selection list for advisor approval!\u001B[0m");
             }
             this.userInterface.setCurrentPage(sm.getNextPageType());
         }
@@ -211,7 +242,10 @@ public class SystemClass {
         }
         else if (functionType == FunctionType.APPROVE_REQUEST ) {
 			Advisor advisor = (Advisor)this.getCurrentUser();
-			advisor.approve();
+			String selectedStudentFullName = advisor.getSelectStudent().getFirstName() + " " + advisor.getSelectStudent().getLastName();
+ 			advisor.approve();
+            
+ 			System.out.println("\u001B[32;1mRequest Has Been Approved - " + selectedStudentFullName + "'s Request\u001B[0m");
 
             // handling selected student request
             SelectedStudentRequestPage selectedStdudentRequesPage = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
@@ -225,7 +259,10 @@ public class SystemClass {
         }
         else if (functionType == FunctionType.DISAPPREOVE_REQUEST ) {
 			Advisor advisor = (Advisor)this.getCurrentUser();
+			String selectedStudentFullName = advisor.getSelectStudent().getFirstName() + " " + advisor.getSelectStudent().getLastName();
 			advisor.disapprove();
+
+ 			System.out.println("\u001B[33;1mRequest Has Been Disapproved - " + selectedStudentFullName + "'s Request\u001B[0m");
 
             // handling selected student request
             SelectedStudentRequestPage selectedStdudentRequesPage = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);

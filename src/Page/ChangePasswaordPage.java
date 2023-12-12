@@ -14,7 +14,7 @@ public class ChangePasswaordPage extends Page{
 	public SystemMessage runPage() {
 		showContent();
 		
-	
+	// eklenecek
 		
 		return null;
 	}
