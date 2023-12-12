@@ -1,0 +1,20 @@
+{
+    "advisor": "1501001",
+    "request": "false",
+    "notification": "",
+    "password": "Ferhat678.",
+    "transcript": {
+        "failedcourses": [],
+        "completedcourses": [],
+        "year": 1,
+        "gpa": 0
+    },
+    "name": "Ferhat",
+    "registration": {
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150122010",
+    "type": "student",
+    "lastname": "Telli"
+}

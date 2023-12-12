@@ -1,0 +1,20 @@
+{
+    "advisor": "1501002",
+    "request": "false",
+    "notification": "",
+    "password": "Mutlu66..",
+    "transcript": {
+        "failedcourses": [],
+        "completedcourses": [],
+        "year": 1,
+        "gpa": 0
+    },
+    "name": "Umut",
+    "registration": {
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150121009",
+    "type": "student",
+    "lastname": "Mutlu"
+}

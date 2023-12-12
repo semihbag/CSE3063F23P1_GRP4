@@ -1,0 +1,29 @@
+{
+    "advisor": "1501001",
+    "request": "false",
+    "notification": "",
+    "password": "Mirel123.",
+    "transcript": {
+        "failedcourses": [],
+        "completedcourses": ["ATA121" 
+                             ,"MBG1201"
+                             ,"CSE1200"
+                             ,"CSE1241"
+                             ,"MATH1001"
+                             ,"PHYS1101"
+                             ,"PHYS1103"
+                             ,"TRD121"
+                             ,"ATA122"
+                             ,"CSE1242"],
+        "year": 1,
+        "gpa": 0
+    },
+    "name": "Mirel",
+    "registration": {
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150121030",
+    "type": "student",
+    "lastname": "Aksoy"
+}
