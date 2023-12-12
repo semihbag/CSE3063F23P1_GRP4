@@ -4,9 +4,9 @@ public class Transcript {
     private double GPA_100;
     private int year;
     private int totalCredit; //
-    private ArrayList<Course> passedCourses, failedCourses;
+    private ArrayList<GradeClass> passedCourses, failedCourses;
 
-    public Transcript(double GPA_100, int year, ArrayList<Course> passedCourses, ArrayList<Course> failedCourses) {
+    public Transcript(double GPA_100, int year, ArrayList<GradeClass> passedCourses, ArrayList<GradeClass> failedCourses) {
         this.GPA_100 = GPA_100;
         this.year = year;
         totalCredit = 0;
@@ -16,7 +16,6 @@ public class Transcript {
     }
 
     public void calculateTotalCredit() {
-
         for(int i = 0 ; i < passedCourses.size() ; i++) {
             totalCredit += passedCourses.get(i).getCredit(); //
         }
@@ -38,11 +37,11 @@ public class Transcript {
         this.year = year;
     }
 
-    public ArrayList<Course> getPassedCourses() {
+    public ArrayList<GradeClass> getPassedCourses() {
         return passedCourses;
     }
 
-    public ArrayList<Course> getFailedCourses() {
+    public ArrayList<GradeClass> getFailedCourses() {
         return failedCourses;
     }
 
