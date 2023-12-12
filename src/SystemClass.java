@@ -112,15 +112,13 @@ public class SystemClass {
             String content = new String(Files.readAllBytes(path));
             JSONObject jsonStudent = new JSONObject(content);
             JSONObject registration = jsonStudent.getJSONObject("registration");
-
             ArrayList<Course> selected = domain.getStudents().get(i).getSelectedCourses();
             ArrayList<Course> approved = domain.getStudents().get(i).getApprovedCourses();
-
             registration.put("selectedcourses",transcriptCourses(selected));
             registration.put("approvedcourses", transcriptCourses(approved));
-
             jsonStudent.put("request", domain.getStudents().get(i).getRequest());
-            jsonStudent.put("notification", domain.getStudents().get(i).getNotification());
+            jsonStudent.put("readNotification", domain.getStudents().get(i).getReadNotifications().toArray(new String[0]));
+            jsonStudent.put("unreadNotification", domain.getStudents().get(i).getUnreadNotifications().toArray(new String[0]));
             Files.write(path, jsonStudent.toString(4).getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
         }
     }

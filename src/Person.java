@@ -16,4 +16,11 @@ abstract class Person {
         return lastName;
     }
 
+    public Password getPassword() {
+        return password;
+    }
+
+    public void setPassword(Password password) {
+        this.password = password;
+    }
 }
