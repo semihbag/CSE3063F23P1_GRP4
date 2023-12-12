@@ -41,7 +41,7 @@ public class Password {
                 break;
             }
         }
-		if ((newPassword.length() > 8 || newPassword.length() < 20)&&
+		if ((newPassword.length() > 8 && newPassword.length() < 20)&&
 			(newPassword.contains(".") || newPassword.contains("_"))&&
 			containsUpperCase && containsLowerCase && containsNumber){
 				valid=true;
