@@ -5,20 +5,31 @@ public class PageContentCreator {
 	public  String crateMainMenuPageStudentContent()
 	{
 		String str="---------MAIN MENU---------\n"+
-				"1) All Courses\n"+
-				"2) Approved Courses\n"+
-				"3) Offered Courses\n"+
-				"4) Selected Courses\n"+
-				"5) Log out\n"+
-				"6) Exit";
+				"1) Profile\n" +
+				"2) All Courses\n"+
+				"3) Approved Courses\n"+
+				"4) Offered Courses\n"+
+				"5) Selected Courses\n"+
+				"6) Log out\n"+
+				"7) Exit";
 		return str;
 	}
 
 	public  String createMainMenuPageAdvisorContent()
 	{
 		String str="---------MAIN MENU---------\n"+
-				"1) Advised Student Information\n"+
-				"2) Evaluate Requests\n"+
+				"1) Profile\n" +
+				"2) Advised Student Information\n"+
+				"3) Evaluate Requests\n"+
+				"4) Log out\n"+
+				"5) Exit\n";
+		return str;
+	}
+
+	public String createMainMenuPageLecturerContent() {
+		String str="---------MAIN MENU---------\n"+
+				"1) Profile\n" +
+				"2) Courses\n"+
 				"3) Log out\n"+
 				"4) Exit\n";
 		return str;
@@ -109,26 +120,38 @@ public class PageContentCreator {
 
 	public  String createAllCoursesPageContent   (ArrayList<Course> courses) {
 		String str=courseListForContent(courses)+"\n"+
-				"Press any key to back to main menu...";
+				"Press any key to back to main menu.";
 		return str;
 	}
 
 	public  String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
 		String str=courseListForContent(courses)+
-				"Press any key to back to main menu...";
+				"Press any key to back to main menu.";
 		return str;
 	}
 
-	public String createProfilePageStudentContent (Student student) {
-		return "buralar hep dutluktu";
+	public String createProfilePageStudentContent(Student student) {
+		return "--STUDENT " + student.getStudentId().getId() + "--\n" +
+				"  Name        " + student.getFirstName() + "\n" +
+				"  Surname     " + student.getLastName() + "\n\n" +
+				"C: Change password\n" +
+				"Q: Quit\n";
 	}
 
 	public String createProfilePageAdvisorContent (Advisor adviosr) {
-		return "buralar hep dutluktu";
+		return "--ADVISOR " + adviosr.getLecturerId().getId() + "--\n" +
+				"  Name        " + adviosr.getFirstName() + "\n" +
+				"  Surname     " + adviosr.getLastName() + "\n\n" +
+				"C: Change password\n" +
+				"Q: Quit\n";
 	}
 	
-	public String createProfilePageStudentContent (Lecturer lecturer) {
-		return "buralar hep dutluktu";
+	public String createProfilePageLecturerContent(Lecturer lecturer) {
+		return "--LECTURER " + lecturer.getLecturerId().getId() + "--\n" +
+				"  Name        " + lecturer.getFirstName() + "\n" +
+				"  Surname     " + lecturer.getLastName() + "\n\n" +
+				"C: Change password\n" +
+				"Q: Quit\n";
 	}
 	
 	public String createChangePasswordPage() {
@@ -162,14 +185,14 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public String blankAfterCourseName(Course course) {
+	private String blankAfterCourseName(Course course) {
 		String str = "";
 		for (int i = 0; i < 40 - course.getCourseName().length(); i++) {
 			str += " ";
 		} return str;
 	}
 
-	public String blankAfterI(int i) {
+	private String blankAfterI(int i) {
 		if (i < 10) {
 			return "    ";
 		} return "   ";

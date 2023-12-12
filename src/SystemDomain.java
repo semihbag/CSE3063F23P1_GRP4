@@ -3,7 +3,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -321,7 +320,7 @@ public class SystemDomain {
 			SelectedStudentRequestPage selectedStudentRequest = new SelectedStudentRequestPage(pageContentCreator.createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
 			pages.add(selectedStudentRequest);
 			
-			ProfilePageAdvisor profile = new ProfilePageAdvisor(pageContentCreator.createProfilePageStudentContent(advisor));
+			ProfilePageAdvisor profile = new ProfilePageAdvisor(pageContentCreator.createProfilePageAdvisorContent(advisor));
 			pages.add(profile);
 			
 			ChangePasswaordPage cPassword = new ChangePasswaordPage(pageContentCreator.createChangePasswordPage());
