@@ -6,12 +6,14 @@ public class PageContentCreator {
 	{
 		String str="---------MAIN MENU---------\n"+
 				"1) Profile\n" +
-				"2) All Courses\n"+
-				"3) Approved Courses\n"+
-				"4) Offered Courses\n"+
-				"5) Selected Courses\n"+
-				"6) Log out\n"+
-				"7) Exit";
+				"2) Notificctions\n"+
+				"3) My Weekly Syllabus\n"+
+				"4) All Courses\n"+
+				"5) Approved Courses\n"+
+				"6) Offered Courses\n"+
+				"7) Selected Courses\n"+
+				"8) Log out\n"+
+				"9) Exit";
 		return str;
 	}
 
@@ -170,6 +172,10 @@ public class PageContentCreator {
 		return "duru burası sende";
 	}
 
+///////////////////////////////////////////// burada öğrenci için bir haftalık ders programı yazdırlıcak
+	public String createSyllabusPageStudentContent(Syllabus syllabus) {
+		return "duru burası sende";
+	}
 	
 	public  String courseListForContent (ArrayList<Course> courses) {
 		String str="";
