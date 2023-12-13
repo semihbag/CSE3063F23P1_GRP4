@@ -6,7 +6,7 @@
     "password": "Merve_12345",
     "transcript": {
         "failedcourses": ["CSE3048","CSE3038"],
-        "completedcourses": [
+        "completedcourses":
             ["ATA121", "MBG1201", "CSE1200", "CSE1241",
             "MATH1001", "PHYS1101", "PHYS1103", "TRD121",
             "ATA122", "CSE1242", "MATH1002", "MATH2256",
@@ -16,7 +16,7 @@
             "CSE2260", "EE2032", "STAT2253", "CSE3215",
             "CSE3033", "CSE3055", "CSE3063", "IE3081",
             "CSE3044", "CSE3264","IE3235", "COM2202"]
-        ],
+        ,
         "gradesPassed": [
             "BB","CC","BA","AA",
             "AA","AA","AA","AA",
@@ -28,7 +28,7 @@
             "AA","AA","BB","AA",
             "BB","AA","AA","CC"
         ],
-        "gradeFailed":[
+        "gradesFailed":[
             "FF","FF"
         ],
         "year": 4

@@ -115,7 +115,7 @@ public class SystemDomain {
             String lastname = jsonStudent.getString("lastname");
             String advisorID = jsonStudent.getString("advisor");
             String booleanString = jsonStudent.getString("request");
-            String[] readNotifications = jsonArrToStrArr(jsonStudent.getJSONArray("readNotifications"));
+            String[] readNotification = jsonArrToStrArr(jsonStudent.getJSONArray("readNotification"));
             String[] unreadNotification = jsonArrToStrArr(jsonStudent.getJSONArray("unreadNotification"));
             String password = jsonStudent.getString("password");
 
@@ -140,7 +140,7 @@ public class SystemDomain {
                     new Transcript(gpa, year, passedCourses, failedCourses), courses);
 
             crtStudent.setRequest(booleanString);
-            crtStudent.setReadNotifications(new ArrayList<>(Arrays.asList(readNotifications)));
+            crtStudent.setReadNotifications(new ArrayList<>(Arrays.asList(readNotification)));
             crtStudent.setUnreadNotifications(new ArrayList<>(Arrays.asList(unreadNotification)));
             crtStudent.setSelectedCourses(selectedCourses);
             crtStudent.setApprovedCourses(approvedCourses);
