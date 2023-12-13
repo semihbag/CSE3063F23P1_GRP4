@@ -33,7 +33,7 @@
             "EE2032",
             "STAT2253"
         ],
-        "termpassed": [4],
+        "termPassed": [4],
         "term": 5,
         "gradesFailed": ["FD"],
         "gradesPassed": [
