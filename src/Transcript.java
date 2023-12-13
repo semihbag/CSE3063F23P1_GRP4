@@ -12,13 +12,15 @@ public class Transcript {
         totalCredit = 0;
         this.passedCourses = passedCourses;
         this.failedCourses = failedCourses;
+        this.totalCredit = calculateTotalCredit(); //*
 
     }
 
-    public void calculateTotalCredit() {
+    public int calculateTotalCredit() { //*
         for(int i = 0 ; i < passedCourses.size() ; i++) {
             totalCredit += passedCourses.get(i).getCourse().getCredit(); //
         }
+        return totalCredit; //*
     }
 
     public double getGPA_100() {
@@ -53,4 +55,5 @@ public class Transcript {
         this.totalCredit = totalCredit;
     }
 }
+
 

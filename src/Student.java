@@ -20,6 +20,7 @@ public class Student extends Person {
         this.transcript = transcript;
         this.curriculum = curriculum;
         this.syllabus = new Syllabus();
+
     }
 
     // Filters all courses in the curriculum according to the student's current
@@ -28,8 +29,9 @@ public class Student extends Person {
         syllabus.fillSyllabus(selectedCourses);
         for (int i = 0; i < curriculum.size(); i++) {
             Course course = curriculum.get(i);
+
             if (!isSelectedCourse(course) && !isPassedCourse(course) && isPrerequisiteCoursesPassed(course) && isUnderQuota(course)
-                    && (checkCourseType(course)  || isFailedCourse(course)) ){ //
+                    && (checkCourseType(course)  || isFailedCourse(course))){ //
                 selectableCourses.add(course);
             }
         }
@@ -103,12 +105,11 @@ public class Student extends Person {
         Course course = selectableCourses.get(i - 1);
 
         if (this.getRequest().equals("false") && !syllabus.checkConflict(course)) {
-            if (selectedCourseCredit + course.getCredit() < 40 && checkTermProject(course, transcript.getTotalCredit()) && checkCourseType(course)) { //
+            if (selectedCourseCredit + course.getCredit() < 40 && checkCourseType(course)) { //
                 selectedCourses.add(course);
                 selectedCourseCredit += course.getCredit();
                 course.setQuota(course.getQuota() - 1);
                 removeAllSessions(course);
-                syllabus.addCourseToSyllabus(course);
                 return true;
             }
         }
@@ -131,10 +132,17 @@ public class Student extends Person {
             if(transcript.getYear() == 7  && !exceedTerm(courseType)){
                 return true;
             }
-        }
-        else if(courseType == CourseType.MANDATORY && (( transcript.getYear() >= 3 && course.getYear() == transcript.getYear() +2 && transcript.getGPA_100() > 75  ) ||
-                course.getYear() == transcript.getYear())){
-            return true;
+        }  else if(courseType == CourseType.MANDATORY){
+            if(course.getCourseName().equals("Engineering Project I") ||
+                    course.getCourseName().equals("Engineering Project II")){
+                if(transcript.getTotalCredit() >= 165){
+                    return true;
+                }
+                return false;
+            } else if( (transcript.getYear() >= 3 && course.getYear() == transcript.getYear() +2 && transcript.getGPA_100() > 3.0)  ||
+                    course.getYear() == transcript.getYear()){
+                return true;
+            }
         }
         return false;
     }
@@ -173,19 +181,14 @@ public class Student extends Person {
     }
 
     public boolean checkTermProject(Course course, int totalCredit){ //
-        if(course.getCourseName().equals("Engineering Project 1")){
+        if(course.getCourseName().equals("Engineering Project I") ||
+                course.getCourseName().equals("Engineering Project II")){
+            System.out.println("Engineering Project 1 e girdi");
             if(totalCredit < 165){
-                System.out.println("You don't have enough credit for Engineering Project 1\n");
-                return false;
+                return true;
             }
         }
-        else if(course.getCourseName().equals("Engineering Project 2")){
-            if(totalCredit < 180){
-                System.out.println("You don't have enough credit for Engineering Project 2\n");
-                return false;
-            }
-        }
-        return true;
+        return false;
     }
 
     void clearUnreadNotification(){ //
