@@ -23,60 +23,53 @@ public class Password {
 	    containsNumber = checkUpperCaseCond(newPassword),
         continsSpeacialCharacter=isContains(newPassword),
         lenght=lenghtCond(newPassword),
-        valid=false;  
 		if (lenght && continsSpeacialCharacter && containsUpperCase && containsLowerCase && containsNumber){
-				valid=true;
+				return true;
 			}
-         return valid;
+         return false;
 	}
 
     public boolean isContains(String newPassword){
-        boolean valid=false;
+        
         if(newPassword.contains(".") || newPassword.contains("_")){
-            valid=true;
+            return true;
         }
-        return valid;
     }
 
     public boolean lenghtCond(String newPassword){
-        boolean valid=false;
         if(newPassword.length() > 8 && newPassword.length() < 20){
-            valid=true;
+            return true;
         }
-        return valid;
     }
 
     public boolean checkUpperCaseCond(String newPassword){
-        boolean valid=false;
         for (char c : newPassword.toCharArray()) {
             if (Character.isUpperCase(c)) {
-                valid = true;
-                break;
+                return true;
             }
         }
-        return valid;
+        System.out.println("The password must contain at least one uppercase letter.");
+        return false;
     }
 
     public boolean checkLowerCaseCond(String newPassword){
-        boolean valid=false;
-         for (char c : newPassword.toCharArray()) {
+        for (char c : newPassword.toCharArray()) {
             if (Character.isLowerCase(c)) {
-                valid = true;
-                break;
+                return true;
             }
         }
-        return valid;
+        System.out.println("The password must contain at least one lowercase letter.");
+        return false;
     }
 
     public boolean checkDigitCaseCond(String newPassword){
-        boolean valid=false;
          for (char c : newPassword.toCharArray()) {
             if (Character.isDigit(c)) {
-                valid = true;
-                break;
+                return true;
             }
         }
-        return valid;
+            System.out.println("The password must contain at least one number.");
+        return false;
     }
     
 }
