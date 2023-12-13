@@ -302,6 +302,9 @@ public class SystemDomain {
 			ChangePasswaordPage cPassword = new ChangePasswaordPage(pageContentCreator.createChangePasswordPage());
 			pages.add(cPassword);
 			
+			MyNotificationsPage notifications = new MyNotificationsPage(pageContentCreator.createMyNotificationsPageContent(student.getUnreadNotifications(), student.getReadNotifications()));
+			pages.add(notifications);
+			
 			SyllabusPageStudent syllabus = new SyllabusPageStudent(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
 			pages.add(syllabus);
 

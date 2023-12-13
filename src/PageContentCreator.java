@@ -199,7 +199,19 @@ public class PageContentCreator {
 			} str += "\n";
 		} return str;
 	}
-
+	
+//////////////////////////////////////////// burada mesajların bastırılması lazım
+	// student sınıfıdna iki tane array ile tutuyorlar
+	// unreadnoti okunmamıs mesajlar
+	// read ise daha önce okunmuş olan mesajları tutyor anladığım kadarıyla
+	// gelen arraylere göre uygun contenti bastırırsın
+	// cıkmak için herhangi bi tusa basması yeterli
+	// okunmus veya okuncak hiçmesaj yoksa da ona göre bir contetn yazarsın 
+	//kg
+	public String createMyNotificationsPageContent(ArrayList<String> unreadNotifications, ArrayList<String> readNotifications) {
+		return "Burası sende duru";
+	}
+	
 	private String[][] courseIds(Course[][] courseTable) {
 		String[][] courseIds = new String[courseTable.length][courseTable[0].length];
 		for (int i = 0; i < courseTable.length; i++) {
