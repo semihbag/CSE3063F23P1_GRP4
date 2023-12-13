@@ -183,8 +183,7 @@ public class SystemClass {
         }
         else if (functionType == FunctionType.SELECT_COURSE ) {
 			Student student = (Student) this.getCurrentUser(); 
-			String courseName = student.getSelectableCourses().get((Integer)sm.getInput()).getCourseName();
-			
+			String courseName = student.getSelectableCourses().get((Integer)sm.getInput() - 1).getCourseName();
 			if (student.addSelectedCourse((Integer)sm.getInput())) {
                 System.out.println("\u001B[32;1mCourse Addition Is Succesful - " + courseName + "\u001B[0m");
 
@@ -206,12 +205,12 @@ public class SystemClass {
 			// handling syllabus page
 			SyllabusPageStudent syllabus = (SyllabusPageStudent) this.userInterface.selectPage(PageType.SYLLABUS_PAGE_STUDENT);
 			syllabus.setContent(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
-			
+
 			this.userInterface.setCurrentPage(sm.getNextPageType());
         }
         else if (functionType == FunctionType.DROP_COURSE ) {
             Student student = (Student) this.getCurrentUser();
-			String courseName = student.getSelectedCourses().get((Integer)sm.getInput()).getCourseName();
+			String courseName = student.getSelectedCourses().get((Integer)sm.getInput() - 1).getCourseName();
 
             student.dropCourse((Integer)sm.getInput());
             System.out.println("\u001B[32;1mCourse Dropping Is Succesful - " + courseName + "\u001B[0m");
