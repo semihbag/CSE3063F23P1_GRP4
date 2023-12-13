@@ -154,9 +154,9 @@ public class SystemClass {
             this.login(userInfo);
         }
         else if (functionType == FunctionType.LOGOUT) {
+	        System.out.println("\u001B[31;1mLOGOUT SUCCESSFUL - GOODBYE "+ currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
 			this.logout();
-	        System.out.println("\u001B[31;1mLOGOUT SUCCESSFUL - GOODBYE"+ currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
-            this.userInterface.setCurrentPage(PageType.LOGIN_PAGE);
+	        this.userInterface.setCurrentPage(PageType.LOGIN_PAGE);
         }
         else if (functionType == FunctionType.EXIT) {
             try {
