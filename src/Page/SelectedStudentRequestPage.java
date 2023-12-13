@@ -17,11 +17,15 @@ public class SelectedStudentRequestPage extends Page{
 		String input;
 		while (true) {
 			input = takeInput();
-			if (input.equalsIgnoreCase("y")) {
-				return new SystemMessage(FunctionType.APPROVE_REQUEST, PageType.EVALUATE_REQUESTS_PAGE, null);
+			if (input.equalsIgnoreCase("a")) {
+				System.out.println("Type your message or press enter directly:");
+				String message = takeInput();
+				return new SystemMessage(FunctionType.APPROVE_REQUEST, PageType.EVALUATE_REQUESTS_PAGE, message);
 			}
 			else if (input.equalsIgnoreCase("r")) {
-				return new SystemMessage(FunctionType.DISAPPREOVE_REQUEST, PageType.EVALUATE_REQUESTS_PAGE, null);
+				System.out.println("Type your message or press enter directly:");
+				String message = takeInput();
+				return new SystemMessage(FunctionType.DISAPPREOVE_REQUEST, PageType.EVALUATE_REQUESTS_PAGE, message);
 			}
 			else if (input.equalsIgnoreCase("q")) {
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.EVALUATE_REQUESTS_PAGE, null);

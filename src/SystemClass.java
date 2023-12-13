@@ -254,8 +254,9 @@ public class SystemClass {
         else if (functionType == FunctionType.APPROVE_REQUEST ) {
 			Advisor advisor = (Advisor)this.getCurrentUser();
 			String selectedStudentFullName = advisor.getSelectStudent().getFirstName() + " " + advisor.getSelectStudent().getLastName();
+ 			advisor.sendNotification((String) sm.getInput(), "A");
  			advisor.approve();
-            
+
  			System.out.println("\u001B[32;1mRequest Has Been Approved - " + selectedStudentFullName + "'s Request\u001B[0m");
 
             // handling selected student request
@@ -271,8 +272,10 @@ public class SystemClass {
         else if (functionType == FunctionType.DISAPPREOVE_REQUEST ) {
 			Advisor advisor = (Advisor)this.getCurrentUser();
 			String selectedStudentFullName = advisor.getSelectStudent().getFirstName() + " " + advisor.getSelectStudent().getLastName();
+ 			advisor.sendNotification((String) sm.getInput(), "Dmnefbjfafk");
 			advisor.disapprove();
 
+			
  			System.out.println("\u001B[33;1mRequest Has Been Disapproved - " + selectedStudentFullName + "'s Request\u001B[0m");
 
             // handling selected student request

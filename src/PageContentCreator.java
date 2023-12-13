@@ -49,7 +49,7 @@ public class PageContentCreator {
 			str="\nRequests of " + student.getFirstName() + " " + student.getLastName()
 					+ " " + student.getStudentId().getId()
 					+"\n"+courseListForContent(student.getSelectedCourses())+"\n"
-					+"Approve: Y\nReject: R\nQuit: Q\n";
+					+"Approve: A\nReject: R\nQuit: Q\n";
 		}
 		return str;
 	}
