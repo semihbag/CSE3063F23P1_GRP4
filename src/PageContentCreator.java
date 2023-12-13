@@ -6,12 +6,14 @@ public class PageContentCreator {
 	{
 		String str="---------MAIN MENU---------\n"+
 				"1) Profile\n" +
-				"2) All Courses\n"+
-				"3) Approved Courses\n"+
-				"4) Offered Courses\n"+
-				"5) Selected Courses\n"+
-				"6) Log out\n"+
-				"7) Exit";
+				"2) Notificctions\n"+
+				"3) My Weekly Syllabus\n"+
+				"4) All Courses\n"+
+				"5) Approved Courses\n"+
+				"6) Offered Courses\n"+
+				"7) Selected Courses\n"+
+				"8) Log out\n"+
+				"9) Exit";
 		return str;
 	}
 
@@ -76,7 +78,7 @@ public class PageContentCreator {
 					student.get(i-1).getTranscript().getYear()+"\n";
 
 		}
-		str += "Press any key to back to main menu.";
+		str += "\nPress any key to return.\n";
 		return str;
 	}
 
@@ -93,12 +95,12 @@ public class PageContentCreator {
 		String str="";
 		if(courses.size()==0) {
 			str="NO COURSE TO SHOW\n"
-					+ "Press q to exit";
+					+ "Q: Quit";
 		}
 		else {
 			str=courseListForContent(courses)+"\n"
 				+"\nTo select a course, press the number of the courses offered.\n\n"
-				+"Press q to exit";
+					+ "Q: Quit";
 		}
 		return str;
 	}
@@ -107,26 +109,26 @@ public class PageContentCreator {
 		String str="";
 		if(courses.size()==0) {
 			str="No course to show.\n"
-			+ "Press q to exit";
+					+ "Q: Quit";
 		}
 		else {
 			str= courseListForContent(courses)
 					+ "\nPress number to drop course \n"
-					+ "Press a to send approve\n"
-					+ "Press q to exit\n";
+					+ "A: Send to approval\n"
+					+ "Q: Quit";
 		}
 		return str;
 	}
 
 	public  String createAllCoursesPageContent   (ArrayList<Course> courses) {
 		String str=courseListForContent(courses)+"\n"+
-				"Press any key to back to main menu.";
+				"\nPress any key to return.\n";
 		return str;
 	}
 
 	public  String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
 		String str=courseListForContent(courses)+
-				"Press any key to back to main menu.";
+				"\nPress any key to return.\n";
 		return str;
 	}
 
@@ -154,22 +156,40 @@ public class PageContentCreator {
 				"Q: Quit\n";
 	}
 	
-///////////////////////////////////////////////
 	public String createChangePasswordPage() {
+
 		return "bu şu anlık durakoysın";
 	}
-	
-///////////////////////////////////////////////	 burda verilen derslerin bilgileri olcak
+
+	//Information of given courses
 	public String createMyCoursesPageContent(Lecturer lecturer) {
-		return "duru burası sende";
-	}
-	
-///////////////////////////////////////////////	 burda seçilen  derslerin bilgileri olcak öğrencileri falan görebilicez
-// çıkmak için herhangi bir tuşa basması yeterli olacak allcourses mantıgı gibi
-	public String createSelectedMyCoursePage(Course course) {
-		return "duru burası sende";
+		String str = "\nMy Courses\n";
+		for (Course course : lecturer.getGivenCourses()) {
+			str += course.getCourseId().getId() + " - " +
+					course.getCourseName() + "\n";
+		}
+		str+= "\nPress number to view course content.\n" +
+				"Q: Quit\n";
+		return str;
 	}
 
+	//Information of selected course
+	public String createSelectedMyCoursePage(Course course) {
+		String str = "\nAll Students:\n";
+		for (Student student : course.getStudentList()) {
+			str += student.getStudentId().getId() + "  " +
+					student.getFirstName() + blankAfterName(student.getFirstName()) +
+					student.getLastName() + "\n";
+		}
+		//Press ANY KEY to return
+		str += "\nPress any key to return.\n";
+		return str;
+	}
+
+///////////////////////////////////////////// burada öğrenci için bir haftalık ders programı yazdırlıcak
+	public String createSyllabusPageContent(Syllabus syllabus) {
+		return "duru burası sende";
+	}
 	
 	public  String courseListForContent (ArrayList<Course> courses) {
 		String str="";
@@ -196,6 +216,14 @@ public class PageContentCreator {
 			}
 		}
 		return str;
+	}
+
+	private String blankAfterName(String str) {
+		String a = "";
+		for (int i = 0; i < 20 - str.length(); i++) {
+			a += " ";
+		}
+		return a;
 	}
 
 	private String blankAfterCourseName(Course course) {
