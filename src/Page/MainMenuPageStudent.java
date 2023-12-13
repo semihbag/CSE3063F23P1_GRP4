@@ -19,8 +19,7 @@ public class MainMenuPageStudent extends Page{
 			case "1":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.PROFILE_PAGE_STUDENT, null);
 			case "2":
-//////////////////// değişecekkkkkkkkk				
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.PROFILE_PAGE_STUDENT, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_NOTIFICATIONS, null);
 			case "3":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SYLLABUS_PAGE_STUDENT, null);
 			case "4":

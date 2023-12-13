@@ -303,7 +303,12 @@ public class SystemClass {
         else if (functionType == FunctionType.CHANGE_PASSWORD ) {
         	////// eklenecek
         }
-        
+        else if (functionType == FunctionType.READ_NOTIFICATIONS ) {
+            Student student = (Student) this.getCurrentUser();
+            student.clearUnreadNotification();
+            
+            this.userInterface.setCurrentPage(sm.getNextPageType());
+        }
 
     }
 
