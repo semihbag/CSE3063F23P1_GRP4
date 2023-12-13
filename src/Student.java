@@ -108,6 +108,7 @@ public class Student extends Person {
                 selectedCourseCredit += course.getCredit();
                 course.setQuota(course.getQuota() - 1);
                 removeAllSessions(course);
+                syllabus.addCourseToSyllabus(course);
                 return true;
             }
         }
