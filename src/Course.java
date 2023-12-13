@@ -13,7 +13,7 @@ public class Course {
 
 
 	public Course(Id courseId, String courseName, int quota, int year,
-				  Lecturer lecturer,ArrayList<CourseSchedule> courseSchedules, int credit) {
+				  Lecturer lecturer,ArrayList<CourseSchedule> courseSchedules, int credit, CourseType courseType) {
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.quota = quota;
@@ -21,6 +21,7 @@ public class Course {
 		this.lecturer = lecturer;
 		this.courseSchedules = courseSchedules;
 		this.credit = credit;
+		this.courseType = courseType;
 	}
 
 	public void  enrollStudent (Student student) {

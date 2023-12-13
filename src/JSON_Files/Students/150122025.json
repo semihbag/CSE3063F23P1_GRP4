@@ -1,16 +1,16 @@
 {
     "advisor": "1501001",
     "request": "false",
-    "unreadNotification": [],
     "readNotification": [],
     "password": "Nisa123._",
     "transcript": {
         "failedcourses": [],
         "completedcourses": [],
-        "gradesPassed":[],
-        "gradesFailed":[],
-        "year": 1
+        "year": 1,
+        "gradesFailed": [],
+        "gradesPassed": []
     },
+    "unreadNotification": [],
     "name": "Nisa",
     "registration": {
         "selectedcourses": [],

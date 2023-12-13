@@ -67,6 +67,7 @@ public class SystemDomain {
             int quota = courseJSON.getJSONObject(i).getInt("quota");
             String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
             int credit = courseJSON.getJSONObject(i).getInt("credit");
+            String courseTypeStr = courseJSON.getJSONObject(i).getString("type");
             Lecturer courseLecturer=null;
             for (Lecturer lecturer : lecturers) {
                 if (lecturer.getLecturerId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
@@ -76,14 +77,14 @@ public class SystemDomain {
             }
             ArrayList<CourseSchedule> courseSchedule = new ArrayList<CourseSchedule>();
             fillCourseSchedule(courseJSON.getJSONObject(i).getJSONArray("day"),courseJSON.getJSONObject(i).getJSONArray("hour"),courseSchedule);
-
+            CourseType courseType = setCourseType(courseTypeStr);
             Course course = null;
             if(courseJSON.getJSONObject(i).getBoolean("isSession")){
                 String sessionId = courseJSON.getJSONObject(i).getString("sessionId");
-                course = new CourseSession(new Id(courseId),name, quota, term,courseLecturer,new Id(sessionId),courseSchedule,credit);
+                course = new CourseSession(new Id(courseId),name, quota, term,courseLecturer,new Id(sessionId),courseSchedule,credit, courseType);
             }
             else {
-                course = new Course(new Id(courseId),name, quota, term,courseLecturer,courseSchedule,credit);
+                course = new Course(new Id(courseId), name, quota, term, courseLecturer, courseSchedule, credit, courseType);
             }
 
             for(String str: prerequisiteId){
@@ -97,6 +98,16 @@ public class SystemDomain {
             courses.add(course);
         }
         assignCoursesToLecturer();
+    }
+
+    private CourseType setCourseType(String courseTypeStr) {
+        return switch (courseTypeStr) {
+            case "mandatory" -> CourseType.MANDATORY;
+            case "technical" -> CourseType.TECHNICAL;
+            case "nontechnical" -> CourseType.NONTECHNICAL;
+            case "faculty" -> CourseType.FACULTY;
+            default -> null;
+        };
     }
 
     //Create all student objects

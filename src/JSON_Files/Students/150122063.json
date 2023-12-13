@@ -1,16 +1,16 @@
 {
     "advisor": "1501005",
     "request": "false",
-    "unreadNotification": [],
     "readNotification": [],
     "password": "Sude987..",
     "transcript": {
         "failedcourses": [],
         "completedcourses": [],
-        "gradesPassed":[],
-        "gradesFailed":[],
-        "year": 1
+        "year": 1,
+        "gradesFailed": [],
+        "gradesPassed": []
     },
+    "unreadNotification": [],
     "name": "Sude",
     "registration": {
         "selectedcourses": [],

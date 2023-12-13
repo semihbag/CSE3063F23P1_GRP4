@@ -1,16 +1,16 @@
 {
     "advisor": "1501001",
     "request": "false",
-    "unreadNotification": [],
     "readNotification": [],
     "password": "Ferhat678.",
     "transcript": {
         "failedcourses": [],
         "completedcourses": [],
-        "gradesPassed":[],
-        "gradesFailed":[],
-        "year": 1
+        "year": 1,
+        "gradesFailed": [],
+        "gradesPassed": []
     },
+    "unreadNotification": [],
     "name": "Ferhat",
     "registration": {
         "selectedcourses": [],

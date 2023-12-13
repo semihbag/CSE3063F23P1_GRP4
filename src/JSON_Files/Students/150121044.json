@@ -1,25 +1,44 @@
 {
     "advisor": "1501005",
     "request": "false",
-    "unreadNotification": [],
     "readNotification": [],
     "password": "Handemsi1.",
     "transcript": {
         "failedcourses": ["PHYS1101"],
         "completedcourses": [
-            "ATA121","MBG1201","CSE1200","CSE1241",
-            "MATH1001","PHYS1103","TRD121","TRD122",
-            "ATA122","CSE1242","MATH1002","MATH2256",
+            "ATA121",
+            "MBG1201",
+            "CSE1200",
+            "CSE1241",
+            "MATH1001",
+            "PHYS1103",
+            "TRD121",
+            "TRD122",
+            "ATA122",
+            "CSE1242",
+            "MATH1002",
+            "MATH2256",
             "YDA1001"
         ],
-        "gradesPassed":[
-            "BA","CC","CC","DC",
-            "CB","BA","AA","BA",
-            "AA","CC","DC","BB",
-            "BB"],
-        "gradesFailed":["FF"],
-        "year": 2
+        "year": 3,
+        "gradesFailed": ["FF"],
+        "gradesPassed": [
+            "BA",
+            "CC",
+            "CC",
+            "DC",
+            "CB",
+            "BA",
+            "AA",
+            "BA",
+            "AA",
+            "CC",
+            "DC",
+            "BB",
+            "BB"
+        ]
     },
+    "unreadNotification": [],
     "name": "Hande",
     "registration": {
         "selectedcourses": [],
