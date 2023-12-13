@@ -7,7 +7,7 @@ public class MyNotificationsPage extends Page{
 	
 	public MyNotificationsPage(String content) {
 		super(content);
-		setType(PageType.MY_NOTIFICATIONS);
+		setType(PageType.MY_NOTIFICATIONS_PAGE);
 		setName("My Notifications Page");
 	}
 	

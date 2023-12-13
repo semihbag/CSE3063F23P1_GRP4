@@ -305,6 +305,9 @@ public class SystemDomain {
 			MyNotificationsPage notifications = new MyNotificationsPage(pageContentCreator.createMyNotificationsPageContent(student.getUnreadNotifications(), student.getReadNotifications()));
 			pages.add(notifications);
 			
+			TranscriptPage transcript = new TranscriptPage(pageContentCreator.createTranscriptPageContent(student.getTranscript()));
+			pages.add(transcript);
+			
 			SyllabusPageStudent syllabus = new SyllabusPageStudent(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
 			pages.add(syllabus);
 

@@ -7,13 +7,14 @@ public class PageContentCreator {
 		String str="---------MAIN MENU---------\n"+
 				"1) Profile\n" +
 				"2) Notificctions\n"+
-				"3) My Weekly Syllabus\n"+
-				"4) All Courses\n"+
-				"5) Approved Courses\n"+
-				"6) Offered Courses\n"+
-				"7) Selected Courses\n"+
-				"8) Log out\n"+
-				"9) Exit";
+				"3) Transcript\n"+
+				"4) My Weekly Syllabus\n"+
+				"5) All Courses\n"+
+				"6) Approved Courses\n"+
+				"7) Offered Courses\n"+
+				"8) Selected Courses\n"+
+				"9) Log out\n"+
+				"10) Exit";
 		return str;
 	}
 
@@ -209,7 +210,16 @@ public class PageContentCreator {
 	// okunmus veya okuncak hiçmesaj yoksa da ona göre bir contetn yazarsın 
 	//kg
 	public String createMyNotificationsPageContent(ArrayList<String> unreadNotifications, ArrayList<String> readNotifications) {
-		return "Burası sende duru";
+		return "Burası sende duru notifications";
+	}
+	
+	// transcript bastırılcak kısaca
+	// parametre olarak transcript objesi alıyorum
+	// ancak content içinde isim soy isim numara falan da olsun dersen
+	// parametre olarak student alabiliriz
+	// ona göre ayarlanabilir
+	public String createTranscriptPageContent(Transcript transcript) {
+		return "Burası sende duru transcirpt";
 	}
 	
 	private String[][] courseIds(Course[][] courseTable) {
