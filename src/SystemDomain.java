@@ -63,7 +63,7 @@ public class SystemDomain {
         for(int i =0 ; i< courseJSON.length();i++){
             String courseId =courseJSON.getJSONObject(i).getString("id");
             String name = courseJSON.getJSONObject(i).getString("name");
-            int year = courseJSON.getJSONObject(i).getInt("year");
+            int term = courseJSON.getJSONObject(i).getInt("term");
             int quota = courseJSON.getJSONObject(i).getInt("quota");
             String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
             int credit = courseJSON.getJSONObject(i).getInt("credit");
@@ -80,10 +80,10 @@ public class SystemDomain {
             Course course = null;
             if(courseJSON.getJSONObject(i).getBoolean("isSession")){
                 String sessionId = courseJSON.getJSONObject(i).getString("sessionId");
-                course = new CourseSession(new Id(courseId),name, quota, year,courseLecturer,new Id(sessionId),courseSchedule,credit);
+                course = new CourseSession(new Id(courseId),name, quota, term,courseLecturer,new Id(sessionId),courseSchedule,credit);
             }
             else {
-                course = new Course(new Id(courseId),name, quota, year,courseLecturer,courseSchedule,credit);
+                course = new Course(new Id(courseId),name, quota, term,courseLecturer,courseSchedule,credit);
             }
 
             for(String str: prerequisiteId){

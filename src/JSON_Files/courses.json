@@ -529,7 +529,7 @@
         "id": "COM2202",
         "isSession": false,
         "day":["FRIDAY"],
-        "hour":["17.00","18.00"],
+        "hour":[["17.00","18.00"]],
         "type":"mandatory",
         "credit":2
     },
@@ -689,7 +689,7 @@
         "id": "ISG122",
         "isSession": false,
         "day":["WEDNESDAY"],
-        "hour":["18.00","19.00"],
+        "hour":[["18.00","19.00"]],
         "type":"mandatory",
         "credit":2
     },
@@ -704,7 +704,7 @@
         "id": "BUS1004",
         "isSession": false,
         "day":["THURSDAY"],
-        "hour":["9.30","10.30"],
+        "hour":[["9.30","10.30"]],
         "type":"nontechnical",
         "credit":3
     },
@@ -760,7 +760,7 @@
         "id": "NTE1013",
         "isSession": false,
         "day":["TUESDAY"],
-        "hour":["17.00","18.00"],
+        "hour":[["17.00","18.00"]],
         "type":"nontechnical",
         "credit":3
     },
