@@ -198,7 +198,7 @@ public class SystemClass {
             SelectedCoursesPage selectedCoursePage = (SelectedCoursesPage) this.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE);
 			selectedCoursePage.setContent(this.pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
 			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
-
+				
             this.userInterface.setCurrentPage(sm.getNextPageType());
         }
         else if (functionType == FunctionType.DROP_COURSE ) {
