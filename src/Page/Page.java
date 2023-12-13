@@ -19,6 +19,7 @@ public abstract class Page {
 	
 	// this function print the content
 	public void showContent() {
+        System.out.println("\u001B[31;1m____________________________________________________________________________________________________________\u001B[0m");
 		System.out.println(getContent());
 	}
 
