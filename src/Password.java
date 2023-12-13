@@ -29,7 +29,7 @@ public class Password {
          return false;
 	}
 
-    public boolean isContains(String newPassword){
+    private boolean isContains(String newPassword){
         
         if(newPassword.contains(".") || newPassword.contains("_")){
             return true;
@@ -39,7 +39,7 @@ public class Password {
         }
     }
 
-    public boolean lenghtCond(String newPassword){
+    private boolean lenghtCond(String newPassword){
         if(newPassword.length() > 8 && newPassword.length() < 20){
             return true;
         }else{
@@ -48,7 +48,7 @@ public class Password {
         }
     }
 
-    public boolean checkUpperCaseCond(String newPassword){
+    private boolean checkUpperCaseCond(String newPassword){
         for (char c : newPassword.toCharArray()) {
             if (Character.isUpperCase(c)) {
                 return true;
@@ -58,7 +58,7 @@ public class Password {
         return false;
     }
 
-    public boolean checkLowerCaseCond(String newPassword){
+    private boolean checkLowerCaseCond(String newPassword){
         for (char c : newPassword.toCharArray()) {
             if (Character.isLowerCase(c)) {
                 return true;
@@ -68,7 +68,7 @@ public class Password {
         return false;
     }
 
-    public boolean checkDigitCaseCond(String newPassword){
+    private boolean checkDigitCaseCond(String newPassword){
          for (char c : newPassword.toCharArray()) {
             if (Character.isDigit(c)) {
                 return true;
