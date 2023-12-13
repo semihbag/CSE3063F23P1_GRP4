@@ -198,8 +198,12 @@ public class SystemClass {
             SelectedCoursesPage selectedCoursePage = (SelectedCoursesPage) this.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE);
 			selectedCoursePage.setContent(this.pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
 			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
-				
-            this.userInterface.setCurrentPage(sm.getNextPageType());
+			
+			// handling syllabus page
+			SyllabusPageStudent syllabus = (SyllabusPageStudent) this.userInterface.selectPage(PageType.SYLLABUS_PAGE_STUDENT);
+			syllabus.setContent(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
+			
+			this.userInterface.setCurrentPage(sm.getNextPageType());
         }
         else if (functionType == FunctionType.DROP_COURSE ) {
             Student student = (Student) this.getCurrentUser();
@@ -217,7 +221,11 @@ public class SystemClass {
             SelectableCoursesPage selectableCoursePage = (SelectableCoursesPage) this.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE);
 			selectableCoursePage.setContent(this.pageContentCreator.createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
 			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
-
+			
+			// handling syllabus page
+			SyllabusPageStudent syllabus = (SyllabusPageStudent) this.userInterface.selectPage(PageType.SYLLABUS_PAGE_STUDENT);
+			syllabus.setContent(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
+						
             this.userInterface.setCurrentPage(sm.getNextPageType());
         }
         else if (functionType == FunctionType.SEND_APPROVE ) {
