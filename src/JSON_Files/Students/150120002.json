@@ -29,6 +29,7 @@
             "CSE2138",
             "STAT2253"
         ],
+        "termpassed": [2],
         "term": 5,
         "gradesFailed": ["FF"],
         "gradesPassed": [
