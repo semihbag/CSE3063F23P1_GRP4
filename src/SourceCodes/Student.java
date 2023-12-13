@@ -1,3 +1,5 @@
+package SourceCodes;
+
 import java.util.ArrayList;
 
 public class Student extends Person {
@@ -312,3 +314,4 @@ public class Student extends Person {
     }
 
 }
+

@@ -1,3 +1,5 @@
+package SourceCodes;
+
 import UserInterface.UserInterface;
 
 public class Main {

@@ -1,3 +1,5 @@
+package SourceCodes;
+
 public class GradeClass {
     private Course course;
     private Grade grade;
@@ -23,3 +25,4 @@ public class GradeClass {
         this.course = course;
     }
 }
+

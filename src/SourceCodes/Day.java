@@ -1,3 +1,5 @@
+package SourceCodes;
+
 public enum Day {
     MONDAY,
     TUESDAY,

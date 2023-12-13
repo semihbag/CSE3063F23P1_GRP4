@@ -1,3 +1,5 @@
+package SourceCodes;
+
 abstract class Person {
     private String firstName, lastName;
     private Password password;
@@ -24,3 +26,4 @@ abstract class Person {
         this.password = password;
     }
 }
+

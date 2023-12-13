@@ -1,3 +1,5 @@
+package SourceCodes;
+
 import java.util.ArrayList;
 
 public class CourseSchedule {
@@ -28,3 +30,4 @@ public class CourseSchedule {
 
     
 }
+

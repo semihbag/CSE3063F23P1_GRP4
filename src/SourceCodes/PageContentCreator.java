@@ -1,3 +1,5 @@
+package SourceCodes;
+
 import java.util.ArrayList;
 
 public class PageContentCreator {

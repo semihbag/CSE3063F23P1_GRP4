@@ -1,3 +1,5 @@
+package SourceCodes;
+
 public enum Grade {
     AA, //4.0
     BA, //3.5
@@ -10,3 +12,4 @@ public enum Grade {
     FF, //0.0
     DZ //fail due to absence
 }
+

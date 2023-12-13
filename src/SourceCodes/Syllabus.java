@@ -1,3 +1,5 @@
+package SourceCodes;
+
 import java.util.ArrayList;
 
 public class Syllabus {
@@ -117,3 +119,4 @@ public class Syllabus {
         this.syllabus = syllabus;
     }  
 }
+

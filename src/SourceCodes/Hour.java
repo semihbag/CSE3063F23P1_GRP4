@@ -1,3 +1,5 @@
+package SourceCodes;
+
 public enum Hour {
 
     H_08_30_09_20,
@@ -15,3 +17,4 @@ public enum Hour {
     H_21_00_21_50;
 
 }
+

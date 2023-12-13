@@ -1,3 +1,5 @@
+package SourceCodes;
+
 public enum CourseType {
     MANDATORY, //
     NONTECHNICAL,

@@ -1,3 +1,5 @@
+package SourceCodes;
+
 public class Password {
     private String password;
 

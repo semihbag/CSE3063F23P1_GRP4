@@ -1,3 +1,5 @@
+package SourceCodes;
+
 import java.util.ArrayList;
 
 public class Course {
@@ -87,3 +89,4 @@ public class Course {
 		this.credit = credit;
 	}
 }
+

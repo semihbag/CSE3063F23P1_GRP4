@@ -1,3 +1,5 @@
+package SourceCodes;
+
 import java.util.ArrayList;
 
 public class Transcript {
@@ -53,4 +55,5 @@ public class Transcript {
         this.totalCredit = totalCredit;
     }
 }
+
 
