@@ -187,7 +187,7 @@ public class PageContentCreator {
 	}
 
 ///////////////////////////////////////////// burada öğrenci için bir haftalık ders programı yazdırlıcak
-	public String createSyllabusPageStudentContent(Syllabus syllabus) {
+	public String createSyllabusPageContent(Syllabus syllabus) {
 		return "duru burası sende";
 	}
 	

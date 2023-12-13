@@ -5,60 +5,31 @@ public class Syllabus {
     private Course[][] syllabus = new Course[13][5];
 
     public int returnIndexDay(Day day) {
-
-        switch(day) {
-        case MONDAY:
-            return 0;
-        case TUESDAY:
-            return 1;
-        case WEDNESDAY:
-            return 2;
-        case THURSDAY:
-            return 3;
-        case FRIDAY:
-            return 4;
-        default:
-            System.out.println("The content of day is invalid");
-            return -1;
-        }
-
+        return switch (day) {
+            case MONDAY -> 0;
+            case TUESDAY -> 1;
+            case WEDNESDAY -> 2;
+            case THURSDAY -> 3;
+            case FRIDAY -> 4;
+        };
     }
 
     public int returnIndexHour(Hour hour) {
-
-        switch(hour) {
-            
-            case H_08_30_09_20:
-                return 0;
-            case H_09_30_10_20:
-                return 1;
-            case H_10_30_11_20:
-                return 2;
-            case H_11_30_12_20:
-                return 3;
-            case H_13_00_13_50:
-                return 4;
-            case H_14_00_14_50:
-                return 5;
-            case H_15_00_15_50:
-                return 6;
-            case H_16_00_16_50:
-                return 7;
-            case H_17_00_17_50:
-                return 8;
-            case H_18_00_18_50:
-                return 9;
-            case H_19_00_19_50:
-                return 10;
-            case H_20_00_20_50:
-                return 11;
-            case H_21_00_21_50:
-                return 12;
-            default:
-                System.out.println("The content of hour is invalid");
-                return -1;
-        }
-
+        return switch (hour) {
+            case H_08_30_09_20 -> 0;
+            case H_09_30_10_20 -> 1;
+            case H_10_30_11_20 -> 2;
+            case H_11_30_12_20 -> 3;
+            case H_13_00_13_50 -> 4;
+            case H_14_00_14_50 -> 5;
+            case H_15_00_15_50 -> 6;
+            case H_16_00_16_50 -> 7;
+            case H_17_00_17_50 -> 8;
+            case H_18_00_18_50 -> 9;
+            case H_19_00_19_50 -> 10;
+            case H_20_00_20_50 -> 11;
+            case H_21_00_21_50 -> 12;
+        };
     }
 
   public void addCourseToSyllabus(Course course) {
