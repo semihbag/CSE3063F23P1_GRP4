@@ -6,7 +6,7 @@ public class PageContentCreator {
 	{
 		String str="---------MAIN MENU---------\n"+
 				"1) Profile\n" +
-				"2) Notificctions\n"+
+				"2) Notifications\n"+
 				"3) Transcript\n"+
 				"4) My Weekly Syllabus\n"+
 				"5) All Courses\n"+
@@ -200,26 +200,54 @@ public class PageContentCreator {
 			} str += "\n";
 		} return str;
 	}
-	
-//////////////////////////////////////////// burada mesajların bastırılması lazım
-	// student sınıfıdna iki tane array ile tutuyorlar
-	// unreadnoti okunmamıs mesajlar
-	// read ise daha önce okunmuş olan mesajları tutyor anladığım kadarıyla
-	// gelen arraylere göre uygun contenti bastırırsın
-	// cıkmak için herhangi bi tusa basması yeterli
+
 	// okunmus veya okuncak hiçmesaj yoksa da ona göre bir contetn yazarsın 
 	//kg
 	public String createMyNotificationsPageContent(ArrayList<String> unreadNotifications, ArrayList<String> readNotifications) {
-		return "Burası sende duru notifications";
+		String str = "";
+		for (String unreadNotification : unreadNotifications) {
+			str += "\u001B[33;1m" + unreadNotification + "\n" + "\u001B[0m";
+		}
+		for (String readNotification : readNotifications) {
+			str += readNotification + "\n";
+		}
+		if (unreadNotifications.size() == 0 && readNotifications.size() == 0) {
+			str += "\nNo notification.\n";
+		}
+		str += "\nPress any key to return.\n";
+		return str;
 	}
-	
-	// transcript bastırılcak kısaca
-	// parametre olarak transcript objesi alıyorum
-	// ancak content içinde isim soy isim numara falan da olsun dersen
-	// parametre olarak student alabiliriz
-	// ona göre ayarlanabilir
-	public String createTranscriptPageContent(Transcript transcript) {
-		return "Burası sende duru transcirpt";
+
+	public String createTranscriptPageContent(Student student) {
+		String str = "                               MARMARA UNIVERSITY\n" +
+				     "                                   TRANSCRIPT\n\n";
+		str += "Student Id : " + student.getStudentId().getId() +
+				blankAfterStr("Student Id: " + student.getStudentId().getId(), 30) +
+				"Faculty    : Engineering Faculty\n" +
+				"Name       : " + student.getFirstName() +
+				blankAfterStr("      Name: " + student.getFirstName(), 30) +
+				"Department : Computer Engineering\n" +
+				"Surname    : " + student.getLastName() + "\n\n";
+		ArrayList<GradeClass> allTranscriptCourses = student.getTranscript().getPassedCourses();
+		allTranscriptCourses.addAll(student.getTranscript().getFailedCourses());
+		for (int j = 1; j < student.getTranscript().getYear(); j++) {
+			str += "SEMESTER " + (j) + "\n" ;
+			str += "CODE         NAME                                              CREDIT       GRADE\n";
+			for (GradeClass allTranscriptCourse : allTranscriptCourses) {
+				if (allTranscriptCourse.getCourse().getYear() == j) {
+					Course course = allTranscriptCourse.getCourse();
+					str += course.getCourseId().getId() +
+							blankAfterStr(course.getCourseId().getId(), 13) +
+							course.getCourseName() +
+							blankAfterStr(course.getCourseName(), 50) +
+							course.getCredit() + "            " +
+							allTranscriptCourse.getGrade().toString() + "\n";
+				}
+			}
+			str += "\n";
+		}
+		str += "Press any key to return.\n";
+		return str;
 	}
 	
 	private String[][] courseIds(Course[][] courseTable) {
@@ -239,8 +267,6 @@ public class PageContentCreator {
 		} return courseIds;
 	}
 
-
-	
 	public  String courseListForContent (ArrayList<Course> courses) {
 		String str="";
 		if(courses.size()==0) {
