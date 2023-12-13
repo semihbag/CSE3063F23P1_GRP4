@@ -22,7 +22,7 @@ public class Password {
         containsLowerCase =checkUpperCaseCond(newPassword),
 	    containsNumber = checkUpperCaseCond(newPassword),
         continsSpeacialCharacter=isContains(newPassword),
-        lenght=lenghtCond(newPassword),
+        lenght=lenghtCond(newPassword);
 		if (lenght && continsSpeacialCharacter && containsUpperCase && containsLowerCase && containsNumber){
 				return true;
 			}
