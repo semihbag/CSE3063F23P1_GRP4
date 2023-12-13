@@ -178,7 +178,7 @@ public class PageContentCreator {
 		String str = "\nAll Students:\n";
 		for (Student student : course.getStudentList()) {
 			str += student.getStudentId().getId() + "  " +
-					student.getFirstName() + blankAfterName(student.getFirstName()) +
+					student.getFirstName() + blankAfterStr(student.getFirstName(), 20) +
 					student.getLastName() + "\n";
 		}
 		//Press ANY KEY to return
@@ -188,8 +188,36 @@ public class PageContentCreator {
 
 ///////////////////////////////////////////// burada öğrenci için bir haftalık ders programı yazdırlıcak
 	public String createSyllabusPageContent(Syllabus syllabus) {
-		return "duru burası sende";
+		String str = "Time Table\n\n" +
+				"\t\t\t\t\tMONDAY\t\tTUESDAY\t   WEDNESDAY\t THURSDAY\t  FRIDAY\n";
+		String[][] tTable = courseIds(syllabus.getSyllabus());
+
+		for (int i = 0; i < tTable.length; i++) {
+			str += returnHour(i) + "\t   ";
+			for (int j = 0; j < tTable[i].length; j++) {
+				str += tTable[i][j] + blankAfterStr(tTable[i][j], 14);
+			} str += "\n";
+		} return str;
 	}
+
+	private String[][] courseIds(Course[][] courseTable) {
+		String[][] courseIds = new String[courseTable.length][courseTable[0].length];
+		for (int i = 0; i < courseTable.length; i++) {
+			for (int j = 0; j < courseTable[i].length; j++) {
+				if (courseTable[i][j] == null) {
+					courseIds[i][j] = "";
+				}
+				else if (courseTable[i][j] instanceof CourseSession) {
+					courseIds[i][j] = courseTable[i][j].getCourseId().getId() + "." +
+							((CourseSession) courseTable[i][j]).getSessionId().getId();
+				} else {
+					courseIds[i][j] = courseTable[i][j].getCourseId().getId();
+				}
+			}
+		} return courseIds;
+	}
+
+
 	
 	public  String courseListForContent (ArrayList<Course> courses) {
 		String str="";
@@ -197,18 +225,20 @@ public class PageContentCreator {
 			str="NO COURSE TO SHOW\n";
 		}
 		else {
-			str = "     CODE         COURSE                                   LECTURER\n";
+			str = "     CODE         COURSE                                             LECTURER\n";
 			for (int i=1; i<=courses.size() ; i++ ) {
 				if(courses.get(i - 1) instanceof CourseSession session) {
 					str +=  i + blankAfterI(i) +
-						courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId() + "    " +
+						courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId() +
+						blankAfterStr(courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId(), 13) +
 						courses.get(i-1).getCourseName() + blankAfterCourseName(courses.get(i-1)) + " " +
 						courses.get(i-1).getLecturer().getFirstName() + " "+
 						courses.get(i-1).getLecturer().getLastName() + "\n";
 				}
 				else {
 					str +=  i + blankAfterI(i) +
-						courses.get(i-1).getCourseId().getId() + "      " +
+						courses.get(i-1).getCourseId().getId() +
+						blankAfterStr(courses.get(i-1).getCourseId().getId(), 13) +
 						courses.get(i-1).getCourseName() + blankAfterCourseName(courses.get(i-1)) + " " +
 						courses.get(i-1).getLecturer().getFirstName() + " "+
 						courses.get(i-1).getLecturer().getLastName() + "\n";
@@ -218,17 +248,36 @@ public class PageContentCreator {
 		return str;
 	}
 
-	private String blankAfterName(String str) {
-		String a = "";
-		for (int i = 0; i < 20 - str.length(); i++) {
-			a += " ";
+	private String blankAfterStr(String str, int len) {
+		String blank = "";
+		for (int i = 0; i < len - str.length(); i++) {
+			blank += " ";
 		}
-		return a;
+		return blank;
+	}
+
+	private String returnHour(int a) {
+		return switch (a) {
+			case 0 -> "08:30 - 09:20";
+			case 1 -> "09:30 - 10:20";
+			case 2 -> "10:30 - 11:20";
+			case 3 -> "11:30 - 12:20";
+			case 4 -> "13:00 - 13:50";
+			case 5 -> "14:00 - 14:50";
+			case 6 -> "15:00 - 15:50";
+			case 7 -> "16:00 - 16:50";
+			case 8 -> "17:00 - 17:50";
+			case 9 -> "18:00 - 18:50";
+			case 10 -> "19:00 - 19:50";
+			case 11 -> "20:00 - 20:50";
+			case 12 -> "21:00 - 21:50";
+			default -> "";
+		};
 	}
 
 	private String blankAfterCourseName(Course course) {
 		String str = "";
-		for (int i = 0; i < 40 - course.getCourseName().length(); i++) {
+		for (int i = 0; i < 50 - course.getCourseName().length(); i++) {
 			str += " ";
 		} return str;
 	}

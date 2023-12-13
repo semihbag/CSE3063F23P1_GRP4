@@ -43,7 +43,7 @@
             "IE3235",
             "COM2202"
         ],
-        "year": 7,
+        "term": 7,
         "gradesFailed": ["FF"],
         "gradesPassed": [
             "AA",

@@ -100,16 +100,6 @@ public class SystemDomain {
         assignCoursesToLecturer();
     }
 
-    private CourseType setCourseType(String courseTypeStr) {
-        return switch (courseTypeStr) {
-            case "mandatory" -> CourseType.MANDATORY;
-            case "technical" -> CourseType.TECHNICAL;
-            case "nontechnical" -> CourseType.NONTECHNICAL;
-            case "faculty" -> CourseType.FACULTY;
-            default -> null;
-        };
-    }
-
     //Create all student objects
     public void createStudents() throws JSONException, IOException {
         File allStudentFiles = new File("src\\JSON_Files\\student_json.txt");
@@ -144,11 +134,11 @@ public class SystemDomain {
             ArrayList<Course> selectedCourses = setStudentCourses(selectedCoursesAr);
             ArrayList<Course> approvedCourses = setStudentCourses(approvedCoursesAr);
 
-            int year = transcript.getInt("year");
+            int term = transcript.getInt("term");
             double gpa = calculateGPA(passedCourses, failedCourses);
 
             Student crtStudent = new Student(name, lastname, new Id(id), new Password(password), findAdvisor(advisorID),
-                    new Transcript(gpa, year, passedCourses, failedCourses), courses);
+                    new Transcript(gpa, term, passedCourses, failedCourses), courses);
 
             crtStudent.setRequest(booleanString);
             crtStudent.setReadNotifications(new ArrayList<>(Arrays.asList(readNotification)));
@@ -179,6 +169,16 @@ public class SystemDomain {
         else{
             return gpa/totalCredit;
         }
+    }
+
+    private CourseType setCourseType(String courseTypeStr) {
+        return switch (courseTypeStr) {
+            case "mandatory" -> CourseType.MANDATORY;
+            case "technical" -> CourseType.TECHNICAL;
+            case "nontechnical" -> CourseType.NONTECHNICAL;
+            case "faculty" -> CourseType.FACULTY;
+            default -> null;
+        };
     }
 
     private double letterToGrade(Grade grade){
