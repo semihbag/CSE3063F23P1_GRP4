@@ -33,12 +33,18 @@ public class Password {
         
         if(newPassword.contains(".") || newPassword.contains("_")){
             return true;
+        }else{
+            System.out.println("The password must contain some special character such as '_' , '.'.");
+            return false;
         }
     }
 
     public boolean lenghtCond(String newPassword){
         if(newPassword.length() > 8 && newPassword.length() < 20){
             return true;
+        }else{
+            System.out.println("The password must be at least 8 and at most 20 characters.");
+            return false;
         }
     }
 
