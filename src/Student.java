@@ -26,10 +26,14 @@ public class Student extends Person {
     // Filters all courses in the curriculum according to the student's current
     // semester and prerequisite course passing information
     public void filterCourses() {
-        syllabus.fillSyllabus(selectedCourses);
+        if (approvedCourses.size() != 0){
+            syllabus.fillSyllabus(approvedCourses);
+        }else{
+            syllabus.fillSyllabus(selectedCourses);
+        }
+
         for (int i = 0; i < curriculum.size(); i++) {
             Course course = curriculum.get(i);
-
             if (!isSelectedCourse(course) && !isPassedCourse(course) && isPrerequisiteCoursesPassed(course) && isUnderQuota(course)
                     && (checkCourseType(course)  || isFailedCourse(course))){ //
                 selectableCourses.add(course);
@@ -103,9 +107,16 @@ public class Student extends Person {
     // and deletes it from the selectableCourses
     public boolean addSelectedCourse(int i) {
         Course course = selectableCourses.get(i - 1);
-
         if (this.getRequest().equals("false") && !syllabus.checkConflict(course)) {
-            if (selectedCourseCredit + course.getCredit() < 40 && checkCourseType(course)) { //
+            if (selectedCourseCredit + course.getCredit() < 40 ) {//
+                //NTE NT FACULTY
+
+                CourseType courseType = course.getCourseType();
+                if(courseType != CourseType.MANDATORY){
+                    if(exceedTerm(courseType)){
+                        return false;
+                    }
+                }
                 selectedCourses.add(course);
                 selectedCourseCredit += course.getCredit();
                 course.setQuota(course.getQuota() - 1);
@@ -113,24 +124,27 @@ public class Student extends Person {
                 syllabus.addCourseToSyllabus(course);
                 return true;
             }
+            System.out.println("You exceed selectable course credit limit!!");
+
         }
         return false;
     }
 
+
     public boolean checkCourseType(Course course){ // dönemini ve üsten alma olayı içeriyor (mandatoryde hem üst hem kendi dönemi olayı var))
         CourseType courseType = course.getCourseType();
-        if(courseType == CourseType.NONTECHNICAL){
-            if(!exceed(courseType, 2) && !exceedTerm(courseType)) { //eğitim hayatı boyunca max 2, her dönemde max 1 alır
+        if(courseType == CourseType.NONTECHNICAL && transcript.getYear() >= 2){
+            if(!exceed(courseType, 2) ) { //eğitim hayatı boyunca max 2, her dönemde max 1 alır
                 return true;
             }
         }
         else if(courseType == CourseType.TECHNICAL){
-            if((transcript.getYear() == 7 || transcript.getYear() == 8) && !exceedTerm(courseType)){
+            if((transcript.getYear() == 7 || transcript.getYear() == 8)){
                 return true;
             }
         }
         else if(courseType == CourseType.FACULTY){
-            if(transcript.getYear() == 7  && !exceedTerm(courseType)){
+            if(transcript.getYear() == 7 ){
                 return true;
             }
         }  else if(courseType == CourseType.MANDATORY){
@@ -174,10 +188,10 @@ public class Student extends Person {
         }
 
         if(ct == 0){
-            return true;
-        } else{
-            System.out.println("You cannot select NTE course more than 1 at one term");
             return false;
+        } else{
+            System.out.println("You cannot select " + courseType +  " course more than 1 at one term");
+            return true;
         }
     }
 
@@ -317,3 +331,5 @@ public class Student extends Person {
     }
 
 }
+
+
