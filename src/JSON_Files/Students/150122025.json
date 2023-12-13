@@ -6,6 +6,7 @@
     "transcript": {
         "failedcourses": [],
         "completedcourses": [],
+        "termPassed": [],
         "term": 1,
         "gradesFailed": [],
         "gradesPassed": []

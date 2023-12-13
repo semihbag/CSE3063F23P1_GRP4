@@ -24,6 +24,7 @@
             "HR1013"
         ],
         "term": 3,
+        "termPassed": [2],
         "gradesFailed": [],
         "gradesPassed": [
             "AA",

@@ -21,6 +21,8 @@
             "YDA1001"
         ],
         "term": 3,
+        "termPassed": [2],
+
         "gradesFailed": ["FF"],
         "gradesPassed": [
             "BA",

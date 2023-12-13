@@ -25,6 +25,8 @@
             "COMM2060"
         ],
         "term": 3,
+        "termPassed": [2],
+
         "gradesFailed": [
             "FF",
             "FF",

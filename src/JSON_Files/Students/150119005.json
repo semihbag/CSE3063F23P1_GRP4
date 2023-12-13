@@ -46,6 +46,7 @@
             "COM2202",
             "CAS2002"
         ],
+        "termPassed" : [2,4],
         "term": 7,
         "gradesFailed": [],
         "gradesPassed": [

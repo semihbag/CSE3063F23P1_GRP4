@@ -43,6 +43,7 @@
             "IE3235",
             "COM2202"
         ],
+        "termPassed" : [2],
         "term": 7,
         "gradesFailed": ["FF"],
         "gradesPassed": [

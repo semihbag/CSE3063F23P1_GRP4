@@ -46,6 +46,7 @@
             "COM2202"
         ],
         "term": 7,
+        "termPassed" : [2],
         "gradesFailed": [],
         "gradesPassed": [
             "AA",
