@@ -105,7 +105,7 @@ public class Student extends Person {
     // and deletes it from the selectableCourses
     public boolean addSelectedCourse(int i) {
         Course course = selectableCourses.get(i - 1);
-        if (this.getRequest().equals("false") && !getSyllabus().checkConflict(course)) {
+        if (this.getRequest().equals("false")) {
             if (selectedCourseCredit + course.getCredit() < 40 ) {//
                 //NTE NT FACULTY
 
@@ -115,12 +115,18 @@ public class Student extends Person {
                         return false;
                     }
                 }
-                selectedCourses.add(course);
-                selectedCourseCredit += course.getCredit();
-                course.setQuota(course.getQuota() - 1);
-                removeAllSessions(course);
-                getSyllabus().addCourseToSyllabus(course);
-                return true;
+                if(!getSyllabus().checkConflict(course)) {
+                    selectedCourses.add(course);
+                    selectedCourseCredit += course.getCredit();
+                    course.setQuota(course.getQuota() - 1);
+                    removeAllSessions(course);
+                    getSyllabus().addCourseToSyllabus(course);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+
             }
             System.out.println("You exceed selectable course credit limit!!");
 
@@ -152,10 +158,14 @@ public class Student extends Person {
                     return true;
                 }
                 return false;
-            } else if( (transcript.getTerm() >= 3 && course.getTerm() == transcript.getTerm() +2 && transcript.getGPA_100() > 3.0)  ||
-                    course.getTerm() == transcript.getTerm()){
+            }
+            else if(course.getTerm() == transcript.getTerm()) {
                 return true;
             }
+            else if((transcript.getGPA_100() >= 3.0 && transcript.getTerm() >= 3) && ((course.getCourseName().equals("Is Sagligi ve Guvenligi I") || course.getCourseName().equals("Is Sagligi ve Guvenligi II")) ||
+                    (course.getTerm() == transcript.getTerm() +2))) {
+                        return true;
+                    }
         }
         return false;
     }
