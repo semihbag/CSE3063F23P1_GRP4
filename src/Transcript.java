@@ -35,7 +35,7 @@ public class Transcript {
         return term;
     }
 
-    public void setYear(int term) {
+    public void setTerm(int term) {
         this.term = term;
     }
 
