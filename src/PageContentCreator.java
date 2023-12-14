@@ -76,7 +76,7 @@ public class PageContentCreator {
 			String fullName = student.get(i-1).getFirstName()+ " " + student.get(i-1).getLastName();
 			str += student.get(i-1).getStudentId().getId() + "         " +
 					fullName + blankFullName(fullName) + " " +
-					student.get(i-1).getTranscript().getYear()+"\n";
+					student.get(i-1).getTranscript().getTerm()+"\n";
 
 		}
 		str += "\nPress any key to return.\n";
@@ -230,11 +230,11 @@ public class PageContentCreator {
 				"Surname    : " + student.getLastName() + "\n\n";
 		ArrayList<GradeClass> allTranscriptCourses = student.getTranscript().getPassedCourses();
 		allTranscriptCourses.addAll(student.getTranscript().getFailedCourses());
-		for (int j = 1; j < student.getTranscript().getYear(); j++) {
+		for (int j = 1; j < student.getTranscript().getTerm(); j++) {
 			str += "SEMESTER " + (j) + "\n" ;
 			str += "CODE         NAME                                              CREDIT       GRADE\n";
 			for (GradeClass allTranscriptCourse : allTranscriptCourses) {
-				if (allTranscriptCourse.getCourse().getYear() == j) {
+				if (allTranscriptCourse.getCourse().getTerm() == j) {
 					Course course = allTranscriptCourse.getCourse();
 					str += course.getCourseId().getId() +
 							blankAfterStr(course.getCourseId().getId(), 13) +
