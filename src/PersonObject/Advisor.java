@@ -1,3 +1,6 @@
+package PersonObject;
+
+import CourseObject.*;
 import java.util.ArrayList;
 
 public class Advisor extends Lecturer {
@@ -10,7 +13,7 @@ public class Advisor extends Lecturer {
         this.selectStudent = null;
     }
 
-    // Find Students that send their requests to the Advisor
+    // Find Students that send their requests to the PersonObject.Advisor
     public void findAwaitingStudents() {
         int numberOfStudents = students.size();
         for (int index = 0 ; index < numberOfStudents ; index++) {
@@ -21,14 +24,14 @@ public class Advisor extends Lecturer {
         }
     }
 
-    // Find the correspondence index of Student Object
+    // Find the correspondence index of PersonObject.Student Object
     public void selectStudent(int index) {
         index = index - 1;
         Student currentStudent = getAwaitingStudents().get(index);
         this.setSelectStudent(currentStudent);
     }
 
-    // Approve request of selected Student
+    // Approve request of selected PersonObject.Student
     public void approve() {
         ArrayList<Course> selectCourses = this.selectStudent.getSelectedCourses();
         int numberOfCourses = selectCourses.size();
@@ -43,7 +46,7 @@ public class Advisor extends Lecturer {
         this.setSelectStudent(null);
     }
 
-    // Dissapprove Student request
+    // Dissapprove PersonObject.Student request
     public void disapprove() {
         ArrayList<Course> selectCourses = this.selectStudent.getSelectedCourses();
         int numberOfCourses = selectCourses.size();
@@ -59,7 +62,7 @@ public class Advisor extends Lecturer {
         this.setSelectStudent(null);
     }
 
-    // Send Informative Message to the Student
+    // Send Informative Message to the PersonObject.Student
     public void sendNotification(String message, String type) {
         
         String defaultMessage = "";

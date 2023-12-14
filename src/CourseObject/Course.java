@@ -1,3 +1,7 @@
+package CourseObject;
+
+import PersonObject.*;
+
 import java.util.ArrayList;
 
 public class Course {
@@ -13,7 +17,7 @@ public class Course {
 
 
 	public Course(Id courseId, String courseName, int quota, int term,
-				  Lecturer lecturer,ArrayList<CourseSchedule> courseSchedules, int credit, CourseType courseType) {
+				  Lecturer lecturer, ArrayList<CourseSchedule> courseSchedules, int credit, CourseType courseType) {
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.quota = quota;

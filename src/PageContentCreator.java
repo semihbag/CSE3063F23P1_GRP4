@@ -1,3 +1,12 @@
+import CourseObject.Course;
+import CourseObject.CourseSession;
+import CourseObject.GradeClass;
+import CourseObject.Syllabus;
+import PersonObject.Advisor;
+import PersonObject.Lecturer;
+import PersonObject.Person;
+import PersonObject.Student;
+
 import java.util.ArrayList;
 
 public class PageContentCreator {
@@ -6,8 +15,8 @@ public class PageContentCreator {
 		String str="\u001B[34;1m         MAIN MENU         \n\u001B[0m"+
 				"1) Profile\n" +
 				"2) Notifications\n"+
-				"3) Transcript\n"+
-				"4) My Weekly Syllabus\n"+
+				"3) CourseObject.Transcript\n"+
+				"4) My Weekly CourseObject.Syllabus\n"+
 				"5) All Courses\n"+
 				"6) Approved Courses\n"+
 				"7) Offered Courses\n"+
@@ -20,7 +29,7 @@ public class PageContentCreator {
 	public  String createMainMenuPageAdvisorContent() {
 		String str="\u001B[34;1m         MAIN MENU         \n\u001B[0m"+
 				"1) Profile\n" +
-				"2) Advised Student Information\n"+
+				"2) Advised PersonObject.Student Information\n"+
 				"3) Evaluate Requests\n"+
 				"4) Log out\n"+
 				"5) Exit\n";
@@ -31,7 +40,7 @@ public class PageContentCreator {
 		String str="\u001B[34;1m         MAIN MENU         \n\u001B[0m"+
 				"1) Profile\n" +
 				"2) Courses\n" +
-				"3) My Weekly Syllabus\n"+
+				"3) My Weekly CourseObject.Syllabus\n"+
 				"4) Log out\n"+
 				"5) Exit\n";
 		return str;
@@ -209,8 +218,8 @@ public class PageContentCreator {
 	public String createTranscriptPageContent(Student student) {
 		String str = "                               MARMARA UNIVERSITY\n" +
 				     "                                   TRANSCRIPT\n\n";
-		str += "Student Id : " + student.getStudentId().getId() +
-				blankAfterStr("Student Id: " + student.getStudentId().getId(), 30) +
+		str += "PersonObject.Student PersonObject.Id : " + student.getStudentId().getId() +
+				blankAfterStr("PersonObject.Student PersonObject.Id: " + student.getStudentId().getId(), 30) +
 				"Faculty    : Engineering Faculty\n" +
 				"Name       : " + student.getFirstName() +
 				blankAfterStr("      Name: " + student.getFirstName(), 30) +

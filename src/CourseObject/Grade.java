@@ -1,3 +1,5 @@
+package CourseObject;
+
 public enum Grade {
     AA, //4.0
     BA, //3.5

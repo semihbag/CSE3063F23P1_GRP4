@@ -1,3 +1,6 @@
+package Creator;
+
+import PersonObject.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,11 +10,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class AdvisorCreator {
+
+public class CreateAdvisor {
     private ArrayList<Advisor> advisors = new ArrayList<>();
     private String fileName;
 
-    public AdvisorCreator(String fileName,ArrayList<Lecturer> lecturers ) throws JSONException, IOException{
+    public CreateAdvisor(String fileName,ArrayList<Lecturer> lecturers ) throws JSONException, IOException{
         this.fileName = fileName;
         createAdvisors(lecturers);
     }

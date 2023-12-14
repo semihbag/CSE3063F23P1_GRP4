@@ -1,3 +1,5 @@
+package CourseObject;
+
 public enum Hour {
 
     H_08_30_09_20,

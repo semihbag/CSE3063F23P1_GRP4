@@ -1,3 +1,7 @@
+package Creator;
+
+import CourseObject.*;
+import PersonObject.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,11 +11,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class CourseCreator {
+public class CreateCourse {
     private ArrayList<Course> courses = new ArrayList<>();
     private String fileName;
 
-    public CourseCreator(String fileName, ArrayList<Lecturer> lecturers) throws JSONException, IOException {
+    public CreateCourse(String fileName, ArrayList<Lecturer> lecturers) throws JSONException, IOException {
         this.fileName = fileName;
         createCourses(lecturers);
     }

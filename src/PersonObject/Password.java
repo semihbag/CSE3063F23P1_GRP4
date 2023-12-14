@@ -1,3 +1,5 @@
+package PersonObject;
+
 public class Password {
     private String password;
 
