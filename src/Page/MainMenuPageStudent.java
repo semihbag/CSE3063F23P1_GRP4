@@ -17,7 +17,7 @@ public class MainMenuPageStudent extends Page{
 		while (true) {
 			switch (takeInput()) {
 			case "1":
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.PROFILE_PAGE_STUDENT, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.PROFILE_PAGE, null);
 			case "2":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_NOTIFICATIONS_PAGE, null);
 			case "3":

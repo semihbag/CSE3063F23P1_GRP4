@@ -3,12 +3,12 @@ package Page;
 import SystemMessage.FunctionType;
 import SystemMessage.SystemMessage;
 
-public class ProfilePageAdvisor extends Page{
+public class ProfilePage extends Page{
 	
-	public ProfilePageAdvisor(String content) {
+	public ProfilePage(String content) {
 		super(content);
-		setType(PageType.PROFILE_PAGE_ADVISOR);
-		setName("Profile Page Advisor");
+		setType(PageType.PROFILE_PAGE);
+		setName("Profile Page");
 	}
 	
 	@Override 

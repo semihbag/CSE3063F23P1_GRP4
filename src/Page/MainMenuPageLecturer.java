@@ -16,7 +16,7 @@ public class MainMenuPageLecturer extends Page{
 		while (true) {
 			switch (takeInput()) {
 			case "1":
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.PROFILE_PAGE_LECTURER, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.PROFILE_PAGE, null);
 			case "2":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_COURSES_PAGE, null);
 			case "3":

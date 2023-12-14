@@ -20,6 +20,6 @@ public class ChangePasswaordPage extends Page{
 		System.out.println("Enter your new password");
 		passwords[1] = takeInput();
 	
-		return new SystemMessage(FunctionType.CHANGE_PASSWORD, null, passwords);
+		return new SystemMessage(FunctionType.CHANGE_PASSWORD, PageType.PROFILE_PAGE, passwords);
 	}
 }

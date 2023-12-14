@@ -313,7 +313,7 @@ public class SystemDomain {
             MainMenuPageStudent mainStudent = new MainMenuPageStudent(pageContentCreator.createMainMenuPageStudentContent());
 			pages.add(mainStudent);
 
-			ProfilePageStudent profile = new ProfilePageStudent(pageContentCreator.createProfilePageStudentContent(student));
+			ProfilePage profile = new ProfilePage(pageContentCreator.createProfilePageContent(student));
 			pages.add(profile);
 			
 			ChangePasswaordPage cPassword = new ChangePasswaordPage(pageContentCreator.createChangePasswordPage());
@@ -346,7 +346,7 @@ public class SystemDomain {
             MainMenuPageAdvisor mainAdvisor = new MainMenuPageAdvisor(pageContentCreator.createMainMenuPageAdvisorContent());
 			pages.add(mainAdvisor);
 
-			ProfilePageAdvisor profile = new ProfilePageAdvisor(pageContentCreator.createProfilePageAdvisorContent(advisor));
+			ProfilePage profile = new ProfilePage(pageContentCreator.createProfilePageContent(advisor));
 			pages.add(profile);
 			
 			ChangePasswaordPage cPassword = new ChangePasswaordPage(pageContentCreator.createChangePasswordPage());
@@ -366,7 +366,7 @@ public class SystemDomain {
 			MainMenuPageLecturer mainLecturer = new MainMenuPageLecturer(pageContentCreator.createMainMenuPageLecturerContent());
 			pages.add(mainLecturer);
 			
-			ProfilePageLecturer profile = new ProfilePageLecturer(pageContentCreator.createProfilePageLecturerContent(lecturer));
+			ProfilePage profile = new ProfilePage(pageContentCreator.createProfilePageContent(lecturer));
 			pages.add(profile);
 			
 			ChangePasswaordPage cPassword = new ChangePasswaordPage(pageContentCreator.createChangePasswordPage());
