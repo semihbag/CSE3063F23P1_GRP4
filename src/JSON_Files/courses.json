@@ -858,8 +858,8 @@
     {
         "hour": [
             [
-                "8.30",
-                "9.30"
+                "13.00",
+                "14.00"
             ],
             ["8.30"]
         ],
@@ -874,7 +874,7 @@
         "credit": 6,
         "isSession": false,
         "day": [
-            "TUESDAY",
+            "WEDNESDAY",
             "MONDAY"
         ]
     },
@@ -1048,23 +1048,6 @@
     },
     {
         "hour": [[
-            "9.30",
-            "10.30"
-        ]],
-        "quota": 20,
-        "name": "Strategic Entrepreneurship",
-        "studentList": [],
-        "prerequisite": [],
-        "lecturer": "1408001",
-        "term": 2,
-        "id": "BUS1004",
-        "type": "nontechnical",
-        "credit": 3,
-        "isSession": false,
-        "day": ["THURSDAY"]
-    },
-    {
-        "hour": [[
             "17.00",
             "18.00"
         ]],
@@ -1082,37 +1065,20 @@
     },
     {
         "hour": [[
-            "17.00",
-            "18.00"
+            "8.30",
+            "9.30"
         ]],
         "quota": 20,
-        "name": "Communication Models and Techniques",
+        "name": "Human Performance and Nutrition",
         "studentList": [],
         "prerequisite": [],
-        "lecturer": "1408003",
+        "lecturer": "1408001",
         "term": 2,
-        "id": "COMM2060",
+        "id": "CAS2002",
         "type": "nontechnical",
         "credit": 3,
         "isSession": false,
-        "day": ["FRIDAY"]
-    },
-    {
-        "hour": [[
-            "15.00",
-            "16.00"
-        ]],
-        "quota": 20,
-        "name": "Brand Creation/Branding",
-        "studentList": [],
-        "prerequisite": [],
-        "lecturer": "1408004",
-        "term": 2,
-        "id": "MRK3084",
-        "type": "nontechnical",
-        "credit": 3,
-        "isSession": false,
-        "day": ["FRIDAY"]
+        "day": ["TUESDAY"]
     },
     {
         "hour": [[
@@ -1150,23 +1116,6 @@
     },
     {
         "hour": [[
-            "10.30",
-            "11.30"
-        ]],
-        "quota": 20,
-        "name": "Spanish for Beginners",
-        "studentList": [],
-        "prerequisite": [],
-        "lecturer": "1408003",
-        "term": 2,
-        "id": "YDIS1001",
-        "type": "nontechnical",
-        "credit": 3,
-        "isSession": false,
-        "day": ["THURSDAY"]
-    },
-    {
-        "hour": [[
             "9.30",
             "10.30"
         ]],
@@ -1184,20 +1133,71 @@
     },
     {
         "hour": [[
-            "8.30",
-            "9.30"
+            "9.30",
+            "10.30"
         ]],
         "quota": 20,
-        "name": "Human Performance and Nutrition",
+        "name": "Strategic Entrepreneurship",
         "studentList": [],
         "prerequisite": [],
         "lecturer": "1408001",
         "term": 2,
-        "id": "CAS2002",
+        "id": "BUS1004",
         "type": "nontechnical",
         "credit": 3,
         "isSession": false,
-        "day": ["TUESDAY"]
+        "day": ["THURSDAY"]
+    },
+    {
+        "hour": [[
+            "10.30",
+            "11.30"
+        ]],
+        "quota": 20,
+        "name": "Spanish for Beginners",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1408003",
+        "term": 2,
+        "id": "YDIS1001",
+        "type": "nontechnical",
+        "credit": 3,
+        "isSession": false,
+        "day": ["THURSDAY"]
+    },
+    {
+        "hour": [[
+            "17.00",
+            "18.00"
+        ]],
+        "quota": 20,
+        "name": "Communication Models and Techniques",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1408003",
+        "term": 2,
+        "id": "COMM2060",
+        "type": "nontechnical",
+        "credit": 3,
+        "isSession": false,
+        "day": ["FRIDAY"]
+    },
+    {
+        "hour": [[
+            "15.00",
+            "16.00"
+        ]],
+        "quota": 20,
+        "name": "Brand Creation/Branding",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1408004",
+        "term": 2,
+        "id": "MRK3084",
+        "type": "nontechnical",
+        "credit": 3,
+        "isSession": false,
+        "day": ["FRIDAY"]
     },
     {
         "hour": [
@@ -1211,7 +1211,7 @@
         "name": "Introduction to Image Processing",
         "studentList": [],
         "prerequisite": [],
-        "lecturer": "1501009",
+        "lecturer": "1501001",
         "term": 8,
         "id": "EE4062",
         "type": "faculty",
@@ -1257,7 +1257,7 @@
         "name": "Mechatronics",
         "studentList": [],
         "prerequisite": [],
-        "lecturer": "1401001",
+        "lecturer": "1401002",
         "term": 8,
         "id": "ME3022",
         "type": "faculty",
@@ -1280,7 +1280,7 @@
         "name": "Mathematical Modeling in Mechanical Engineering",
         "studentList": [],
         "prerequisite": [],
-        "lecturer": "1401001",
+        "lecturer": "1401003",
         "term": 8,
         "id": "ME3004",
         "type": "faculty",
@@ -1303,7 +1303,7 @@
         "name": "Control Systems",
         "studentList": [],
         "prerequisite": [],
-        "lecturer": "1401001",
+        "lecturer": "1401004",
         "term": 8,
         "id": "ME4022",
         "type": "faculty",

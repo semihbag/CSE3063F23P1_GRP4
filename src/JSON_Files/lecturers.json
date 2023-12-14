@@ -127,6 +127,24 @@
 			"password":"Mechanics.79"
 		},
 		{
+			"name":"Suleyman",
+			"surname":"Arar",
+			"lecturerId":"1401002",
+			"password":"Mechanics.78"
+		},
+		{
+			"name":"Hurrem",
+			"surname":"Bulur",
+			"lecturerId":"1401003",
+			"password":"Mechanics.79"
+		},
+		{
+			"name":"Mahide",
+			"surname":"Saklar",
+			"lecturerId":"1401004",
+			"password":"Mechanics.80"
+		},
+		{
 			"name":"Muhammed Nur",
 			"surname":"Avcil",
 			"lecturerId":"1501101",
