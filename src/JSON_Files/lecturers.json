@@ -125,7 +125,24 @@
 			"surname":"Nazim",
 			"lecturerId":"1401001",
 			"password":"Mechanics.79"
+		},
+		{
+			"name":"Muhammed Nur",
+			"surname":"Avcil",
+			"lecturerId":"1501101",
+			"password":"Muhammed.123"
+		},
+		{
+			"name":"Serap",
+			"surname":"Korkmaz",
+			"lecturerId":"1501102",
+			"password":"Serap.13"
+		},
+		{
+			"name":"Zuhal",
+			"surname":"Ozturk",
+			"lecturerId":"1501103",
+			"password":"Serap.13"
 		}
-
 	]
 }

@@ -197,7 +197,7 @@ public class PageContentCreator {
 			str += returnHour(i) + "\t   ";
 			for (int j = 0; j < tTable[i].length; j++) {
 				str += tTable[i][j] + blankAfterStr(tTable[i][j], 14);
-			} str += "\n";
+			} str += "\nPress any key to return.\n";
 		} return str;
 	}
 
