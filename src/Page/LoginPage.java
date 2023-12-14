@@ -27,7 +27,7 @@ public class LoginPage extends Page{
 		userInfo.setUsername(takeInput());
 		
 		// take password
-		System.out.println("PersonObject.Password:");
+		System.out.println("Password:");
 		userInfo.setPassword(takeInput());
 
 		return new SystemMessage(FunctionType.LOGIN, null,userInfo);

@@ -8,7 +8,7 @@ public class SyllabusPage extends Page{
 	public SyllabusPage(String content) {
 		super(content);
 		setType(PageType.SYLLABUS_PAGE);
-		setName("CourseObject.Syllabus Page PersonObject.Student");
+		setName("Syllabus Page Student");
 	}
 
 	@Override

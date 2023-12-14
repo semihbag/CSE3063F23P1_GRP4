@@ -8,7 +8,7 @@ public class MainMenuPageLecturer extends Page{
 	public MainMenuPageLecturer(String content) {
 		super(content);
 		setType(PageType.MAIN_MENU_PAGE);
-		setName("Main Menu Page PersonObject.Lecturer");
+		setName("Main Menu Page Lecturer");
 	}
 	
 	public SystemMessage runPage() {
