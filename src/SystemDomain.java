@@ -124,12 +124,13 @@ public class SystemDomain {
             String[] completedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("completedcourses"));
             String[] gradesPassed = jsonArrToStrArr(transcript.getJSONArray("gradesPassed"));
             String[] gradesFailed = jsonArrToStrArr(transcript.getJSONArray("gradesFailed"));
+            int[] termPassed = jsonArrToIntArr(transcript.getJSONArray("termPassed"));
 
             String[] selectedCoursesAr = jsonArrToStrArr(registration.getJSONArray("selectedcourses"));
             String[] approvedCoursesAr = jsonArrToStrArr(registration.getJSONArray("approvedcourses"));
 
-            ArrayList<GradeClass> failedCourses = setTranscriptCourses(failedCoursesAr, gradesFailed);
-            ArrayList<GradeClass> passedCourses = setTranscriptCourses(completedCoursesAr, gradesPassed);
+            ArrayList<GradeClass> failedCourses = setTranscriptCourses(failedCoursesAr, gradesFailed, termPassed);
+            ArrayList<GradeClass> passedCourses = setTranscriptCourses(completedCoursesAr, gradesPassed, termPassed);
 
             ArrayList<Course> selectedCourses = setStudentCourses(selectedCoursesAr);
             ArrayList<Course> approvedCourses = setStudentCourses(approvedCoursesAr);
@@ -195,7 +196,7 @@ public class SystemDomain {
         };
     }
 
-    private ArrayList<GradeClass> setTranscriptCourses(String[] transcriptCourses, String[] grades) {
+    private ArrayList<GradeClass> setTranscriptCourses(String[] transcriptCourses, String[] grades, int[] termPassed) {
         ArrayList<GradeClass> transcriptCourseList = new ArrayList<>();
         for (int i = 0; i < transcriptCourses.length; i++) {
             for (Course course : courses) {
@@ -255,6 +256,14 @@ public class SystemDomain {
             strings[i]=jsonArray.getString(i);
         }
         return strings;
+    }
+
+    private int[] jsonArrToIntArr(JSONArray jsonArray) throws JSONException {
+        int[] ints = new int[jsonArray.length()];
+        for(int i=0; i<jsonArray.length();i++){
+            ints[i]=jsonArray.getInt(i);
+        }
+        return ints;
     }
 
     private void assignStudentsToAdvisor() {

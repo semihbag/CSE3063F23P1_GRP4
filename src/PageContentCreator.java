@@ -71,7 +71,7 @@ public class PageContentCreator {
 	}
 
 	public   String createMyStudentsPageContent (ArrayList<Student> student) {
-		String str="STUDENT ID        NAME SURNAME                  YEAR\n";
+		String str="STUDENT ID        NAME SURNAME                  TERM\n";
 		for (int i=1; i<=student.size() ; i++ ) {
 			String fullName = student.get(i-1).getFirstName()+ " " + student.get(i-1).getLastName();
 			str += student.get(i-1).getStudentId().getId() + "         " +
