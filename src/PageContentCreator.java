@@ -1,33 +1,39 @@
-import PersonObject.*;
-import CourseObject.*;
+import CourseObject.Course;
+import CourseObject.CourseSession;
+import CourseObject.GradeClass;
+import CourseObject.Syllabus;
+import PersonObject.Advisor;
+import PersonObject.Lecturer;
+import PersonObject.Person;
+import PersonObject.Student;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class PageContentCreator {
 
-
 	public  String createMainMenuPageStudentContent(int numberOfUnreadNotifications) {
 		String str = "";
 		if (numberOfUnreadNotifications != 0) {
-            str += "\u001B[32mYou have " + numberOfUnreadNotifications + " unread messages\n\u001B[0m";
-        }
-		str+="\u001B[34;1m         MAIN MENU         \n\u001B[0m"+
-			"1) Profile\n" +
-			"2) Notifications\n"+
-			"3) Transcript\n"+
-			"4) My Weekly Syllabus\n"+
-			"5) All Courses\n"+
-			"6) Approved Courses\n"+
-			"7) Offered Courses\n"+
-			"8) Selected Courses\n"+
-			"9) Log out\n"+
-			"10) Exit";
+			str += "\u001B[32mYou have " + numberOfUnreadNotifications + " unread messages\n\u001B[0m";
+		}
+		str+="\u001B[1m         MAIN MENU         \n\u001B[0m"+
+				"1) Profile\n" +
+				"2) Notifications\n"+
+				"3) Transcript\n"+
+				"4) My Weekly Syllabus\n"+
+				"5) All Courses\n"+
+				"6) Approved Courses\n"+
+				"7) Offered Courses\n"+
+				"8) Selected Courses\n"+
+				"9) Log out\n"+
+				"10) Exit";
 
 		return str;
 	}
 
 	public  String createMainMenuPageAdvisorContent() {
-		String str="\u001B[34;1m         MAIN MENU         \n\u001B[0m"+
+		String str="\u001B[1m         MAIN MENU         \u001B[0m\n"+
 				"1) Profile\n" +
 				"2) Advised Student Information\n"+
 				"3) Evaluate Requests\n"+
@@ -37,10 +43,10 @@ public class PageContentCreator {
 	}
 
 	public String createMainMenuPageLecturerContent() {
-		String str="\u001B[34;1m         MAIN MENU         \n\u001B[0m"+
+		String str="\u001B[1m         MAIN MENU         \u001B[0m\n"+
 				"1) Profile\n" +
 				"2) Courses\n" +
-				"3) My Weekly Syllabus\n"+
+				"3) My Weekly CourseObject.Syllabus\n"+
 				"4) Log out\n"+
 				"5) Exit\n";
 		return str;
@@ -65,7 +71,7 @@ public class PageContentCreator {
 		String str="";
 		if (student.size()==0) {
 			str = "No request to show.\n"
-			+ "Quit: Q";
+					+ "Quit: Q";
 		}
 		else {
 			for(int a=0; a<student.size(); a++) {
@@ -78,7 +84,7 @@ public class PageContentCreator {
 	}
 
 	public   String createMyStudentsPageContent (ArrayList<Student> student) {
-		String str="STUDENT ID        NAME SURNAME                  TERM\n";
+		String str="\u001B[1mSTUDENT ID        NAME SURNAME                  TERM\n\u001B[0m";
 		for (int i=1; i<=student.size() ; i++ ) {
 			String fullName = student.get(i-1).getFirstName()+ " " + student.get(i-1).getLastName();
 			str += student.get(i-1).getStudentId().getId() + "         " +
@@ -97,7 +103,7 @@ public class PageContentCreator {
 		}
 		else {
 			str=courseListForContent(courses)+"\n"
-				+"\nTo select a course, press the number of the courses offered.\n\n"
+					+"\nTo select a course, press the number of the courses offered.\n\n"
 					+ "Q: Quit";
 		}
 		return str;
@@ -133,37 +139,33 @@ public class PageContentCreator {
 	public String createProfilePageContent(Person user) {
 		String content = "";
 		if (user instanceof Student student) {
-			content += "--STUDENT " + student.getStudentId().getId() + "--\n";
+			content += "\u001B[1m  STUDENT " + student.getStudentId().getId() + "\n\u001B[0m";
 		}
 		else if (user instanceof Advisor advisor) {
-			content += "--ADVISOR " + advisor.getLecturerId().getId() + "--\n";
+			content += "\u001B[1m  ADVISOR " + advisor.getLecturerId().getId() + "\n\u001B[0m";
 		}
 		else if (user instanceof Lecturer lecturer) {
-			content += "--LECTURER " + lecturer.getLecturerId().getId() + "--\n";
+			content += "\u001B[1m  LECTURER " + lecturer.getLecturerId().getId() + "\n\u001B[0m";
 		}
-		
+
 		content +=  "  Name        " + user.getFirstName() + "\n" +
-					"  Surname     " + user.getLastName() + "\n\n" +
-					"C: Change password\n" +
-					"Q: Quit\n";
-		
+				"  Surname     " + user.getLastName() + "\n\n" +
+				"C: Change password\n" +
+				"Q: Quit\n";
+
 		return content;
 	}
-	
-	// burada şifrenin değişmesi için gerekli kuralların bastırılması lazım
-	// anlık şiferni gir yeni şifre gir mesajları basmaya gerek yok
-	// onlar zaten sayfa içinde basıyor sıralı input aldığı için
-	// belli başlı kurallar vardı
-	// büyük harf rakam vb vb
-	// zeynep belirlemişti kuralları 
-	public String createChangePasswordPage() {
 
-		return "bu şu anlık durakoysın";
+	public String createChangePasswordPage() {
+		return "• New password must be at least 8 character, at most 20 characters long.\n"+
+				"• New password must contain an upper and a lower case letter.\n"+
+				"• New password must contain at least one digit.\n"+
+				"• New password must contain a special character: '.' (dot), '_'(underscore)\n";
 	}
 
 	//Information of given courses
 	public String createMyCoursesPageContent(Lecturer lecturer) {
-		String str = "\nMy Courses\n";
+		String str = "\u001B[1m\nCOURSES\n\u001B[0m";
 		for (Course course : lecturer.getGivenCourses()) {
 			str += course.getCourseId().getId() + " - " +
 					course.getCourseName() + "\n";
@@ -175,7 +177,7 @@ public class PageContentCreator {
 
 	//Information of selected course
 	public String createSelectedMyCoursePage(Course course) {
-		String str = "\nAll Students:\n";
+		String str = "\u001B[1m\nAll Students:\n\u001B[0m";
 		for (Student student : course.getStudentList()) {
 			str += student.getStudentId().getId() + "  " +
 					student.getFirstName() + blankAfterStr(student.getFirstName(), 20) +
@@ -187,12 +189,12 @@ public class PageContentCreator {
 	}
 
 	public String createSyllabusPageContent(Syllabus syllabus) {
-		String str = "\u001B[34;1m" + "                                    TIME TABLE\n\n" + "\u001B[0m" +
-				"\u001B[33;1m" + "                   MONDAY        TUESDAY       WEDNESDAY     " +
+		String str = "\u001B[1m" + "                                    TIME TABLE\n\n" + "\u001B[0m" +
+				"\u001B[1m" + "                   MONDAY        TUESDAY       WEDNESDAY     " +
 				"THURSDAY      FRIDAY\n" + "\u001B[0m";
 		String[][] tTable = courseIds(syllabus.getSyllabus());
 		for (int i = 0; i < tTable.length; i++) {
-			str += "\u001B[33;1m" + returnHour(i) + "\u001B[0m" + "      " ;
+			str += "\u001B[1m" + returnHour(i) + "\u001B[0m" + "      " ;
 			for (int j = 0; j < tTable[i].length; j++) {
 				str += tTable[i][j] + blankAfterStr(tTable[i][j], 14) ;
 			} str += "\n";
@@ -201,7 +203,7 @@ public class PageContentCreator {
 	}
 
 	public String createMyNotificationsPageContent(ArrayList<String> unreadNotifications, ArrayList<String> readNotifications) {
-		String str = "";
+		String str = "\u001B[1mNOTIFICATIONS\n\u001B[0m";
 		for (String unreadNotification : unreadNotifications) {
 			str += "\u001B[33;1m" + unreadNotification + "\n" + "\u001B[0m";
 		}
@@ -216,20 +218,24 @@ public class PageContentCreator {
 	}
 
 	public String createTranscriptPageContent(Student student) {
-		String str = "                               MARMARA UNIVERSITY\n" +
-				     "                                   TRANSCRIPT\n\n";
+		String str = "\u001B[1m                               MARMARA UNIVERSITY\n\u001B[0m" +
+				"\u001B[1m                                   TRANSCRIPT\n\n\u001B[0m";
+		DecimalFormat dcFormat = new DecimalFormat("#.##");
 		str += "Student Id : " + student.getStudentId().getId() +
-				blankAfterStr("Student Id: " + student.getStudentId().getId(), 30) +
+				blankAfterStr("Student Id : " + student.getStudentId().getId(), 45) +
 				"Faculty    : Engineering Faculty\n" +
 				"Name       : " + student.getFirstName() +
-				blankAfterStr("      Name: " + student.getFirstName(), 30) +
+				blankAfterStr("Name       : " + student.getFirstName(), 45) +
 				"Department : Computer Engineering\n" +
-				"Surname    : " + student.getLastName() + "\n\n";
+				"Surname    : " + student.getLastName() +
+				blankAfterStr("Surname    : " + student.getLastName(), 45) +
+				"GPA        : " + dcFormat.format(student.getTranscript().getGPA_100())
+				+"\n\n";
 		ArrayList<GradeClass> allTranscriptCourses = student.getTranscript().getPassedCourses();
 		allTranscriptCourses.addAll(student.getTranscript().getFailedCourses());
 		for (int j = 1; j < student.getTranscript().getTerm(); j++) {
-			str += "\u001B[34;1m" + "SEMESTER " + (j) + "\n" +"\u001B[0m";
-			str += "\u001B[33;1mCODE         NAME                                              CREDIT | ACTS       GRADE\n\u001B[0m";
+			str += "\u001B[1m" + "SEMESTER " + (j) + "\n" +"\u001B[0m";
+			str += "\u001B[1mCODE         NAME                                              CREDIT | ACTS       GRADE\n\u001B[0m";
 			for (GradeClass allTranscriptCourse : allTranscriptCourses) {
 				if (allTranscriptCourse.getTerm() == j) {
 					Course course = allTranscriptCourse.getCourse();
@@ -246,13 +252,13 @@ public class PageContentCreator {
 		str += "Press any key to return.\n";
 		return str;
 	}
-	
+
 	private String[][] courseIds(Course[][] courseTable) {
 		String[][] courseIds = new String[courseTable.length][courseTable[0].length];
 		for (int i = 0; i < courseTable.length; i++) {
 			for (int j = 0; j < courseTable[i].length; j++) {
 				if (courseTable[i][j] == null) {
-					courseIds[i][j] = "";
+					courseIds[i][j] = "   -";
 				}
 				else if (courseTable[i][j] instanceof CourseSession) {
 					courseIds[i][j] = courseTable[i][j].getCourseId().getId() + "." +
@@ -270,21 +276,21 @@ public class PageContentCreator {
 			str="No course to show.\n";
 		}
 		else {
-			str = "     CODE         COURSE                                             LECTURER\n";
+			str = "\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
 			for (int i=1; i<=courses.size() ; i++ ) {
 				if(courses.get(i - 1) instanceof CourseSession session) {
 					str +=  i + blankAfterI(i) +
-						courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId() +
-						blankAfterStr(courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId(), 13);
+							courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId() +
+							blankAfterStr(courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId(), 13);
 				}
 				else {
 					str +=  i + blankAfterI(i) +
-						courses.get(i-1).getCourseId().getId() +
-						blankAfterStr(courses.get(i-1).getCourseId().getId(), 13);
+							courses.get(i-1).getCourseId().getId() +
+							blankAfterStr(courses.get(i-1).getCourseId().getId(), 13);
 				}
 				str += courses.get(i-1).getCourseName() + blankAfterStr(courses.get(i-1).getCourseName(), 50) + " " +
-					courses.get(i-1).getLecturer().getFirstName() + " "+
-					courses.get(i-1).getLecturer().getLastName() + "\n";
+						courses.get(i-1).getLecturer().getFirstName() + " "+
+						courses.get(i-1).getLecturer().getLastName() + "\n";
 			}
 		}
 		return str;
