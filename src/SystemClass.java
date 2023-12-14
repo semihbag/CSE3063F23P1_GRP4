@@ -150,7 +150,6 @@ public class SystemClass {
             registration.put("approvedcourses", transcriptCourses(approved));
             jsonStudent.put("password",domain.getStudents().get(i).getPassword().getPassword());
             jsonStudent.put("request", domain.getStudents().get(i).getRequest());
-            jsonStudent.put("password", domain.getStudents().get(i).getPassword());
             jsonStudent.put("readNotification", domain.getStudents().get(i).getReadNotifications().toArray(new String[0]));
             jsonStudent.put("unreadNotification", domain.getStudents().get(i).getUnreadNotifications().toArray(new String[0]));
             Files.write(path, jsonStudent.toString(4).getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
