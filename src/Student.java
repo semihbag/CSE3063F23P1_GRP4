@@ -148,7 +148,7 @@ public class Student extends Person {
             }
         }
         else if(courseType == CourseType.FACULTY){
-            if(transcript.getTerm() == 7 ){
+            if((transcript.getTerm() == 7  || transcript.getTerm() == 8) && !exceed(courseType, 1)){
                 return true;
             }
         }  else if(courseType == CourseType.MANDATORY){
