@@ -15,11 +15,6 @@ public class SystemMessage {
 	}
 
 
-	
-	
-	
-	////////////////////
-
 	public FunctionType getFunctionType() {
 		return functionType;
 	}

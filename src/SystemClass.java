@@ -71,7 +71,7 @@ public class SystemClass {
                 }
             }
         } if (!userFound) {
-        	System.out.println("\u001B[33;1mUsername/PersonObject.Password incorrect.\n\u001B[0m");
+        	System.out.println("\u001B[33;1mUsername/Password incorrect.\n\u001B[0m");
         }
     }
 
