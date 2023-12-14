@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Doga_123",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": [
+        "failedCourses": [],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -92,8 +92,8 @@
     "unreadNotification": [],
     "name": "Doga",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150119009",
     "type": "student",

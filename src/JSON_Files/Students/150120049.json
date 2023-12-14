@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Aksa_123",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": [
+        "failedCourses": [],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -70,8 +70,8 @@
     "unreadNotification": [],
     "name": "Aksanur",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150120049",
     "type": "student",

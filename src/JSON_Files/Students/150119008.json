@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Kivilcim_123",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": [
+        "failedCourses": [],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -92,8 +92,8 @@
     "unreadNotification": [],
     "name": "Kivilcim",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150119008",
     "type": "student",

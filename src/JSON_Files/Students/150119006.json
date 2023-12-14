@@ -4,11 +4,11 @@
     "readNotification": [],
     "password": "Serhan_12345",
     "transcript": {
-        "failedcourses": [
+        "failedCourses": [
             "STAT2253",
             "CSE2138"
         ],
-        "completedcourses": [
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -90,8 +90,8 @@
     "unreadNotification": [],
     "name": "Serhan",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150119006",
     "type": "student",

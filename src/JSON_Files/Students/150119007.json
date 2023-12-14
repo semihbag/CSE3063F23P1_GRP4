@@ -4,12 +4,12 @@
     "readNotification": [],
     "password": "Taylan_123",
     "transcript": {
-        "failedcourses": [
+        "failedCourses": [
             "CSE2225",
             "CSE2138",
             "MATH2055"
         ],
-        "completedcourses": [
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -84,8 +84,8 @@
     "unreadNotification": [],
     "name": "Taylan",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150119007",
     "type": "student",

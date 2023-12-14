@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Mutlu66..",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": [
+        "failedCourses": [],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -48,8 +48,8 @@
     "unreadNotification": [],
     "name": "Umut",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150121009",
     "type": "student",

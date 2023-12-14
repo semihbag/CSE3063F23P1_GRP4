@@ -4,11 +4,11 @@
     "readNotification": [],
     "password": "Mirel123.",
     "transcript": {
-        "failedcourses": [
+        "failedCourses": [
             "CSE1242",
             "MATH2256"
         ],
-        "completedcourses": [
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -51,8 +51,8 @@
     "unreadNotification": [],
     "name": "Mirel",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150121030",
     "type": "student",

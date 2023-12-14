@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Nihal.123",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": [],
+        "failedCourses": [],
+        "passedCourses": [],
         "term": 1,
         "termPassed": [],
         "gradesFailed": [],
@@ -14,8 +14,8 @@
     "unreadNotification": [],
     "name": "Nihal",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150122004",
     "type": "student",

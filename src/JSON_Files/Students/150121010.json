@@ -4,12 +4,12 @@
     "readNotification": [],
     "password": "Saliha45.",
     "transcript": {
-        "failedcourses": [
+        "failedCourses": [
             "MATH1001",
             "MATH1002",
             "MATH2256"
         ],
-        "completedcourses": [
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -51,8 +51,8 @@
     "unreadNotification": [],
     "name": "Saliha",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150121010",
     "type": "student",

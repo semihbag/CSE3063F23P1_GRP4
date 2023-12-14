@@ -4,11 +4,11 @@
     "readNotification": [],
     "password": "Merve_12345",
     "transcript": {
-        "failedcourses": [
+        "failedCourses": [
             "CSE3048",
             "CSE3038"
         ],
-        "completedcourses": [
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -94,8 +94,8 @@
     "unreadNotification": [],
     "name": "Merve",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150119002",
     "type": "student",

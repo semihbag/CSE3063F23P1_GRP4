@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Elife_123",
     "transcript": {
-        "failedcourses": ["CSE2225"],
-        "completedcourses": [
+        "failedCourses": ["CSE2225"],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -66,8 +66,8 @@
     "unreadNotification": [],
     "name": "Elife",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150120054",
     "type": "student",

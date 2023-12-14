@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Edip_12345",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": [
+        "failedCourses": [],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -94,8 +94,8 @@
     "unreadNotification": [],
     "name": "Edip",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150119005",
     "type": "student",

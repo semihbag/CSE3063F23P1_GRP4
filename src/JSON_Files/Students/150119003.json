@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Arzu_12345",
     "transcript": {
-        "failedcourses": ["EE2031"],
-        "completedcourses": [
+        "failedCourses": ["EE2031"],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -88,8 +88,8 @@
     "unreadNotification": [],
     "name": "Arzu",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150119003",
     "type": "student",

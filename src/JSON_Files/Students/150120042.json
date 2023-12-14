@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Nida_12345",
     "transcript": {
-        "failedcourses": ["EE2031"],
-        "completedcourses": [
+        "failedCourses": ["EE2031"],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -66,8 +66,8 @@
     "unreadNotification": [],
     "name": "Nidanur",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150120042",
     "type": "student",

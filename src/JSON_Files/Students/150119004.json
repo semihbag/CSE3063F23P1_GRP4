@@ -5,8 +5,8 @@
     "readNotification": [],
     "password": "Pelin_12345",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses":
+        "failedCourses": [],
+        "passedCourses":
             ["ATA121", "MBG1201", "CSE1200", "CSE1241",
             "MATH1001", "PHYS1101", "PHYS1103", "TRD121",
             "ATA122", "CSE1242", "MATH1002","YDIS1001",
@@ -36,8 +36,8 @@
     },
     "name": "Pelin",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150119004",
     "type": "student",

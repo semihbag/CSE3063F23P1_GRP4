@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Eren_123",
     "transcript": {
-        "failedcourses": ["CSE2138"],
-        "completedcourses": [
+        "failedCourses": ["CSE2138"],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -68,8 +68,8 @@
     "unreadNotification": [],
     "name": "Eren",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150120008",
     "type": "student",

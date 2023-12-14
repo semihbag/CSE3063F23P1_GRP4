@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Duru_12345",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": [
+        "failedCourses": [],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -72,8 +72,8 @@
     "unreadNotification": [],
     "name": "Duru",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150120075",
     "type": "student",

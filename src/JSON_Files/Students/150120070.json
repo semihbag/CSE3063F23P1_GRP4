@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Semih_123",
     "transcript": {
-        "failedcourses": ["CSE2260"],
-        "completedcourses": [
+        "failedCourses": ["CSE2260"],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -69,8 +69,8 @@
     "unreadNotification": [],
     "name": "Semih",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150120070",
     "type": "student",

@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Zeynep_123",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": [
+        "failedCourses": [],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -68,8 +68,8 @@
     "unreadNotification": [],
     "name": "Zeynep",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150120066",
     "type": "student",

@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Engin123.",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": [
+        "failedCourses": [],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -49,8 +49,8 @@
     "unreadNotification": [],
     "name": "Engin",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150121057",
     "type": "student",

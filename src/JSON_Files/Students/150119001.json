@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Oya_12345",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": [
+        "failedCourses": [],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -92,8 +92,8 @@
     "unreadNotification": [],
     "name": "Oya",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150119001",
     "type": "student",

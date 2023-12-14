@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Nisa123._",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": [],
+        "failedCourses": [],
+        "passedCourses": [],
         "termPassed": [],
         "term": 1,
         "gradesFailed": [],
@@ -14,8 +14,8 @@
     "unreadNotification": [],
     "name": "Nisa",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150122025",
     "type": "student",

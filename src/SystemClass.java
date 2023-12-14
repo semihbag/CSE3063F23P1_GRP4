@@ -146,8 +146,8 @@ public class SystemClass {
             JSONObject registration = jsonStudent.getJSONObject("registration");
             ArrayList<Course> selected = domain.getStudents().get(i).getSelectedCourses();
             ArrayList<Course> approved = domain.getStudents().get(i).getApprovedCourses();
-            registration.put("selectedcourses",transcriptCourses(selected));
-            registration.put("approvedcourses", transcriptCourses(approved));
+            registration.put("selectedCourses",transcriptCourses(selected));
+            registration.put("approvedCourses", transcriptCourses(approved));
             jsonStudent.put("password",domain.getStudents().get(i).getPassword().getPassword());
             jsonStudent.put("request", domain.getStudents().get(i).getRequest());
             jsonStudent.put("readNotification", domain.getStudents().get(i).getReadNotifications().toArray(new String[0]));

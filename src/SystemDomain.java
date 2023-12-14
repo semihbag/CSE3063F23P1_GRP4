@@ -120,14 +120,14 @@ public class SystemDomain {
             String[] unreadNotification = jsonArrToStrArr(jsonStudent.getJSONArray("unreadNotification"));
             String password = jsonStudent.getString("password");
 
-            String[] failedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("failedcourses"));
-            String[] completedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("completedcourses"));
+            String[] failedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("failedCourses"));
+            String[] completedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("passedCourses"));
             String[] gradesPassed = jsonArrToStrArr(transcript.getJSONArray("gradesPassed"));
             String[] gradesFailed = jsonArrToStrArr(transcript.getJSONArray("gradesFailed"));
             int[] termPassed = jsonArrToIntArr(transcript.getJSONArray("termPassed"));
 
-            String[] selectedCoursesAr = jsonArrToStrArr(registration.getJSONArray("selectedcourses"));
-            String[] approvedCoursesAr = jsonArrToStrArr(registration.getJSONArray("approvedcourses"));
+            String[] selectedCoursesAr = jsonArrToStrArr(registration.getJSONArray("selectedCourses"));
+            String[] approvedCoursesAr = jsonArrToStrArr(registration.getJSONArray("approvedCourses"));
 
             ArrayList<GradeClass> failedCourses = setTranscriptCourses(failedCoursesAr, gradesFailed, termPassed);
             ArrayList<GradeClass> passedCourses = setTranscriptCourses(completedCoursesAr, gradesPassed, termPassed);

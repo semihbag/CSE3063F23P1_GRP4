@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Mahmut256.",
     "transcript": {
-        "failedcourses": [],
-        "completedcourses": [],
+        "failedCourses": [],
+        "passedCourses": [],
         "termPassed": [],
         "term": 1,
         "gradesFailed": [],
@@ -14,8 +14,8 @@
     "unreadNotification": [],
     "name": "Mahmut",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150122045",
     "type": "student",

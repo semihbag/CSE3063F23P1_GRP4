@@ -4,8 +4,8 @@
     "readNotification": [],
     "password": "Handemsi1.",
     "transcript": {
-        "failedcourses": ["PHYS1101"],
-        "completedcourses": [
+        "failedCourses": ["PHYS1101"],
+        "passedCourses": [
             "ATA121",
             "MBG1201",
             "CSE1200",
@@ -43,8 +43,8 @@
     "unreadNotification": [],
     "name": "Hande",
     "registration": {
-        "selectedcourses": [],
-        "approvedcourses": []
+        "selectedCourses": [],
+        "approvedCourses": []
     },
     "id": "150121044",
     "type": "student",
