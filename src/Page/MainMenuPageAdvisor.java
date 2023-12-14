@@ -7,7 +7,7 @@ public class MainMenuPageAdvisor extends Page {
 	
 	public MainMenuPageAdvisor(String content) {
 		super(content);
-		setType(PageType.MAIN_MENU_PAGE_ADVISOR);
+		setType(PageType.MAIN_MENU_PAGE);
 		setName("Main Menu Page Advisor");
 	}
 	

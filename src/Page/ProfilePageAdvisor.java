@@ -21,7 +21,7 @@ public class ProfilePageAdvisor extends Page{
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.CHANGE_PASSWORD_PAGE, null);
 			}
 			else if (input.equalsIgnoreCase("q")) {
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_ADVISOR, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
 			}
 			else {
 				System.out.println("Wrong Input");

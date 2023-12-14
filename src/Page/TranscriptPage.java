@@ -15,6 +15,6 @@ public class TranscriptPage extends Page {
 	public SystemMessage runPage() {
 		showContent();
 		takeInput();
-		return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
+		return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
 	}
 }
