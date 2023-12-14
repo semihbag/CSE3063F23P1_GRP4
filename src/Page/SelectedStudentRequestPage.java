@@ -8,7 +8,7 @@ public class SelectedStudentRequestPage extends Page{
 	public SelectedStudentRequestPage(String content) {
 		super(content);
 		setType(PageType.SELECTED_STUDENT_REQUEST_PAGE);
-		setName("Selected PersonObject.Student Request Page");
+		setName("Selected Student Request Page");
 	}
 
 	@Override

@@ -8,7 +8,7 @@ public class MainMenuPageStudent extends Page{
 	public MainMenuPageStudent(String content) {
 		super(content);
 		setType(PageType.MAIN_MENU_PAGE);
-		setName("Main Menu Page PersonObject.Student");
+		setName("Main Menu Page Student");
 	}
 
 	@Override

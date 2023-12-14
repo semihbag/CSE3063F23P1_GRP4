@@ -8,7 +8,7 @@ public class SelectedMyCoursePage extends Page{
 	public SelectedMyCoursePage(String content) {
 		super(content);
 		setType(PageType.SELECTED_MY_COURSE_PAGE);
-		setName("Selected My CourseObject.Course Page");
+		setName("Selected My Course Page");
 	}
 	
 	@Override
