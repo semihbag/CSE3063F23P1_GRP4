@@ -92,6 +92,8 @@ public class SystemClass {
     public void exit() throws JSONException, IOException {
         updateStudentJSON();
         updateCourseJSON();
+        updateAdvisorJSON();
+        updateLecturerJSON();
         System.exit(0);
     }
 
@@ -109,6 +111,30 @@ public class SystemClass {
         Files.write(path,jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
     }
 
+    public void updateLecturerJSON() throws JSONException, IOException{
+        Path path = Path.of("src\\JSON_Files\\lecturers.json");
+        String content = new String(Files.readAllBytes(path));
+        JSONObject jsonObject = new JSONObject(content);
+        JSONArray lecturerJSON = jsonObject.getJSONArray("lecturers");
+        for(int i=0; i<domain.getLecturers().size();i++){
+            if(!(domain.getLecturers().get(i) instanceof Advisor)){
+                JSONObject currentLecturer = lecturerJSON.getJSONObject(i);
+                currentLecturer.put("password",domain.getLecturers().get(i).getPassword().getPassword());
+            }
+        }
+        Files.write(path,jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
+    }
+    public void updateAdvisorJSON() throws JSONException, IOException{
+        Path path = Path.of("src\\JSON_Files\\advisors.json");
+        String content = new String(Files.readAllBytes(path));
+        JSONObject jsonObject = new JSONObject(content);
+        JSONArray advisorJSON = jsonObject.getJSONArray("advisors");
+        for(int i=0; i<domain.getAdvisors().size();i++){
+                JSONObject currentAdvisor = advisorJSON.getJSONObject(i);
+                currentAdvisor.put("password",domain.getAdvisors().get(i).getPassword().getPassword());
+        }
+        Files.write(path,jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
+    }
 
     //Update student infos in JSON files
     public void updateStudentJSON() throws JSONException, IOException {
@@ -122,6 +148,7 @@ public class SystemClass {
             ArrayList<Course> approved = domain.getStudents().get(i).getApprovedCourses();
             registration.put("selectedcourses",transcriptCourses(selected));
             registration.put("approvedcourses", transcriptCourses(approved));
+            jsonStudent.put("password",domain.getStudents().get(i).getPassword().getPassword());
             jsonStudent.put("request", domain.getStudents().get(i).getRequest());
             jsonStudent.put("readNotification", domain.getStudents().get(i).getReadNotifications().toArray(new String[0]));
             jsonStudent.put("unreadNotification", domain.getStudents().get(i).getUnreadNotifications().toArray(new String[0]));
