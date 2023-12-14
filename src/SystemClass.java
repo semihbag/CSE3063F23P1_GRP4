@@ -52,7 +52,7 @@ public class SystemClass {
                     setCurrentUser(student);
                     userFound = true;
                     userInterface.setPages(domain.createPages(currentUser));
-                    userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE_STUDENT);
+                    userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE);
                     System.out.println("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
                     int numberOfUnreadNotifications = student.getUnreadNotifications().size();
                     if (numberOfUnreadNotifications != 0) {
@@ -69,7 +69,7 @@ public class SystemClass {
                 	setCurrentUser(advisor);
                     userFound = true;
                     userInterface.setPages(domain.createPages(currentUser));
-                    userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE_ADVISOR);
+                    userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE);
                     System.out.println("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
                     break;
                 }
@@ -230,7 +230,7 @@ public class SystemClass {
 			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
 			
 			// handling syllabus page
-			SyllabusPageStudent syllabus = (SyllabusPageStudent) this.userInterface.selectPage(PageType.SYLLABUS_PAGE_STUDENT);
+			SyllabusPageStudent syllabus = (SyllabusPageStudent) this.userInterface.selectPage(PageType.SYLLABUS_PAGE);
 			syllabus.setContent(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
 
 			this.userInterface.setCurrentPage(sm.getNextPageType());
@@ -253,7 +253,7 @@ public class SystemClass {
 			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
 			
 			// handling syllabus page
-			SyllabusPageStudent syllabus = (SyllabusPageStudent) this.userInterface.selectPage(PageType.SYLLABUS_PAGE_STUDENT);
+			SyllabusPageStudent syllabus = (SyllabusPageStudent) this.userInterface.selectPage(PageType.SYLLABUS_PAGE);
 			syllabus.setContent(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
 						
             this.userInterface.setCurrentPage(sm.getNextPageType());
@@ -326,9 +326,6 @@ public class SystemClass {
 			
 			this.userInterface.setCurrentPage(sm.getNextPageType());			
         }
-        else if (functionType == FunctionType.CHECK_PASSWORD ) {
-        	////// eklenecek
-        }
         else if (functionType == FunctionType.CHANGE_PASSWORD ) {
         	String passwords[] = (String[]) sm.getInput();
         	
@@ -345,17 +342,8 @@ public class SystemClass {
         	else {
             	System.out.println("\u001B[33;1mYour current password incorrect!\u001B[0m");
         	}
-  	
-        	// Find the proper next page 
-    		if (currentUser instanceof Student student) {
-    			this.userInterface.setCurrentPage(PageType.PROFILE_PAGE_STUDENT);			
-    		}
-			else if (currentUser instanceof Advisor advisor) {
-    			this.userInterface.setCurrentPage(PageType.PROFILE_PAGE_ADVISOR);			
-		    }
-			else if (currentUser instanceof Lecturer lecturer) {
-    			this.userInterface.setCurrentPage(PageType.PROFILE_PAGE_LECTURER);			
-			}        
+
+        	this.userInterface.setCurrentPage(sm.getNextPageType());
         }
         else if (functionType == FunctionType.READ_NOTIFICATIONS ) {
             Student student = (Student) this.getCurrentUser();

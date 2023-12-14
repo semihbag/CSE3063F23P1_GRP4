@@ -3,12 +3,12 @@ package Page;
 import SystemMessage.FunctionType;
 import SystemMessage.SystemMessage;
 
-public class ProfilePageAdvisor extends Page{
+public class ProfilePage extends Page{
 	
-	public ProfilePageAdvisor(String content) {
+	public ProfilePage(String content) {
 		super(content);
-		setType(PageType.PROFILE_PAGE_ADVISOR);
-		setName("Profile Page Advisor");
+		setType(PageType.PROFILE_PAGE);
+		setName("Profile Page");
 	}
 	
 	@Override 
@@ -21,7 +21,7 @@ public class ProfilePageAdvisor extends Page{
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.CHANGE_PASSWORD_PAGE, null);
 			}
 			else if (input.equalsIgnoreCase("q")) {
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_ADVISOR, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
 			}
 			else {
 				System.out.println("Wrong Input");

@@ -7,7 +7,7 @@ public class SyllabusPageStudent extends Page{
 	
 	public SyllabusPageStudent(String content) {
 		super(content);
-		setType(PageType.SYLLABUS_PAGE_STUDENT);
+		setType(PageType.SYLLABUS_PAGE);
 		setName("Syllabus Page Student");
 	}
 
@@ -15,6 +15,6 @@ public class SyllabusPageStudent extends Page{
 	public SystemMessage runPage() {
 		showContent();
 		takeInput();
-		return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
+		return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
 	}
 }

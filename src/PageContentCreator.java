@@ -120,28 +120,24 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public String createProfilePageStudentContent(Student student) {
-		return "--STUDENT " + student.getStudentId().getId() + "--\n" +
-				"  Name        " + student.getFirstName() + "\n" +
-				"  Surname     " + student.getLastName() + "\n\n" +
-				"C: Change password\n" +
-				"Q: Quit\n";
-	}
-
-	public String createProfilePageAdvisorContent (Advisor adviosr) {
-		return "--ADVISOR " + adviosr.getLecturerId().getId() + "--\n" +
-				"  Name        " + adviosr.getFirstName() + "\n" +
-				"  Surname     " + adviosr.getLastName() + "\n\n" +
-				"C: Change password\n" +
-				"Q: Quit\n";
-	}
-	
-	public String createProfilePageLecturerContent(Lecturer lecturer) {
-		return "--LECTURER " + lecturer.getLecturerId().getId() + "--\n" +
-				"  Name        " + lecturer.getFirstName() + "\n" +
-				"  Surname     " + lecturer.getLastName() + "\n\n" +
-				"C: Change password\n" +
-				"Q: Quit\n";
+	public String createProfilePageContent(Person user) {
+		String content = "";
+		if (user instanceof Student student) {
+			content += "--STUDENT " + student.getStudentId().getId() + "--\n";
+		}
+		else if (user instanceof Advisor advisor) {
+			content += "--ADVISOR " + advisor.getLecturerId().getId() + "--\n";
+		}
+		else if (user instanceof Lecturer lecturer) {
+			content += "--LECTURER " + lecturer.getLecturerId().getId() + "--\n";
+		}
+		
+		content +=  "  Name        " + user.getFirstName() + "\n" +
+					"  Surname     " + user.getLastName() + "\n\n" +
+					"C: Change password\n" +
+					"Q: Quit\n";
+		
+		return content;
 	}
 	
 	public String createChangePasswordPage() {

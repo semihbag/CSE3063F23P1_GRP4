@@ -7,7 +7,7 @@ public class MainMenuPageStudent extends Page{
 	
 	public MainMenuPageStudent(String content) {
 		super(content);
-		setType(PageType.MAIN_MENU_PAGE_STUDENT);
+		setType(PageType.MAIN_MENU_PAGE);
 		setName("Main Menu Page Student");
 	}
 
@@ -17,13 +17,13 @@ public class MainMenuPageStudent extends Page{
 		while (true) {
 			switch (takeInput()) {
 			case "1":
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.PROFILE_PAGE_STUDENT, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.PROFILE_PAGE, null);
 			case "2":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_NOTIFICATIONS_PAGE, null);
 			case "3":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.TRANSCRIPT_PAGE, null);
 			case "4":
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SYLLABUS_PAGE_STUDENT, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SYLLABUS_PAGE, null);
 			case "5":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.ALL_cOURSES_PAGE, null);
 			case "6":

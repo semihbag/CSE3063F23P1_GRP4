@@ -30,7 +30,7 @@ public class MyCoursesPage extends Page{
 			}
 			catch (NumberFormatException e) {
 				if (input.equalsIgnoreCase("q")) {
-					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_LECTURER, null);
+					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
 				}
 				else {
 					System.out.println("Wrong Input");

@@ -31,10 +31,10 @@ public class SelectedCoursesPage extends Page{
 			}
 			catch (NumberFormatException e) {
 				if (input.equalsIgnoreCase("a")) {
-					return new SystemMessage(FunctionType.SEND_APPROVE, PageType.MAIN_MENU_PAGE_STUDENT, null);
+					return new SystemMessage(FunctionType.SEND_APPROVE, PageType.MAIN_MENU_PAGE, null);
 				}
 				else if (input.equalsIgnoreCase("q")) {
-					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE_STUDENT, null);
+					return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, null);
 				}
 				else {
 					System.out.println("Wrong Input");
