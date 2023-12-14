@@ -310,7 +310,7 @@ public class SystemDomain {
 		PageContentCreator pageContentCreator = new PageContentCreator();
 		ArrayList<Page> pages = new ArrayList<>();
 		if (currentUser instanceof Student student) {
-            MainMenuPageStudent mainStudent = new MainMenuPageStudent(pageContentCreator.createMainMenuPageStudentContent());
+            MainMenuPageStudent mainStudent = new MainMenuPageStudent(pageContentCreator.createMainMenuPageStudentContent(student.getUnreadNotifications().size()));
 			pages.add(mainStudent);
 
 			ProfilePage profile = new ProfilePage(pageContentCreator.createProfilePageContent(student));

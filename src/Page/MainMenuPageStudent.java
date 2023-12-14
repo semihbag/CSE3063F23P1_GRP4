@@ -19,7 +19,7 @@ public class MainMenuPageStudent extends Page{
 			case "1":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.PROFILE_PAGE, null);
 			case "2":
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_NOTIFICATIONS_PAGE, null);
+				return new SystemMessage(FunctionType.READ_NOTIFICATIONS, PageType.MY_NOTIFICATIONS_PAGE, null);
 			case "3":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.TRANSCRIPT_PAGE, null);
 			case "4":

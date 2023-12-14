@@ -54,10 +54,6 @@ public class SystemClass {
                     userInterface.setPages(domain.createPages(currentUser));
                     userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE);
                     System.out.println("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
-                    int numberOfUnreadNotifications = student.getUnreadNotifications().size();
-                    if (numberOfUnreadNotifications != 0) {
-                        System.out.println("\u001B[32mYou have " + numberOfUnreadNotifications + " unread messages\u001B[0m");
-                    }
                     break;
                 }
             }
@@ -348,6 +344,8 @@ public class SystemClass {
         else if (functionType == FunctionType.READ_NOTIFICATIONS ) {
             Student student = (Student) this.getCurrentUser();
             student.clearUnreadNotification();
+            MainMenuPageStudent main = (MainMenuPageStudent) this.userInterface.selectPage(PageType.MAIN_MENU_PAGE);
+            main.setContent(pageContentCreator.createMainMenuPageStudentContent(student.getUnreadNotifications().size()));
             
             this.userInterface.setCurrentPage(sm.getNextPageType());
         }

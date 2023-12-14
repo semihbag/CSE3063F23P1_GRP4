@@ -2,18 +2,22 @@ import java.util.ArrayList;
 
 public class PageContentCreator {
 
-	public  String createMainMenuPageStudentContent() {
-		String str="\u001B[34;1m         MAIN MENU         \n\u001B[0m"+
-				"1) Profile\n" +
-				"2) Notifications\n"+
-				"3) Transcript\n"+
-				"4) My Weekly Syllabus\n"+
-				"5) All Courses\n"+
-				"6) Approved Courses\n"+
-				"7) Offered Courses\n"+
-				"8) Selected Courses\n"+
-				"9) Log out\n"+
-				"10) Exit";
+	public  String createMainMenuPageStudentContent(int numberOfUnreadNotifications) {
+		String str = "";
+		if (numberOfUnreadNotifications != 0) {
+            str += "\u001B[32mYou have " + numberOfUnreadNotifications + " unread messages\n\u001B[0m";
+        }
+		str+="\u001B[34;1m         MAIN MENU         \n\u001B[0m"+
+			"1) Profile\n" +
+			"2) Notifications\n"+
+			"3) Transcript\n"+
+			"4) My Weekly Syllabus\n"+
+			"5) All Courses\n"+
+			"6) Approved Courses\n"+
+			"7) Offered Courses\n"+
+			"8) Selected Courses\n"+
+			"9) Log out\n"+
+			"10) Exit";
 		return str;
 	}
 
