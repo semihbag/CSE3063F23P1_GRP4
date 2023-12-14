@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Course {
 	private Id courseId;
 	private String courseName;
-	private int quota, year;
+	private int quota, term;
 	private CourseType courseType;
 	private ArrayList<Course> prerequisiteCourses=new ArrayList<>() ;
 	private ArrayList<Student> studentList=new ArrayList<>();
@@ -12,12 +12,12 @@ public class Course {
 	private int credit;
 
 
-	public Course(Id courseId, String courseName, int quota, int year,
+	public Course(Id courseId, String courseName, int quota, int term,
 				  Lecturer lecturer,ArrayList<CourseSchedule> courseSchedules, int credit, CourseType courseType) {
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.quota = quota;
-		this.year = year;
+		this.term = term;
 		this.lecturer = lecturer;
 		this.courseSchedules = courseSchedules;
 		this.credit = credit;
@@ -26,6 +26,10 @@ public class Course {
 
 	public void  enrollStudent (Student student) {
 		studentList.add(student);
+	}
+
+	public int getTerm() {
+		return term;
 	}
 
 	public Id getCourseId() {
@@ -40,9 +44,7 @@ public class Course {
 		return quota;
 	}
 
-	public int getYear() {
-		return year;
-	}
+	
 
 	public ArrayList<Course> getPrerequisiteCourses() {
 		return prerequisiteCourses;
