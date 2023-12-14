@@ -182,7 +182,7 @@
         "type": "mandatory",
         "credit": 2,
         "isSession": false,
-        "day": ["TUESDAY"]
+        "day": ["MONDAY"]
     },
     {
         "hour": [[
@@ -605,7 +605,7 @@
         "isSession": false,
         "day": [
             "TUESDAY",
-            "THURSDAY"
+            "WEDNESDAY"
         ]
     },
     {
@@ -637,7 +637,7 @@
                 "10.30",
                 "11.30"
             ],
-            ["15.00"]
+            ["11.30"]
         ],
         "quota": 14,
         "name": "Database Systems",
@@ -651,7 +651,7 @@
         "isSession": false,
         "day": [
             "WEDNESDAY",
-            "FRIDAY"
+            "THURSDAY"
         ]
     },
     {
@@ -680,8 +680,8 @@
     {
         "hour": [
             [
-                "10.30",
-                "11.30"
+                "9.30",
+                "10.30"
             ],
             ["9.30"]
         ],
@@ -695,7 +695,7 @@
         "type": "mandatory",
         "credit": 4,
         "isSession": false,
-        "day": ["THURSDAY"]
+        "day": ["THURSDAY","FRIDAY"]
     },
     {
         "hour": [
@@ -858,10 +858,10 @@
     {
         "hour": [
             [
-                "15.00",
-                "16.00"
+                "8.30",
+                "9.30"
             ],
-            ["14.00"]
+            ["8.30"]
         ],
         "quota": 14,
         "name": "Principles of Embedded System Design",
@@ -874,8 +874,8 @@
         "credit": 6,
         "isSession": false,
         "day": [
-            "WEDNESDAY",
-            "THURSDAY"
+            "TUESDAY",
+            "MONDAY"
         ]
     },
     {
@@ -1037,7 +1037,7 @@
         "quota": 14,
         "name": "Is Sagligi ve Guvenligi II",
         "studentList": [],
-        "prerequisite": [],
+        "prerequisite": ["ISG121"],
         "lecturer": "1408004",
         "term": 8,
         "id": "ISG122",
