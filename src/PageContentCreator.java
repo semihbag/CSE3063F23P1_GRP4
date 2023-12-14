@@ -166,9 +166,18 @@ public class PageContentCreator {
 	//Information of given courses
 	public String createMyCoursesPageContent(Lecturer lecturer) {
 		String str = "\u001B[1m\nCOURSES\n\u001B[0m";
-		for (Course course : lecturer.getGivenCourses()) {
-			str += course.getCourseId().getId() + " - " +
-					course.getCourseName() + "\n";
+		for (int i = 0; i < lecturer.getGivenCourses().size(); i++) {
+			Course course = lecturer.getGivenCourses().get(i);
+			if (course instanceof CourseSession) {
+				str += (i + 1) + ")" +blankAfterI(i+1) +
+						course.getCourseId().getId() + "." + ((CourseSession) course).getSessionId().getId() +
+						blankAfterStr(course.getCourseId().getId() + "." + ((CourseSession) course).getSessionId().getId(), 13);
+			} else {
+				str += (i + 1) + ")" + blankAfterI(i+1) +
+						course.getCourseId().getId() +
+						blankAfterStr(course.getCourseId().getId(), 10);
+
+			} str += course.getCourseName() + "\n";
 		}
 		str+= "\nPress number to view course content.\n" +
 				"Q: Quit\n";
