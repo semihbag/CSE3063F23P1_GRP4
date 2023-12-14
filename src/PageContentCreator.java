@@ -46,7 +46,7 @@ public class PageContentCreator {
 		String str="\u001B[1m         MAIN MENU         \u001B[0m\n"+
 				"1) Profile\n" +
 				"2) Courses\n" +
-				"3) My Weekly CourseObject.Syllabus\n"+
+				"3) My Weekly Syllabus\n"+
 				"4) Log out\n"+
 				"5) Exit\n";
 		return str;
@@ -178,10 +178,12 @@ public class PageContentCreator {
 	//Information of selected course
 	public String createSelectedMyCoursePage(Course course) {
 		String str = "\u001B[1m\nAll Students:\n\u001B[0m";
-		for (Student student : course.getStudentList()) {
-			str += student.getStudentId().getId() + "  " +
-					student.getFirstName() + blankAfterStr(student.getFirstName(), 20) +
-					student.getLastName() + "\n";
+		if (course != null) {
+			for (Student student : course.getStudentList()) {
+				str += student.getStudentId().getId() + "  " +
+						student.getFirstName() + blankAfterStr(student.getFirstName(), 20) +
+						student.getLastName() + "\n";
+			}
 		}
 		//Press ANY KEY to return
 		str += "\nPress any key to return.\n";

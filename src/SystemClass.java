@@ -70,6 +70,18 @@ public class SystemClass {
                     break;
                 }
             }
+        } else if (userInfo.getUsername().charAt(0) == 'l') {
+            for (Lecturer lecturer : domain.getLecturerCreator().getLecturers()) {
+                if (("l" + lecturer.getLecturerId().getId()).equals(userInfo.getUsername()) &&
+                        lecturer.getPassword().getPassword().equals(userInfo.getPassword())) {
+                    setCurrentUser(lecturer);
+                    userFound = true;
+                    userInterface.setPages(domain.createPages(currentUser));
+                    userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE);
+                    System.out.println("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
+                    break;
+                }
+            }
         } if (!userFound) {
         	System.out.println("\u001B[33;1mUsername/Password incorrect.\n\u001B[0m");
         }
