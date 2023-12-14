@@ -34,9 +34,6 @@ public class Syllabus {
 
   public void addCourseToSyllabus(Course course) {
 
-    // courseların day attribute u single-dimensional array
-    // courseların time attribute ları array içinde array olarak tutulacak
-
         for (int i = 0 ; i < course.getCourseSchedules().size() ; i++) {
             CourseSchedule courseSchedule = course.getCourseSchedules().get(i);
             int day_column = returnIndexDay(courseSchedule.getCourseDay());
@@ -55,7 +52,7 @@ public class Syllabus {
             for (int j = 0 ; j < courseSchedule.getCourseHours().size() ; j++) {
                 int hour_row = returnIndexHour(courseSchedule.getCourseHours().get(j));
                 if (!isEmpty(hour_row, day_column)) {
-                    System.out.println("The course that you want to add conflicts with another course");
+                    System.out.println("The course that you want to add " + course.getCourseName() + " conflicts with " + syllabus[hour_row][day_column].getCourseName());
                     return true;
                 }
             }
