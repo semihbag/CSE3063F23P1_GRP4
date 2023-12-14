@@ -222,7 +222,7 @@ public class PageContentCreator {
 			str += "SEMESTER " + (j) + "\n" ;
 			str += "CODE         NAME                                              CREDIT | ACTS       GRADE\n";
 			for (GradeClass allTranscriptCourse : allTranscriptCourses) {
-				if (allTranscriptCourse.getCourse().getTerm() == j) {
+				if (allTranscriptCourse.getTerm() == j) {
 					Course course = allTranscriptCourse.getCourse();
 					str += course.getCourseId().getId() +
 							blankAfterStr(course.getCourseId().getId(), 13) +

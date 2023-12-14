@@ -30,7 +30,7 @@
             "BB","CB","DC","BB",
             "AA"
         ],
-        "termPassed":[2],
+        "termPassed":[2,4],
         "gradesFailed":["FF"],
         "term": 7
     },

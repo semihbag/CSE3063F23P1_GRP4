@@ -198,18 +198,16 @@ public class SystemDomain {
 
     private ArrayList<GradeClass> setTranscriptCourses(String[] transcriptCourses, String[] grades, int[] termPassed) {
         ArrayList<GradeClass> transcriptCourseList = new ArrayList<>();
-        int j=0;
+        int j = 0;
         for (int i = 0; i < transcriptCourses.length; i++) {
             for (Course course : courses) {
-                if (course.getCourseId().getId().equals(transcriptCourses[i])
-                        && !courseExists(course, transcriptCourseList)) {
-
+                if (course.getCourseId().getId().equals(transcriptCourses[i]) && !courseExists(course, transcriptCourseList)) {
                     GradeClass gradeClass = new GradeClass(course, getCourseGrade(grades[i]));
-                    if(course.getCourseType()==CourseType.NONTECHNICAL||course.getCourseName().contains("Is Sagligi ve Guvenligi")){
+                    if(course.getCourseType()==CourseType.NONTECHNICAL || course.getCourseName().contains("Is Sagligi ve Guvenligi")) {
                         gradeClass.setTerm(termPassed[j]);
                         j++;
                     }
-                    else{
+                    else {
                          gradeClass.setTerm(course.getTerm());
                     }
                     transcriptCourseList.add(gradeClass);
