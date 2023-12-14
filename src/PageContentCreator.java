@@ -2,9 +2,8 @@ import java.util.ArrayList;
 
 public class PageContentCreator {
 
-	public  String createMainMenuPageStudentContent()
-	{
-		String str="---------MAIN MENU---------\n"+
+	public  String createMainMenuPageStudentContent() {
+		String str="\u001B[34;1m         MAIN MENU         \n\u001B[0m"+
 				"1) Profile\n" +
 				"2) Notifications\n"+
 				"3) Transcript\n"+
@@ -19,7 +18,7 @@ public class PageContentCreator {
 	}
 
 	public  String createMainMenuPageAdvisorContent() {
-		String str="---------MAIN MENU---------\n"+
+		String str="\u001B[34;1m         MAIN MENU         \n\u001B[0m"+
 				"1) Profile\n" +
 				"2) Advised Student Information\n"+
 				"3) Evaluate Requests\n"+
@@ -29,7 +28,7 @@ public class PageContentCreator {
 	}
 
 	public String createMainMenuPageLecturerContent() {
-		String str="---------MAIN MENU---------\n"+
+		String str="\u001B[34;1m         MAIN MENU         \n\u001B[0m"+
 				"1) Profile\n" +
 				"2) Courses\n"+
 				"3) Log out\n"+
@@ -175,22 +174,20 @@ public class PageContentCreator {
 		return str;
 	}
 
-///////////////////////////////////////////// burada öğrenci için bir haftalık ders programı yazdırlıcak
 	public String createSyllabusPageContent(Syllabus syllabus) {
-		String str = "Time Table\n\n" +
-				"\t\t\t\t\tMONDAY\t\tTUESDAY\t   WEDNESDAY\t THURSDAY\t  FRIDAY\n";
+		String str = "\u001B[34;1m" + "                                    TIME TABLE\n\n" + "\u001B[0m" +
+				"\u001B[33;1m" + "                   MONDAY        TUESDAY       WEDNESDAY     " +
+				"THURSDAY      FRIDAY\n" + "\u001B[0m";
 		String[][] tTable = courseIds(syllabus.getSyllabus());
-
 		for (int i = 0; i < tTable.length; i++) {
-			str += returnHour(i) + "\t   ";
+			str += "\u001B[33;1m" + returnHour(i) + "\u001B[0m" + "      " ;
 			for (int j = 0; j < tTable[i].length; j++) {
-				str += tTable[i][j] + blankAfterStr(tTable[i][j], 14);
-			} str += "\nPress any key to return.\n";
-		} return str;
+				str += tTable[i][j] + blankAfterStr(tTable[i][j], 14) ;
+			} str += "\n";
+		} str += "\nPress any key to return.\n";
+		return str;
 	}
 
-	// okunmus veya okuncak hiçmesaj yoksa da ona göre bir contetn yazarsın 
-	//kg
 	public String createMyNotificationsPageContent(ArrayList<String> unreadNotifications, ArrayList<String> readNotifications) {
 		String str = "";
 		for (String unreadNotification : unreadNotifications) {
@@ -219,8 +216,8 @@ public class PageContentCreator {
 		ArrayList<GradeClass> allTranscriptCourses = student.getTranscript().getPassedCourses();
 		allTranscriptCourses.addAll(student.getTranscript().getFailedCourses());
 		for (int j = 1; j < student.getTranscript().getTerm(); j++) {
-			str += "SEMESTER " + (j) + "\n" ;
-			str += "CODE         NAME                                              CREDIT | ACTS       GRADE\n";
+			str += "\u001B[34;1m" + "SEMESTER " + (j) + "\n" +"\u001B[0m";
+			str += "\u001B[33;1mCODE         NAME                                              CREDIT | ACTS       GRADE\n\u001B[0m";
 			for (GradeClass allTranscriptCourse : allTranscriptCourses) {
 				if (allTranscriptCourse.getTerm() == j) {
 					Course course = allTranscriptCourse.getCourse();
