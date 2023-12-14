@@ -3,9 +3,9 @@ package Page;
 import SystemMessage.FunctionType;
 import SystemMessage.SystemMessage;
 
-public class SyllabusPageStudent extends Page{
+public class SyllabusPage extends Page{
 	
-	public SyllabusPageStudent(String content) {
+	public SyllabusPage(String content) {
 		super(content);
 		setType(PageType.SYLLABUS_PAGE);
 		setName("Syllabus Page Student");

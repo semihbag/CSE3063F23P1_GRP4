@@ -30,9 +30,10 @@ public class PageContentCreator {
 	public String createMainMenuPageLecturerContent() {
 		String str="\u001B[34;1m         MAIN MENU         \n\u001B[0m"+
 				"1) Profile\n" +
-				"2) Courses\n"+
-				"3) Log out\n"+
-				"4) Exit\n";
+				"2) Courses\n" +
+				"3) My Weekly Syllabus\n"+
+				"4) Log out\n"+
+				"5) Exit\n";
 		return str;
 	}
 
@@ -140,6 +141,12 @@ public class PageContentCreator {
 		return content;
 	}
 	
+	// burada şifrenin değişmesi için gerekli kuralların bastırılması lazım
+	// anlık şiferni gir yeni şifre gir mesajları basmaya gerek yok
+	// onlar zaten sayfa içinde basıyor sıralı input aldığı için
+	// belli başlı kurallar vardı
+	// büyük harf rakam vb vb
+	// zeynep belirlemişti kuralları 
 	public String createChangePasswordPage() {
 
 		return "bu şu anlık durakoysın";

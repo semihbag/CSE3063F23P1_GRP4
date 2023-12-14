@@ -20,8 +20,10 @@ public class MainMenuPageLecturer extends Page{
 			case "2":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_COURSES_PAGE, null);
 			case "3":
-				return new SystemMessage(FunctionType.LOGOUT, PageType.LOGIN_PAGE, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SYLLABUS_PAGE, null);
 			case "4":
+				return new SystemMessage(FunctionType.LOGOUT, PageType.LOGIN_PAGE, null);
+			case "5":
 				return new SystemMessage(FunctionType.EXIT, null, null);
 			default:
 				System.out.println("Wrong Input!");

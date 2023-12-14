@@ -325,7 +325,7 @@ public class SystemDomain {
 			TranscriptPage transcript = new TranscriptPage(pageContentCreator.createTranscriptPageContent(student));
 			pages.add(transcript);
 			
-			SyllabusPageStudent syllabus = new SyllabusPageStudent(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
+			SyllabusPage syllabus = new SyllabusPage(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
 			pages.add(syllabus);
 
 			AllCoursesPage allCourses = new AllCoursesPage(pageContentCreator.createAllCoursesPageContent(student.getCurriculum()));
@@ -378,6 +378,9 @@ public class SystemDomain {
 			
 			SelectedMyCoursePage selectedCourse = new SelectedMyCoursePage(pageContentCreator.createSelectedMyCoursePage(lecturer.getSelectedCourse()));
 			pages.add(selectedCourse);
+		
+			SyllabusPage syllabus = new SyllabusPage(pageContentCreator.createSyllabusPageContent(lecturer.getSyllabus()));
+			pages.add(syllabus);
 		}
 		return pages;
 	}
