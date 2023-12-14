@@ -41,7 +41,7 @@ public class Student extends Person {
         }
     }
 
-    public boolean isSelectedCourse(Course course) {
+    private boolean isSelectedCourse(Course course) {
         for (int i = 0; i < selectedCourses.size(); i++) {
             if (selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
                 return true;
@@ -50,7 +50,7 @@ public class Student extends Person {
         return false;
     }
 
-    public boolean isPassedCourse(Course course) {
+    private boolean isPassedCourse(Course course) {
         for (int i = 0; i < transcript.getPassedCourses().size(); i++) {
             if (transcript.getPassedCourses().get(i).getCourse().getCourseId().getId().equals(course.getCourseId().getId())) {
                 return true;
@@ -61,7 +61,7 @@ public class Student extends Person {
 
     // Checks whether the student has passed the prerequisite courses to take the
     // course
-    public boolean isPrerequisiteCoursesPassed(Course course) {
+    private boolean isPrerequisiteCoursesPassed(Course course) {
         for (int i = 0; i < course.getPrerequisiteCourses().size(); i++) {
             Course preCourse = course.getPrerequisiteCourses().get(i);
             if (!isPassedCourse(preCourse)) {
@@ -71,11 +71,11 @@ public class Student extends Person {
         return true;
     }
 
-    public boolean isUnderQuota(Course course) {
+    private boolean isUnderQuota(Course course) {
         return 0 < course.getQuota();
     }
 
-    public boolean isFailedCourse(Course course) {
+    private boolean isFailedCourse(Course course) {
         for (int i = 0; i < transcript.getFailedCourses().size(); i++) {
             GradeClass failedCourse = transcript.getFailedCourses().get(i);
             if (failedCourse.getCourse().getCourseId().getId().equals(course.getCourseId().getId()) &&
@@ -131,7 +131,7 @@ public class Student extends Person {
     }
 
 
-    public boolean checkCourseType(Course course){ // dönemini ve üsten alma olayı içeriyor (mandatoryde hem üst hem kendi dönemi olayı var))
+    private boolean checkCourseType(Course course){ // dönemini ve üsten alma olayı içeriyor (mandatoryde hem üst hem kendi dönemi olayı var))
         CourseType courseType = course.getCourseType();
         if(courseType == CourseType.NONTECHNICAL && transcript.getYear() >= 2){
             if(!exceed(courseType, 2) ) { //eğitim hayatı boyunca max 2, her dönemde max 1 alır
@@ -163,7 +163,7 @@ public class Student extends Person {
     }
 
 
-    public boolean exceed(CourseType type, int limit){ //Bugüne kadar bu tipdeki dersten kaç tane aldığını söylüyor
+    private boolean exceed(CourseType type, int limit){ //Bugüne kadar bu tipdeki dersten kaç tane aldığını söylüyor
         int ct = 0;
         for(int i= 0; i < transcript.getPassedCourses().size(); i++) {
             if(transcript.getPassedCourses().get(i).getCourse().getCourseType() == type){
@@ -177,7 +177,7 @@ public class Student extends Person {
         return false;
     }
 
-    public boolean exceedTerm(CourseType courseType){ //bu dönemdeki seçtiklerini kontrol ediyor
+    private boolean exceedTerm(CourseType courseType){ //bu dönemdeki seçtiklerini kontrol ediyor
         int ct = 0;
 
         //selected da iki tane
@@ -206,12 +206,12 @@ public class Student extends Person {
         return false;
     }
 
-    void clearUnreadNotification(){ //
+    public void clearUnreadNotification(){ //
         readNotifications.addAll(unreadNotifications);
         unreadNotifications.clear();
     }
 
-    void addUnreadNotification(String notification){ //
+    public void addUnreadNotification(String notification){ //
         unreadNotifications.add(notification);
     }
 
@@ -223,7 +223,7 @@ public class Student extends Person {
         addAllSessions(course);
     }
 
-    public void addAllSessions(Course course) {
+    private void addAllSessions(Course course) {
         for (int i = 0; i < curriculum.size(); i++) {
             if (course.getCourseId().getId().equals(curriculum.get(i).getCourseId().getId())) {
                 if (!selectableCourses.contains(curriculum.get(i))) {
@@ -233,7 +233,7 @@ public class Student extends Person {
         }
     }
 
-    public void removeAllSessions(Course course) {
+    private void removeAllSessions(Course course) {
         for (int i = 0; i < selectableCourses.size(); i++) {
             if (course.getCourseId().getId().equals(selectableCourses.get(i).getCourseId().getId())) {
                 selectableCourses.remove(i);
