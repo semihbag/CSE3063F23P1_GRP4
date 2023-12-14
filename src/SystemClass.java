@@ -303,7 +303,32 @@ public class SystemClass {
         	////// eklenecek
         }
         else if (functionType == FunctionType.CHANGE_PASSWORD ) {
-        	////// eklenecek
+        	String passwords[] = (String[]) sm.getInput();
+        	
+        	// Check current and new password and change it if it is okay
+        	if (currentUser.getPassword().compareCurrentPassword(passwords[0])) {
+        		if (currentUser.getPassword().checkPasswordCond(passwords[1])) {
+        			currentUser.getPassword().setPassword(passwords[1]);
+                    System.out.println("\u001B[32;1mPassword Change Successful\u001B[0m");
+        		}
+        		else {
+                	System.out.println("\u001B[33;1mYour new password must obey the rules!\u001B[0m");
+        		}
+        	}
+        	else {
+            	System.out.println("\u001B[33;1mYour current password incorrect!\u001B[0m");
+        	}
+  	
+        	// Find the proper next page 
+    		if (currentUser instanceof Student student) {
+    			this.userInterface.setCurrentPage(PageType.PROFILE_PAGE_STUDENT);			
+    		}
+			else if (currentUser instanceof Advisor advisor) {
+    			this.userInterface.setCurrentPage(PageType.PROFILE_PAGE_ADVISOR);			
+		    }
+			else if (currentUser instanceof Lecturer lecturer) {
+    			this.userInterface.setCurrentPage(PageType.PROFILE_PAGE_LECTURER);			
+			}        
         }
         else if (functionType == FunctionType.READ_NOTIFICATIONS ) {
             Student student = (Student) this.getCurrentUser();
