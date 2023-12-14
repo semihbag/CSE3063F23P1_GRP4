@@ -77,7 +77,7 @@ public class Student extends Person {
         for (int i = 0; i < transcript.getFailedCourses().size(); i++) {
             GradeClass failedCourse = transcript.getFailedCourses().get(i);
             if (failedCourse.getCourse().getCourseId().getId().equals(course.getCourseId().getId()) &&
-                    transcript.getYear()%2 == course.getYear()%2) { // tek çift dönem olayı eklendi
+                    transcript.getTerm()%2 == course.getTerm()%2) { // tek çift dönem olayı eklendi
                 return true;
             }
         }
@@ -131,18 +131,18 @@ public class Student extends Person {
 
     private boolean checkCourseType(Course course){ // dönemini ve üsten alma olayı içeriyor (mandatoryde hem üst hem kendi dönemi olayı var))
         CourseType courseType = course.getCourseType();
-        if(courseType == CourseType.NONTECHNICAL && transcript.getYear() >= 2){
+        if(courseType == CourseType.NONTECHNICAL && transcript.getTerm() >= 2){
             if(!exceed(courseType, 2) ) { //eğitim hayatı boyunca max 2, her dönemde max 1 alır
                 return true;
             }
         }
         else if(courseType == CourseType.TECHNICAL){
-            if((transcript.getYear() == 7 || transcript.getYear() == 8)){
+            if((transcript.getTerm() == 7 || transcript.getTerm() == 8)){
                 return true;
             }
         }
         else if(courseType == CourseType.FACULTY){
-            if(transcript.getYear() == 7 ){
+            if(transcript.getTerm() == 7 ){
                 return true;
             }
         }  else if(courseType == CourseType.MANDATORY){
@@ -152,8 +152,8 @@ public class Student extends Person {
                     return true;
                 }
                 return false;
-            } else if( (transcript.getYear() >= 3 && course.getYear() == transcript.getYear() +2 && transcript.getGPA_100() > 3.0)  ||
-                    course.getYear() == transcript.getYear()){
+            } else if( (transcript.getTerm() >= 3 && course.getTerm() == transcript.getTerm() +2 && transcript.getGPA_100() > 3.0)  ||
+                    course.getTerm() == transcript.getTerm()){
                 return true;
             }
         }

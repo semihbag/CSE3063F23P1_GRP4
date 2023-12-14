@@ -2,13 +2,13 @@ import java.util.ArrayList;
 
 public class Transcript {
     private double GPA_100;
-    private int year;
+    private int term;
     private int totalCredit; //
     private ArrayList<GradeClass> passedCourses, failedCourses;
 
-    public Transcript(double GPA_100, int year, ArrayList<GradeClass> passedCourses, ArrayList<GradeClass> failedCourses) {
+    public Transcript(double GPA_100, int term, ArrayList<GradeClass> passedCourses, ArrayList<GradeClass> failedCourses) {
         this.GPA_100 = GPA_100;
-        this.year = year;
+        this.term = term;
         totalCredit = 0;
         this.passedCourses = passedCourses;
         this.failedCourses = failedCourses;
@@ -31,12 +31,12 @@ public class Transcript {
         this.GPA_100 = GPA_100;
     }
 
-    public int getYear() {
-        return year;
+    public int getTerm() {
+        return term;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setYear(int term) {
+        this.term = term;
     }
 
     public ArrayList<GradeClass> getPassedCourses() {
