@@ -74,7 +74,8 @@ public class SystemClass {
             for (Lecturer lecturer : domain.getLecturerCreator().getLecturers()) {
                 if (("l" + lecturer.getLecturerId().getId()).equals(userInfo.getUsername()) &&
                         lecturer.getPassword().getPassword().equals(userInfo.getPassword())) {
-                    setCurrentUser(lecturer);
+                	lecturer.createSyllabus(lecturer.getGivenCourses());
+                	setCurrentUser(lecturer);
                     userFound = true;
                     userInterface.setPages(domain.createPages(currentUser));
                     userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE);
