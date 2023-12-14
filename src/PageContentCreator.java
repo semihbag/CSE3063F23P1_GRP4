@@ -18,8 +18,7 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public  String createMainMenuPageAdvisorContent()
-	{
+	public  String createMainMenuPageAdvisorContent() {
 		String str="---------MAIN MENU---------\n"+
 				"1) Profile\n" +
 				"2) Advised Student Information\n"+
@@ -37,7 +36,6 @@ public class PageContentCreator {
 				"4) Exit\n";
 		return str;
 	}
-
 
 	public  String createSelectedStudentsRequestPageContent(Student student) {
 		String str = "";
@@ -75,27 +73,17 @@ public class PageContentCreator {
 		for (int i=1; i<=student.size() ; i++ ) {
 			String fullName = student.get(i-1).getFirstName()+ " " + student.get(i-1).getLastName();
 			str += student.get(i-1).getStudentId().getId() + "         " +
-					fullName + blankFullName(fullName) + " " +
+					fullName + blankAfterStr(fullName, 30) + " " +
 					student.get(i-1).getTranscript().getTerm()+"\n";
-
 		}
 		str += "\nPress any key to return.\n";
 		return str;
 	}
 
-	public String blankFullName(String name) {
-		String str = "";
-		for (int i = 0; i < 30 - name.length(); i++) {
-			str+=" ";
-		}
-		return str;
-	}
-
-
 	public  String createSelectableCoursesPageContent  (ArrayList<Course> courses,ArrayList<Course> coursesSelected) {
 		String str="";
 		if(courses.size()==0) {
-			str="NO COURSE TO SHOW\n"
+			str="No course to show.\n"
 					+ "Q: Quit";
 		}
 		else {
@@ -232,7 +220,7 @@ public class PageContentCreator {
 		allTranscriptCourses.addAll(student.getTranscript().getFailedCourses());
 		for (int j = 1; j < student.getTranscript().getTerm(); j++) {
 			str += "SEMESTER " + (j) + "\n" ;
-			str += "CODE         NAME                                              CREDIT       GRADE\n";
+			str += "CODE         NAME                                              CREDIT | ACTS       GRADE\n";
 			for (GradeClass allTranscriptCourse : allTranscriptCourses) {
 				if (allTranscriptCourse.getCourse().getTerm() == j) {
 					Course course = allTranscriptCourse.getCourse();
@@ -240,7 +228,7 @@ public class PageContentCreator {
 							blankAfterStr(course.getCourseId().getId(), 13) +
 							course.getCourseName() +
 							blankAfterStr(course.getCourseName(), 50) +
-							course.getCredit() + "            " +
+							course.getCredit() + " | " + course.getCredit() + "               " +
 							allTranscriptCourse.getGrade().toString() + "\n";
 				}
 			}
@@ -270,7 +258,7 @@ public class PageContentCreator {
 	public  String courseListForContent (ArrayList<Course> courses) {
 		String str="";
 		if(courses.size()==0) {
-			str="NO COURSE TO SHOW\n";
+			str="No course to show.\n";
 		}
 		else {
 			str = "     CODE         COURSE                                             LECTURER\n";
@@ -278,30 +266,19 @@ public class PageContentCreator {
 				if(courses.get(i - 1) instanceof CourseSession session) {
 					str +=  i + blankAfterI(i) +
 						courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId() +
-						blankAfterStr(courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId(), 13) +
-						courses.get(i-1).getCourseName() + blankAfterCourseName(courses.get(i-1)) + " " +
-						courses.get(i-1).getLecturer().getFirstName() + " "+
-						courses.get(i-1).getLecturer().getLastName() + "\n";
+						blankAfterStr(courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId(), 13);
 				}
 				else {
 					str +=  i + blankAfterI(i) +
 						courses.get(i-1).getCourseId().getId() +
-						blankAfterStr(courses.get(i-1).getCourseId().getId(), 13) +
-						courses.get(i-1).getCourseName() + blankAfterCourseName(courses.get(i-1)) + " " +
-						courses.get(i-1).getLecturer().getFirstName() + " "+
-						courses.get(i-1).getLecturer().getLastName() + "\n";
+						blankAfterStr(courses.get(i-1).getCourseId().getId(), 13);
 				}
+				str += courses.get(i-1).getCourseName() + blankAfterStr(courses.get(i-1).getCourseName(), 50) + " " +
+					courses.get(i-1).getLecturer().getFirstName() + " "+
+					courses.get(i-1).getLecturer().getLastName() + "\n";
 			}
 		}
 		return str;
-	}
-
-	private String blankAfterStr(String str, int len) {
-		String blank = "";
-		for (int i = 0; i < len - str.length(); i++) {
-			blank += " ";
-		}
-		return blank;
 	}
 
 	private String returnHour(int a) {
@@ -323,11 +300,12 @@ public class PageContentCreator {
 		};
 	}
 
-	private String blankAfterCourseName(Course course) {
-		String str = "";
-		for (int i = 0; i < 50 - course.getCourseName().length(); i++) {
-			str += " ";
-		} return str;
+	private String blankAfterStr(String str, int len) {
+		String blank = "";
+		for (int i = 0; i < len - str.length(); i++) {
+			blank += " ";
+		}
+		return blank;
 	}
 
 	private String blankAfterI(int i) {
