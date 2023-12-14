@@ -326,9 +326,6 @@ public class SystemClass {
 			
 			this.userInterface.setCurrentPage(sm.getNextPageType());			
         }
-        else if (functionType == FunctionType.CHECK_PASSWORD ) {
-        	////// eklenecek
-        }
         else if (functionType == FunctionType.CHANGE_PASSWORD ) {
         	String passwords[] = (String[]) sm.getInput();
         	
