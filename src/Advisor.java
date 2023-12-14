@@ -64,7 +64,7 @@ public class Advisor extends Lecturer {
         
         String defaultMessage = "";
         if (message.isEmpty()) {
-            if(type == "A") {
+            if(type.equals("A")) {
                 defaultMessage = "The request is approved!";
             }
             else {
@@ -95,7 +95,7 @@ public class Advisor extends Lecturer {
     }
     
     // After approve or disapprove, update the awaitingStudent 
-    public void removeAwaitingStudent(Student student) {
+    private void removeAwaitingStudent(Student student) {
     	int ind = awaitingStudents.indexOf(student);
         this.awaitingStudents.remove(ind);
     }
