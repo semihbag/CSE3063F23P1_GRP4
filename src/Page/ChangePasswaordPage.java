@@ -1,5 +1,6 @@
 package Page;
 
+import SystemMessage.FunctionType;
 import SystemMessage.SystemMessage;
 
 public class ChangePasswaordPage extends Page{
@@ -13,9 +14,12 @@ public class ChangePasswaordPage extends Page{
 	@Override
 	public SystemMessage runPage() {
 		showContent();
-		
-	// eklenecek
-		
-		return null;
+		String passwords[] = new String[2];	
+		System.out.println("Enter your current password: ");
+		passwords[0] = takeInput();
+		System.out.println("Enter your new password");
+		passwords[1] = takeInput();
+	
+		return new SystemMessage(FunctionType.CHANGE_PASSWORD, null, passwords);
 	}
 }
