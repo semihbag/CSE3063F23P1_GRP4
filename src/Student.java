@@ -4,7 +4,6 @@ public class Student extends Person {
     private Id studentId;
     private Advisor advisor;
     private Transcript transcript;
-    private Syllabus syllabus; //
     private int selectedCourseCredit = 0; //
     private ArrayList<String> unreadNotifications; //
     private ArrayList<String> readNotifications; //
@@ -19,7 +18,6 @@ public class Student extends Person {
         this.advisor = advisor;
         this.transcript = transcript;
         this.curriculum = curriculum;
-        this.syllabus = new Syllabus();
 
     }
 
@@ -27,9 +25,9 @@ public class Student extends Person {
     // semester and prerequisite course passing information
     public void filterCourses() {
         if (approvedCourses.size() != 0){
-            syllabus.fillSyllabus(approvedCourses);
+            createSyllabus(approvedCourses);
         }else{
-            syllabus.fillSyllabus(selectedCourses);
+            createSyllabus(selectedCourses);
         }
 
         for (int i = 0; i < curriculum.size(); i++) {
@@ -107,7 +105,7 @@ public class Student extends Person {
     // and deletes it from the selectableCourses
     public boolean addSelectedCourse(int i) {
         Course course = selectableCourses.get(i - 1);
-        if (this.getRequest().equals("false") && !syllabus.checkConflict(course)) {
+        if (this.getRequest().equals("false") && !getSyllabus().checkConflict(course)) {
             if (selectedCourseCredit + course.getCredit() < 40 ) {//
                 //NTE NT FACULTY
 
@@ -121,7 +119,7 @@ public class Student extends Person {
                 selectedCourseCredit += course.getCredit();
                 course.setQuota(course.getQuota() - 1);
                 removeAllSessions(course);
-                syllabus.addCourseToSyllabus(course);
+                getSyllabus().addCourseToSyllabus(course);
                 return true;
             }
             System.out.println("You exceed selectable course credit limit!!");
@@ -242,6 +240,10 @@ public class Student extends Person {
         }
     }
 
+    @Override
+    public void createSyllabus(ArrayList<Course> courses) {
+        getSyllabus().fillSyllabus(courses);
+    }
 
     // Getter - Setter Methods
     public ArrayList<Course> getCurriculum() {
@@ -291,15 +293,6 @@ public class Student extends Person {
 
     public void setRequest(String request) {
         this.request = request;
-    }
-
-    //
-    public Syllabus getSyllabus() {
-        return syllabus;
-    }
-    //
-    public void setSyllabus(Syllabus syllabus) {
-        this.syllabus = syllabus;
     }
 
     //

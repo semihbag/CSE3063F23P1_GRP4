@@ -14,6 +14,12 @@ public class Lecturer extends Person{
         Course currentCourse = givenCourses.get(index);
         this.setSelectedCourse(currentCourse);
     }
+
+    @Override
+    public void createSyllabus(ArrayList<Course> givenCourses) {
+        getSyllabus().fillSyllabus(givenCourses);
+    }
+
     public Id getLecturerId() {
         return lecturerId;
     }
