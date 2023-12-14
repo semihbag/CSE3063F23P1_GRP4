@@ -230,7 +230,7 @@ public class SystemClass {
 			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
 			
 			// handling syllabus page
-			SyllabusPageStudent syllabus = (SyllabusPageStudent) this.userInterface.selectPage(PageType.SYLLABUS_PAGE_STUDENT);
+			SyllabusPageStudent syllabus = (SyllabusPageStudent) this.userInterface.selectPage(PageType.SYLLABUS_PAGE);
 			syllabus.setContent(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
 
 			this.userInterface.setCurrentPage(sm.getNextPageType());
@@ -253,7 +253,7 @@ public class SystemClass {
 			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
 			
 			// handling syllabus page
-			SyllabusPageStudent syllabus = (SyllabusPageStudent) this.userInterface.selectPage(PageType.SYLLABUS_PAGE_STUDENT);
+			SyllabusPageStudent syllabus = (SyllabusPageStudent) this.userInterface.selectPage(PageType.SYLLABUS_PAGE);
 			syllabus.setContent(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
 						
             this.userInterface.setCurrentPage(sm.getNextPageType());

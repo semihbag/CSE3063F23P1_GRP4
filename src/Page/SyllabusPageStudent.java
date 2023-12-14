@@ -7,7 +7,7 @@ public class SyllabusPageStudent extends Page{
 	
 	public SyllabusPageStudent(String content) {
 		super(content);
-		setType(PageType.SYLLABUS_PAGE_STUDENT);
+		setType(PageType.SYLLABUS_PAGE);
 		setName("Syllabus Page Student");
 	}
 

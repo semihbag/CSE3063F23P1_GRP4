@@ -23,7 +23,7 @@ public class MainMenuPageStudent extends Page{
 			case "3":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.TRANSCRIPT_PAGE, null);
 			case "4":
-				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SYLLABUS_PAGE_STUDENT, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SYLLABUS_PAGE, null);
 			case "5":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.ALL_cOURSES_PAGE, null);
 			case "6":

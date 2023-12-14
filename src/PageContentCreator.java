@@ -125,12 +125,10 @@ public class PageContentCreator {
 		if (user instanceof Student student) {
 			content += "--STUDENT " + student.getStudentId().getId() + "--\n";
 		}
-		
-		if (user instanceof Advisor advisor) {
+		else if (user instanceof Advisor advisor) {
 			content += "--ADVISOR " + advisor.getLecturerId().getId() + "--\n";
 		}
-		
-		if (user instanceof Lecturer lecturer) {
+		else if (user instanceof Lecturer lecturer) {
 			content += "--LECTURER " + lecturer.getLecturerId().getId() + "--\n";
 		}
 		
