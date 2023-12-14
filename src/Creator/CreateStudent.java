@@ -1,8 +1,6 @@
 package Creator;
 
 import CourseObject.*;
-import PersonObject.*;
-import CourseObject.*;
 import PersonObject.Advisor;
 import PersonObject.Id;
 import PersonObject.Password;
@@ -170,6 +168,53 @@ public class CreateStudent {
                 return true;
             }
         } return false;
+    }
+
+    private double calculateGPA(ArrayList<GradeClass> passedCourses, ArrayList<GradeClass> failedCourses) {
+        double gpa=0;
+        int totalCredit=0;
+        for(GradeClass current: passedCourses){
+            gpa += (current.getCourse().getCredit())*(letterToGrade(current.getGrade()));
+            totalCredit+=current.getCourse().getCredit();
+        }
+        for(GradeClass current: failedCourses){
+            gpa += (current.getCourse().getCredit())*(letterToGrade(current.getGrade()));
+            totalCredit+=current.getCourse().getCredit();
+        }
+        if(totalCredit==0){
+            return 0;
+        }
+        else{
+            return gpa/totalCredit;
+        }
+    }
+    private double letterToGrade(Grade grade){
+        return switch (grade){
+            case AA -> 4.0;
+            case BA -> 3.5;
+            case BB -> 3.0;
+            case CB -> 2.5;
+            case CC -> 2.0;
+            case DC -> 1.5;
+            case DD -> 1.0;
+            case FD -> 0.5;
+            case FF, DZ -> 0.0;
+        };
+    }
+    public Grade getCourseGrade(String strGrade){
+        return switch (strGrade.toUpperCase()) {
+            case "AA" -> Grade.AA;
+            case "BA" -> Grade.BA;
+            case "BB" -> Grade.BB;
+            case "CB" -> Grade.CB;
+            case "CC" -> Grade.CC;
+            case "DC" -> Grade.DC;
+            case "DD" -> Grade.DD;
+            case "FD" -> Grade.FD;
+            case "FF" -> Grade.FF;
+            case "DZ" -> Grade.DZ;
+            default -> null;
+        };
     }
 
     public ArrayList<Student> getStudents() {

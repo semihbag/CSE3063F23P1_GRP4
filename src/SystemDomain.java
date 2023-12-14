@@ -1,6 +1,7 @@
 import Creator.CreateAdvisor;
 import Creator.CreateCourse;
 import Creator.CreateLecturer;
+import Creator.CreateStudent;
 import PersonObject.*;
 
 import org.json.JSONException;
@@ -13,13 +14,13 @@ public class SystemDomain {
     private CreateLecturer lecturerCreator;
     private CreateAdvisor advisorCreator;
     private CreateCourse courseCreator;
-    private StudentCreator studentCreator;
+    private CreateStudent studentCreator;
 
     public SystemDomain() throws JSONException, IOException {
         lecturerCreator = new CreateLecturer("src\\JSON_Files\\lecturers.json");
         advisorCreator = new CreateAdvisor("src\\JSON_Files\\advisors.json",lecturerCreator.getLecturers());
         courseCreator = new CreateCourse("src\\JSON_Files\\courses.json",lecturerCreator.getLecturers());
-        studentCreator = new StudentCreator("src\\JSON_Files\\Students\\","src\\JSON_Files\\student_json.txt",courseCreator.getCourses(),advisorCreator.getAdvisors());
+        studentCreator = new CreateStudent("src\\JSON_Files\\Students\\","src\\JSON_Files\\student_json.txt",courseCreator.getCourses(),advisorCreator.getAdvisors());
     }
 
 
@@ -115,7 +116,7 @@ public class SystemDomain {
 
     public void setCourseCreator(CreateCourse courseCreator) {this.courseCreator = courseCreator;}
 
-    public StudentCreator getStudentCreator() {return studentCreator;}
+    public CreateStudent getStudentCreator() {return studentCreator;}
 
-    public void setStudentCreator(StudentCreator studentCreator) {this.studentCreator = studentCreator;}
+    public void setStudentCreator(CreateStudent studentCreator) {this.studentCreator = studentCreator;}
 }
