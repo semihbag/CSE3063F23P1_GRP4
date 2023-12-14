@@ -8,7 +8,7 @@ public class MainMenuPageAdvisor extends Page {
 	public MainMenuPageAdvisor(String content) {
 		super(content);
 		setType(PageType.MAIN_MENU_PAGE);
-		setName("Main Menu Page Advisor");
+		setName("Main Menu Page PersonObject.Advisor");
 	}
 	
 	@Override

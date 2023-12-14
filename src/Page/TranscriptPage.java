@@ -8,7 +8,7 @@ public class TranscriptPage extends Page {
 	public TranscriptPage(String content) {
 		super(content);
 		setType(PageType.TRANSCRIPT_PAGE);
-		setName("My Transcript Page");
+		setName("My CourseObject.Transcript Page");
 	}
 	
 	@Override 

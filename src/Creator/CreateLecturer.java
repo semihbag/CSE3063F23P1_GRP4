@@ -1,3 +1,6 @@
+package Creator;
+
+import PersonObject.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,11 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class LecturerCreator {
+public class CreateLecturer {
     private ArrayList<Lecturer> lecturers = new ArrayList<>();
     private String fileName;
 
-    public LecturerCreator(String fileName)throws JSONException, IOException {
+    public CreateLecturer(String fileName)throws JSONException, IOException {
         this.fileName = fileName;
         createLecturers();
     }
@@ -44,3 +47,4 @@ public class LecturerCreator {
         this.fileName = fileName;
     }
 }
+

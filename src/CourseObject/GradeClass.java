@@ -1,3 +1,5 @@
+package CourseObject;
+
 public class GradeClass {
     private Course course;
     private Grade grade;

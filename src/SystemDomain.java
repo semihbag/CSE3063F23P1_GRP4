@@ -1,3 +1,8 @@
+import Creator.CreateAdvisor;
+import Creator.CreateCourse;
+import Creator.CreateLecturer;
+import PersonObject.*;
+
 import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -5,15 +10,15 @@ import java.util.ArrayList;
 import Page.*;
 
 public class SystemDomain {
-    private LecturerCreator lecturerCreator;
-    private AdvisorCreator advisorCreator;
-    private CourseCreator courseCreator;
+    private CreateLecturer lecturerCreator;
+    private CreateAdvisor advisorCreator;
+    private CreateCourse courseCreator;
     private StudentCreator studentCreator;
 
     public SystemDomain() throws JSONException, IOException {
-        lecturerCreator = new LecturerCreator("src\\JSON_Files\\lecturers.json");
-        advisorCreator = new AdvisorCreator("src\\JSON_Files\\advisors.json",lecturerCreator.getLecturers());
-        courseCreator = new CourseCreator("src\\JSON_Files\\courses.json",lecturerCreator.getLecturers());
+        lecturerCreator = new CreateLecturer("src\\JSON_Files\\lecturers.json");
+        advisorCreator = new CreateAdvisor("src\\JSON_Files\\advisors.json",lecturerCreator.getLecturers());
+        courseCreator = new CreateCourse("src\\JSON_Files\\courses.json",lecturerCreator.getLecturers());
         studentCreator = new StudentCreator("src\\JSON_Files\\Students\\","src\\JSON_Files\\student_json.txt",courseCreator.getCourses(),advisorCreator.getAdvisors());
     }
 
@@ -98,17 +103,17 @@ public class SystemDomain {
 		return pages;
 	}
 
-    public LecturerCreator getLecturerCreator() {return lecturerCreator;}
+    public CreateLecturer getLecturerCreator() {return lecturerCreator;}
 
-    public void setLecturerCreator(LecturerCreator lecturerCreator) { this.lecturerCreator = lecturerCreator;}
+    public void setLecturerCreator(CreateLecturer lecturerCreator) { this.lecturerCreator = lecturerCreator;}
 
-    public AdvisorCreator getAdvisorCreator() {return advisorCreator;}
+    public CreateAdvisor getAdvisorCreator() {return advisorCreator;}
 
-    public void setAdvisorCreator(AdvisorCreator advisorCreator) {this.advisorCreator = advisorCreator;}
+    public void setAdvisorCreator(CreateAdvisor advisorCreator) {this.advisorCreator = advisorCreator;}
 
-    public CourseCreator getCourseCreator() {return courseCreator;}
+    public CreateCourse getCourseCreator() {return courseCreator;}
 
-    public void setCourseCreator(CourseCreator courseCreator) {this.courseCreator = courseCreator;}
+    public void setCourseCreator(CreateCourse courseCreator) {this.courseCreator = courseCreator;}
 
     public StudentCreator getStudentCreator() {return studentCreator;}
 

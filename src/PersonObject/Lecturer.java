@@ -1,11 +1,14 @@
+package PersonObject;
+
+import CourseObject.*;
 import java.util.ArrayList;
 
-public class Lecturer extends Person{
+public class Lecturer extends Person {
     private Id lecturerId;
     private ArrayList<Course> givenCourses = new ArrayList<>();
     private Course selectedCourse;
 
-    public Lecturer(String FirstName, String LastName, Id lecturerId,Password password) {
+    public Lecturer(String FirstName, String LastName, Id lecturerId, Password password) {
         super(FirstName, LastName,password);
         this.lecturerId = lecturerId;
     }

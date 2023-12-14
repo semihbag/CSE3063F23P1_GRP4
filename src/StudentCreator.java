@@ -1,3 +1,8 @@
+import CourseObject.*;
+import PersonObject.Advisor;
+import PersonObject.Id;
+import PersonObject.Password;
+import PersonObject.Student;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,7 +20,7 @@ public class StudentCreator {
     private String fileName;//STUDENT JSON İSMİ AMA SADECE NUMARAYA KADAR OLAN KISMIN PATHI
     private String studentsFile;//STUDENTLARIN TUTULDUĞU LİSTE
 
-    public StudentCreator(String fileName,String studentsFile,ArrayList<Course> courses,ArrayList<Advisor> advisors) throws JSONException, IOException{
+    public StudentCreator(String fileName, String studentsFile, ArrayList<Course> courses, ArrayList<Advisor> advisors) throws JSONException, IOException{
         this.fileName=fileName;
         this.studentsFile = studentsFile;
         createStudents(courses,advisors);
@@ -124,7 +129,7 @@ public class StudentCreator {
             for (Course course : courses) {
                 if (course.getCourseId().getId().equals(transcriptCourses[i]) && !courseExists(course, transcriptCourseList)) {
                     GradeClass gradeClass = new GradeClass(course, getCourseGrade(grades[i]));
-                    if(course.getCourseType()==CourseType.NONTECHNICAL || course.getCourseName().contains("Is Sagligi ve Guvenligi")) {
+                    if(course.getCourseType()== CourseType.NONTECHNICAL || course.getCourseName().contains("Is Sagligi ve Guvenligi")) {
                         gradeClass.setTerm(termPassed[j]);
                         j++;
                     }

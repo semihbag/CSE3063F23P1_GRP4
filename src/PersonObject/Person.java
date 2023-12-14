@@ -1,11 +1,14 @@
-import java.util.ArrayList;
+package PersonObject;
 
-abstract class Person {
+import java.util.ArrayList;
+import CourseObject.*;
+
+public abstract class Person {
     private String firstName, lastName;
     private Password password;
     private Syllabus syllabus;
 
-    public Person(String firstName, String lastName,Password password) {
+    public Person(String firstName, String lastName, Password password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password=password;
