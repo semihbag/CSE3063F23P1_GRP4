@@ -41,21 +41,24 @@ public class SystemClass {
 	}
 
     //Login with the given user info
-    public void login(UserInfo userInfo) {
+    public void login(String userInfo[]) {
+    	String username = userInfo[0];
+    	String password = userInfo[1];
+    	
         boolean userFound = false;
-        if (userInfo.getUsername().charAt(0) == 'o') {
+        if (username.charAt(0) == 'o') {
             for (Student student : domain.getStudentCreator().getStudents()) {
-                if (("o" + student.getStudentId().getId()).equals(userInfo.getUsername()) &&
-                        student.getPassword().getPassword().equals(userInfo.getPassword())) {
+                if (("o" + student.getStudentId().getId()).equals(username) &&
+                        student.getPassword().getPassword().equals(password)) {
                     setCurrentUser(student);
                     userFound = true;
                     break;
                 }
             }
-        } else if (userInfo.getUsername().charAt(0) == 'l') {
+        } else if (username.charAt(0) == 'l') {
             for (Lecturer lecturer : domain.getLecturerCreator().getLecturers()) {
-                if (("l" + lecturer.getLecturerId().getId()).equals(userInfo.getUsername()) &&
-                        lecturer.getPassword().getPassword().equals(userInfo.getPassword())) {
+                if (("l" + lecturer.getLecturerId().getId()).equals(username) &&
+                        lecturer.getPassword().getPassword().equals(password)) {
                     if (lecturer instanceof Advisor advisor) {
                         advisor.findAwaitingStudents();
                     }
@@ -176,8 +179,8 @@ public class SystemClass {
     public void listenUserInterface(SystemMessage sm) throws JSONException, IOException {
         FunctionType functionType = sm.getFunctionType();
         if (functionType == FunctionType.LOGIN) {
-            UserInfo userInfo = (UserInfo)sm.getInput();
-            this.login(userInfo);
+        	String userInfo[] = (String[]) sm.getInput();
+        	this.login(userInfo);
         }
         else if (functionType == FunctionType.LOGOUT) {
 	        System.out.println("\u001B[31;1mLOGOUT SUCCESSFUL - GOODBYE "+ currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");

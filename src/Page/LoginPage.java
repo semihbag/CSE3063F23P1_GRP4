@@ -4,42 +4,30 @@ import SystemMessage.*;
 import UserInfo.UserInfo;
 
 public class LoginPage extends Page{
-	private UserInfo userInfo;
 
 	public LoginPage(String content) {
 		super(content);
 		setType(PageType.LOGIN_PAGE);
 		setName("Login Page");
-		userInfo = new UserInfo(null, null);
 	}
 
 
 	@Override
 	public SystemMessage runPage() {
-		// set user info null because this func may not run one time
-		userInfo.reset();
 		
 		// print the login page content to console
 		showContent();
-		
+
+		String userInfo[] = new String[2];	
+
 		// take password
 		System.out.println("Username:");
-		userInfo.setUsername(takeInput());
+		userInfo[0] = takeInput();
 		
 		// take password
 		System.out.println("Password:");
-		userInfo.setPassword(takeInput());
+		userInfo[1] = takeInput();
 
 		return new SystemMessage(FunctionType.LOGIN, null,userInfo);
-	}
-
-	
-	//////// GETTER - SETTER METHODS ///////////
-	public UserInfo getUserInfo() {
-		return userInfo;
-	}
-
-	public void setUserInfo(UserInfo userInfo) {
-		this.userInfo = userInfo;
 	}	
 }
