@@ -51,23 +51,6 @@ public class SystemClass {
                         student.getPassword().getPassword().equals(userInfo.getPassword())) {
                     setCurrentUser(student);
                     userFound = true;
-                    userInterface.setPages(domain.createPages(currentUser));
-                    userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE);
-                    System.out.println("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
-                    break;
-                }
-            }
-        } else if (userInfo.getUsername().charAt(0) == 'a') {
-            for (Advisor advisor : domain.getAdvisorCreator().getAdvisors()) {
-                if (("a" + advisor.getLecturerId().getId()).equals(userInfo.getUsername()) &&
-                        advisor.getPassword().getPassword().equals(userInfo.getPassword())) {
-                    advisor.findAwaitingStudents();
-                    advisor.createSyllabus(advisor.getGivenCourses());
-                	setCurrentUser(advisor);
-                    userFound = true;
-                    userInterface.setPages(domain.createPages(currentUser));
-                    userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE);
-                    System.out.println("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
                     break;
                 }
             }
@@ -75,17 +58,21 @@ public class SystemClass {
             for (Lecturer lecturer : domain.getLecturerCreator().getLecturers()) {
                 if (("l" + lecturer.getLecturerId().getId()).equals(userInfo.getUsername()) &&
                         lecturer.getPassword().getPassword().equals(userInfo.getPassword())) {
+                    if (lecturer instanceof Advisor advisor) {
+                        advisor.findAwaitingStudents();
+                    }
+                    setCurrentUser(lecturer);
                 	lecturer.createSyllabus(lecturer.getGivenCourses());
-                	setCurrentUser(lecturer);
                     userFound = true;
-                    userInterface.setPages(domain.createPages(currentUser));
-                    userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE);
-                    System.out.println("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
                     break;
                 }
             }
         } if (!userFound) {
         	System.out.println("\u001B[33;1mUsername/Password incorrect.\n\u001B[0m");
+        } else {
+            userInterface.setPages(domain.createPages(currentUser));
+            userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE);
+            System.out.println("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
         }
     }
 
@@ -209,7 +196,7 @@ public class SystemClass {
             	Thread.sleep(500);
     	        System.out.println("\u001B[31;1mSYSTEM EXITING...\u001B[0m");
             }
-            catch (Exception e){	
+            catch (Exception e){
             }
             finally {
                 exit();
@@ -223,7 +210,6 @@ public class SystemClass {
 			String courseName = student.getSelectableCourses().get((Integer)sm.getInput() - 1).getCourseName();
 			if (student.addSelectedCourse((Integer)sm.getInput())) {
                 System.out.println("\u001B[32;1mCourse Addition Is Succesful - " + courseName + "\u001B[0m");
-
 			}
 			else {
     	        System.out.println("\u001B[33;1mCourse Addition Is Not Succesful - " + courseName + "\u001B[0m");
@@ -312,7 +298,6 @@ public class SystemClass {
  			advisor.sendNotification((String) sm.getInput(), "Dmnefbjfafk");
 			advisor.disapprove();
 
-			
  			System.out.println("\u001B[33;1mRequest Has Been Disapproved - " + selectedStudentFullName + "'s Request\u001B[0m");
 
             // handling selected student request
@@ -378,4 +363,3 @@ public class SystemClass {
         this.currentUser = currentUser;
     }
 }
-
