@@ -1,7 +1,4 @@
-import CourseObject.Course;
-import CourseObject.CourseSession;
-import CourseObject.GradeClass;
-import CourseObject.Syllabus;
+import CourseObject.*;
 import PersonObject.Advisor;
 import PersonObject.Lecturer;
 import PersonObject.Person;
@@ -63,7 +60,7 @@ public class PageContentCreator {
 		else {
 			str="\nRequests of " + student.getFirstName() + " " + student.getLastName()
 					+ " " + student.getStudentId().getId()
-					+"\n"+courseListForContent(student.getSelectedCourses())+"\n"
+					+"\n"+courseListForContent(student.getSelectedCourses(),0)+"\n"
 					+"Approve: A\nReject: R\nQuit: Q\n";
 		}
 		return str;
@@ -77,7 +74,7 @@ public class PageContentCreator {
 		}
 		else {
 			for(int a=0; a<student.size(); a++) {
-				str += (a+1) + ")  " + student.get(a).getStudentId().getId() + " - " +
+				str += (a+1) + ") " + student.get(a).getStudentId().getId() + " - " +
 						student.get(a).getFirstName() + " " + student.get(a).getLastName() + "\n";
 			}
 			str+="\r\n"+ "Select one of student.\nQuit: Q";
@@ -104,7 +101,7 @@ public class PageContentCreator {
 					+ "Q: Quit";
 		}
 		else {
-			str=courseListForContent(courses)+"\n"
+			str=courseListForContent(courses,2)+"\n"
 					+"\nTo select a course, press the number of the courses offered.\n\n"
 					+ "Q: Quit";
 		}
@@ -118,7 +115,7 @@ public class PageContentCreator {
 					+ "Q: Quit";
 		}
 		else {
-			str= courseListForContent(courses)
+			str= courseListForContent(courses,0)
 					+ "\nPress number to drop course \n"
 					+ "A: Send to approval\n"
 					+ "Q: Quit";
@@ -127,13 +124,13 @@ public class PageContentCreator {
 	}
 
 	public  String createAllCoursesPageContent   (ArrayList<Course> courses) {
-		String str=courseListForContent(courses)+"\n"+
+		String str=courseListForContent(courses,1)+"\n"+
 				"\nPress any key to return.\n";
 		return str;
 	}
 
 	public  String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
-		String str=courseListForContent(courses)+
+		String str=courseListForContent(courses,0)+
 				"\nPress any key to return.\n";
 		return str;
 	}
@@ -217,11 +214,17 @@ public class PageContentCreator {
 
 	public String createMyNotificationsPageContent(ArrayList<String> unreadNotifications, ArrayList<String> readNotifications) {
 		String str = "\u001B[1mNOTIFICATIONS\n\u001B[0m";
-		for (String unreadNotification : unreadNotifications) {
-			str += "\u001B[33;1m" + unreadNotification + "\n" + "\u001B[0m";
+		if (unreadNotifications.size() > 0) {
+			str += "\u001B[1mNew\n\u001B[0m";
+			for (String unreadNotification : unreadNotifications) {
+				str += "\u001B[33;1m" + unreadNotification + "\n" + "\u001B[0m";
+			}
 		}
-		for (String readNotification : readNotifications) {
-			str += readNotification + "\n";
+		if (readNotifications.size() > 0) {
+			str += "\u001B[1mOld\n\u001B[0m";
+			for (String readNotification : readNotifications) {
+				str += readNotification + "\n";
+			}
 		}
 		if (unreadNotifications.size() == 0 && readNotifications.size() == 0) {
 			str += "\nNo notification.\n";
@@ -283,30 +286,74 @@ public class PageContentCreator {
 		} return courseIds;
 	}
 
-	public  String courseListForContent (ArrayList<Course> courses) {
+	//1: ALL
+	//2: SELECTABLE
+	public  String courseListForContent (ArrayList<Course> courses, int type) {
 		String str="";
 		if(courses.size()==0) {
 			str="No course to show.\n";
 		}
 		else {
-			str = "\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
-			for (int i=1; i<=courses.size() ; i++ ) {
-				if(courses.get(i - 1) instanceof CourseSession session) {
-					str +=  i + blankAfterI(i) +
-							courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId() +
-							blankAfterStr(courses.get(i-1).getCourseId().getId() + "." +session.getSessionId().getId(), 13);
+			if (type != 1) {
+				str = "\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+			}
+			for (int i = 0; i < courses.size() ; i++ ) {
+				if (type == 1) {
+					str += allCourseLabels(i);
+				}
+				/* SELECTABLE FORMAT: Tam olmadı, tam yapınca açar pushlarım
+				if (i == 0 && (courses.get(i).getCourseType() != CourseType.MANDATORY) && (type == 2)) {
+					str += "\u001B[1m\n" + courses.get(i).getCourseType() + "\n\u001B[1m";
+				}
+				if ((i > 0) && (courses.get(i).getCourseType() != courses.get(i - 1).getCourseType()) && (type == 2)) {
+
+					str += "\u001B[1m\n" + courses.get(i).getCourseType() + "\n\u001B[1m";
+					str += "\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+				} */
+				if(courses.get(i) instanceof CourseSession session) {
+					str +=  (i + 1) + blankAfterI(i + 1) +
+							courses.get(i).getCourseId().getId() + "." +session.getSessionId().getId() +
+							blankAfterStr(courses.get(i).getCourseId().getId() + "." +session.getSessionId().getId(), 13);
 				}
 				else {
-					str +=  i + blankAfterI(i) +
-							courses.get(i-1).getCourseId().getId() +
-							blankAfterStr(courses.get(i-1).getCourseId().getId(), 13);
+					str +=  (i + 1) + blankAfterI(i + 1) +
+							courses.get(i).getCourseId().getId() +
+							blankAfterStr(courses.get(i).getCourseId().getId(), 13);
 				}
-				str += courses.get(i-1).getCourseName() + blankAfterStr(courses.get(i-1).getCourseName(), 50) + " " +
-						courses.get(i-1).getLecturer().getFirstName() + " "+
-						courses.get(i-1).getLecturer().getLastName() + "\n";
+				str += courses.get(i).getCourseName() + blankAfterStr(courses.get(i).getCourseName(), 50) + " " +
+						courses.get(i).getLecturer().getFirstName() + " "+
+						courses.get(i).getLecturer().getLastName() + "\n";
 			}
 		}
 		return str;
+	}
+
+	private String allCourseLabels(int i) {
+		return switch (i) {
+			case 0 -> "\u001B[1mTERM 1\n\u001B[0m" +
+					"\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+			case 9 -> "\u001B[1m\nTERM 2\n\u001B[0m" +
+					"\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+			case 17 -> "\u001B[1m\nTERM 3\n\u001B[0m" +
+					"\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+			case 23 -> "\u001B[1m\nTERM 4\n\u001B[0m" +
+					"\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+			case 28 -> "\u001B[1m\nTERM 5\n\u001B[0m" +
+					"\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+			case 33 -> "\u001B[1m\nTERM 6\n\u001B[0m" +
+					"\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+			case 39 -> "\u001B[1m\nTERM 7\n\u001B[0m" +
+					"\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+			case 46 -> "\u001B[1m\nTERM 8\n\u001B[0m" +
+					"\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+			case 50 -> "\u001B[1m\nNON-TECHNICAL ELECTIVES\n\u001B[0m" +
+					"\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+			case 59 -> "\u001B[1m\nTECHNICAL ELECTIVES\n\u001B[0m" +
+					"\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+			case 66 -> "\u001B[1m\nFACULTY ELECTIVES\n\u001B[0m" +
+					"\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+			default -> "";
+		};
 	}
 
 	private String returnHour(int a) {
