@@ -40,10 +40,9 @@ public class SystemClass {
 	}
 
     //Login with the given user info
-    public void login(String userInfo[]) {
+    public void login(String[] userInfo) {
     	String username = userInfo[0];
     	String password = userInfo[1];
-    	
         boolean userFound = false;
         if (username.charAt(0) == 'o') {
             for (Student student : domain.getStudentCreator().getStudents()) {
