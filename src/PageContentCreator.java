@@ -37,8 +37,9 @@ public class PageContentCreator {
 				"1) Profile\n" +
 				"2) Advised Student Information\n"+
 				"3) Evaluate Requests\n"+
-				"4) Log out\n"+
-				"5) Exit\n";
+				"4) Courses\n"+
+				"5) Log out\n"+
+				"6) Exit\n";
 		return str;
 	}
 
