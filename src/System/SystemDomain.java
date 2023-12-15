@@ -1,15 +1,13 @@
+package System;
 import Creator.CreateAdvisor;
 import Creator.CreateCourse;
 import Creator.CreateLecturer;
 import Creator.CreatePage;
 import Creator.CreateStudent;
-import PersonObject.*;
 
 import org.json.JSONException;
 import java.io.IOException;
-import java.util.ArrayList;
 
-import Page.*;
 
 public class SystemDomain {
     private CreateLecturer lecturerCreator;

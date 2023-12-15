@@ -1,7 +1,7 @@
 package Page;
 
-import SystemMessage.FunctionType;
-import SystemMessage.SystemMessage;
+import System.FunctionType;
+import System.SystemMessage;
 
 public class MyNotificationsPage extends Page{
 	

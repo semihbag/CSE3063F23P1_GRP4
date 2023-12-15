@@ -25,9 +25,6 @@ import Page.SelectedMyCoursePage;
 import Page.SelectedStudentRequestPage;
 import Page.SyllabusPage;
 import Page.TranscriptPage;
-
-import CourseObject.*;
-
 import PersonObject.Advisor;
 import PersonObject.Lecturer;
 import PersonObject.Person;

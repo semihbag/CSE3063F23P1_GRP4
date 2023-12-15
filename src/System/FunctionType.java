@@ -1,4 +1,4 @@
-package SystemMessage;
+package System;
 
 public enum FunctionType {
 	//COMMON

@@ -1,7 +1,8 @@
 package Page;
 
 import java.util.Scanner;
-import SystemMessage.*;
+
+import System.*;
 
 public abstract class Page {
 	private PageType type;

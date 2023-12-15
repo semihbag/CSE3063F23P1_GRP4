@@ -1,7 +1,8 @@
 package UserInterface;
 
 import Page.*;
-import SystemMessage.*;
+import System.*;
+
 import java.util.ArrayList;
 
 

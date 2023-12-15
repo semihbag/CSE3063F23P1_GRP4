@@ -1,7 +1,7 @@
+package System;
 
 import CourseObject.*;
 import PersonObject.*;
-import SystemMessage.*;
 import UserInterface.*;
 import Page.*;
 

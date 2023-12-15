@@ -1,4 +1,4 @@
-package SystemMessage;
+package System;
 
 import Page.PageType;
 
