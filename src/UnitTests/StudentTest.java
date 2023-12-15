@@ -83,5 +83,34 @@ public class StudentTest {
         assertTrue(student.exceed(course4.getCourseType(), 2));
 
     }
+    @Test
+    public void exceedTerm(){
+        Student student= new Student(null, null, null, null, null, null, null);
+        
+        //CASE 1: Check status if student does not select specific course type in current term
+        assertFalse(student.exceedTerm(CourseType.MANDATORY));
+        assertFalse(student.exceedTerm(CourseType.TECHNICAL));
+        assertFalse(student.exceedTerm(CourseType.FACULTY));
+
+        //CASE2 : If student select one specific course type in current term
+        Course nonTechnical = new Course(null, "Strategic Entrepreneurship",0,3,null,null,0,CourseType.NONTECHNICAL);
+        Course technical = new Course(null, "Microprocessors",0,3,null,null,0,CourseType.TECHNICAL);
+        Course faculty = new Course(null, "Introduction to Image Processing",0,3,null,null,0,CourseType.FACULTY);
+
+
+        ArrayList<Course> selectedCourses = new ArrayList<Course>();
+        selectedCourses.add(nonTechnical);
+        selectedCourses.add(technical);
+        selectedCourses.add(faculty);
+
+        student.setSelectedCourses(selectedCourses);
+
+
+        assertTrue(student.exceedTerm(CourseType.NONTECHNICAL));
+        assertTrue(student.exceedTerm(CourseType.TECHNICAL));
+        assertTrue(student.exceedTerm(CourseType.FACULTY));
+
+
+    }
 
 }
