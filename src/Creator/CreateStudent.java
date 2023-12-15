@@ -19,11 +19,11 @@ import java.util.Scanner;
 
 public class CreateStudent {
     private ArrayList<Student> students = new ArrayList<>();
-    private String fileName;//STUDENT JSON İSMİ AMA SADECE NUMARAYA KADAR OLAN KISMIN PATHI
-    private String studentsFile;//STUDENTLARIN TUTULDUĞU LİSTE
+    private String fileName;
+    private String studentsFile;
 
     public CreateStudent(String fileName, String studentsFile, ArrayList<Course> courses, ArrayList<Advisor> advisors) throws JSONException, IOException{
-        this.fileName=fileName;
+        this.fileName = fileName;
         this.studentsFile = studentsFile;
         createStudents(courses,advisors);
     }
@@ -79,6 +79,7 @@ public class CreateStudent {
         assignStudentsToAdvisor(advisors);
         fillStudentListCourse(courses);
     }
+
     public String[] jsonArrToStrArr(JSONArray jsonArray) throws JSONException {
         String[] strings = new String[jsonArray.length()];
         for(int i=0; i<jsonArray.length();i++){
@@ -86,6 +87,7 @@ public class CreateStudent {
         }
         return strings;
     }
+
     private int[] jsonArrToIntArr(JSONArray jsonArray) throws JSONException {
         int[] ints = new int[jsonArray.length()];
         for(int i=0; i<jsonArray.length();i++){
@@ -114,7 +116,8 @@ public class CreateStudent {
         }
         return transcriptCourseList;
     }
-    private ArrayList<Course> setStudentCourses(String[] studentCoursesAr, ArrayList<Course> courses) {
+
+    public ArrayList<Course> setStudentCourses(String[] studentCoursesAr, ArrayList<Course> courses) {
         ArrayList<Course> studentCoursesList = new ArrayList<>();
         for (String s : studentCoursesAr) {
             for (int j = 0; j < courses.size(); j++) {
@@ -126,6 +129,7 @@ public class CreateStudent {
             }
         } return studentCoursesList;
     }
+
     private Advisor findAdvisor(String advisorID,ArrayList<Advisor> advisors) {
         Advisor advisor = null;
         for (int i = 0; i < advisors.size(); i++) {
@@ -135,6 +139,7 @@ public class CreateStudent {
         }
         return advisor;
     }
+
     private void assignStudentsToAdvisor(ArrayList<Advisor> advisors) {
         for (Student student : students) {
             for (Advisor advisor : advisors) {
@@ -145,6 +150,7 @@ public class CreateStudent {
             }
         }
     }
+
     public void fillStudentListCourse(ArrayList<Course> courses) throws JSONException, IOException{
         String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
         JSONObject jsonObject = new JSONObject(content);
@@ -162,6 +168,7 @@ public class CreateStudent {
             }
         }
     }
+
     private boolean courseExists(Course course, ArrayList<GradeClass> transcriptCourseList) {
         for (GradeClass gradeClass : transcriptCourseList) {
             if (course.getCourseId().getId().equals(gradeClass.getCourse().getCourseId().getId())) {
@@ -170,7 +177,7 @@ public class CreateStudent {
         } return false;
     }
 
-    private double calculateGPA(ArrayList<GradeClass> passedCourses, ArrayList<GradeClass> failedCourses) {
+    public double calculateGPA(ArrayList<GradeClass> passedCourses, ArrayList<GradeClass> failedCourses) {
         double gpa=0;
         int totalCredit=0;
         for(GradeClass current: passedCourses){
@@ -188,6 +195,7 @@ public class CreateStudent {
             return gpa/totalCredit;
         }
     }
+
     private double letterToGrade(Grade grade){
         return switch (grade){
             case AA -> 4.0;
@@ -201,6 +209,7 @@ public class CreateStudent {
             case FF, DZ -> 0.0;
         };
     }
+
     public Grade getCourseGrade(String strGrade){
         return switch (strGrade.toUpperCase()) {
             case "AA" -> Grade.AA;
@@ -219,26 +228,6 @@ public class CreateStudent {
 
     public ArrayList<Student> getStudents() {
         return students;
-    }
-
-    public void setStudents(ArrayList<Student> students) {
-        this.students = students;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public String getStudentsFile() {
-        return studentsFile;
-    }
-
-    public void setStudentsFile(String studentsFile) {
-        this.studentsFile = studentsFile;
     }
 }
 

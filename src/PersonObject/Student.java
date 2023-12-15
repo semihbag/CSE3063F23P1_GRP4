@@ -263,6 +263,10 @@ public class Student extends Person {
         return advisor;
     }
 
+    public void setAdvisor(Advisor advisor) {
+        this.advisor = advisor;
+    }
+
     public Transcript getTranscript() {
         return transcript;
     }
