@@ -112,7 +112,6 @@ public class StudentTest {
     public void isFailedCourse() {
         Id id1 = new Id("CSE2023");
         Id id2 = new Id("MATH1002");
-        Id id3 = new Id("MBG1201");
     
         //Creating sample courses
         Course course1 = new Course(id1, null, 0, 3, null, null, 0,null);
