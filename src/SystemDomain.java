@@ -87,6 +87,9 @@ public class SystemDomain {
 			
 			SelectedStudentRequestPage selectedStudentRequest = new SelectedStudentRequestPage(pageContentCreator.createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
 			pages.add(selectedStudentRequest);
+			
+			SyllabusPage syllabus = new SyllabusPage(pageContentCreator.createSyllabusPageContent(advisor.getSyllabus()));
+			pages.add(syllabus);
 		}
 		else if (currentUser instanceof Lecturer lecturer) {
 			MainMenuPageLecturer mainLecturer = new MainMenuPageLecturer(pageContentCreator.createMainMenuPageLecturerContent());

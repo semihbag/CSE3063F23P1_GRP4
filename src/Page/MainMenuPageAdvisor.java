@@ -25,8 +25,10 @@ public class MainMenuPageAdvisor extends Page {
 			case "4":
 				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_COURSES_PAGE, null);
 			case "5":
-				return new SystemMessage(FunctionType.LOGOUT, PageType.LOGIN_PAGE, null);
+				return new SystemMessage(FunctionType.CHANGE_PAGE, PageType.SYLLABUS_PAGE, null);
 			case "6":
+				return new SystemMessage(FunctionType.LOGOUT, PageType.LOGIN_PAGE, null);
+			case "7":
 				return new SystemMessage(FunctionType.EXIT, null, null);
 			default:
 				System.out.println("Wrong Input!");

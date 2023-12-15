@@ -38,8 +38,9 @@ public class PageContentCreator {
 				"2) Advised Student Information\n"+
 				"3) Evaluate Requests\n"+
 				"4) Courses\n"+
-				"5) Log out\n"+
-				"6) Exit\n";
+				"5) My Weekly Syllabus\n"+
+				"6) Log out\n"+
+				"7) Exit\n";
 		return str;
 	}
 
