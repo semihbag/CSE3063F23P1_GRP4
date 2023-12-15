@@ -1,17 +1,130 @@
+package Creator;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
 import CourseObject.Course;
 import CourseObject.CourseSession;
 import CourseObject.GradeClass;
 import CourseObject.Syllabus;
+import Page.AllCoursesPage;
+import Page.ApprovedCoursesPage;
+import Page.ChangePasswaordPage;
+import Page.EvaluateRequestsPage;
+import Page.MainMenuPageAdvisor;
+import Page.MainMenuPageLecturer;
+import Page.MainMenuPageStudent;
+import Page.MyCoursesPage;
+import Page.MyNotificationsPage;
+import Page.MyStudentsPage;
+import Page.Page;
+import Page.ProfilePage;
+import Page.SelectableCoursesPage;
+import Page.SelectedCoursesPage;
+import Page.SelectedMyCoursePage;
+import Page.SelectedStudentRequestPage;
+import Page.SyllabusPage;
+import Page.TranscriptPage;
 import PersonObject.Advisor;
 import PersonObject.Lecturer;
 import PersonObject.Person;
 import PersonObject.Student;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
+public class CreatePage {
+	
+	private ArrayList<Page> pages = new ArrayList<>();
 
-public class PageContentCreator {
+    //PAGE MERGE WITH SYSTEM DOMAIN
+	public ArrayList<Page> createPages(Person currentUser){
 
+		if (currentUser instanceof Student student) {
+            MainMenuPageStudent mainStudent = new MainMenuPageStudent(createMainMenuPageStudentContent(student.getUnreadNotifications().size()));
+			pages.add(mainStudent);
+
+			ProfilePage profile = new ProfilePage(createProfilePageContent(student));
+			pages.add(profile);
+			
+			ChangePasswaordPage cPassword = new ChangePasswaordPage(createChangePasswordPage());
+			pages.add(cPassword);
+			
+			MyNotificationsPage notifications = new MyNotificationsPage(createMyNotificationsPageContent(student.getUnreadNotifications(), student.getReadNotifications()));
+			pages.add(notifications);
+			
+			TranscriptPage transcript = new TranscriptPage(createTranscriptPageContent(student));
+			pages.add(transcript);
+			
+			SyllabusPage syllabus = new SyllabusPage(createSyllabusPageContent(student.getSyllabus()));
+			pages.add(syllabus);
+
+			AllCoursesPage allCourses = new AllCoursesPage(createAllCoursesPageContent(student.getCurriculum()));
+			pages.add(allCourses);
+
+			SelectableCoursesPage selectable = new SelectableCoursesPage(createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
+			selectable.setNumberOfSelectableCourses(student.getSelectableCourses().size());
+			pages.add(selectable);
+
+			SelectedCoursesPage selected = new SelectedCoursesPage(createSelectedCoursesPageContent(student.getSelectedCourses()));
+			selected.setNumberOfDropableCourses(student.getSelectedCourses().size());
+			pages.add(selected);
+
+			ApprovedCoursesPage approved = new ApprovedCoursesPage(createApprovedCoursesPageContent(student.getApprovedCourses()));
+			pages.add(approved);
+		}
+		else if (currentUser instanceof Advisor advisor) {
+            MainMenuPageAdvisor mainAdvisor = new MainMenuPageAdvisor(createMainMenuPageAdvisorContent());
+			pages.add(mainAdvisor);
+
+			ProfilePage profile = new ProfilePage(createProfilePageContent(advisor));
+			pages.add(profile);
+			
+			ChangePasswaordPage cPassword = new ChangePasswaordPage(createChangePasswordPage());
+			pages.add(cPassword);
+			
+			MyStudentsPage myStudents = new MyStudentsPage(createMyStudentsPageContent(advisor.getStudentList()));
+			pages.add(myStudents);
+
+			EvaluateRequestsPage evaluateRequest = new EvaluateRequestsPage(createEvaluateRequestPageContent(advisor.getAwaitingStudents()));
+			evaluateRequest.setNumberOfRequest(advisor.getAwaitingStudents().size());
+			pages.add(evaluateRequest);
+
+			MyCoursesPage myCourses = new MyCoursesPage(createMyCoursesPageContent(advisor));
+			myCourses.setNumberOfCourses(advisor.getGivenCourses().size());
+			pages.add(myCourses);
+			
+			SelectedMyCoursePage selectedCourse = new SelectedMyCoursePage(createSelectedMyCoursePage(advisor.getSelectedCourse()));
+			pages.add(selectedCourse);
+			
+			SelectedStudentRequestPage selectedStudentRequest = new SelectedStudentRequestPage(createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
+			pages.add(selectedStudentRequest);
+			
+			SyllabusPage syllabus = new SyllabusPage(createSyllabusPageContent(advisor.getSyllabus()));
+			pages.add(syllabus);
+		}
+		else if (currentUser instanceof Lecturer lecturer) {
+			MainMenuPageLecturer mainLecturer = new MainMenuPageLecturer(createMainMenuPageLecturerContent());
+			pages.add(mainLecturer);
+			
+			ProfilePage profile = new ProfilePage(createProfilePageContent(lecturer));
+			pages.add(profile);
+			
+			ChangePasswaordPage cPassword = new ChangePasswaordPage(createChangePasswordPage());
+			pages.add(cPassword);
+			
+			MyCoursesPage myCourses = new MyCoursesPage(createMyCoursesPageContent(lecturer));
+			myCourses.setNumberOfCourses(lecturer.getGivenCourses().size());
+			pages.add(myCourses);
+			
+			SelectedMyCoursePage selectedCourse = new SelectedMyCoursePage(createSelectedMyCoursePage(lecturer.getSelectedCourse()));
+			pages.add(selectedCourse);
+		
+			SyllabusPage syllabus = new SyllabusPage(createSyllabusPageContent(lecturer.getSyllabus()));
+			pages.add(syllabus);
+		}
+		return pages;
+	}
+
+	
+	
 	public  String createMainMenuPageStudentContent(int numberOfUnreadNotifications) {
 		String str = "";
 		if (numberOfUnreadNotifications != 0) {
@@ -32,7 +145,7 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public  String createMainMenuPageAdvisorContent() {
+	private  String createMainMenuPageAdvisorContent() {
 		String str="\u001B[1m         MAIN MENU         \u001B[0m\n"+
 				"1) Profile\n" +
 				"2) Advised Student Information\n"+
@@ -44,7 +157,7 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public String createMainMenuPageLecturerContent() {
+	private String createMainMenuPageLecturerContent() {
 		String str="\u001B[1m         MAIN MENU         \u001B[0m\n"+
 				"1) Profile\n" +
 				"2) Courses\n" +
@@ -85,7 +198,7 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public   String createMyStudentsPageContent (ArrayList<Student> student) {
+	private   String createMyStudentsPageContent (ArrayList<Student> student) {
 		String str="\u001B[1mSTUDENT ID        NAME SURNAME                  TERM\n\u001B[0m";
 		for (int i=1; i<=student.size() ; i++ ) {
 			String fullName = student.get(i-1).getFirstName()+ " " + student.get(i-1).getLastName();
@@ -126,19 +239,19 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public  String createAllCoursesPageContent   (ArrayList<Course> courses) {
+	private  String createAllCoursesPageContent   (ArrayList<Course> courses) {
 		String str=courseListForContent(courses)+"\n"+
 				"\nPress any key to return.\n";
 		return str;
 	}
 
-	public  String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
+	private  String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
 		String str=courseListForContent(courses)+
 				"\nPress any key to return.\n";
 		return str;
 	}
 
-	public String createProfilePageContent(Person user) {
+	private String createProfilePageContent(Person user) {
 		String content = "";
 		if (user instanceof Student student) {
 			content += "\u001B[1m  STUDENT " + student.getStudentId().getId() + "\n\u001B[0m";
@@ -158,7 +271,7 @@ public class PageContentCreator {
 		return content;
 	}
 
-	public String createChangePasswordPage() {
+	private String createChangePasswordPage() {
 		return "• New password must be at least 8 character, at most 20 characters long.\n"+
 				"• New password must contain an upper and a lower case letter.\n"+
 				"• New password must contain at least one digit.\n"+
@@ -166,7 +279,7 @@ public class PageContentCreator {
 	}
 
 	//Information of given courses
-	public String createMyCoursesPageContent(Lecturer lecturer) {
+	private String createMyCoursesPageContent(Lecturer lecturer) {
 		String str = "\u001B[1m\nCOURSES\n\u001B[0m";
 		for (int i = 0; i < lecturer.getGivenCourses().size(); i++) {
 			Course course = lecturer.getGivenCourses().get(i);
@@ -215,7 +328,7 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public String createMyNotificationsPageContent(ArrayList<String> unreadNotifications, ArrayList<String> readNotifications) {
+	private String createMyNotificationsPageContent(ArrayList<String> unreadNotifications, ArrayList<String> readNotifications) {
 		String str = "\u001B[1mNOTIFICATIONS\n\u001B[0m";
 		for (String unreadNotification : unreadNotifications) {
 			str += "\u001B[33;1m" + unreadNotification + "\n" + "\u001B[0m";
@@ -230,7 +343,7 @@ public class PageContentCreator {
 		return str;
 	}
 
-	public String createTranscriptPageContent(Student student) {
+	private String createTranscriptPageContent(Student student) {
 		String str = "\u001B[1m                               MARMARA UNIVERSITY\n\u001B[0m" +
 				"\u001B[1m                                   TRANSCRIPT\n\n\u001B[0m";
 		DecimalFormat dcFormat = new DecimalFormat("#.##");
@@ -283,7 +396,7 @@ public class PageContentCreator {
 		} return courseIds;
 	}
 
-	public  String courseListForContent (ArrayList<Course> courses) {
+	private  String courseListForContent (ArrayList<Course> courses) {
 		String str="";
 		if(courses.size()==0) {
 			str="No course to show.\n";
@@ -340,5 +453,16 @@ public class PageContentCreator {
 		if (i < 10) {
 			return "    ";
 		} return "   ";
+	}
+
+	
+	// GETTER - SETTER
+
+	public ArrayList<Page> getPages() {
+		return pages;
+	}
+	
+	public void setPages(ArrayList<Page> pages) {
+		this.pages = pages;
 	}
 }

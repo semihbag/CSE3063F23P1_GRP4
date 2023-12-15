@@ -21,12 +21,10 @@ import java.util.ArrayList;
 public class SystemClass {
     private SystemDomain domain;
     private Person currentUser;
-    private PageContentCreator pageContentCreator;
     private UserInterface userInterface;
 
     //Constructor
     public SystemClass(UserInterface u) throws JSONException, IOException {
-        pageContentCreator = new PageContentCreator();
     	userInterface = u;
 		LoginPage login = new LoginPage("Welcome! Please enter your username/password.");
 		userInterface.addPage(login);
@@ -70,7 +68,7 @@ public class SystemClass {
         } if (!userFound) {
         	System.out.println("\u001B[33;1mUsername/Password incorrect.\n\u001B[0m");
         } else {
-            userInterface.setPages(domain.createPages(currentUser));
+            userInterface.setPages(domain.getPageCreator().createPages(currentUser));
             userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE);
             System.out.println("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
         }
@@ -217,17 +215,17 @@ public class SystemClass {
 
             // handling of selecteable course data
             SelectableCoursesPage selectableCoursePage = (SelectableCoursesPage) this.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE);
-			selectableCoursePage.setContent(this.pageContentCreator.createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
+			selectableCoursePage.setContent(domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
 			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
 
             // handling selected course data
             SelectedCoursesPage selectedCoursePage = (SelectedCoursesPage) this.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE);
-			selectedCoursePage.setContent(this.pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
+			selectedCoursePage.setContent(domain.getPageCreator().createSelectedCoursesPageContent(student.getSelectedCourses()));
 			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
 			
 			// handling syllabus page
 			SyllabusPage syllabus = (SyllabusPage) this.userInterface.selectPage(PageType.SYLLABUS_PAGE);
-			syllabus.setContent(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
+			syllabus.setContent(domain.getPageCreator().createSyllabusPageContent(student.getSyllabus()));
 
 			this.userInterface.setCurrentPage(sm.getNextPageType());
         }
@@ -240,17 +238,17 @@ public class SystemClass {
 
             // handling selected course data
             SelectedCoursesPage selectedCoursePage = (SelectedCoursesPage) this.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE);
-			selectedCoursePage.setContent(this.pageContentCreator.createSelectedCoursesPageContent(student.getSelectedCourses()));
+			selectedCoursePage.setContent(domain.getPageCreator().createSelectedCoursesPageContent(student.getSelectedCourses()));
 			selectedCoursePage.setNumberOfDropableCourses(student.getSelectedCourses().size());
 
             // handling of selecteable course data
             SelectableCoursesPage selectableCoursePage = (SelectableCoursesPage) this.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE);
-			selectableCoursePage.setContent(this.pageContentCreator.createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
+			selectableCoursePage.setContent(domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
 			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
 			
 			// handling syllabus page
 			SyllabusPage syllabus = (SyllabusPage) this.userInterface.selectPage(PageType.SYLLABUS_PAGE);
-			syllabus.setContent(pageContentCreator.createSyllabusPageContent(student.getSyllabus()));
+			syllabus.setContent(domain.getPageCreator().createSyllabusPageContent(student.getSyllabus()));
 						
             this.userInterface.setCurrentPage(sm.getNextPageType());
         }
@@ -271,7 +269,7 @@ public class SystemClass {
 			
 			// handling selected request 
 			SelectedStudentRequestPage s = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
-            s.setContent(pageContentCreator.createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
+            s.setContent(domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
 			this.userInterface.setCurrentPage(sm.getNextPageType());
         }
         else if (functionType == FunctionType.APPROVE_REQUEST ) {
@@ -284,11 +282,11 @@ public class SystemClass {
 
             // handling selected student request
             SelectedStudentRequestPage selectedStdudentRequesPage = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
-			selectedStdudentRequesPage.setContent(this.pageContentCreator.createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
+			selectedStdudentRequesPage.setContent(domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
 
             // handling evaluate request
             EvaluateRequestsPage evaluateRequestPage = (EvaluateRequestsPage) this.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE);
-			evaluateRequestPage.setContent(this.pageContentCreator.createEvaluateRequestPageContent(advisor.getAwaitingStudents()));
+			evaluateRequestPage.setContent(domain.getPageCreator().createEvaluateRequestPageContent(advisor.getAwaitingStudents()));
 			evaluateRequestPage.setNumberOfRequest(advisor.getAwaitingStudents().size());
             this.userInterface.setCurrentPage(sm.getNextPageType());
         }
@@ -302,11 +300,11 @@ public class SystemClass {
 
             // handling selected student request
             SelectedStudentRequestPage selectedStdudentRequesPage = (SelectedStudentRequestPage) this.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE);
-			selectedStdudentRequesPage.setContent(this.pageContentCreator.createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
+			selectedStdudentRequesPage.setContent(domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
 
             // handling evaluate request
             EvaluateRequestsPage evaluateRequestPage = (EvaluateRequestsPage) this.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE);
-			evaluateRequestPage.setContent(this.pageContentCreator.createEvaluateRequestPageContent(advisor.getAwaitingStudents()));
+			evaluateRequestPage.setContent(domain.getPageCreator().createEvaluateRequestPageContent(advisor.getAwaitingStudents()));
 			evaluateRequestPage.setNumberOfRequest(advisor.getAwaitingStudents().size());
 
             this.userInterface.setCurrentPage(sm.getNextPageType());
@@ -317,7 +315,7 @@ public class SystemClass {
 			
 			// handling selected my course
 			SelectedMyCoursePage selectedMyCourse = (SelectedMyCoursePage) this.userInterface.selectPage(PageType.SELECTED_MY_COURSE_PAGE);
-			selectedMyCourse.setContent(this.pageContentCreator.createSelectedMyCoursePage(lecturer.getSelectedCourse()));
+			selectedMyCourse.setContent(domain.getPageCreator().createSelectedMyCoursePage(lecturer.getSelectedCourse()));
 			
 			this.userInterface.setCurrentPage(sm.getNextPageType());			
         }
@@ -344,7 +342,7 @@ public class SystemClass {
             Student student = (Student) this.getCurrentUser();
             student.clearUnreadNotification();
             MainMenuPageStudent main = (MainMenuPageStudent) this.userInterface.selectPage(PageType.MAIN_MENU_PAGE);
-            main.setContent(pageContentCreator.createMainMenuPageStudentContent(student.getUnreadNotifications().size()));
+            main.setContent(domain.getPageCreator().createMainMenuPageStudentContent(student.getUnreadNotifications().size()));
             
             this.userInterface.setCurrentPage(sm.getNextPageType());
         }
