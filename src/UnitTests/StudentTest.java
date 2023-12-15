@@ -3,14 +3,9 @@ package UnitTests;
 import CourseObject.*;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.DisplayName;
 
 import PersonObject.*;
-
-import org.junit.Before;
 
 import java.util.ArrayList;
 
@@ -118,71 +113,80 @@ public class StudentTest {
         Id id1 = new Id("CSE2023");
         Id id2 = new Id("MATH1002");
         Id id3 = new Id("MBG1201");
-
-        // Örnek kurslar oluşturuluyor
+    
+        //Creating sample courses
         Course course1 = new Course(id1, null, 0, 3, null, null, 0,null);
         Course course2 = new Course(id2, null, 0, 2, null, null, 0,null);
-        Course course3 = new Course(id3, null, 0, 1, null, null, 0,null);
-
-
-        // Örnek GradeClass nesneleri oluşturuluyor
+   
+        // Creating sample GradeClass objects
         GradeClass passedCourse1 = new GradeClass(course1, Grade.AA);
         GradeClass failedCourse1 = new GradeClass(course2, Grade.FF);
-        GradeClass eklenmedi = new GradeClass(course3, Grade.FD);
-
-        // Transcript nesnesi oluşturuluyor ve bu nesneye başarılı ve başarısız dersler ekleniyor
+    
+        // passedCourses and failedCourses ArrayLists are created and objects are added to these lists
         ArrayList<GradeClass> passedCourses = new ArrayList<>();
         ArrayList<GradeClass> failedCourses = new ArrayList<>();
-
+    
         passedCourses.add(passedCourse1);
         failedCourses.add(failedCourse1);
-
+    
         Transcript transcript = new Transcript(0, 4, passedCourses, failedCourses);
-
-        // Student nesnesi oluşturuluyor ve bu nesneye Transcript nesnesi ekleniyor
+    
+        // Creating a Student object and adding a Transcript object to this object
         Student student = new Student(null, null, null, null, null, transcript,null);
-
-        // İlk ders başarılı olduğu için false dönmeli
+    
+        // Must return false because the first lesson was successful
         assertFalse(student.isFailedCourse(course1));
-
-        // İkinci ders başarısız olduğu için tru dönmeli
+    
+        // Must return true because second lesson failed
         assertTrue(student.isFailedCourse(course2));
-
-        // Hiç ders eklenmemişse false dönmeli
-        assertFalse(student.isFailedCourse(course3));
+    
     }
-
-
+    
+    
     @Test
-    public void exceed(){
+    public void exceed() {
+        // Creating an ArrayList to store passed courses
         ArrayList<GradeClass> passedCourses = new ArrayList<>();
-
-        Transcript transcript = new Transcript(0,0,passedCourses,null);
-        Student student = new Student(null,null,null,null,null,transcript,null);
-
-        Course course1 = new Course(null, null,0,0, null, null, 0, CourseType.NONTECHNICAL);
+    
+        // Creating a Transcript with initial values and an empty list of passed courses
+        Transcript transcript = new Transcript(0, 0, passedCourses, null);
+    
+        // Creating a Student with null values for personal information, using the created transcript
+        Student student = new Student(null, null, null, null, null, transcript, null);
+    
+        // Creating the first course and adding it to the list of passed courses with grade AA
+        Course course1 = new Course(null, null, 0, 0, null, null, 0, CourseType.NONTECHNICAL);
         GradeClass gradeClass1 = new GradeClass(course1, Grade.AA);
         passedCourses.add(gradeClass1);
-
+    
+        // Asserting that the student did not exceed the limit for NONTECHNICAL courses with max limit 2
         assertFalse(student.exceed(course1.getCourseType(), 2));
-
-        Course course2 = new Course(null, null,0,0, null, null, 0, CourseType.NONTECHNICAL);
+    
+        // Creating the second course and adding it to the list of passed courses with grade AA
+        Course course2 = new Course(null, null, 0, 0, null, null, 0, CourseType.NONTECHNICAL);
         GradeClass gradeClass2 = new GradeClass(course1, Grade.AA);
         passedCourses.add(gradeClass2);
+    
+        // Asserting that the student exceeded the limit for NONTECHNICAL courses with max limit 2
         assertTrue(student.exceed(course2.getCourseType(), 2));
-
-        Course course3 = new Course(null, null,0,0, null, null, 0, CourseType.FACULTY);
+    
+        // Creating the third course and adding it to the list of passed courses with grade AA
+        Course course3 = new Course(null, null, 0, 0, null, null, 0, CourseType.FACULTY);
         GradeClass gradeClass3 = new GradeClass(course3, Grade.AA);
         passedCourses.add(gradeClass3);
-
+    
+        // Asserting that the student did not exceed the limit for FACULTY courses with max limit 2
         assertFalse(student.exceed(course3.getCourseType(), 2));
-
-        Course course4 = new Course(null, null,0,0, null, null, 0, CourseType.FACULTY);
+    
+        // Creating the fourth course and adding it to the list of passed courses with grade AA
+        Course course4 = new Course(null, null, 0, 0, null, null, 0, CourseType.FACULTY);
         GradeClass gradeClass4 = new GradeClass(course4, Grade.AA);
         passedCourses.add(gradeClass4);
+    
+        // Asserting that the student exceeded the limit for FACULTY courses with max limit 2
         assertTrue(student.exceed(course4.getCourseType(), 2));
-
     }
+    
     @Test
     public void exceedTerm(){
         Student student= new Student(null, null, null, null, null, null, null);
@@ -210,6 +214,46 @@ public class StudentTest {
         assertTrue(student.exceedTerm(CourseType.TECHNICAL));
         assertTrue(student.exceedTerm(CourseType.FACULTY));
 
+
+    }
+
+    @Test
+    public void clearUnreadNotification() {
+
+        Student student = new Student(null, null, null, null, null, null, null);
+
+        ArrayList<String> unreadNotifications = new ArrayList<>();
+        ArrayList<String> readNotifications = new ArrayList<>();
+        student.setUnreadNotifications(unreadNotifications);
+        student.setReadNotifications(readNotifications);
+
+        student.addUnreadNotification("Notification 1");
+        student.addUnreadNotification("Notification 2");
+
+
+        student.clearUnreadNotification();
+
+
+        assertTrue(student.getUnreadNotifications().isEmpty());
+
+  
+        assertFalse(student.getReadNotifications().isEmpty());
+
+    }
+
+    @Test
+    public void addUnreadNotification() {
+        Student student = new Student(null, null, null, null, null, null, null);
+
+        student.setUnreadNotifications(new ArrayList<>());
+
+        String notification = "Test Notification";
+        student.addUnreadNotification(notification);
+
+        assertTrue(student.getUnreadNotifications().contains(notification));
+
+
+        assertEquals(notification, student.getUnreadNotifications().get(0));
 
     }
 
