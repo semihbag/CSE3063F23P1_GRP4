@@ -132,39 +132,39 @@
         ]
     },
     {
-        "hour": [[
-            "8.30",
-            "9.30"
-        ]],
-        "quota": 15,
-        "name": "Physics Lab I",
         "studentList": [],
         "prerequisite": [],
         "lecturer": "1501102",
-        "term": 1,
-        "id": "PHYS1103",
+        "sessionId": "1",
         "type": "mandatory",
-        "sessionId":"1",
-        "credit": 2,
         "isSession": true,
-        "day": ["MONDAY"]
-    },
-    {
         "hour": [[
             "8.30",
             "9.30"
         ]],
         "quota": 15,
         "name": "Physics Lab I",
+        "term": 1,
+        "id": "PHYS1103",
+        "credit": 2,
+        "day": ["MONDAY"]
+    },
+    {
         "studentList": [],
         "prerequisite": [],
         "lecturer": "1501103",
+        "sessionId": "2",
+        "type": "mandatory",
+        "isSession": true,
+        "hour": [[
+            "8.30",
+            "9.30"
+        ]],
+        "quota": 15,
+        "name": "Physics Lab I",
         "term": 1,
         "id": "PHYS1103",
-        "type": "mandatory",
         "credit": 2,
-        "sessionId":"2",
-        "isSession": true,
         "day": ["MONDAY"]
     },
     {
@@ -269,39 +269,39 @@
         "day": ["THURSDAY"]
     },
     {
-        "hour": [[
-            "8.30",
-            "9.30"
-        ]],
-        "quota": 15,
-        "name": "Physics Lab II",
         "studentList": [],
         "prerequisite": [],
         "lecturer": "1501101",
-        "term": 2,
-        "id": "PHYS1104",
+        "sessionId": "1",
         "type": "mandatory",
-        "credit": 2,
         "isSession": true,
-        "sessionId":"1",
-        "day": ["MONDAY"]
-    },
-    {
         "hour": [[
             "8.30",
             "9.30"
         ]],
         "quota": 15,
         "name": "Physics Lab II",
+        "term": 2,
+        "id": "PHYS1104",
+        "credit": 2,
+        "day": ["MONDAY"]
+    },
+    {
         "studentList": [],
         "prerequisite": [],
         "lecturer": "1501102",
+        "sessionId": "2",
+        "type": "mandatory",
+        "isSession": true,
+        "hour": [[
+            "8.30",
+            "9.30"
+        ]],
+        "quota": 15,
+        "name": "Physics Lab II",
         "term": 2,
         "id": "PHYS1104",
-        "type": "mandatory",
         "credit": 2,
-        "sessionId":"2",
-        "isSession": true,
         "day": ["MONDAY"]
     },
     {
@@ -593,7 +593,7 @@
             ],
             ["9.30"]
         ],
-        "quota": 12,
+        "quota": 11,
         "name": "Digital Logic Design",
         "studentList": [],
         "prerequisite": [],
@@ -616,7 +616,7 @@
             ],
             ["9.30"]
         ],
-        "quota": 12,
+        "quota": 11,
         "name": "Object-Oriented Software Design",
         "studentList": [],
         "prerequisite": ["CSE1241"],
@@ -655,11 +655,6 @@
         ]
     },
     {
-        "studentList": [],
-        "prerequisite": ["CSE2225"],
-        "lecturer": "1501007",
-        "type": "mandatory",
-        "isSession": false,
         "hour": [
             ["11.30"],
             [
@@ -668,10 +663,15 @@
             ]
         ],
         "quota": 14,
+        "studentList": [],
+        "prerequisite": ["CSE2225"],
         "name": "Operating Systems",
+        "lecturer": "1501007",
         "term": 5,
         "id": "CSE3033",
+        "type": "mandatory",
         "credit": 7,
+        "isSession": false,
         "day": [
             "MONDAY",
             "FRIDAY"
@@ -695,7 +695,10 @@
         "type": "mandatory",
         "credit": 4,
         "isSession": false,
-        "day": ["THURSDAY","FRIDAY"]
+        "day": [
+            "THURSDAY",
+            "FRIDAY"
+        ]
     },
     {
         "hour": [
@@ -1201,121 +1204,6 @@
     },
     {
         "hour": [
-            ["11.30"],
-            [
-                "13.00",
-                "14.00"
-            ]
-        ],
-        "quota": 20,
-        "name": "Introduction to Image Processing",
-        "studentList": [],
-        "prerequisite": [],
-        "lecturer": "1501001",
-        "term": 8,
-        "id": "EE4062",
-        "type": "faculty",
-        "credit": 5,
-        "isSession": false,
-        "day": [
-            "WEDNESDAY",
-            "THURSDAY"
-        ]
-    },
-    {
-        "hour": [
-            ["14.00"],
-            [
-                "15.00",
-                "16.00"
-            ]
-        ],
-        "quota": 20,
-        "name": "Introduction to Robotics",
-        "studentList": [],
-        "prerequisite": [],
-        "lecturer": "1401001",
-        "term": 8,
-        "id": "ME4018",
-        "type": "faculty",
-        "credit": 5,
-        "isSession": false,
-        "day": [
-            "WEDNESDAY",
-            "THURSDAY"
-        ]
-    },
-    {
-        "hour": [
-            ["14.00"],
-            [
-                "15.00",
-                "16.00"
-            ]
-        ],
-        "quota": 20,
-        "name": "Mechatronics",
-        "studentList": [],
-        "prerequisite": [],
-        "lecturer": "1401002",
-        "term": 8,
-        "id": "ME3022",
-        "type": "faculty",
-        "credit": 5,
-        "isSession": false,
-        "day": [
-            "WEDNESDAY",
-            "THURSDAY"
-        ]
-    },
-    {
-        "hour": [
-            ["14.00"],
-            [
-                "15.00",
-                "16.00"
-            ]
-        ],
-        "quota": 20,
-        "name": "Mathematical Modeling in Mechanical Engineering",
-        "studentList": [],
-        "prerequisite": [],
-        "lecturer": "1401003",
-        "term": 8,
-        "id": "ME3004",
-        "type": "faculty",
-        "credit": 5,
-        "isSession": false,
-        "day": [
-            "WEDNESDAY",
-            "THURSDAY"
-        ]
-    },
-    {
-        "hour": [
-            ["14.00"],
-            [
-                "15.00",
-                "16.00"
-            ]
-        ],
-        "quota": 20,
-        "name": "Control Systems",
-        "studentList": [],
-        "prerequisite": [],
-        "lecturer": "1401004",
-        "term": 8,
-        "id": "ME4022",
-        "type": "faculty",
-        "credit": 5,
-        "isSession": false,
-        "day": [
-            "WEDNESDAY",
-            "THURSDAY"
-        ]
-    },
-    {
-        "hour": [
             ["9.30"],
             [
                 "14.00",
@@ -1473,6 +1361,121 @@
         "day": [
             "MONDAY",
             "WEDNESDAY"
+        ]
+    },
+    {
+        "hour": [
+            ["11.30"],
+            [
+                "13.00",
+                "14.00"
+            ]
+        ],
+        "quota": 20,
+        "name": "Introduction to Image Processing",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1501001",
+        "term": 8,
+        "id": "EE4062",
+        "type": "faculty",
+        "credit": 5,
+        "isSession": false,
+        "day": [
+            "WEDNESDAY",
+            "THURSDAY"
+        ]
+    },
+    {
+        "hour": [
+            ["14.00"],
+            [
+                "15.00",
+                "16.00"
+            ]
+        ],
+        "quota": 20,
+        "name": "Introduction to Robotics",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1401001",
+        "term": 8,
+        "id": "ME4018",
+        "type": "faculty",
+        "credit": 5,
+        "isSession": false,
+        "day": [
+            "WEDNESDAY",
+            "THURSDAY"
+        ]
+    },
+    {
+        "hour": [
+            ["14.00"],
+            [
+                "15.00",
+                "16.00"
+            ]
+        ],
+        "quota": 20,
+        "name": "Mechatronics",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1401002",
+        "term": 8,
+        "id": "ME3022",
+        "type": "faculty",
+        "credit": 5,
+        "isSession": false,
+        "day": [
+            "WEDNESDAY",
+            "THURSDAY"
+        ]
+    },
+    {
+        "hour": [
+            ["14.00"],
+            [
+                "15.00",
+                "16.00"
+            ]
+        ],
+        "quota": 20,
+        "name": "Mathematical Modeling in Mechanical Engineering",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1401003",
+        "term": 8,
+        "id": "ME3004",
+        "type": "faculty",
+        "credit": 5,
+        "isSession": false,
+        "day": [
+            "WEDNESDAY",
+            "THURSDAY"
+        ]
+    },
+    {
+        "hour": [
+            ["14.00"],
+            [
+                "15.00",
+                "16.00"
+            ]
+        ],
+        "quota": 20,
+        "name": "Control Systems",
+        "studentList": [],
+        "prerequisite": [],
+        "lecturer": "1401004",
+        "term": 8,
+        "id": "ME4022",
+        "type": "faculty",
+        "credit": 5,
+        "isSession": false,
+        "day": [
+            "WEDNESDAY",
+            "THURSDAY"
         ]
     }
 ]}
