@@ -82,6 +82,9 @@ public class SystemDomain {
 			myCourses.setNumberOfCourses(advisor.getGivenCourses().size());
 			pages.add(myCourses);
 			
+			SelectedMyCoursePage selectedCourse = new SelectedMyCoursePage(pageContentCreator.createSelectedMyCoursePage(advisor.getSelectedCourse()));
+			pages.add(selectedCourse);
+			
 			SelectedStudentRequestPage selectedStudentRequest = new SelectedStudentRequestPage(pageContentCreator.createSelectedStudentsRequestPageContent(advisor.getSelectStudent()));
 			pages.add(selectedStudentRequest);
 		}
