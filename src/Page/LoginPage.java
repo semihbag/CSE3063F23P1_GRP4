@@ -1,7 +1,6 @@
 package Page;
 
 import SystemMessage.*;
-import UserInfo.UserInfo;
 
 public class LoginPage extends Page{
 

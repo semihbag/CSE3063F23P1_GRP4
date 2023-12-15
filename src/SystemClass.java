@@ -2,7 +2,6 @@
 import CourseObject.*;
 import PersonObject.*;
 import SystemMessage.*;
-import UserInfo.*;
 import UserInterface.*;
 import Page.*;
 
