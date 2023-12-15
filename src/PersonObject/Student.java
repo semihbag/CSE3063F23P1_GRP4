@@ -1,6 +1,5 @@
 package PersonObject;
 
-
 import CourseObject.*;
 import java.util.ArrayList;
 
@@ -8,9 +7,9 @@ public class Student extends Person {
     private Id studentId;
     private Advisor advisor;
     private Transcript transcript;
-    private int selectedCourseCredit = 0; //
-    private ArrayList<String> unreadNotifications; //
-    private ArrayList<String> readNotifications; //
+    private int selectedCourseCredit = 0;
+    private ArrayList<String> unreadNotifications;
+    private ArrayList<String> readNotifications;
     private ArrayList<Course> selectableCourses = new ArrayList<Course>(), selectedCourses = new ArrayList<Course>(),
             approvedCourses = new ArrayList<Course>(), curriculum = new ArrayList<Course>();
     private String request;
@@ -43,7 +42,7 @@ public class Student extends Person {
         }
     }
 
-    private boolean isSelectedCourse(Course course) {
+    public boolean isSelectedCourse(Course course) {
         for (int i = 0; i < selectedCourses.size(); i++) {
             if (selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
                 return true;
@@ -52,7 +51,7 @@ public class Student extends Person {
         return false;
     }
 
-    private boolean isPassedCourse(Course course) {
+    public boolean isPassedCourse(Course course) {
         for (int i = 0; i < transcript.getPassedCourses().size(); i++) {
             if (transcript.getPassedCourses().get(i).getCourse().getCourseId().getId().equals(course.getCourseId().getId())) {
                 return true;
@@ -63,7 +62,7 @@ public class Student extends Person {
 
     // Checks whether the student has passed the prerequisite courses to take the
     // course
-    private boolean isPrerequisiteCoursesPassed(Course course) {
+    public boolean isPrerequisiteCoursesPassed(Course course) {
         for (int i = 0; i < course.getPrerequisiteCourses().size(); i++) {
             Course preCourse = course.getPrerequisiteCourses().get(i);
             if (!isPassedCourse(preCourse)) {
@@ -73,15 +72,15 @@ public class Student extends Person {
         return true;
     }
 
-    private boolean isUnderQuota(Course course) {
+    public boolean isUnderQuota(Course course) {
         return 0 < course.getQuota();
     }
 
-    private boolean isFailedCourse(Course course) {
+    public boolean isFailedCourse(Course course) {
         for (int i = 0; i < transcript.getFailedCourses().size(); i++) {
             GradeClass failedCourse = transcript.getFailedCourses().get(i);
             if (failedCourse.getCourse().getCourseId().getId().equals(course.getCourseId().getId()) &&
-                    transcript.getTerm()%2 == course.getTerm()%2) { // tek çift dönem olayı eklendi
+                    transcript.getTerm()%2 == course.getTerm()%2) {
                 return true;
             }
         }
@@ -111,8 +110,8 @@ public class Student extends Person {
         Course course = selectableCourses.get(i - 1);
         if (this.getRequest().equals("false")) {
             if (selectedCourseCredit + course.getCredit() < 40 ) {//
-                //NTE NT FACULTY
 
+                //NONTECHNICAL, TECHNICAL, FACULTY
                 CourseType courseType = course.getCourseType();
                 if(courseType != CourseType.MANDATORY){
                     if(exceedTerm(courseType)){
@@ -139,10 +138,11 @@ public class Student extends Person {
     }
 
 
-    private boolean checkCourseType(Course course){ // dönemini ve üsten alma olayı içeriyor (mandatoryde hem üst hem kendi dönemi olayı var))
+    //determine whether a student can take a course according to the course's type
+    public boolean checkCourseType(Course course){
         CourseType courseType = course.getCourseType();
         if(courseType == CourseType.NONTECHNICAL && transcript.getTerm() >= 2){
-            if(!exceed(courseType, 2) ) { //eğitim hayatı boyunca max 2, her dönemde max 1 alır
+            if(!exceed(courseType, 2) ) {
                 return true;
             }
         }
@@ -163,19 +163,19 @@ public class Student extends Person {
                 }
                 return false;
             }
-            else if(course.getTerm() == transcript.getTerm()) {
+            else if(course.getTerm() == transcript.getTerm()) { //Taking the course of his own term
                 return true;
             }
             else if((transcript.getGPA_100() >= 3.0 && transcript.getTerm() >= 3) && ((course.getCourseName().equals("Is Sagligi ve Guvenligi I") || course.getCourseName().equals("Is Sagligi ve Guvenligi II")) ||
-                    (course.getTerm() == transcript.getTerm() +2))) {
-                        return true;
-                    }
+                    (course.getTerm() == transcript.getTerm() +2))) { //taking Is Sagligi ve Guvenligi I/II or a course at a higher level
+                return true;
+            }
         }
         return false;
     }
 
-
-    private boolean exceed(CourseType type, int limit){ //Bugüne kadar bu tipdeki dersten kaç tane aldığını söylüyor
+    //Determines whether the student has reached the limit of a certain type of course in his/her educational life to date
+    public boolean exceed(CourseType type, int limit){
         int ct = 0;
         for(int i= 0; i < transcript.getPassedCourses().size(); i++) {
             if(transcript.getPassedCourses().get(i).getCourse().getCourseType() == type){
@@ -189,10 +189,10 @@ public class Student extends Person {
         return false;
     }
 
-    private boolean exceedTerm(CourseType courseType){ //bu dönemdeki seçtiklerini kontrol ediyor
+    //Determines whether the student has reached the limit of a certain course type at current term
+    public boolean exceedTerm(CourseType courseType){
         int ct = 0;
 
-        //selected da iki tane
         for(int i = 0;  i < selectedCourses.size(); i++){
             if(selectedCourses.get(i).getCourseType() == courseType) {
                 ct++;
@@ -207,22 +207,12 @@ public class Student extends Person {
         }
     }
 
-    public boolean checkTermProject(Course course, int totalCredit){ //
-        if(course.getCourseName().equals("Engineering Project I") ||
-                course.getCourseName().equals("Engineering Project II")){
-            System.out.println("Engineering Project 1 e girdi");
-            if(totalCredit < 165){
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void clearUnreadNotification(){ //
         readNotifications.addAll(unreadNotifications);
         unreadNotifications.clear();
     }
 
+    //add notifications from her/his advisor to student's unreadNotifications arraylist
     public void addUnreadNotification(String notification){ //
         unreadNotifications.add(notification);
     }
@@ -235,7 +225,7 @@ public class Student extends Person {
         addAllSessions(course);
     }
 
-    private void addAllSessions(Course course) {
+    public void addAllSessions(Course course) {
         for (int i = 0; i < curriculum.size(); i++) {
             if (course.getCourseId().getId().equals(curriculum.get(i).getCourseId().getId())) {
                 if (!selectableCourses.contains(curriculum.get(i))) {
@@ -245,7 +235,7 @@ public class Student extends Person {
         }
     }
 
-    private void removeAllSessions(Course course) {
+    public void removeAllSessions(Course course) {
         for (int i = 0; i < selectableCourses.size(); i++) {
             if (course.getCourseId().getId().equals(selectableCourses.get(i).getCourseId().getId())) {
                 selectableCourses.remove(i);
@@ -309,34 +299,27 @@ public class Student extends Person {
         this.request = request;
     }
 
-    //
     public int getSelectedCourseCredit() {
         return selectedCourseCredit;
     }
 
-    //
     public void setSelectedCourseCredit(int selectedCourseCredit) {
         this.selectedCourseCredit = selectedCourseCredit;
     }
 
-    //
     public ArrayList<String> getUnreadNotifications() {
         return unreadNotifications;
     }
-    //
+
     public void setUnreadNotifications(ArrayList<String> unreadNotifications) {
         this.unreadNotifications = unreadNotifications;
     }
 
-    //
     public ArrayList<String> getReadNotifications() {
         return readNotifications;
     }
-    //
+
     public void setReadNotifications(ArrayList<String> readNotifications) {
         this.readNotifications = readNotifications;
     }
-
 }
-
-
