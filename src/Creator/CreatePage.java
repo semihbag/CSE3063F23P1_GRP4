@@ -3,10 +3,7 @@ package Creator;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import CourseObject.Course;
-import CourseObject.CourseSession;
-import CourseObject.GradeClass;
-import CourseObject.Syllabus;
+import CourseObject.*;
 import Page.AllCoursesPage;
 import Page.ApprovedCoursesPage;
 import Page.ChangePasswaordPage;
@@ -36,7 +33,6 @@ public class CreatePage {
 
     //PAGE MERGE WITH SYSTEM DOMAIN
 	public ArrayList<Page> createPages(Person currentUser){
-
 		if (currentUser instanceof Student student) {
             MainMenuPageStudent mainStudent = new MainMenuPageStudent(createMainMenuPageStudentContent(student.getUnreadNotifications().size()));
 			pages.add(mainStudent);
@@ -70,6 +66,7 @@ public class CreatePage {
 			ApprovedCoursesPage approved = new ApprovedCoursesPage(createApprovedCoursesPageContent(student.getApprovedCourses()));
 			pages.add(approved);
 		}
+
 		else if (currentUser instanceof Advisor advisor) {
             MainMenuPageAdvisor mainAdvisor = new MainMenuPageAdvisor(createMainMenuPageAdvisorContent());
 			pages.add(mainAdvisor);
@@ -123,8 +120,7 @@ public class CreatePage {
 		return pages;
 	}
 
-	
-	
+	//CONTENTS
 	public  String createMainMenuPageStudentContent(int numberOfUnreadNotifications) {
 		String str = "";
 		if (numberOfUnreadNotifications != 0) {
@@ -239,13 +235,11 @@ public class CreatePage {
 		return str;
 	}
 
-
 	public  String createAllCoursesPageContent   (ArrayList<Course> courses) {
 		String str=courseListForContent(courses,1)+"\n"+
 				"\nPress any key to return.\n";
 		return str;
 	}
-
 
 	public  String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
 		String str=courseListForContent(courses,0)+
@@ -256,17 +250,17 @@ public class CreatePage {
 	private String createProfilePageContent(Person user) {
 		String content = "";
 		if (user instanceof Student student) {
-			content += "\u001B[1m  STUDENT " + student.getStudentId().getId() + "\n\u001B[0m";
+			content += "\u001B[1mSTUDENT " + student.getStudentId().getId() + "\n\u001B[0m";
 		}
 		else if (user instanceof Advisor advisor) {
-			content += "\u001B[1m  ADVISOR " + advisor.getLecturerId().getId() + "\n\u001B[0m";
+			content += "\u001B[1mADVISOR " + advisor.getLecturerId().getId() + "\n\u001B[0m";
 		}
 		else if (user instanceof Lecturer lecturer) {
-			content += "\u001B[1m  LECTURER " + lecturer.getLecturerId().getId() + "\n\u001B[0m";
+			content += "\u001B[1mLECTURER " + lecturer.getLecturerId().getId() + "\n\u001B[0m";
 		}
 
-		content +=  "  Name        " + user.getFirstName() + "\n" +
-				"  Surname     " + user.getLastName() + "\n\n" +
+		content +=  "Name      : " + user.getFirstName() + "\n" +
+					"Surname   : " + user.getLastName() + "\n\n" +
 				"C: Change password\n" +
 				"Q: Quit\n";
 
@@ -286,13 +280,13 @@ public class CreatePage {
 		for (int i = 0; i < lecturer.getGivenCourses().size(); i++) {
 			Course course = lecturer.getGivenCourses().get(i);
 			if (course instanceof CourseSession) {
-				str += (i + 1) + ")" +blankAfterI(i+1) +
+				str += (i + 1) + ")" + "  " +
 						course.getCourseId().getId() + "." + ((CourseSession) course).getSessionId().getId() +
 						blankAfterStr(course.getCourseId().getId() + "." + ((CourseSession) course).getSessionId().getId(), 13);
 			} else {
-				str += (i + 1) + ")" + blankAfterI(i+1) +
+				str += (i + 1) + ")" + "  " +
 						course.getCourseId().getId() +
-						blankAfterStr(course.getCourseId().getId(), 10);
+						blankAfterStr(course.getCourseId().getId(), 13);
 
 			} str += course.getCourseName() + "\n";
 		}
@@ -413,22 +407,22 @@ public class CreatePage {
 			str="No course to show.\n";
 		}
 		else {
-			if (type != 1) {
-				str = "\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
-			}
 			for (int i = 0; i < courses.size() ; i++ ) {
+				if ((i == 0) && (type != 1) && !(type == 2 && courses.get(i).getCourseType() != CourseType.MANDATORY)) {
+					str = "\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+				}
 				if (type == 1) {
 					str += allCourseLabels(i);
 				}
-				/* SELECTABLE FORMAT: Tam olmadı, tam yapınca açar pushlarım
-				if (i == 0 && (courses.get(i).getCourseType() != CourseType.MANDATORY) && (type == 2)) {
-					str += "\u001B[1m\n" + courses.get(i).getCourseType() + "\n\u001B[1m";
+				else if (type == 2) {
+					if (i == 0 && (courses.get(i).getCourseType() != CourseType.MANDATORY)) {
+						str += "\u001B[1m\n" + courses.get(i).getCourseType() + "\n\u001B[1m";
+					}
+					else if ((i > 0) && (courses.get(i).getCourseType() != courses.get(i - 1).getCourseType())) {
+						str += "\u001B[1m\n" + courses.get(i).getCourseType() + "\n\u001B[1m";
+						str += "\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
+					}
 				}
-				if ((i > 0) && (courses.get(i).getCourseType() != courses.get(i - 1).getCourseType()) && (type == 2)) {
-
-					str += "\u001B[1m\n" + courses.get(i).getCourseType() + "\n\u001B[1m";
-					str += "\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
-				} */
 				if(courses.get(i) instanceof CourseSession session) {
 					str +=  (i + 1) + blankAfterI(i + 1) +
 							courses.get(i).getCourseId().getId() + "." +session.getSessionId().getId() +
@@ -506,16 +500,5 @@ public class CreatePage {
 		if (i < 10) {
 			return "    ";
 		} return "   ";
-	}
-
-	
-	// GETTER - SETTER
-
-	public ArrayList<Page> getPages() {
-		return pages;
-	}
-	
-	public void setPages(ArrayList<Page> pages) {
-		this.pages = pages;
 	}
 }
