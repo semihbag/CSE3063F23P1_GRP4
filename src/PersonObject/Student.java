@@ -222,6 +222,7 @@ public class Student extends Person {
         Course course = selectedCourses.get(i - 1);
         selectedCourses.remove(i - 1);
         selectedCourseCredit -= course.getCredit();
+        getSyllabus().removeCourseFromSyllabus(course);
         addAllSessions(course);
     }
 
