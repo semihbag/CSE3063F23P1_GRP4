@@ -217,7 +217,7 @@ public class SystemClass {
 
             // handling of selecteable course data
             SelectableCoursesPage selectableCoursePage = (SelectableCoursesPage) this.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE);
-			selectableCoursePage.setContent(domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
+			selectableCoursePage.setContent(domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(), student.getMarks()));
 			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
 
             // handling selected course data
@@ -245,7 +245,7 @@ public class SystemClass {
 
             // handling of selecteable course data
             SelectableCoursesPage selectableCoursePage = (SelectableCoursesPage) this.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE);
-			selectableCoursePage.setContent(domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
+			selectableCoursePage.setContent(domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(), student.getMarks()));
 			selectableCoursePage.setNumberOfSelectableCourses(student.getSelectableCourses().size());
 			
 			// handling syllabus page

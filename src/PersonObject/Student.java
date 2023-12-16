@@ -8,6 +8,7 @@ public class Student extends Person {
     private Advisor advisor;
     private Transcript transcript;
     private int selectedCourseCredit = 0;
+    private ArrayList<Mark> marks = new ArrayList<>();
     private ArrayList<String> unreadNotifications;
     private ArrayList<String> readNotifications;
     private ArrayList<Course> selectableCourses = new ArrayList<Course>(), selectedCourses = new ArrayList<Course>(),
@@ -40,6 +41,7 @@ public class Student extends Person {
                 selectableCourses.add(course);
             }
         }
+        setMarksInitial();
     }
 
     public boolean isSelectedCourse(Course course) {
@@ -108,6 +110,57 @@ public class Student extends Person {
     // and deletes it from the selectableCourses
     public boolean addSelectedCourse(int i) {
         Course course = selectableCourses.get(i - 1);
+    	Mark mark = finalCheckSelectedCourse(course);
+    	
+    	if (mark == Mark.SUCCESSFUL) {
+            selectedCourses.add(course);
+            selectedCourseCredit += course.getCredit();
+            course.setQuota(course.getQuota() - 1);
+            getSyllabus().addCourseToSyllabus(course);
+            setMarks();
+    		return true;
+    	}
+    	
+    	if (mark == Mark.ERROR_ALREADY_SENDED) {
+    		System.out.println("You have already send request to your advisor!");
+    	}
+    	
+		if (mark == Mark.ERROR_CREDIT_LIMIT) {
+            System.out.println("You exceed selectable course credit limit!!");
+		}
+		
+		if (mark == Mark.ERROR_CONFLICT) {
+            System.out.println("The course that you want to add " + course.getCourseName() + " conflicts with " + getSyllabus().findConflictedCourseName(course) + "!");
+		}
+
+    	if (mark == Mark.ERROR_SAME_TYPE) {
+            System.out.println("You cannot select " + course.getCourseType() +  " course more than 1 at one term!");
+    	}
+
+    	return false;
+    }
+    
+    private void setMarks() {
+        marks.clear();
+    	
+        int len = selectableCourses.size();
+    	for (int i = 0; i < len; i++) {
+    		Course tempCourse = selectableCourses.get(i);
+    		if (isInSelectedCourse(tempCourse)) {
+    			marks.add(Mark.SELECTED);
+    			continue;
+    		}
+    		marks.add(finalCheckSelectedCourse(tempCourse));
+    	}
+    }
+    
+    public void setMarksInitial() {
+    	for (int i = 0; i < selectableCourses.size(); i++) {
+    		marks.add(Mark.SUCCESSFUL);  
+    	}
+    }
+    
+    public Mark finalCheckSelectedCourse(Course course) {
         if (this.getRequest().equals("false")) {
             if (selectedCourseCredit + course.getCredit() < 40 ) {//
 
@@ -115,26 +168,28 @@ public class Student extends Person {
                 CourseType courseType = course.getCourseType();
                 if(courseType != CourseType.MANDATORY){
                     if(exceedTerm(courseType)){
-                        return false;
+                        return Mark.ERROR_SAME_TYPE;
                     }
                 }
                 if(!getSyllabus().checkConflict(course)) {
-                    selectedCourses.add(course);
-                    selectedCourseCredit += course.getCredit();
-                    course.setQuota(course.getQuota() - 1);
-                    removeAllSessions(course);
-                    getSyllabus().addCourseToSyllabus(course);
-                    return true;
+                	String cid = course.getCourseId().getId();
+                	for (int i = 0; i < selectedCourses.size(); i++) {
+                		if (cid == selectedCourses.get(i).getCourseId().getId()) {
+                			return Mark.ERROR_SAME_TYPE;
+                		}
+                	}
+                	if (!isInSelectedCourse(course)) {
+                		return Mark.SUCCESSFUL;	
+                	}
+                	return Mark.SELECTED;
                 }
                 else {
-                    return false;
+                    return Mark.ERROR_CONFLICT;
                 }
-
             }
-            System.out.println("You exceed selectable course credit limit!!");
-
+            return Mark.ERROR_CREDIT_LIMIT;
         }
-        return false;
+        return Mark.ERROR_ALREADY_SENDED;
     }
 
 
@@ -202,11 +257,19 @@ public class Student extends Person {
         if(ct == 0){
             return false;
         } else{
-            System.out.println("You cannot select " + courseType +  " course more than 1 at one term");
             return true;
         }
     }
 
+    public boolean isInSelectedCourse (Course course) {
+    	for (int i = 0; i < selectedCourses.size(); i++) {
+    		if (selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
     public void clearUnreadNotification(){ //
         readNotifications.addAll(unreadNotifications);
         unreadNotifications.clear();
@@ -222,7 +285,9 @@ public class Student extends Person {
         Course course = selectedCourses.get(i - 1);
         selectedCourses.remove(i - 1);
         selectedCourseCredit -= course.getCredit();
-        addAllSessions(course);
+        getSyllabus().removeCourseFromSyllabus(course);
+       // addAllSessions(course);
+        setMarks();
     }
 
     public void addAllSessions(Course course) {
@@ -326,4 +391,14 @@ public class Student extends Person {
     public void setReadNotifications(ArrayList<String> readNotifications) {
         this.readNotifications = readNotifications;
     }
+
+	public ArrayList<Mark> getMarks() {
+		return marks;
+	}
+
+	public void setMarks(ArrayList<Mark> marks) {
+		this.marks = marks;
+	}
+    
+    
 }

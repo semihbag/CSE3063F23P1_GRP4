@@ -46,22 +46,27 @@ public class Syllabus {
         }
     } 
 
-  public boolean checkConflict(Course course) {
+  	public boolean checkConflict(Course course) {
+  		if (findConflictedCourseName(course).equals("-99")) {
+  			return false;
+  		}
+  		return true;
+  	}
 
-        for (int i = 0 ; i < course.getCourseSchedules().size() ; i++) {
+  	public String findConflictedCourseName(Course course) {
+  		for (int i = 0 ; i < course.getCourseSchedules().size() ; i++) {
             CourseSchedule courseSchedule = course.getCourseSchedules().get(i);
             int day_column = returnIndexDay(courseSchedule.getCourseDay());
             for (int j = 0 ; j < courseSchedule.getCourseHours().size() ; j++) {
                 int hour_row = returnIndexHour(courseSchedule.getCourseHours().get(j));
                 if (!isEmpty(hour_row, day_column)) {
-                    System.out.println("The course that you want to add " + course.getCourseName() + " conflicts with " + syllabus[hour_row][day_column].getCourseName());
-                    return true;
+                    return syllabus[hour_row][day_column].getCourseName();
                 }
             }
         }
-        return false;
-    }
-
+        return "-99";
+  	}
+  
     // fill 
     public void fillSyllabus(ArrayList<Course> selectedCourses) {
 

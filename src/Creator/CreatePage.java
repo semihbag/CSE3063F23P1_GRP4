@@ -27,6 +27,7 @@ import Page.SyllabusPage;
 import Page.TranscriptPage;
 import PersonObject.Advisor;
 import PersonObject.Lecturer;
+import PersonObject.Mark;
 import PersonObject.Person;
 import PersonObject.Student;
 
@@ -59,7 +60,7 @@ public class CreatePage {
 			AllCoursesPage allCourses = new AllCoursesPage(createAllCoursesPageContent(student.getCurriculum()));
 			pages.add(allCourses);
 
-			SelectableCoursesPage selectable = new SelectableCoursesPage(createSelectableCoursesPageContent(student.getSelectableCourses(), student.getSelectedCourses()));
+			SelectableCoursesPage selectable = new SelectableCoursesPage(createSelectableCoursesPageContent(student.getSelectableCourses(), student.getMarks()));
 			selectable.setNumberOfSelectableCourses(student.getSelectableCourses().size());
 			pages.add(selectable);
 
@@ -176,7 +177,7 @@ public class CreatePage {
 		else {
 			str="\nRequests of " + student.getFirstName() + " " + student.getLastName()
 					+ " " + student.getStudentId().getId()
-					+"\n"+courseListForContent(student.getSelectedCourses(),0)+"\n"
+					+"\n"+courseListForContent(student.getSelectedCourses(),0, null)+"\n"
 					+"Approve: A\nReject: R\nQuit: Q\n";
 		}
 		return str;
@@ -210,14 +211,14 @@ public class CreatePage {
 		return str;
 	}
 
-	public  String createSelectableCoursesPageContent  (ArrayList<Course> courses,ArrayList<Course> coursesSelected) {
+	public  String createSelectableCoursesPageContent  (ArrayList<Course> courses,ArrayList<Mark> marks) {
 		String str="";
 		if(courses.size()==0) {
 			str="No course to show.\n"
 					+ "Q: Quit";
 		}
 		else {
-			str=courseListForContent(courses,2)+"\n"
+			str=courseListForContent(courses,2,marks)+"\n"
 					+"\nTo select a course, press the number of the courses offered.\n\n"
 					+ "Q: Quit";
 		}
@@ -231,7 +232,7 @@ public class CreatePage {
 					+ "Q: Quit";
 		}
 		else {
-			str= courseListForContent(courses,0)
+			str= courseListForContent(courses,0,null)
 					+ "\nPress number to drop course \n"
 					+ "A: Send to approval\n"
 					+ "Q: Quit";
@@ -241,14 +242,14 @@ public class CreatePage {
 
 
 	public  String createAllCoursesPageContent   (ArrayList<Course> courses) {
-		String str=courseListForContent(courses,1)+"\n"+
+		String str=courseListForContent(courses,1,null)+"\n"+
 				"\nPress any key to return.\n";
 		return str;
 	}
 
 
 	public  String createApprovedCoursesPageContent  (ArrayList<Course> courses) {
-		String str=courseListForContent(courses,0)+
+		String str=courseListForContent(courses,0,null)+
 				"\nPress any key to return.\n";
 		return str;
 	}
@@ -407,7 +408,7 @@ public class CreatePage {
 
 	//1: ALL
 	//2: SELECTABLE
-	public  String courseListForContent (ArrayList<Course> courses, int type) {
+	public  String courseListForContent (ArrayList<Course> courses, int type, ArrayList<Mark> marks) {
 		String str="";
 		if(courses.size()==0) {
 			str="No course to show.\n";
@@ -429,6 +430,18 @@ public class CreatePage {
 					str += "\u001B[1m\n" + courses.get(i).getCourseType() + "\n\u001B[1m";
 					str += "\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
 				} */
+				if (marks != null) {
+					if (marks.get(i) == Mark.SELECTED) {
+						str += "\u001B[32;1m";
+					}	
+					if (marks.get(i) == Mark.ERROR_CONFLICT) {
+						str += "\u001B[31;1m";
+					}
+					if (marks.get(i) == Mark.ERROR_SAME_TYPE) {
+						str += "\u001B[37;1m";	
+					}
+				}
+				
 				if(courses.get(i) instanceof CourseSession session) {
 					str +=  (i + 1) + blankAfterI(i + 1) +
 							courses.get(i).getCourseId().getId() + "." +session.getSessionId().getId() +
@@ -442,6 +455,7 @@ public class CreatePage {
 				str += courses.get(i).getCourseName() + blankAfterStr(courses.get(i).getCourseName(), 50) + " " +
 						courses.get(i).getLecturer().getFirstName() + " "+
 						courses.get(i).getLecturer().getLastName() + "\n";
+				str += "\u001B[0m";
 			}
 		}
 		return str;
