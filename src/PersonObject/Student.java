@@ -137,16 +137,24 @@ public class Student extends Person {
             System.out.println("You cannot select " + course.getCourseType() +  " course more than 1 at one term!");
     	}
 
+        if (mark == Mark.SELECTED) {
+           if(course instanceof CourseSession) {
+                System.out.println("You already selected session from " + course.getCourseName() + ".");
+            }
+            else {
+                System.out.println("You already selected " + course.getCourseName() + "."); 
+            }           
+        }
+
     	return false;
     }
-    
     private void setMarks() {
         marks.clear();
     	
         int len = selectableCourses.size();
     	for (int i = 0; i < len; i++) {
     		Course tempCourse = selectableCourses.get(i);
-    		if (isInSelectedCourse(tempCourse)) {
+    		if (isSelectedCourse(tempCourse)) {
     			marks.add(Mark.SELECTED);
     			continue;
     		}
@@ -162,32 +170,26 @@ public class Student extends Person {
     
     public Mark finalCheckSelectedCourse(Course course) {
         if (this.getRequest().equals("false")) {
-            if (selectedCourseCredit + course.getCredit() < 40 ) {//
-
-                //NONTECHNICAL, TECHNICAL, FACULTY
-                CourseType courseType = course.getCourseType();
-                if(courseType != CourseType.MANDATORY){
-                    if(exceedTerm(courseType)){
-                        return Mark.ERROR_SAME_TYPE;
+            if(!isSelectedCourse(course)) {            
+                if (selectedCourseCredit + course.getCredit() < 40 ) {//
+            
+                    //NONTECHNICAL, TECHNICAL, FACULTY
+                    CourseType courseType = course.getCourseType();
+                    if(courseType != CourseType.MANDATORY){
+                        if(exceedTerm(courseType)){
+                            return Mark.ERROR_SAME_TYPE;
+                        }
+                    }
+                    if(!getSyllabus().checkConflict(course)) {
+                        return Mark.SUCCESSFUL;
+                    }
+                    else {
+                        return Mark.ERROR_CONFLICT;
                     }
                 }
-                if(!getSyllabus().checkConflict(course)) {
-                	String cid = course.getCourseId().getId();
-                	for (int i = 0; i < selectedCourses.size(); i++) {
-                		if (cid == selectedCourses.get(i).getCourseId().getId()) {
-                			return Mark.ERROR_SAME_TYPE;
-                		}
-                	}
-                	if (!isInSelectedCourse(course)) {
-                		return Mark.SUCCESSFUL;	
-                	}
-                	return Mark.SELECTED;
-                }
-                else {
-                    return Mark.ERROR_CONFLICT;
-                }
+                return Mark.ERROR_CREDIT_LIMIT;
             }
-            return Mark.ERROR_CREDIT_LIMIT;
+            return Mark.SELECTED;
         }
         return Mark.ERROR_ALREADY_SENDED;
     }
@@ -259,15 +261,6 @@ public class Student extends Person {
         } else{
             return true;
         }
-    }
-
-    public boolean isInSelectedCourse (Course course) {
-    	for (int i = 0; i < selectedCourses.size(); i++) {
-    		if (selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
-    			return true;
-    		}
-    	}
-    	return false;
     }
     
     public void clearUnreadNotification(){ //
