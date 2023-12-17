@@ -456,8 +456,8 @@ public class CreatePage {
 		return str;
 	}
 
-	private String allCourseLabels(int i) {
-		return switch (i) {
+	private String allCourseLabels(int labelIndex) {
+		return switch (labelIndex) {
 			case 0 -> "\u001B[1mTERM 1\n\u001B[0m" +
 					"\u001B[1m     CODE         COURSE                                             LECTURER\n\u001B[0m";
 			case 9 -> "\u001B[1m\nTERM 2\n\u001B[0m" +
@@ -484,8 +484,8 @@ public class CreatePage {
 		};
 	}
 
-	private String returnHour(int a) {
-		return switch (a) {
+	private String returnHour(int hourIndex) {
+		return switch (hourIndex) {
 			case 0 -> "08:30 - 09:20";
 			case 1 -> "09:30 - 10:20";
 			case 2 -> "10:30 - 11:20";
@@ -503,9 +503,9 @@ public class CreatePage {
 		};
 	}
 
-	private String blankAfterStr(String str, int len) {
+	private String blankAfterStr(String str, int space) {
 		String blank = "";
-		for (int i = 0; i < len - str.length(); i++) {
+		for (int i = 0; i < space - str.length(); i++) {
 			blank += " ";
 		}
 		return blank;
