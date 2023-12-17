@@ -80,7 +80,7 @@ public class CreateCourse {
         return strings;
     }
 
-    public void fillCourseSchedule(JSONArray dayJsonArr,JSONArray hourJsonArr,ArrayList<CourseSchedule> courseSchedules) throws JSONException {
+    private void fillCourseSchedule(JSONArray dayJsonArr,JSONArray hourJsonArr,ArrayList<CourseSchedule> courseSchedules) throws JSONException {
         String[] dayStrArr = jsonArrToStrArr(dayJsonArr);
         for(int i=0;i<dayJsonArr.length();i++){
             Day currentDay = getCourseDay(dayStrArr[i]);
@@ -93,7 +93,7 @@ public class CreateCourse {
         }
 
     }
-    public Day getCourseDay(String strDay){
+    private Day getCourseDay(String strDay){
         return switch (strDay.toUpperCase()) {
             case "MONDAY" -> Day.MONDAY;
             case "TUESDAY" -> Day.TUESDAY;
@@ -103,7 +103,7 @@ public class CreateCourse {
             default -> null;
         };
     }
-    public Hour getCourseHour(String strHour){
+    private Hour getCourseHour(String strHour){
         return switch (strHour.toUpperCase()) {
             case "8.30" -> Hour.H_08_30_09_20;
             case "9.30" -> Hour.H_09_30_10_20;
@@ -138,13 +138,4 @@ public class CreateCourse {
     public void setCourses(ArrayList<Course> courses) {
         this.courses = courses;
     }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
 }

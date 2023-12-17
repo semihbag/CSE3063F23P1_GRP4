@@ -27,21 +27,11 @@ public class SystemDomain {
 
     public CreateLecturer getLecturerCreator() {return lecturerCreator;}
 
-    public void setLecturerCreator(CreateLecturer lecturerCreator) { this.lecturerCreator = lecturerCreator;}
-
     public CreateAdvisor getAdvisorCreator() {return advisorCreator;}
-
-    public void setAdvisorCreator(CreateAdvisor advisorCreator) {this.advisorCreator = advisorCreator;}
 
     public CreateCourse getCourseCreator() {return courseCreator;}
 
-    public void setCourseCreator(CreateCourse courseCreator) {this.courseCreator = courseCreator;}
-
     public CreateStudent getStudentCreator() {return studentCreator;}
 
-    public void setStudentCreator(CreateStudent studentCreator) {this.studentCreator = studentCreator;}
-
 	public CreatePage getPageCreator() {return pageCreator;}
-
-	public void setPageCreator(CreatePage pageCreator) {this.pageCreator = pageCreator;}
 }

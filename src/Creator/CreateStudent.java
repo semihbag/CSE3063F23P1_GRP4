@@ -28,7 +28,7 @@ public class CreateStudent {
         createStudents(courses,advisors);
     }
 
-    public void createStudents(ArrayList<Course> courses,ArrayList<Advisor> advisors) throws JSONException, IOException {
+    private void createStudents(ArrayList<Course> courses,ArrayList<Advisor> advisors) throws JSONException, IOException {
         File allStudentFiles = new File(studentsFile);
         Scanner allStudentFilesInput = new Scanner(allStudentFiles);
         while (allStudentFilesInput.hasNextLine()) {
@@ -80,7 +80,7 @@ public class CreateStudent {
         fillStudentListCourse(courses);
     }
 
-    public String[] jsonArrToStrArr(JSONArray jsonArray) throws JSONException {
+    private String[] jsonArrToStrArr(JSONArray jsonArray) throws JSONException {
         String[] strings = new String[jsonArray.length()];
         for(int i=0; i<jsonArray.length();i++){
             strings[i]=jsonArray.getString(i);
@@ -151,7 +151,7 @@ public class CreateStudent {
         }
     }
 
-    public void fillStudentListCourse(ArrayList<Course> courses) throws JSONException, IOException{
+    private void fillStudentListCourse(ArrayList<Course> courses) throws JSONException, IOException{
         String content = new String(Files.readAllBytes(Path.of("src\\JSON_Files\\courses.json")));
         JSONObject jsonObject = new JSONObject(content);
         JSONArray courseJSON = jsonObject.getJSONArray("courses");
@@ -210,7 +210,7 @@ public class CreateStudent {
         };
     }
 
-    public Grade getCourseGrade(String strGrade){
+    private Grade getCourseGrade(String strGrade){
         return switch (strGrade.toUpperCase()) {
             case "AA" -> Grade.AA;
             case "BA" -> Grade.BA;

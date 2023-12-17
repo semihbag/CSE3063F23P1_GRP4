@@ -39,10 +39,6 @@ public class CreateAdvisor {
         return advisors;
     }
 
-    public void setAdvisors(ArrayList<Advisor> advisors) {
-        this.advisors = advisors;
-    }
-
     public String getFileName() {
         return fileName;
     }

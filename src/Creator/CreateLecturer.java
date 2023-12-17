@@ -34,17 +34,5 @@ public class CreateLecturer {
     public ArrayList<Lecturer> getLecturers() {
         return lecturers;
     }
-
-    public void setLecturers(ArrayList<Lecturer> lecturers) {
-        this.lecturers = lecturers;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
 }
 
