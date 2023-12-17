@@ -94,7 +94,7 @@ public class SystemClass {
     }
 
     //Update course quota after selections in JSON files
-    public void updateCourseJSON() throws IOException, JSONException {
+    private void updateCourseJSON() throws IOException, JSONException {
         Path path = Path.of("src\\JSON_Files\\courses.json");
         String content = new String(Files.readAllBytes(path));
         JSONObject jsonObject = new JSONObject(content);
@@ -107,7 +107,7 @@ public class SystemClass {
         Files.write(path,jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
     }
 
-    public void updateLecturerJSON() throws JSONException, IOException{
+    private void updateLecturerJSON() throws JSONException, IOException{
         Path path = Path.of("src\\JSON_Files\\lecturers.json");
         String content = new String(Files.readAllBytes(path));
         JSONObject jsonObject = new JSONObject(content);
@@ -120,7 +120,7 @@ public class SystemClass {
         }
         Files.write(path,jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
     }
-    public void updateAdvisorJSON() throws JSONException, IOException{
+    private void updateAdvisorJSON() throws JSONException, IOException{
         Path path = Path.of("src\\JSON_Files\\advisors.json");
         String content = new String(Files.readAllBytes(path));
         JSONObject jsonObject = new JSONObject(content);
@@ -133,7 +133,7 @@ public class SystemClass {
     }
 
     //Update student infos in JSON files
-    public void updateStudentJSON() throws JSONException, IOException {
+    private void updateStudentJSON() throws JSONException, IOException {
         for (int i = 0; i < domain.getStudentCreator().getStudents().size(); i++) {
             String studentId = domain.getStudentCreator().getStudents().get(i).getStudentId().getId();
             Path path = Path.of("src\\JSON_Files\\Students\\" + studentId + ".json");
