@@ -279,7 +279,6 @@ public class Student extends Person {
         selectedCourses.remove(i - 1);
         selectedCourseCredit -= course.getCredit();
         getSyllabus().removeCourseFromSyllabus(course);
-       // addAllSessions(course);
         setMarks();
     }
 
