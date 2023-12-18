@@ -28,53 +28,55 @@ public class CreateStudent {
         createStudents(courses,advisors);
     }
 
-    private void createStudents(ArrayList<Course> courses,ArrayList<Advisor> advisors) throws JSONException, IOException {
+    private void createStudents(ArrayList<Course> courses,ArrayList<Advisor> advisors) throws IOException, JSONException {
         File allStudentFiles = new File(studentsFile);
         Scanner allStudentFilesInput = new Scanner(allStudentFiles);
         while (allStudentFilesInput.hasNextLine()) {
+            try {
+                String content = new String(Files.readAllBytes(Path.of(fileName + allStudentFilesInput.nextLine())));
+                JSONObject jsonStudent = new JSONObject(content);
+                JSONObject transcript = jsonStudent.getJSONObject("transcript");
+                JSONObject registration = jsonStudent.getJSONObject("registration");
 
-            String content = new String(Files.readAllBytes(Path.of(fileName + allStudentFilesInput.nextLine())));
-            JSONObject jsonStudent = new JSONObject(content);
-            JSONObject transcript = jsonStudent.getJSONObject("transcript");
-            JSONObject registration = jsonStudent.getJSONObject("registration");
+                String id = jsonStudent.getString("id");
+                String name = jsonStudent.getString("name");
+                String lastname = jsonStudent.getString("lastname");
+                String advisorID = jsonStudent.getString("advisor");
+                String booleanString = jsonStudent.getString("request");
+                String[] readNotification = jsonArrToStrArr(jsonStudent.getJSONArray("readNotification"));
+                String[] unreadNotification = jsonArrToStrArr(jsonStudent.getJSONArray("unreadNotification"));
+                String password = jsonStudent.getString("password");
 
-            String id = jsonStudent.getString("id");
-            String name = jsonStudent.getString("name");
-            String lastname = jsonStudent.getString("lastname");
-            String advisorID = jsonStudent.getString("advisor");
-            String booleanString = jsonStudent.getString("request");
-            String[] readNotification = jsonArrToStrArr(jsonStudent.getJSONArray("readNotification"));
-            String[] unreadNotification = jsonArrToStrArr(jsonStudent.getJSONArray("unreadNotification"));
-            String password = jsonStudent.getString("password");
+                String[] failedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("failedCourses"));
+                String[] completedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("passedCourses"));
+                String[] gradesPassed = jsonArrToStrArr(transcript.getJSONArray("gradesPassed"));
+                String[] gradesFailed = jsonArrToStrArr(transcript.getJSONArray("gradesFailed"));
+                int[] termPassed = jsonArrToIntArr(transcript.getJSONArray("termPassed"));
 
-            String[] failedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("failedCourses"));
-            String[] completedCoursesAr = jsonArrToStrArr(transcript.getJSONArray("passedCourses"));
-            String[] gradesPassed = jsonArrToStrArr(transcript.getJSONArray("gradesPassed"));
-            String[] gradesFailed = jsonArrToStrArr(transcript.getJSONArray("gradesFailed"));
-            int[] termPassed = jsonArrToIntArr(transcript.getJSONArray("termPassed"));
+                String[] selectedCoursesAr = jsonArrToStrArr(registration.getJSONArray("selectedCourses"));
+                String[] approvedCoursesAr = jsonArrToStrArr(registration.getJSONArray("approvedCourses"));
 
-            String[] selectedCoursesAr = jsonArrToStrArr(registration.getJSONArray("selectedCourses"));
-            String[] approvedCoursesAr = jsonArrToStrArr(registration.getJSONArray("approvedCourses"));
+                ArrayList<GradeClass> failedCourses = setTranscriptCourses(failedCoursesAr, gradesFailed, termPassed,courses);
+                ArrayList<GradeClass> passedCourses = setTranscriptCourses(completedCoursesAr, gradesPassed, termPassed,courses);
 
-            ArrayList<GradeClass> failedCourses = setTranscriptCourses(failedCoursesAr, gradesFailed, termPassed,courses);
-            ArrayList<GradeClass> passedCourses = setTranscriptCourses(completedCoursesAr, gradesPassed, termPassed,courses);
+                ArrayList<Course> selectedCourses = setStudentCourses(selectedCoursesAr,courses);
+                ArrayList<Course> approvedCourses = setStudentCourses(approvedCoursesAr,courses);
 
-            ArrayList<Course> selectedCourses = setStudentCourses(selectedCoursesAr,courses);
-            ArrayList<Course> approvedCourses = setStudentCourses(approvedCoursesAr,courses);
+                int term = transcript.getInt("term");
+                double gpa = calculateGPA(passedCourses, failedCourses);
 
-            int term = transcript.getInt("term");
-            double gpa = calculateGPA(passedCourses, failedCourses);
+                Student crtStudent = new Student(name, lastname, new Id(id), new Password(password), findAdvisor(advisorID,advisors),
+                        new Transcript(gpa, term, passedCourses, failedCourses), courses);
 
-            Student crtStudent = new Student(name, lastname, new Id(id), new Password(password), findAdvisor(advisorID,advisors),
-                    new Transcript(gpa, term, passedCourses, failedCourses), courses);
-
-            crtStudent.setRequest(booleanString);
-            crtStudent.setReadNotifications(new ArrayList<>(Arrays.asList(readNotification)));
-            crtStudent.setUnreadNotifications(new ArrayList<>(Arrays.asList(unreadNotification)));
-            crtStudent.setSelectedCourses(selectedCourses);
-            crtStudent.setApprovedCourses(approvedCourses);
-            crtStudent.filterCourses();
-            students.add(crtStudent);
+                crtStudent.setRequest(booleanString);
+                crtStudent.setReadNotifications(new ArrayList<>(Arrays.asList(readNotification)));
+                crtStudent.setUnreadNotifications(new ArrayList<>(Arrays.asList(unreadNotification)));
+                crtStudent.setSelectedCourses(selectedCourses);
+                crtStudent.setApprovedCourses(approvedCourses);
+                crtStudent.filterCourses();
+                students.add(crtStudent);
+            } catch (JSONException ignored) {
+            }
         }
         assignStudentsToAdvisor(advisors);
         fillStudentListCourse(courses);
