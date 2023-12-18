@@ -20,18 +20,24 @@ public class CreateAdvisor {
         createAdvisors(lecturers);
     }
 
-    private void createAdvisors(ArrayList<Lecturer> lecturers) throws JSONException, IOException {
-        String content = new String(Files.readAllBytes(Path.of(fileName)));
-        JSONObject jsonObject = new JSONObject(content);
-        JSONArray advisorJSON = jsonObject.getJSONArray("advisors");
-        for(int i =0 ; i< advisorJSON.length();i++){
-            String name = advisorJSON.getJSONObject(i).getString("name");
-            String surname = advisorJSON.getJSONObject(i).getString("surname");
-            String advisorId = advisorJSON.getJSONObject(i).getString("advisorId");
-            String password = advisorJSON.getJSONObject(i).getString("password");
-            Advisor advisor = new Advisor(name,surname,new Id(advisorId),new Password(password));
-            advisors.add(advisor);
-            lecturers.add(advisor);
+    private void createAdvisors(ArrayList<Lecturer> lecturers){
+        try {
+            String content = new String(Files.readAllBytes(Path.of(fileName)));
+            JSONObject jsonObject = new JSONObject(content);
+            JSONArray advisorJSON = jsonObject.getJSONArray("advisors");
+            for (int i = 0; i < advisorJSON.length(); i++) {
+                String name = advisorJSON.getJSONObject(i).getString("name");
+                String surname = advisorJSON.getJSONObject(i).getString("surname");
+                String advisorId = advisorJSON.getJSONObject(i).getString("advisorId");
+                String password = advisorJSON.getJSONObject(i).getString("password");
+                Advisor advisor = new Advisor(name, surname, new Id(advisorId), new Password(password));
+                advisors.add(advisor);
+                lecturers.add(advisor);
+            }
+        }
+        catch (JSONException | IOException ignored){
+            System.out.println("An error occurred in the advisors JSON file. Please ensure that the file is created in the correct format and fix any errors.");
+            System.exit(0);
         }
     }
 

@@ -19,15 +19,21 @@ public class CreateLecturer {
         createLecturers();
     }
     public void createLecturers() throws JSONException, IOException {
-        String content = new String(Files.readAllBytes(Path.of(fileName)));
-        JSONObject jsonObject = new JSONObject(content);
-        JSONArray lecturerJSON = jsonObject.getJSONArray("lecturers");
-        for(int i =0 ; i< lecturerJSON.length();i++){
-            String name = lecturerJSON.getJSONObject(i).getString("name");
-            String surname = lecturerJSON.getJSONObject(i).getString("surname");
-            String lecturerId = lecturerJSON.getJSONObject(i).getString("lecturerId");
-            String password = lecturerJSON.getJSONObject(i).getString("password");
-            lecturers.add(new Lecturer(name,surname,new Id(lecturerId),new Password(password)));
+        try {
+            String content = new String(Files.readAllBytes(Path.of(fileName)));
+            JSONObject jsonObject = new JSONObject(content);
+            JSONArray lecturerJSON = jsonObject.getJSONArray("lecturers");
+            for (int i = 0; i < lecturerJSON.length(); i++) {
+                String name = lecturerJSON.getJSONObject(i).getString("name");
+                String surname = lecturerJSON.getJSONObject(i).getString("surname");
+                String lecturerId = lecturerJSON.getJSONObject(i).getString("lecturerId");
+                String password = lecturerJSON.getJSONObject(i).getString("password");
+                lecturers.add(new Lecturer(name, surname, new Id(lecturerId), new Password(password)));
+            }
+        }
+        catch (JSONException | IOException ignored){
+            System.out.println("An error occurred in the lecturers JSON file. Please ensure that the file is created in the correct format and fix any errors.");
+            System.exit(0);
         }
     }
 
