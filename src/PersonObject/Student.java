@@ -46,9 +46,18 @@ public class Student extends Person {
 
     public boolean isSelectedCourse(Course course) {
         for (int i = 0; i < selectedCourses.size(); i++) {
-            if (selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
-                return true;
-            }
+        	if (course instanceof CourseSession) {
+        		CourseSession session = ((CourseSession)course);
+        		if (((CourseSession)selectedCourses.get(i)).getSessionId().getId().equals(session.getSessionId().getId())) {
+                    return true;
+                }
+	
+        	}
+        	else {
+        		if (selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
+                    return true;
+                }	
+        	}
         }
         return false;
     }
