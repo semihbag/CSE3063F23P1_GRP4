@@ -75,7 +75,7 @@ public class CreateStudent {
                 crtStudent.setApprovedCourses(approvedCourses);
                 crtStudent.filterCourses();
                 students.add(crtStudent);
-            } catch (JSONException ignored) {
+            } catch (JSONException | IOException ignored) {
             }
         }
         assignStudentsToAdvisor(advisors);

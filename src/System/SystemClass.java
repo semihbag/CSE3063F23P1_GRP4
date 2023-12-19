@@ -4,13 +4,9 @@ import CourseObject.*;
 import PersonObject.*;
 import UserInterface.*;
 import Page.*;
-
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -133,22 +129,27 @@ public class SystemClass {
     }
 
     //Update student infos in JSON files
-    private void updateStudentJSON() throws JSONException, IOException {
+    private void updateStudentJSON() {
         for (int i = 0; i < domain.getStudentCreator().getStudents().size(); i++) {
-            String studentId = domain.getStudentCreator().getStudents().get(i).getStudentId().getId();
-            Path path = Path.of("src\\JSON_Files\\Students\\" + studentId + ".json");
-            String content = new String(Files.readAllBytes(path));
-            JSONObject jsonStudent = new JSONObject(content);
-            JSONObject registration = jsonStudent.getJSONObject("registration");
-            ArrayList<Course> selected = domain.getStudentCreator().getStudents().get(i).getSelectedCourses();
-            ArrayList<Course> approved = domain.getStudentCreator().getStudents().get(i).getApprovedCourses();
-            registration.put("selectedCourses",transcriptCourses(selected));
-            registration.put("approvedCourses", transcriptCourses(approved));
-            jsonStudent.put("password",domain.getStudentCreator().getStudents().get(i).getPassword().getPassword());
-            jsonStudent.put("request", domain.getStudentCreator().getStudents().get(i).getRequest());
-            jsonStudent.put("readNotification", domain.getStudentCreator().getStudents().get(i).getReadNotifications().toArray(new String[0]));
-            jsonStudent.put("unreadNotification", domain.getStudentCreator().getStudents().get(i).getUnreadNotifications().toArray(new String[0]));
-            Files.write(path, jsonStudent.toString(4).getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
+            try {
+                String studentId = domain.getStudentCreator().getStudents().get(i).getStudentId().getId();
+                Path path = Path.of("src\\JSON_Files\\Students\\" + studentId + ".json");
+                String content = new String(Files.readAllBytes(path));
+                JSONObject jsonStudent = new JSONObject(content);
+                JSONObject registration = jsonStudent.getJSONObject("registration");
+                ArrayList<Course> selected = domain.getStudentCreator().getStudents().get(i).getSelectedCourses();
+                ArrayList<Course> approved = domain.getStudentCreator().getStudents().get(i).getApprovedCourses();
+                registration.put("selectedCourses", transcriptCourses(selected));
+                registration.put("approvedCourses", transcriptCourses(approved));
+                jsonStudent.put("password", domain.getStudentCreator().getStudents().get(i).getPassword().getPassword());
+                jsonStudent.put("request", domain.getStudentCreator().getStudents().get(i).getRequest());
+                jsonStudent.put("readNotification", domain.getStudentCreator().getStudents().get(i).getReadNotifications().toArray(new String[0]));
+                jsonStudent.put("unreadNotification", domain.getStudentCreator().getStudents().get(i).getUnreadNotifications().toArray(new String[0]));
+                Files.write(path, jsonStudent.toString(4).getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
+            } catch (JSONException | IOException exception) {
+                System.err.println("\nSYSTEM UPDATE FAILS.");
+                System.exit(0);
+            }
         }
     }
 
