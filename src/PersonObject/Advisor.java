@@ -59,8 +59,6 @@ public class Advisor extends Lecturer {
         this.selectStudent.dropAllSelectedCourses();
         this.selectStudent.setRequest("false");
         this.removeAwaitingStudent(this.selectStudent);
-        selectStudent.setMarksInitial();
-        selectStudent.setMarks();
         this.setSelectStudent(null);
     }
 

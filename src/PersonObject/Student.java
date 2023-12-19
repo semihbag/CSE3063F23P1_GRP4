@@ -109,6 +109,7 @@ public class Student extends Person {
     public void dropAllSelectedCourses() {
         selectedCourses.clear();
         selectedCourseCredit = 0;
+        setMarks();
     }
 
     public void sendToApproval() {
