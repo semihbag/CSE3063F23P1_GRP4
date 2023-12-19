@@ -15,12 +15,8 @@ class CreateLecturerTest {
     void testCreateLecturers() {
         String fileName = "src\\JSON_Files\\lecturers.json";
         CreateLecturer createLecturer = null;
-        try {
-            createLecturer = new CreateLecturer(fileName);
-            createLecturer.createLecturers();
-        } catch (JSONException | IOException e) {
-            e.printStackTrace();
-        }
+        createLecturer = new CreateLecturer(fileName);
+        createLecturer.createLecturers();
         assert createLecturer != null;
         ArrayList<Lecturer> lecturers = createLecturer.getLecturers();
         assertNotNull(lecturers);

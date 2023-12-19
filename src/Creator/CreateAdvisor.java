@@ -15,7 +15,7 @@ public class CreateAdvisor {
     private ArrayList<Advisor> advisors = new ArrayList<>();
     private String fileName;
 
-    public CreateAdvisor(String fileName,ArrayList<Lecturer> lecturers ) throws JSONException, IOException{
+    public CreateAdvisor(String fileName,ArrayList<Lecturer> lecturers ){
         this.fileName = fileName;
         createAdvisors(lecturers);
     }
@@ -36,7 +36,7 @@ public class CreateAdvisor {
             }
         }
         catch (JSONException | IOException ignored){
-            System.out.println("An error occurred in the advisors JSON file. Please ensure that the file is created in the correct format and fix any errors.");
+            System.err.println("An error occurred in the advisors JSON file. Please ensure that the file is created in the correct format and fix any errors.");
             System.exit(0);
         }
     }

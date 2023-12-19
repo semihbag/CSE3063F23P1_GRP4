@@ -48,11 +48,7 @@ public class CreateAdvisorTest {
         Path tempFile = Path.of(fileName);
         Files.write(tempFile, fileContent.getBytes());
 
-        try {
-            createAdvisor = new CreateAdvisor(fileName, lecturers);
-        } catch (JSONException | IOException e) {
-            e.printStackTrace();
-        }
+        createAdvisor = new CreateAdvisor(fileName, lecturers);
         Files.deleteIfExists(tempFile);
     }
 

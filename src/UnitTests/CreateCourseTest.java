@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class CreateCourseTest {
     private CreateCourse createCourse;
 
-    void setUp() throws IOException, JSONException{
+    void setUp() throws IOException{
         // Create a Lecturer instance for testing
         Lecturer lecturer = new Lecturer("Mahmut","Kertil",new Id("1303001"),new Password("12345")); // Replace with actual lecturer ID
 
@@ -55,7 +55,7 @@ class CreateCourseTest {
         Files.deleteIfExists(tempFile);
     }
     @Test
-    void testCreateCourse() throws IOException, JSONException {
+    void testCreateCourse() throws IOException {
 
         setUp();
         ArrayList<Course> courses = createCourse.getCourses();

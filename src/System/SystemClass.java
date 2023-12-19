@@ -90,42 +90,60 @@ public class SystemClass {
     }
 
     //Update course quota after selections in JSON files
-    private void updateCourseJSON() throws IOException, JSONException {
-        Path path = Path.of("src\\JSON_Files\\courses.json");
-        String content = new String(Files.readAllBytes(path));
-        JSONObject jsonObject = new JSONObject(content);
-        JSONArray courseJSON = jsonObject.getJSONArray("courses");
-        for(int i = 0; i < courseJSON.length(); i++){
-            JSONObject currentCourse = courseJSON.getJSONObject(i);
-            currentCourse.put("quota",domain.getCourseCreator().getCourses().get(i).getQuota());
-            currentCourse.put("studentList",studentToJsonArray(domain.getCourseCreator().getCourses().get(i).getStudentList()));
+    private void updateCourseJSON() {
+        try {
+            Path path = Path.of("src\\JSON_Files\\courses.json");
+            String content = new String(Files.readAllBytes(path));
+            JSONObject jsonObject = new JSONObject(content);
+            JSONArray courseJSON = jsonObject.getJSONArray("courses");
+            for (int i = 0; i < courseJSON.length(); i++) {
+                JSONObject currentCourse = courseJSON.getJSONObject(i);
+                currentCourse.put("quota", domain.getCourseCreator().getCourses().get(i).getQuota());
+                currentCourse.put("studentList", studentToJsonArray(domain.getCourseCreator().getCourses().get(i).getStudentList()));
+            }
+            Files.write(path, jsonObject.toString(4).getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
         }
-        Files.write(path,jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
+        catch (IOException | JSONException ignored){
+            System.err.println("An error occurred while writing data to the courses JSON file.");
+            System.exit(0);
+        }
     }
 
     private void updateLecturerJSON() throws JSONException, IOException{
-        Path path = Path.of("src\\JSON_Files\\lecturers.json");
-        String content = new String(Files.readAllBytes(path));
-        JSONObject jsonObject = new JSONObject(content);
-        JSONArray lecturerJSON = jsonObject.getJSONArray("lecturers");
-        for(int i=0; i<domain.getLecturerCreator().getLecturers().size();i++){
-            if(!(domain.getLecturerCreator().getLecturers().get(i) instanceof Advisor)){
-                JSONObject currentLecturer = lecturerJSON.getJSONObject(i);
-                currentLecturer.put("password",domain.getLecturerCreator().getLecturers().get(i).getPassword().getPassword());
+        try {
+            Path path = Path.of("src\\JSON_Files\\lecturers.json");
+            String content = new String(Files.readAllBytes(path));
+            JSONObject jsonObject = new JSONObject(content);
+            JSONArray lecturerJSON = jsonObject.getJSONArray("lecturers");
+            for (int i = 0; i < domain.getLecturerCreator().getLecturers().size(); i++) {
+                if (!(domain.getLecturerCreator().getLecturers().get(i) instanceof Advisor)) {
+                    JSONObject currentLecturer = lecturerJSON.getJSONObject(i);
+                    currentLecturer.put("password", domain.getLecturerCreator().getLecturers().get(i).getPassword().getPassword());
+                }
             }
+            Files.write(path, jsonObject.toString(4).getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
         }
-        Files.write(path,jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
+        catch (IOException | JSONException ignored){
+            System.err.println("An error occurred while writing data to the lecturers JSON file.");
+            System.exit(0);
+        }
     }
     private void updateAdvisorJSON() throws JSONException, IOException{
-        Path path = Path.of("src\\JSON_Files\\advisors.json");
-        String content = new String(Files.readAllBytes(path));
-        JSONObject jsonObject = new JSONObject(content);
-        JSONArray advisorJSON = jsonObject.getJSONArray("advisors");
-        for(int i=0; i<domain.getAdvisorCreator().getAdvisors().size();i++){
+        try {
+            Path path = Path.of("src\\JSON_Files\\advisors.json");
+            String content = new String(Files.readAllBytes(path));
+            JSONObject jsonObject = new JSONObject(content);
+            JSONArray advisorJSON = jsonObject.getJSONArray("advisors");
+            for (int i = 0; i < domain.getAdvisorCreator().getAdvisors().size(); i++) {
                 JSONObject currentAdvisor = advisorJSON.getJSONObject(i);
-                currentAdvisor.put("password",domain.getAdvisorCreator().getAdvisors().get(i).getPassword().getPassword());
+                currentAdvisor.put("password", domain.getAdvisorCreator().getAdvisors().get(i).getPassword().getPassword());
+            }
+            Files.write(path, jsonObject.toString(4).getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
         }
-        Files.write(path,jsonObject.toString(4).getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
+        catch (IOException | JSONException ignored){
+            System.err.println("An error occurred while writing data to the advisors JSON file.");
+            System.exit(0);
+        }
     }
 
     //Update student infos in JSON files
