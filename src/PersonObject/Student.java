@@ -157,7 +157,7 @@ public class Student extends Person {
 
     	return false;
     }
-    private void setMarks() {
+    public void setMarks() {
         marks.clear();
     	
         int len = selectableCourses.size();
