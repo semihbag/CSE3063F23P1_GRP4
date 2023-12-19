@@ -50,10 +50,16 @@ public class Student extends Person {
         for (int i = 0; i < selectedCourses.size(); i++) {
         	if (course instanceof CourseSession) {
         		CourseSession session = ((CourseSession)course);
-        		if (((CourseSession)selectedCourses.get(i)).getSessionId().getId().equals(session.getSessionId().getId())) {
-                    return true;
-                }
-	
+        		if (selectedCourses.get(i) instanceof CourseSession) {
+        			if (((CourseSession)selectedCourses.get(i)).getSessionId().getId().equals(session.getSessionId().getId())) {
+                        return true;
+                    }
+        		}
+        		else {
+        			if (selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
+                        return true;
+                    }
+        		}
         	}
         	else {
         		if (selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
