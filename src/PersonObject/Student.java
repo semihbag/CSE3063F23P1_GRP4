@@ -1,6 +1,8 @@
 package PersonObject;
 
 import CourseObject.*;
+import Page.SelectedCoursesPage;
+
 import java.util.ArrayList;
 
 public class Student extends Person {
@@ -109,6 +111,7 @@ public class Student extends Person {
     public void dropAllSelectedCourses() {
         selectedCourses.clear();
         selectedCourseCredit = 0;
+        System.out.println("1------------------------------------------0" + selectedCourses.size());
         setMarks();
     }
 
