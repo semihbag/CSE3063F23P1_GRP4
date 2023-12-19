@@ -15,52 +15,57 @@ public class CreateCourse {
     private ArrayList<Course> courses = new ArrayList<>();
     private String fileName;
 
-    public CreateCourse(String fileName, ArrayList<Lecturer> lecturers) throws JSONException, IOException {
+    public CreateCourse(String fileName, ArrayList<Lecturer> lecturers) {
         this.fileName = fileName;
         createCourses(lecturers);
     }
-    private void createCourses(ArrayList<Lecturer> lecturers) throws JSONException, IOException {
-        String content = new String(Files.readAllBytes(Path.of(fileName)));
-        JSONObject jsonObject = new JSONObject(content);
-        JSONArray courseJSON = jsonObject.getJSONArray("courses");
-        for(int i =0 ; i< courseJSON.length();i++){
-            String courseId =courseJSON.getJSONObject(i).getString("id");
-            String name = courseJSON.getJSONObject(i).getString("name");
-            int term = courseJSON.getJSONObject(i).getInt("term");
-            int quota = courseJSON.getJSONObject(i).getInt("quota");
-            String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
-            int credit = courseJSON.getJSONObject(i).getInt("credit");
-            String courseTypeStr = courseJSON.getJSONObject(i).getString("type");
-            Lecturer courseLecturer=null;
-            for (Lecturer lecturer : lecturers) {
-                if (lecturer.getLecturerId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
-                    courseLecturer=lecturer;
-                    break;
-                }
-            }
-            ArrayList<CourseSchedule> courseSchedule = new ArrayList<CourseSchedule>();
-            fillCourseSchedule(courseJSON.getJSONObject(i).getJSONArray("day"),courseJSON.getJSONObject(i).getJSONArray("hour"),courseSchedule);
-            CourseType courseType = setCourseType(courseTypeStr);
-            Course course = null;
-            if(courseJSON.getJSONObject(i).getBoolean("isSession")){
-                String sessionId = courseJSON.getJSONObject(i).getString("sessionId");
-                course = new CourseSession(new Id(courseId),name, quota, term,courseLecturer,new Id(sessionId),courseSchedule,credit, courseType);
-            }
-            else {
-                course = new Course(new Id(courseId), name, quota, term, courseLecturer, courseSchedule, credit, courseType);
-            }
-
-            for(String str: prerequisiteId){
-                for(Course crs: courses){
-                    if(crs.getCourseId().getId().equals(str)){
-                        course.getPrerequisiteCourses().add(crs);
+    private void createCourses(ArrayList<Lecturer> lecturers)  {
+        try {
+            String content = new String(Files.readAllBytes(Path.of(fileName)));
+            JSONObject jsonObject = new JSONObject(content);
+            JSONArray courseJSON = jsonObject.getJSONArray("courses");
+            for (int i = 0; i < courseJSON.length(); i++) {
+                String courseId = courseJSON.getJSONObject(i).getString("id");
+                String name = courseJSON.getJSONObject(i).getString("name");
+                int term = courseJSON.getJSONObject(i).getInt("term");
+                int quota = courseJSON.getJSONObject(i).getInt("quota");
+                String[] prerequisiteId = jsonArrToStrArr(courseJSON.getJSONObject(i).getJSONArray("prerequisite"));
+                int credit = courseJSON.getJSONObject(i).getInt("credit");
+                String courseTypeStr = courseJSON.getJSONObject(i).getString("type");
+                Lecturer courseLecturer = null;
+                for (Lecturer lecturer : lecturers) {
+                    if (lecturer.getLecturerId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
+                        courseLecturer = lecturer;
                         break;
                     }
                 }
+                ArrayList<CourseSchedule> courseSchedule = new ArrayList<CourseSchedule>();
+                fillCourseSchedule(courseJSON.getJSONObject(i).getJSONArray("day"), courseJSON.getJSONObject(i).getJSONArray("hour"), courseSchedule);
+                CourseType courseType = setCourseType(courseTypeStr);
+                Course course = null;
+                if (courseJSON.getJSONObject(i).getBoolean("isSession")) {
+                    String sessionId = courseJSON.getJSONObject(i).getString("sessionId");
+                    course = new CourseSession(new Id(courseId), name, quota, term, courseLecturer, new Id(sessionId), courseSchedule, credit, courseType);
+                } else {
+                    course = new Course(new Id(courseId), name, quota, term, courseLecturer, courseSchedule, credit, courseType);
+                }
+
+                for (String str : prerequisiteId) {
+                    for (Course crs : courses) {
+                        if (crs.getCourseId().getId().equals(str)) {
+                            course.getPrerequisiteCourses().add(crs);
+                            break;
+                        }
+                    }
+                }
+                courses.add(course);
             }
-            courses.add(course);
+            assignCoursesToLecturer(lecturers);
         }
-        assignCoursesToLecturer(lecturers);
+        catch (JSONException | IOException ignored){
+            System.out.println("An error occurred in the courses JSON file. Please ensure that the file is created in the correct format and fix any errors.");
+            System.exit(0);
+        }
     }
     private void assignCoursesToLecturer(ArrayList<Lecturer> lecturers) {
         for (Course course : courses) {
