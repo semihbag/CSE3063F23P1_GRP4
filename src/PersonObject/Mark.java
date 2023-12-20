@@ -1,0 +1,10 @@
+package PersonObject;
+
+public enum Mark {
+	SELECTED,
+	SUCCESSFUL,
+	ERROR_ALREADY_SENDED,
+	ERROR_CREDIT_LIMIT,
+	ERROR_CONFLICT,
+	ERROR_SAME_TYPE;
+}

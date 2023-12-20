@@ -1,0 +1,58 @@
+{
+    "advisor": "1501005",
+    "request": "false",
+    "readNotification": [],
+    "password": "Engin123.",
+    "transcript": {
+        "failedCourses": [],
+        "passedCourses": [
+            "ATA121",
+            "MBG1201",
+            "CSE1200",
+            "CSE1241",
+            "MATH1001",
+            "PHYS1101",
+            "PHYS1103",
+            "TRD121",
+            "ATA122",
+            "CSE1242",
+            "MATH1002",
+            "MATH2256",
+            "PHYS1102",
+            "PHYS1104",
+            "TRD122",
+            "NTE1013"
+        ],
+        "term": 3,
+        "termPassed": [2],
+
+        "gradesFailed": [],
+        "gradesPassed": [
+            "AA",
+            "BA",
+            "BB",
+            "BB",
+            "AA",
+            "CB",
+            "AA",
+            "AA",
+            "AA",
+            "BB",
+            "BA",
+            "BB",
+            "CC",
+            "AA",
+            "AA",
+            "BA"
+        ]
+    },
+    "unreadNotification": [],
+    "name": "Engin",
+    "registration": {
+        "selectedCourses": [],
+        "approvedCourses": []
+    },
+    "id": "150121057",
+    "type": "student",
+    "lastname": "Kuzgun"
+}

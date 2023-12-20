@@ -1,15 +1,15 @@
 {"advisors": [
     {
-        "password": "sql112233",
-        "advisorId": "1501002",
-        "surname": "Agaoglu",
-        "name": "Mustafa"
-    },
-    {
         "password": "ruby99",
         "advisorId": "1501001",
         "surname": "Corut Ergin",
         "name": "Fatma"
+    },
+    {
+        "password": "sql112233",
+        "advisorId": "1501002",
+        "surname": "Agaoglu",
+        "name": "Mustafa"
     },
     {
         "password": "assembly101",
