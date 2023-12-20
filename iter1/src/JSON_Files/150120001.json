@@ -1,0 +1,26 @@
+{
+    "advisor": "1501002",
+    "request": "false",
+    "notification": "",
+    "password": "ali123",
+    "transcript": {
+        "failedcourses": ["CSE2225"],
+        "completedcourses": [
+            "CSE1200",
+            "CSE1241",
+            "CSE2023",
+            "CSE2138",
+            "CSE2260"
+        ],
+        "year": 3,
+        "gpa": 60
+    },
+    "name": "Ali",
+    "registration": {
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150120001",
+    "type": "student",
+    "lastname": "Korkmaz"
+}

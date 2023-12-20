@@ -1,0 +1,24 @@
+{
+    "advisor": "1501005",
+    "request": "false",
+    "notification": "",
+    "password": "mehmet.cinar",
+    "transcript": {
+        "failedcourses": ["CSE1241"],
+        "completedcourses": [
+            "CSE1200",
+            "CSE2023",
+            "CSE2138"
+        ],
+        "year": 3,
+        "gpa": 43
+    },
+    "name": "Mehmet",
+    "registration": {
+        "selectedcourses": [],
+        "approvedcourses": []
+    },
+    "id": "150120002",
+    "type": "student",
+    "lastname": "Cinar"
+}
