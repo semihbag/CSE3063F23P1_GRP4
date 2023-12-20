@@ -16,5 +16,17 @@
         "advisorId": "1501005",
         "surname": "Boz",
         "name": "Betul"
+    },
+    {
+        "password": "password123",
+        "advisorId": "1000101",
+        "surname": "San",
+        "name": "Yusuf"
+    },
+    {
+        "password": "password456",
+        "advisorId": "1000102",
+        "surname": "Acik",
+        "name": "Pelin"
     }
 ]}
