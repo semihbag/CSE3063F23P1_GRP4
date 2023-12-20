@@ -1,0 +1,23 @@
+{
+    "advisor": "1501002",
+    "request": "false",
+    "readNotification": [],
+    "password": "Mahmut256.",
+    "transcript": {
+        "failedCourses": [],
+        "passedCourses": [],
+        "termPassed": [],
+        "term": 1,
+        "gradesFailed": [],
+        "gradesPassed": []
+    },
+    "unreadNotification": [],
+    "name": "Mahmut",
+    "registration": {
+        "selectedCourses": [],
+        "approvedCourses": []
+    },
+    "id": "150122045",
+    "type": "student",
+    "lastname": "Çetin"
+}

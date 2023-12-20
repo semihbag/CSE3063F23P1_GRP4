@@ -1,0 +1,166 @@
+{
+	"lecturers" : [
+		{
+			"name" : "Ayse",
+			"surname" : "Yilmaz",
+			"lecturerId" : "1505001",
+			"password" : "Ataturk_81"
+		},
+		{
+			"name" : "Hatice",
+			"surname" : "Cetin",
+			"lecturerId" : "1505002",
+			"password" : "5.edebiyaT"
+		},
+		{
+			"name" : "Beste",
+			"surname" : "Turanli",
+			"lecturerId" : "1201001",
+			"password" : "Modern.Biology3"
+		},
+		{
+			"name" : "Mahmut",
+			"surname" : "Kertil",
+			"lecturerId" : "1303001",
+			"password" : "Derivatives.1"
+		},
+		{
+			"name" : "Mustafa",
+			"surname" : "Alevli",
+			"lecturerId" : "1305001",
+			"password" : "force_1Mass"
+		},
+		{
+			"name" : "Ayse Bengi",
+			"surname" : "Ozluarda Hamarat",
+			"lecturerId" : "1504001",
+			"password" : "Turkish.Liras.1"
+		},
+		{
+			"name" : "Mustafa Borahan",
+			"surname" : "Tumer",
+			"lecturerId" : "1501003",
+			"password" : "Linked.list1"
+		},
+		{
+			"name" : "Mujdat",
+			"surname" : "Soyturk",
+			"lecturerId" : "1501010",
+			"password":"Model_Sim_88"
+		},
+		{
+			"name" : "Ali Fuat",
+			"surname" : "Alkaya",
+			"lecturerId" : "1501011",
+			"password":"Ali_Fuat.11"
+		},
+		{
+			"name" : "Mehmet",
+			"surname" : "Baran",
+			"lecturerId" : "1501012",
+			"password":"Mehmet_Baran.11"
+		},
+		{
+			"name" : "Omer",
+			"surname" : "Korcak",
+			"lecturerId" : "1501004",
+			"password":"omer.Korcak004"
+		},
+		{
+			"name" : "Oguzhan",
+			"surname" : "Ceylan",
+			"lecturerId" : "1306001",
+			"password":"elec.TRIC1"
+		},
+		{
+			"name" : "Murat Can",
+			"surname" : "Ganiz",
+			"lecturerId" : "1501006",
+			"password":"Object_oriented3"
+		},
+		{
+			"name" : "Ali Haydar",
+			"surname" : "Ozer",
+			"lecturerId" : "1501007",
+			"password":"linuX5555"
+		},
+		{
+			"name" : "Haluk Rahmi",
+			"surname" : "Topcuoglu",
+			"lecturerId" : "1501008",
+			"password":"haluk_Rahmi.008"
+		},
+		{
+			"name" : "Cigdem",
+			"surname" : "Eroglu Erdem",
+			"lecturerId" : "1501009",
+			"password":"Cigdem.EE009"
+		},
+		{
+			"name":"Tuna",
+			"surname":"Al",
+			"lecturerId":"1408001",
+			"password":"Nte_0001"
+		},
+		{
+			"name":"Ozan",
+			"surname":"Pekdemir",
+			"lecturerId":"1408002",
+			"password":"Nte_0002"
+		},
+		{
+			"name":"Erdem",
+			"surname":"Aygoz",
+			"lecturerId":"1408003",
+			"password":"Nte_0002"
+		},
+		{
+			"name":"Sibel",
+			"surname":"Kolsuz",
+			"lecturerId":"1408004",
+			"password":"Nte_0002"
+		},
+		{
+			"name":"Hikmet",
+			"surname":"Nazim",
+			"lecturerId":"1401001",
+			"password":"Mechanics.79"
+		},
+		{
+			"name":"Suleyman",
+			"surname":"Arar",
+			"lecturerId":"1401002",
+			"password":"Mechanics.78"
+		},
+		{
+			"name":"Hurrem",
+			"surname":"Bulur",
+			"lecturerId":"1401003",
+			"password":"Mechanics.79"
+		},
+		{
+			"name":"Mahide",
+			"surname":"Saklar",
+			"lecturerId":"1401004",
+			"password":"Mechanics.80"
+		},
+		{
+			"name":"Muhammed Nur",
+			"surname":"Avcil",
+			"lecturerId":"1501101",
+			"password":"Muhammed.123"
+		},
+		{
+			"name":"Serap",
+			"surname":"Korkmaz",
+			"lecturerId":"1501102",
+			"password":"Serap.13"
+		},
+		{
+			"name":"Zuhal",
+			"surname":"Ozturk",
+			"lecturerId":"1501103",
+			"password":"Serap.13"
+		}
+	]
+}

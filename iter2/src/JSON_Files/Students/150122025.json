@@ -1,0 +1,23 @@
+{
+    "advisor": "1501001",
+    "request": "false",
+    "readNotification": [],
+    "password": "Nisa123._",
+    "transcript": {
+        "failedCourses": [],
+        "passedCourses": [],
+        "termPassed": [],
+        "term": 1,
+        "gradesFailed": [],
+        "gradesPassed": []
+    },
+    "unreadNotification": [],
+    "name": "Nisa",
+    "registration": {
+        "selectedCourses": [],
+        "approvedCourses": []
+    },
+    "id": "150122025",
+    "type": "student",
+    "lastname": "Yıldız"
+}
