@@ -1,0 +1,23 @@
+{
+    "advisor": "1501005",
+    "request": "false",
+    "readNotification": [],
+    "password": "Password.123",
+    "transcript": {
+        "failedCourses": [],
+        "passedCourses": [],
+        "termPassed": [],
+        "term": 1,
+        "gradesFailed": [],
+        "gradesPassed": []
+    },
+    "unreadNotification": [],
+    "name": "Sevinc",
+    "registration": {
+        "selectedCourses": [],
+        "approvedCourses": []
+    },
+    "id": "150122003",
+    "type": "student",
+    "lastname": "Dik"
+}
