@@ -13,7 +13,13 @@ public class CourseSession extends Course {
 		super(courseID, courseName, quota, term, lecturer, courseSchedules,credit, courseType);
 		this.sessionId = sessionId;
 	}
-
+	@Override
+	public boolean equals(Object o){
+		if(o instanceof CourseSession){
+			return ((CourseSession) o).getCourseId().getId().equals(this.getCourseId().getId()) && ((CourseSession) o).getSessionId().getId().equals(this.getSessionId().getId());
+		}
+		return false;
+	}
 	public Id getSessionId() {
 		return sessionId;
 	}

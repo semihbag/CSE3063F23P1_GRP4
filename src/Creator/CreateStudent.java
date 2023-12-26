@@ -135,7 +135,7 @@ public class CreateStudent {
     private Advisor findAdvisor(String advisorID,ArrayList<Advisor> advisors) {
         Advisor advisor = null;
         for (int i = 0; i < advisors.size(); i++) {
-            if (advisors.get(i).getLecturerId().getId().equals(advisorID)) {
+            if (advisors.get(i).getPersonId().getId().equals(advisorID)) {
                 advisor = advisors.get(i);
             }
         }
@@ -145,7 +145,7 @@ public class CreateStudent {
     private void assignStudentsToAdvisor(ArrayList<Advisor> advisors) {
         for (Student student : students) {
             for (Advisor advisor : advisors) {
-                if (student.getAdvisor().getLecturerId().getId().equals(advisor.getLecturerId().getId())) {
+                if (student.getAdvisor().getPersonId().getId().equals(advisor.getPersonId().getId())) {
                     advisor.getStudentList().add(student);
                     break;
                 }
@@ -162,7 +162,7 @@ public class CreateStudent {
             String[] courseStudentsId = jsonArrToStrArr(currentCourse.getJSONArray("studentList"));
             for (String currStudentId : courseStudentsId) {
                 for (Student st : students) {
-                    if (st.getStudentId().getId().equals(currStudentId) && (!(courses.get(i).getStudentList().contains(st)))) {
+                    if (st.getPersonId().getId().equals(currStudentId) && (!(courses.get(i).getStudentList().contains(st)))) {
                         courses.get(i).getStudentList().add(st);
                         break;
                     }

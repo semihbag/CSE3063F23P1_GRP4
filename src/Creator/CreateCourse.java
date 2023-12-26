@@ -34,7 +34,7 @@ public class CreateCourse {
                 String courseTypeStr = courseJSON.getJSONObject(i).getString("type");
                 Lecturer courseLecturer = null;
                 for (Lecturer lecturer : lecturers) {
-                    if (lecturer.getLecturerId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
+                    if (lecturer.getPersonId().getId().equals(courseJSON.getJSONObject(i).getString("lecturer"))) {
                         courseLecturer = lecturer;
                         break;
                     }
@@ -70,7 +70,7 @@ public class CreateCourse {
     private void assignCoursesToLecturer(ArrayList<Lecturer> lecturers) {
         for (Course course : courses) {
             for (Lecturer lecturer : lecturers) {
-                if (course.getLecturer().getLecturerId().getId().equals(lecturer.getLecturerId().getId())) {
+                if (course.getLecturer().equals(lecturer)) {
                     lecturer.getGivenCourses().add(course);
                 }
             }

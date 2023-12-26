@@ -172,7 +172,7 @@ public class CreatePage {
 		}
 		else {
 			str="\nRequests of " + student.getFirstName() + " " + student.getLastName()
-					+ " " + student.getStudentId().getId()
+					+ " " + student.getPersonId().getId()
 					+"\n"+courseListForContent(student.getSelectedCourses(),0, null)+"\n"
 					+"Approve: A\nReject: R\nQuit: Q\n";
 		}
@@ -187,7 +187,7 @@ public class CreatePage {
 		}
 		else {
 			for(int a=0; a<student.size(); a++) {
-				str += (a+1) + ") " + student.get(a).getStudentId().getId() + " - " +
+				str += (a+1) + ") " + student.get(a).getPersonId().getId() + " - " +
 						student.get(a).getFirstName() + " " + student.get(a).getLastName() + "\n";
 			}
 			str+="\r\n"+ "Select one of student.\nQuit: Q";
@@ -199,7 +199,7 @@ public class CreatePage {
 		String str="\u001B[1mSTUDENT ID        NAME SURNAME                  TERM\n\u001B[0m";
 		for (int i=1; i<=student.size() ; i++ ) {
 			String fullName = student.get(i-1).getFirstName()+ " " + student.get(i-1).getLastName();
-			str += student.get(i-1).getStudentId().getId() + "         " +
+			str += student.get(i-1).getPersonId().getId() + "         " +
 					fullName + blankAfterStr(fullName, 30) + " " +
 					student.get(i-1).getTranscript().getTerm()+"\n";
 		}
@@ -251,13 +251,13 @@ public class CreatePage {
 	private String createProfilePageContent(Person user) {
 		String content = "";
 		if (user instanceof Student student) {
-			content += "\u001B[1mSTUDENT " + student.getStudentId().getId() + "\n\u001B[0m";
+			content += "\u001B[1mSTUDENT " + student.getPersonId().getId() + "\n\u001B[0m";
 		}
 		else if (user instanceof Advisor advisor) {
-			content += "\u001B[1mADVISOR " + advisor.getLecturerId().getId() + "\n\u001B[0m";
+			content += "\u001B[1mADVISOR " + advisor.getPersonId().getId() + "\n\u001B[0m";
 		}
 		else if (user instanceof Lecturer lecturer) {
-			content += "\u001B[1mLECTURER " + lecturer.getLecturerId().getId() + "\n\u001B[0m";
+			content += "\u001B[1mLECTURER " + lecturer.getPersonId().getId() + "\n\u001B[0m";
 		}
 
 		content +=  "Name      : " + user.getFirstName() + "\n" +
@@ -301,7 +301,7 @@ public class CreatePage {
 		String str = "\u001B[1m\nAll Students:\n\u001B[0m";
 		if (course != null) {
 			for (Student student : course.getStudentList()) {
-				str += student.getStudentId().getId() + "  " +
+				str += student.getPersonId().getId() + "  " +
 						student.getFirstName() + blankAfterStr(student.getFirstName(), 20) +
 						student.getLastName() + "\n";
 			}
@@ -350,8 +350,8 @@ public class CreatePage {
 		String str = "\u001B[1m                               MARMARA UNIVERSITY\n\u001B[0m" +
 				"\u001B[1m                                   TRANSCRIPT\n\n\u001B[0m";
 		DecimalFormat dcFormat = new DecimalFormat("#.##");
-		str += "Student Id : " + student.getStudentId().getId() +
-				blankAfterStr("Student Id : " + student.getStudentId().getId(), 45) +
+		str += "Student Id : " + student.getPersonId().getId() +
+				blankAfterStr("Student Id : " + student.getPersonId().getId(), 45) +
 				"Faculty    : Engineering Faculty\n" +
 				"Name       : " + student.getFirstName() +
 				blankAfterStr("Name       : " + student.getFirstName(), 45) +

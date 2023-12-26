@@ -45,9 +45,9 @@ class CreateStudentTest {
             student.setAdvisor(advisor);
             assertEquals("Nihal", student.getFirstName());
             assertEquals("Akduran", student.getLastName());
-            assertEquals("150122004", student.getStudentId().getId());
+            assertEquals("150122004", student.getPersonId().getId());
             assertEquals("Nihal.123",student.getPassword().getPassword());
-            assertEquals("1501002",student.getAdvisor().getLecturerId().getId());
+            assertEquals("1501002",student.getAdvisor().getPersonId().getId());
             assertEquals(1,student.getTranscript().getTerm());
         } catch (JSONException | IOException e) {
             e.printStackTrace();

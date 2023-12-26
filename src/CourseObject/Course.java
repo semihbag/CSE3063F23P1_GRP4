@@ -32,6 +32,14 @@ public class Course {
 		studentList.add(student);
 	}
 
+	@Override
+	public boolean equals(Object o){
+		if(o instanceof Course){
+            return ((Course) o).courseId.getId().equals(this.getCourseId().getId());
+		}
+		return false;
+	}
+
 	public int getTerm() {
 		return term;
 	}

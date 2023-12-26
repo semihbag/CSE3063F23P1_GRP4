@@ -42,7 +42,7 @@ public class SystemClass {
         boolean userFound = false;
         if (username.charAt(0) == 'o') {
             for (Student student : domain.getStudentCreator().getStudents()) {
-                if (("o" + student.getStudentId().getId()).equals(username) &&
+                if (("o" + student.getPersonId().getId()).equals(username) &&
                         student.getPassword().getPassword().equals(password)) {
                     setCurrentUser(student);
                     userFound = true;
@@ -51,7 +51,7 @@ public class SystemClass {
             }
         } else if (username.charAt(0) == 'l') {
             for (Lecturer lecturer : domain.getLecturerCreator().getLecturers()) {
-                if (("l" + lecturer.getLecturerId().getId()).equals(username) &&
+                if (("l" + lecturer.getPersonId().getId()).equals(username) &&
                         lecturer.getPassword().getPassword().equals(password)) {
                     if (lecturer instanceof Advisor advisor) {
                         advisor.findAwaitingStudents();
@@ -150,7 +150,7 @@ public class SystemClass {
     private void updateStudentJSON() {
         for (int i = 0; i < domain.getStudentCreator().getStudents().size(); i++) {
             try {
-                String studentId = domain.getStudentCreator().getStudents().get(i).getStudentId().getId();
+                String studentId = domain.getStudentCreator().getStudents().get(i).getPersonId().getId();
                 Path path = Path.of("src\\JSON_Files\\Students\\" + studentId + ".json");
                 String content = new String(Files.readAllBytes(path));
                 JSONObject jsonStudent = new JSONObject(content);
@@ -175,7 +175,7 @@ public class SystemClass {
     private String[] studentToJsonArray(ArrayList<Student> students){
         String[] studentIds = new String[students.size()];
         for(int i=0; i<students.size();i++){
-            studentIds[i] = students.get(i).getStudentId().getId();
+            studentIds[i] = students.get(i).getPersonId().getId();
         }
         return  studentIds;
     }

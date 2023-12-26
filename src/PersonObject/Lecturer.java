@@ -4,13 +4,11 @@ import CourseObject.*;
 import java.util.ArrayList;
 
 public class Lecturer extends Person {
-    private Id lecturerId;
     private ArrayList<Course> givenCourses = new ArrayList<>();
     private Course selectedCourse;
 
     public Lecturer(String FirstName, String LastName, Id lecturerId, Password password) {
-        super(FirstName, LastName,password);
-        this.lecturerId = lecturerId;
+        super(FirstName, LastName,lecturerId,password);
     }
     public void selectCourse(int index) {
         index = index - 1;
@@ -21,10 +19,6 @@ public class Lecturer extends Person {
     @Override
     public void createSyllabus(ArrayList<Course> givenCourses) {
         getSyllabus().fillSyllabus(givenCourses);
-    }
-
-    public Id getLecturerId() {
-        return lecturerId;
     }
 
     public ArrayList<Course> getGivenCourses() {

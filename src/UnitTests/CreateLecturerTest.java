@@ -24,7 +24,7 @@ class CreateLecturerTest {
         Lecturer firstLecturer = lecturers.get(0);
         assertEquals("Ayse", firstLecturer.getFirstName());
         assertEquals("Yilmaz", firstLecturer.getLastName());
-        assertEquals("1505001", firstLecturer.getLecturerId().getId());
+        assertEquals("1505001", firstLecturer.getPersonId().getId());
         assertEquals("Ataturk_81", firstLecturer.getPassword().getPassword());
     }
 }

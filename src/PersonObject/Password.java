@@ -79,5 +79,10 @@ public class Password {
             System.out.println("The password must contain at least one number.");
         return false;
     }
-    
+    public boolean equals(Object o){
+        if(o instanceof Password){
+            return ((Password) o).getPassword().equals(this.getPassword());
+        }
+        return false;
+    }
 }

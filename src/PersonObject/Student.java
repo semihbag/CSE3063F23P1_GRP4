@@ -6,7 +6,6 @@ import Page.SelectedCoursesPage;
 import java.util.ArrayList;
 
 public class Student extends Person {
-    private Id studentId;
     private Advisor advisor;
     private Transcript transcript;
     private int selectedCourseCredit = 0;
@@ -19,8 +18,7 @@ public class Student extends Person {
 
     public Student(String firstName, String lastName, Id studentID, Password password, Advisor advisor,
                    Transcript transcript, ArrayList<Course> curriculum) {
-        super(firstName, lastName, password);
-        this.studentId = studentID;
+        super(firstName, lastName, studentID,password);
         this.advisor = advisor;
         this.transcript = transcript;
         this.curriculum = curriculum;
@@ -48,31 +46,16 @@ public class Student extends Person {
 
     public boolean isSelectedCourse(Course course) {
         for (int i = 0; i < selectedCourses.size(); i++) {
-        	if (course instanceof CourseSession) {
-        		CourseSession session = ((CourseSession)course);
-        		if (selectedCourses.get(i) instanceof CourseSession) {
-        			if (((CourseSession)selectedCourses.get(i)).getSessionId().getId().equals(session.getSessionId().getId())) {
-                        return true;
-                    }
-        		}
-        		else {
-        			if (selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
-                        return true;
-                    }
-        		}
-        	}
-        	else {
-        		if (selectedCourses.get(i).getCourseId().getId().equals(course.getCourseId().getId())) {
-                    return true;
-                }	
-        	}
+            if (selectedCourses.get(i).equals(course)) {
+                return true;
+            }
         }
         return false;
     }
 
     public boolean isPassedCourse(Course course) {
         for (int i = 0; i < transcript.getPassedCourses().size(); i++) {
-            if (transcript.getPassedCourses().get(i).getCourse().getCourseId().getId().equals(course.getCourseId().getId())) {
+            if (transcript.getPassedCourses().get(i).getCourse().equals(course)) {
                 return true;
             }
         }
@@ -98,8 +81,7 @@ public class Student extends Person {
     public boolean isFailedCourse(Course course) {
         for (int i = 0; i < transcript.getFailedCourses().size(); i++) {
             GradeClass failedCourse = transcript.getFailedCourses().get(i);
-            if (failedCourse.getCourse().getCourseId().getId().equals(course.getCourseId().getId()) &&
-                    transcript.getTerm()%2 == course.getTerm()%2) {
+            if (failedCourse.getCourse().equals(course) && transcript.getTerm()%2 == course.getTerm()%2) {
                 return true;
             }
         }
@@ -313,7 +295,7 @@ public class Student extends Person {
 
     public void removeAllSessions(Course course) {
         for (int i = 0; i < selectableCourses.size(); i++) {
-            if (course.getCourseId().getId().equals(selectableCourses.get(i).getCourseId().getId())) {
+            if (selectableCourses.get(i).equals(course)) {
                 selectableCourses.remove(i);
                 i--;
             }
@@ -328,10 +310,6 @@ public class Student extends Person {
     // Getter - Setter Methods
     public ArrayList<Course> getCurriculum() {
         return curriculum;
-    }
-
-    public Id getStudentId() {
-        return studentId;
     }
 
 
