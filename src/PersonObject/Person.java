@@ -28,6 +28,11 @@ public abstract class Person {
 
     public void setPersonId(Id personId) {this.personId = personId;}
 
+    public Person() {
+    }
+
+    public abstract Person login(String[] userInfo, ArrayList<Person> persons);
+
     public String getFirstName() {
         return firstName;
     }

@@ -10,6 +10,25 @@ public class Lecturer extends Person {
     public Lecturer(String FirstName, String LastName, Id lecturerId, Password password) {
         super(FirstName, LastName,lecturerId,password);
     }
+
+    public Lecturer() {
+    }
+
+    @Override
+    public Person login(String[] userInfo, ArrayList<Person> persons) {
+        String username = userInfo[0];
+        String password = userInfo[1];
+        for (int i = 0; i < persons.size(); i++) {
+            Lecturer lecturer = (Lecturer) persons.get(i);
+            if (("l" + lecturer.getPersonId().getId()).equals(username) &&
+                    lecturer.getPassword().getPassword().equals(password)) {
+                lecturer.createSyllabus(lecturer.getGivenCourses());
+                return lecturer;
+            }
+        }
+        return null;
+    }
+
     public void selectCourse(int index) {
         index = index - 1;
         Course currentCourse = givenCourses.get(index);

@@ -25,6 +25,10 @@ public class Student extends Person {
 
     }
 
+    public Student() {
+        super();
+    }
+
     // Filters all courses in the curriculum according to the student's current
     // semester and prerequisite course passing information
     public void filterCourses() {
@@ -42,6 +46,20 @@ public class Student extends Person {
             }
         }
         setMarksInitial();
+    }
+
+    @Override
+    public Person login(String[] userInfo, ArrayList<Person> persons) {
+        String username = userInfo[0];
+        String password = userInfo[1];
+        for (int i = 0; i < persons.size(); i++) {
+            Student student = (Student) persons.get(i);
+            if (("o" + student.getPersonId().getId()).equals(username) &&
+                    student.getPassword().getPassword().equals(password)) {
+                return student;
+            }
+        }
+        return null;
     }
 
     public boolean isSelectedCourse(Course course) {

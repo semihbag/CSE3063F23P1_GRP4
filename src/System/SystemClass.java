@@ -18,6 +18,7 @@ public class SystemClass {
     private Person currentUser;
     private UserInterface userInterface;
 
+
     //Constructor
     public SystemClass(UserInterface u) throws JSONException, IOException {
     	userInterface = u;
@@ -37,38 +38,38 @@ public class SystemClass {
 
     //Login with the given user info
     public void login(String[] userInfo) {
-    	String username = userInfo[0];
-    	String password = userInfo[1];
-        boolean userFound = false;
-        if (username.charAt(0) == 'o') {
-            for (Student student : domain.getStudentCreator().getStudents()) {
-                if (("o" + student.getPersonId().getId()).equals(username) &&
-                        student.getPassword().getPassword().equals(password)) {
-                    setCurrentUser(student);
-                    userFound = true;
-                    break;
-                }
-            }
-        } else if (username.charAt(0) == 'l') {
-            for (Lecturer lecturer : domain.getLecturerCreator().getLecturers()) {
-                if (("l" + lecturer.getPersonId().getId()).equals(username) &&
-                        lecturer.getPassword().getPassword().equals(password)) {
-                    if (lecturer instanceof Advisor advisor) {
-                        advisor.findAwaitingStudents();
-                    }
-                    setCurrentUser(lecturer);
-                	lecturer.createSyllabus(lecturer.getGivenCourses());
-                    userFound = true;
-                    break;
-                }
-            }
-        } if (!userFound) {
-        	System.out.println("\u001B[33;1mUsername/Password incorrect.\n\u001B[0m");
-        } else {
+        ArrayList<Person> allUsers = null;
+        if (userInfo[0].charAt(0) == 'o') {
+            allUsers = new ArrayList<>(domain.getStudentCreator().getStudents());
+            setCurrentUser(new Student().login(userInfo, allUsers));
+        } else if (userInfo[0].charAt(0) == 'a') {
+            allUsers = new ArrayList<>(domain.getAdvisorCreator().getAdvisors());
+            setCurrentUser(new Advisor().login(userInfo, allUsers));
+        } else if (userInfo[0].charAt(0) == 'l') {
+            allUsers = new ArrayList<>(extractAdvisors(domain.getLecturerCreator().getLecturers()));
+            setCurrentUser(new Lecturer().login(userInfo, allUsers));
+        }
+
+        if (currentUser == null) {
+            System.out.println("\u001B[33;1mUsername/Password incorrect.\n\u001B[0m");
+        }
+        else {
             userInterface.setPages(domain.getPageCreator().createPages(currentUser));
             userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE);
             System.out.println("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\u001B[0m");
+            allUsers.clear();
         }
+    }
+
+    private ArrayList<Lecturer> extractAdvisors(ArrayList<Lecturer> lecturers) {
+        ArrayList<Lecturer> lecturerOnly = new ArrayList<>();
+        for (int i = 0; i < lecturers.size(); i++) {
+            if (lecturers.get(i) instanceof Advisor) {
+                continue;
+            }
+            lecturerOnly.add(lecturers.get(i));
+        }
+        return lecturerOnly;
     }
 
     //Logout from an account

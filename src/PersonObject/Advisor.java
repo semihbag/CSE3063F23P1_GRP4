@@ -13,6 +13,26 @@ public class Advisor extends Lecturer {
         this.selectStudent = null;
     }
 
+    public Advisor() {
+        super();
+    }
+
+    @Override
+    public Person login(String[] userInfo, ArrayList<Person> persons) {
+        String username = userInfo[0];
+        String password = userInfo[1];
+        for (int i = 0; i < persons.size(); i++) {
+            Advisor advisor = (Advisor) persons.get(i);
+            if (("a" + advisor.getPersonId().getId()).equals(username) &&
+                    advisor.getPassword().getPassword().equals(password)) {
+                advisor.findAwaitingStudents();
+                advisor.createSyllabus(advisor.getGivenCourses());
+                return advisor;
+            }
+        }
+        return null;
+    }
+
     // Find Students that send their requests to the Advisor
     public void findAwaitingStudents() {
         int numberOfStudents = students.size();
