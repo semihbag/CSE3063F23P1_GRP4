@@ -1,32 +1,35 @@
+from Hour import Hour
+from Day import Day
+
 class Syllabus:
     def __init__(self):
         self.syllabus = [[None] * 5 for _ in range(13)]
 
     def return_index_day(self, day):
         return {
-            "MONDAY": 0,
-            "TUESDAY": 1,
-            "WEDNESDAY": 2,
-            "THURSDAY": 3,
-            "FRIDAY": 4,
+            Day.MONDAY: 0,
+            Day.TUESDAY: 1,
+            Day.WEDNESDAY: 2,
+            Day.THURSDAY: 3,
+            Day.FRIDAY: 4,
         }[day]
 
-    def return_index_hour(self, hour):
+    def return_index_hour(self,hour):
         return {
-            "H_08_30_09_20": 0,
-            "H_09_30_10_20": 1,
-            "H_10_30_11_20": 2,
-            "H_11_30_12_20": 3,
-            "H_13_00_13_50": 4,
-            "H_14_00_14_50": 5,
-            "H_15_00_15_50": 6,
-            "H_16_00_16_50": 7,
-            "H_17_00_17_50": 8,
-            "H_18_00_18_50": 9,
-            "H_19_00_19_50": 10,
-            "H_20_00_20_50": 11,
-            "H_21_00_21_50": 12,
-        }[hour]
+            Hour.H_08_30_09_20: 0,
+            Hour.H_09_30_10_20: 1,
+            Hour.H_10_30_11_20: 2,
+            Hour.H_11_30_12_20: 3,
+            Hour.H_13_00_13_50: 4,
+            Hour.H_14_00_14_50: 5,
+            Hour.H_15_00_15_50: 6,
+            Hour.H_16_00_16_50: 7,
+            Hour.H_17_00_17_50: 8,
+            Hour.H_18_00_18_50: 9,
+            Hour.H_19_00_19_50: 10,
+            Hour.H_20_00_20_50: 11,
+            Hour.H_21_00_21_50: 12,
+    }[hour]
 
     def add_course_to_syllabus(self, course):
         for course_schedule in course.get_course_schedules():
