@@ -127,4 +127,46 @@ class TestStudent(unittest.TestCase):
         # Must return true because second lesson failed
         self.assertTrue(student.is_failed_course(course2))
 
+    def test_exceed(self):
+        # Creating an ArrayList to store passed courses
+        passed_courses = []
+
+        # Creating a Transcript with initial values and an empty list of passed courses
+        transcript = Transcript(0, 0, passed_courses, None)
+
+        # Creating a Student with null values for personal information, using the created transcript
+        student = Student(None, None, None, None, None, transcript, None)
+
+        # Creating the first course and adding it to the list of passed courses with grade AA
+        course1 = Course(None, None, 0, 0, None, None, 0, CourseType.NONTECHNICAL)
+        grade_class1 = GradeClass(course1, Grade.AA)
+        passed_courses.append(grade_class1)
+
+        # Asserting that the student did not exceed the limit for NONTECHNICAL courses with max limit 2
+        self.assertFalse(student.exceed(course1.get_course_type(), 2))
+
+        # Creating the second course and adding it to the list of passed courses with grade AA
+        course2 = Course(None, None, 0, 0, None, None, 0, CourseType.NONTECHNICAL)
+        grade_class2 = GradeClass(course1, Grade.AA)
+        passed_courses.append(grade_class2)
+
+        # Asserting that the student exceeded the limit for NONTECHNICAL courses with max limit 2
+        self.assertTrue(student.exceed(course2.get_course_type(), 2))
+
+        # Creating the third course and adding it to the list of passed courses with grade AA
+        course3 = Course(None, None, 0, 0, None, None, 0, CourseType.FACULTY)
+        grade_class3 = GradeClass(course3, Grade.AA)
+        passed_courses.append(grade_class3)
+
+        # Asserting that the student did not exceed the limit for FACULTY courses with max limit 2
+        self.assertFalse(student.exceed(course3.get_course_type(), 2))
+
+        # Creating the fourth course and adding it to the list of passed courses with grade AA
+        course4 = Course(None, None, 0, 0, None, None, 0, CourseType.FACULTY)
+        grade_class4 = GradeClass(course4, Grade.AA)
+        passed_courses.append(grade_class4)
+
+        # Asserting that the student exceeded the limit for FACULTY courses with max limit 2
+        self.assertTrue(student.exceed(course4.get_course_type(), 2))
+
   
