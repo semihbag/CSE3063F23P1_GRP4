@@ -1,5 +1,3 @@
-from Page import PageType
-from System import FunctionType
 
 class SystemMessage:
     

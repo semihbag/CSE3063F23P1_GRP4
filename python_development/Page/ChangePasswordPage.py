@@ -1,9 +1,10 @@
-from python_development.Page import Page
-from python_development.Page import PageType
-from python_development.System import FunctionType
-from python_development.System import SystemMessage
+from python_development.Page.Page import Page
+from python_development.Page.PageType import PageType
+from python_development.SystemPackage.FunctionType import FunctionType
+from python_development.SystemPackage.SystemMessage import SystemMessage
 
-class ChangePasswaordPage(Page):
+
+class ChangePasswordPage(Page):
 
     def __init__(self, content):
         super().__init__(content)

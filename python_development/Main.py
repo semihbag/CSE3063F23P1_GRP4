@@ -1,5 +1,5 @@
-from Page import AllCoursesPaege
+from python_development.Page.AllCoursesPage import AllCoursesPage
 
-all = AllCoursesPaege("selam")
+all = AllCoursesPage("selam")
 
 all.showContent
