@@ -2,6 +2,8 @@ from Person import Person
 class Lecturer(Person):
     def __init__(self, FirstName,LastName , LecturerId, password):
         super().__init__(FirstName, LastName, LecturerId, password)
+        self.givenCourses = []
+        self.selectCourse = None
 
     def login(self, user_info, persons):
         username = user_info[0]
