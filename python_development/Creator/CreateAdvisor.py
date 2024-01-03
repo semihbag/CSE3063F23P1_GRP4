@@ -8,12 +8,12 @@ from python_development.Password import Password
 class CreateAdvisor:
     def __init__(self, file_name, lecturers):
         self.advisors = []
-        self.file_name = file_name
-        self.create_advisors(lecturers)
+        self.fileName = file_name
+        self.createAdvisors(lecturers)
 
-    def create_advisors(self, lecturers):
+    def createAdvisors(self, lecturers):
         try:
-            with open(self.file_name, 'r') as file:
+            with open(self.fileName, 'r') as file:
                 content = file.read()
                 json_object = json.loads(content)
                 advisor_json = json_object['advisors']
@@ -30,11 +30,11 @@ class CreateAdvisor:
                   "Please ensure that the file is created in the correct format and fix any errors.")
             exit(0)
 
-    def get_advisors(self):
+    def getAdvisors(self):
         return self.advisors
 
-    def get_file_name(self):
-        return self.file_name
+    def getFileName(self):
+        return self.fileName
 
-    def set_file_name(self, file_name):
-        self.file_name = file_name
+    def setFileName(self, file_name):
+        self.fileName = file_name
