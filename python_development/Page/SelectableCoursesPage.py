@@ -9,7 +9,7 @@ class SelectableCoursesPage(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.SelectableCoursesPage)
+        self.setType(PageType.SELECTABLE_COURSES_PAGE)
         self.setName("Selectable Courses Page")
 
 

@@ -9,7 +9,7 @@ class EvaluateRequestsPage(Page):
     
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.EvaluateRequestsPage)
+        self.setType(PageType.EVALUATE_REQUESTS_PAGE)
         self.setName("Evaluate Request Page")
 
     def runPage(self):
