@@ -1,12 +1,11 @@
-import CourseSession
-import CourseType
-import Person
-import Mark
+from CourseSession import CourseSession
+from CourseType import CourseType
+from Person import Person
+from Mark import Mark
 
 class Student(Person):
     def __init__(self, first_name, last_name, student_id, password, advisor, transcript, curriculum):
-        super().__init__(first_name, last_name, password)
-        self.student_id = student_id
+        super().__init__(first_name, last_name, student_id,password)
         self.advisor = advisor
         self.transcript = transcript
         self.selected_course_credit = 0
@@ -153,16 +152,16 @@ class Student(Person):
 
     def check_course_type(self, course):
         course_type = course.course_type
-        if course_type == CourseType.CourseType.NONTECHNICAL and self.transcript.term >= 2:
+        if course_type == CourseType.NONTECHNICAL and self.transcript.term >= 2:
             if not self.exceed(course_type, 2):
                 return True
-        elif course_type == CourseType.CourseType.TECHNICAL:
+        elif course_type == CourseType.TECHNICAL:
             if self.transcript.term == 7 or self.transcript.term == 8:
                 return True
-        elif course_type == CourseType.CourseType.FACULTY:
+        elif course_type == CourseType.FACULTY:
             if (self.transcript.term == 7 or self.transcript.term == 8) and not self.exceed(course_type, 1):
                 return True
-        elif course_type == CourseType.CourseType.MANDATORY:
+        elif course_type == CourseType.MANDATORY:
             if course.course_name == "Engineering Project I" or course.course_name == "Engineering Project II":
                 if self.transcript.total_credit >= 165:
                     return True

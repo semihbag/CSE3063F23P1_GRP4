@@ -1,4 +1,4 @@
-import Lecturer
+from Lecturer import Lecturer
 
 class Advisor(Lecturer):
     def __init__(self, FirstName, LastName, lecturerID, password):

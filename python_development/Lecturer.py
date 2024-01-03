@@ -1,8 +1,7 @@
-import Person
+from Person import Person
 class Lecturer(Person):
     def __init__(self, FirstName,LastName , LecturerId, password):
-        super().__init__(FirstName, LastName,password)
-        self.LecturerId = LecturerId
+        super().__init__(FirstName, LastName, LecturerId, password)
 
     def selectCourse(self, index):
         index = index - 1
