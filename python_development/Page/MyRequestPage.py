@@ -1,13 +1,13 @@
-from Page import Page
-from Page import PageType
-from System import FunctionType
-from System import SystemMessage
+from python_development.Page import Page
+from python_development.Page import PageType
+from python_development.System import FunctionType
+from python_development.System import SystemMessage
 
 class MyRequestPage(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.MyRequestPage)
+        self.setType(PageType.MY_REQUESTS_PAGE)
         self.setName("My Request Page")
 
 

@@ -1,13 +1,14 @@
-from Page import Page
-from Page import PageType
-from System import FunctionType
-from System import SystemMessage
+from python_development.Page import Page
+from python_development.Page import PageType
+from python_development.System import FunctionType
+from python_development.System import SystemMessage
+
 
 class ProfilePage(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.ProfilePage)
+        self.setType(PageType.PROFILE_PAGE)
         self.setName("Profile Page")
 
 

@@ -3,14 +3,15 @@ from python_development.Page import PageType
 from python_development.System import FunctionType
 from python_development.System import SystemMessage
 
-class EvaluateRequestsPage(Page):
-    
-    numberOfRequest = None
-    
+class SelectedCoursesPage(Page):
+
+    numberOfDropableCourses = None
+
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.EVALUATE_REQUESTS_PAGE)
-        self.setName("Evaluate Request Page")
+        self.setType(PageType.SELECTED_COURSES_PAGE)
+        self.setName("Selected Courses Page")
+
 
     def runPage(self):
         self.showContent()
@@ -19,19 +20,22 @@ class EvaluateRequestsPage(Page):
             inputFromPage = self.takeInput()
             try:
                 selection = int(inputFromPage)
-                if (selection > self.numberOfRequest or selection < 0):
+                if (selection > self.numberOfDropableCourses or selection < 0):
                     print("Enter a valid number")
                 else:
-                    return SystemMessage(FunctionType.SELECET_STUDENT, PageType.SELECTED_STUDENT_REQUEST_PAGE, selection)
+                    return SystemMessage(FunctionType.DROP_COURSE, PageType.SELECTED_COURSES_PAGE, selection)
             except:
+                if(inputFromPage.lower() == "a"):
+                    return SystemMessage(FunctionType.SEND_APPROVE, PageType.MAIN_MENU_PAGE, None)
                 if(inputFromPage.lower() == "q"):
                     return SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, None)
                 else:
                     print("Wrong Input")
 
-    def getNumberOfRequest(self):
-        return self.numberOfRequest
 
-    def setNumberOfRequest(self, numberOfRequest):
-        self.numberOfRequest = numberOfRequest     
-                
+    def getNumberOfDropableCourses(self):
+        return self.numberOfDropableCourses
+    
+    def setNumberOfDropableCourses(self, numberOfDropableCourses):
+        self.numberOfDropableCourses = numberOfDropableCourses
+        
