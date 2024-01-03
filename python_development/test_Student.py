@@ -100,3 +100,31 @@ class TestStudent(unittest.TestCase):
         course_term7 = Course(None, "Computer Networks", 0, 7, None, None, 0, CourseType.MANDATORY)
         self.assertFalse(student_term3_2.check_course_type(course_term7))
 
+    def test_is_failed_course(self):
+        id1 = Id("CSE2023")
+        id2 = Id("MATH1002")
+
+        # Creating sample courses
+        course1 = Course(id1, None, 0, 3, None, None, 0, None)
+        course2 = Course(id2, None, 0, 2, None, None, 0, None)
+
+        # Creating sample GradeClass objects
+        passed_course1 = GradeClass(course1, Grade.AA)
+        failed_course1 = GradeClass(course2, Grade.FF)
+
+        # passedCourses and failedCourses ArrayLists are created and objects are added to these lists
+        passed_courses = [passed_course1]
+        failed_courses = [failed_course1]
+
+        transcript = Transcript(0, 4, passed_courses, failed_courses)
+
+        # Creating a Student object and adding a Transcript object to this object
+        student = Student(None, None, None, None, None, transcript, None)
+
+        # Must return false because the first lesson was successful
+        self.assertFalse(student.is_failed_course(course1))
+
+        # Must return true because second lesson failed
+        self.assertTrue(student.is_failed_course(course2))
+
+  
