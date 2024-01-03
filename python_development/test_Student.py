@@ -169,4 +169,22 @@ class TestStudent(unittest.TestCase):
         # Asserting that the student exceeded the limit for FACULTY courses with max limit 2
         self.assertTrue(student.exceed(course4.get_course_type(), 2))
 
-  
+    def test_exceed_term(self):
+        student = Student(None, None, None, None, None, None, None)
+
+        # CASE 1: Check status if student does not select specific course type in the current term
+        self.assertFalse(student.exceed_term(CourseType.MANDATORY))
+        self.assertFalse(student.exceed_term(CourseType.TECHNICAL))
+        self.assertFalse(student.exceed_term(CourseType.FACULTY))
+
+        # CASE2: If student selects one specific course type in the current term
+        non_technical = Course(None, "Strategic Entrepreneurship", 0, 3, None, None, 0, CourseType.NONTECHNICAL)
+        technical = Course(None, "Microprocessors", 0, 3, None, None, 0, CourseType.TECHNICAL)
+        faculty = Course(None, "Introduction to Image Processing", 0, 3, None, None, 0, CourseType.FACULTY)
+
+        selected_courses = [non_technical, technical, faculty]
+        student.set_selected_courses(selected_courses)
+
+        self.assertTrue(student.exceed_term(CourseType.NONTECHNICAL))
+        self.assertTrue(student.exceed_term(CourseType.TECHNICAL))
+        self.assertTrue(student.exceed_term(CourseType.FACULTY))
