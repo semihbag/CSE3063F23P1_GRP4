@@ -14,11 +14,6 @@ class Course:
     def enroll_student(self, student):
         self.student_list.append(student)
 
-    def __eq__(self, other):
-        if isinstance(other, Course):
-            return other.course_id.get_id() == self.course_id.get_id()
-        return False
-
     def get_term(self):
         return self.term
 
