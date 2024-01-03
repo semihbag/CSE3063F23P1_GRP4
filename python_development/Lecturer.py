@@ -20,7 +20,7 @@ class Lecturer(Person):
         currentCourse = self.givenCourses[index]
         self.setSelectedCourse(currentCourse)
 
-    def createSyllabus(self, givenCourses):
+    def create_syllabus(self, givenCourses):
         self.getSyllabus().fillSyllabus(givenCourses)
 
     def getLecturerId(self):
