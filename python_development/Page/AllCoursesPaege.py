@@ -1,6 +1,6 @@
-from python_development.Page import Page
-from python_development.Page import PageType
-from python_development.System import FunctionType
+from Page import Page
+from PageType import PageType
+from System import FunctionType
 from python_development.System import SystemMessage
 
 class AllCoursesPAge(Page):
