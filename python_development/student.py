@@ -2,17 +2,8 @@ from enum import Enum
 
 import CourseSession
 import CourseType
-from Person import Person
-
-
-class Mark(Enum):
-    SUCCESSFUL = 1
-    ERROR_ALREADY_SENDED = 2
-    ERROR_CREDIT_LIMIT = 3
-    ERROR_CONFLICT = 4
-    ERROR_SAME_TYPE = 5
-    SELECTED = 6
-
+import Person
+import Mark
 
 class Student(Person):
     def __init__(self, first_name, last_name, student_id, password, advisor, transcript, curriculum):
