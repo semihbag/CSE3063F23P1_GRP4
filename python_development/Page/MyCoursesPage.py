@@ -1,7 +1,7 @@
-from Page import Page
-from Page import PageType
-from System import FunctionType
-from System import SystemMessage
+from python_development.Page import Page
+from python_development.Page import PageType
+from python_development.System import FunctionType
+from python_development.System import SystemMessage
 
 class MyCoursesPage(Page):
 
