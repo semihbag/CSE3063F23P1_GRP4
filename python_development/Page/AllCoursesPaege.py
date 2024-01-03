@@ -4,7 +4,6 @@ from System import FunctionType
 from System import SystemMessage
 
 class AllCoursesPAge(Page):
-    pass
 
     def __init__(self, content):
         super().__init__(content)
