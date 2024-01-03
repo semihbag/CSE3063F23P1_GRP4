@@ -22,9 +22,6 @@ class Advisor(Lecturer):
         
         return None
     
-    def create_syllabus(self, givenCourses):
-        self.getSyllabus().fillSyllabus(givenCourses)
-
     def findAwaitingStudents(self):
         for student in self.students:
             if student not in self.awaitingStudents and student.getRequest() == "true":
