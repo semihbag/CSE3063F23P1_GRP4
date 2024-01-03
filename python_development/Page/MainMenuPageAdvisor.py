@@ -29,7 +29,7 @@ class MainMenuPageAdvisor(Page):
             elif (inputFromPage == "6"):
                 return SystemMessage(FunctionType.LOGOUT, PageType.LOGIN_PAGE, None)
             elif (inputFromPage == "7"):
-                return SystemMessage(FunctionType.EXIT, None, None);
+                return SystemMessage(FunctionType.EXIT, None, None)
             else:
                print("Wrong Input!")
               
