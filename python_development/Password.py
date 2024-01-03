@@ -53,3 +53,8 @@ class Password:
             return True
         print("The password must contain at least one number.")
         return False
+
+    def is_equal(self, obj):
+        if isinstance(obj, Password):
+            return obj.get_password() == self.get_password()
+        return False
