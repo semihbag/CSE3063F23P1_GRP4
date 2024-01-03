@@ -188,3 +188,30 @@ class TestStudent(unittest.TestCase):
         self.assertTrue(student.exceed_term(CourseType.NONTECHNICAL))
         self.assertTrue(student.exceed_term(CourseType.TECHNICAL))
         self.assertTrue(student.exceed_term(CourseType.FACULTY))
+
+    def test_clear_unread_notification(self):
+        student = Student(None, None, None, None, None, None, None)
+
+        unread_notifications = []
+        read_notifications = []
+        student.set_unread_notifications(unread_notifications)
+        student.set_read_notifications(read_notifications)
+
+        student.add_unread_notification("Notification 1")
+        student.add_unread_notification("Notification 2")
+
+        student.clear_unread_notification()
+
+        self.assertTrue(len(student.get_unread_notifications()) == 0)
+        self.assertFalse(len(student.get_read_notifications()) == 0)
+
+    def test_add_unread_notification(self):
+        student = Student(None, None, None, None, None, None, None)
+
+        student.set_unread_notifications([])
+
+        notification = "Test Notification"
+        student.add_unread_notification(notification)
+
+        self.assertTrue(notification in student.get_unread_notifications())
+        self.assertEqual(notification, student.get_unread_notifications()[0])
