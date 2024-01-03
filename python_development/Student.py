@@ -212,6 +212,12 @@ class Student(Person):
 
     def create_syllabus(self, courses):
         self.syllabus.fill_syllabus(courses)
+    
+    def get_syllabus(self):
+        return self.syllabus
+    
+    def set_syllabus(self, syllabus):
+        self.syllabus = syllabus
 
     def get_curriculum(self):
         return self.curriculum
