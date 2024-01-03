@@ -1,5 +1,9 @@
 import json
 
+from python_development.CourseSession import CourseSession
+from python_development.CourseType import CourseType
+from python_development.Grade import Grade
+from python_development.GradeClass import GradeClass
 from python_development.Id import Id
 from python_development.Password import Password
 from python_development.Student import Student
@@ -7,64 +11,165 @@ from python_development.Transcript import Transcript
 
 
 class CreateStudent:
-    def __init__(self, file_name, students_file, courses, advisors):
+    def __init__(self, fileName, studentsFile, courses, advisors):
         self.students = []
-        self.file_name = file_name
-        self.students_file = students_file
-        self.create_students(courses, advisors)
+        self.fileName = fileName
+        self.studentsFile = studentsFile
+        self.createStudents(courses, advisors)
 
-    def create_students(self, courses, advisors):
-        with open(self.students_file, 'r') as all_student_files:
+    def createStudents(self, courses, advisors):
+        with open(self.studentsFile, 'r') as all_student_files:
             for line in all_student_files:
                 try:
-                    with open(self.file_name + line.strip(), 'r') as student_file:
-                        content = student_file.read()
-                        json_student = json.loads(content)
+                    with open(self.fileName + line.strip(), 'r') as student_file:
+                        json_student = json.load(student_file)
                         transcript = json_student['transcript']
                         registration = json_student['registration']
 
-                        student_id = json_student['id']
+                        id = json_student['id']
                         name = json_student['name']
-                        last_name = json_student['lastname']
+                        lastname = json_student['lastname']
+                        print(name + lastname)
                         advisor_id = json_student['advisor']
                         boolean_string = json_student['request']
                         read_notification = json_student['readNotification']
                         unread_notification = json_student['unreadNotification']
                         password = json_student['password']
 
-                        failed_courses = transcript['failedCourses']
-                        completed_courses = transcript['passedCourses']
+                        failed_courses_ar = transcript['failedCourses']
+                        completed_courses_ar = transcript['passedCourses']
                         grades_passed = transcript['gradesPassed']
                         grades_failed = transcript['gradesFailed']
                         term_passed = transcript['termPassed']
 
-                        selected_courses = registration['selectedCourses']
-                        approved_courses = registration['approvedCourses']
+                        selected_courses_ar = registration['selectedCourses']
+                        approved_courses_ar = registration['approvedCourses']
 
-                        failed_courses_list = self.set_transcript_courses(failed_courses, grades_failed, term_passed, courses)
-                        passed_courses_list = self.set_transcript_courses(completed_courses, grades_passed, term_passed, courses)
+                        failed_courses = self.setTranscriptCourses(failed_courses_ar, grades_failed,
+                                                                   term_passed, courses)
+                        passed_courses = self.setTranscriptCourses(completed_courses_ar, grades_passed,
+                                                                   term_passed, courses)
 
-                        selected_courses_list = self.set_student_courses(selected_courses, courses)
-                        approved_courses_list = self.set_student_courses(approved_courses, courses)
+                        selected_courses = self.setStudentCourses(selected_courses_ar, courses)
+                        approved_courses = self.setStudentCourses(approved_courses_ar, courses)
 
                         term = transcript['term']
-                        gpa = self.calculate_gpa(passed_courses_list, failed_courses_list)
+                        gpa = self.calculateGPA(passed_courses, failed_courses)
 
-                        advisor = self.find_advisor(advisor_id, advisors)
+                        crt_student = Student(name, lastname, Id(id), Password(password),
+                                              self.findAdvisor(advisor_id, advisors),
+                                              Transcript(gpa, term, passed_courses, failed_courses), courses)
 
-                        crt_student = Student(name, last_name, Id(student_id), Password(password), advisor,
-                                              Transcript(gpa, term, passed_courses_list, failed_courses_list), courses)
-
-                        crt_student.set_request(boolean_string)
-                        crt_student.set_read_notifications(list(read_notification))
-                        crt_student.set_unread_notifications(list(unread_notification))
-                        crt_student.set_selected_courses(selected_courses_list)
-                        crt_student.set_approved_courses(approved_courses_list)
+                        crt_student.request = boolean_string
+                        crt_student.read_notifications = list(read_notification)
+                        crt_student.unread_notifications = list(unread_notification)
+                        crt_student.selected_courses = selected_courses
+                        crt_student.approved_courses = approved_courses
                         crt_student.filter_courses()
                         self.students.append(crt_student)
-
                 except (json.JSONDecodeError, FileNotFoundError):
                     pass
 
-        self.assign_students_to_advisor(advisors)
-        self.fill_student_list_course(courses)
+        self.assignStudentToAdvisor(advisors)
+        self.fillStudentListCourse(courses)
+
+    def setTranscriptCourses(self, transcript_courses, grades, term_passed, courses):
+        transcript_course_list = []
+        j = 0
+        for i in range(len(transcript_courses)):
+            for course in courses:
+                if course.course_id.id == transcript_courses[i] and not self.courseExists(course, transcript_course_list):
+                    grade_class = GradeClass(course, self.getCourseGrade(grades[i]))
+                    if course.course_type == CourseType.NONTECHNICAL or "Is Sagligi ve Guvenligi" in course.course_name:
+                        grade_class.term = term_passed[j]
+                        j += 1
+                    else:
+                        grade_class.term = course.term
+                    transcript_course_list.append(grade_class)
+        return transcript_course_list
+
+    def setStudentCourses(self, student_courses_ar, courses):
+        student_courses_list = []
+        for s in student_courses_ar:
+            for j in range(len(courses)):
+                if isinstance(courses[j], CourseSession) and (courses[j].course_id.id + "." + courses[j].session_id.id == s):
+                    student_courses_list.append(courses[j])
+                elif s == courses[j].course_id.id:
+                    student_courses_list.append(courses[j])
+        return student_courses_list
+
+    def findAdvisor(self, advisor_id, advisors):
+        for advisor in advisors:
+            if advisor.person_id.id == advisor_id:
+                return advisor
+        return None
+
+    def assignStudentToAdvisor(self, advisors):
+        for student in self.students:
+            for advisor in advisors:
+                if student.advisor.person_id.id == advisor.person_id.id:
+                    advisor.student_list.append(student)
+                    break
+
+    def fillStudentListCourse(self, courses):
+        with open("JSON_Files\\courses.json", 'r') as courses_file:
+            course_json = json.load(courses_file)
+            for i in range(len(course_json['courses'])):
+                current_course = course_json['courses'][i]
+                course_students_id = current_course['studentList']
+                for curr_student_id in course_students_id:
+                    for st in self.students:
+                        if st.person_id.id == curr_student_id and st not in courses[i].student_list:
+                            courses[i].student_list.append(st)
+                            break
+
+    def courseExists(self, course, transcript_course_list):
+        for grade_class in transcript_course_list:
+            if course.course_id.id == grade_class.course.course_id.id:
+                return True
+        return False
+
+    def calculateGPA(self, passed_courses, failed_courses):
+        gpa = 0
+        total_credit = 0
+        for current in passed_courses:
+            gpa += current.course.credit * self.letterToGrade(current.grade)
+            total_credit += current.course.credit
+        for current in failed_courses:
+            gpa += current.course.credit * self.letterToGrade(current.grade)
+            total_credit += current.course.credit
+        if total_credit == 0:
+            return 0
+        else:
+            return gpa / total_credit
+
+    def letterToGrade(self, grade):
+        return {
+            Grade.AA: 4.0,
+            Grade.BA: 3.5,
+            Grade.BB: 3.0,
+            Grade.CB: 2.5,
+            Grade.CC: 2.0,
+            Grade.DC: 1.5,
+            Grade.DD: 1.0,
+            Grade.FD: 0.5,
+            Grade.FF: 0.0,
+            Grade.DZ: 0.0
+        }[grade]
+
+    def getCourseGrade(self, str_grade):
+        return {
+            "AA": Grade.AA,
+            "BA": Grade.BA,
+            "BB": Grade.BB,
+            "CB": Grade.CB,
+            "CC": Grade.CC,
+            "DC": Grade.DC,
+            "DD": Grade.DD,
+            "FD": Grade.FD,
+            "FF": Grade.FF,
+            "DZ": Grade.DZ
+        }[str_grade.upper()]
+
+    def getStudents(self):
+        return self.students
