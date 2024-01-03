@@ -1,6 +1,3 @@
-from typing import List, Union
-
-
 class Syllabus:
     def __init__(self):
         self.syllabus = [[None] * 5 for _ in range(13)]
