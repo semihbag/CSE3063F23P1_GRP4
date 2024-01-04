@@ -17,21 +17,6 @@ class CreateStudent:
         self.studentsFile = studentsFile
         self.createStudents(courses, advisors)
 
-        for index, value in enumerate(self.students):
-            print(f"Index: {index}")
-            print(f"Name: {value.firstName}")
-            print(f"LastName: {value.lastName}")
-
-
-            # print(f"Password: {value.getPassword().getPassword()}") PASSED
-            # print(f"StudentId: {value.getPersonId().getId()}") PASSED
-            # print(f"GPA: {value.getTranscript().getGPA_100()}") PASSED
-            # print(f"Advisor ID: {value.getAdvisor().getFirstName()}") PASSED
-
-            print()
-
-
-
     def createStudents(self, courses, advisors):
         with open(self.studentsFile, 'r') as all_student_files:
             for line in all_student_files:
@@ -80,7 +65,7 @@ class CreateStudent:
                         crt_student.unreadNotifications = list(unread_notification)
                         crt_student.selectedCourses = selected_courses
                         crt_student.approvedCourses = approved_courses
-                        # crt_student.filterCourses()
+                        crt_student.filterCourses()
                         self.students.append(crt_student)
                 except (json.JSONDecodeError, FileNotFoundError):
                     pass
