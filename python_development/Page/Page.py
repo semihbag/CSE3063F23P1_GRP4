@@ -19,7 +19,8 @@ class Page(ABC):
 
 
     def takeInput(self):
-        return input()
+        inp = input()
+        return inp
     
     
     ### GETTER SETTER METHODS
