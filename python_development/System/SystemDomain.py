@@ -32,4 +32,3 @@ class SystemDomain:
     def getPageCreator(self):
         return self.pageCreator
 
-print("Printed Message")
