@@ -16,7 +16,7 @@ class Course:
 
     def equals(self, obj):
         if isinstance(obj, Course):
-            return obj.getCourseId().get_id() == self.getCourseId().get_id()
+            return obj.getCourseId().getId() == self.getCourseId().getId()
         return False
 
     def getTerm(self):
