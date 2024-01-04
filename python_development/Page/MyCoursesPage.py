@@ -20,7 +20,7 @@ class MyCoursesPage(Page):
             inputFromPage = self.takeInput()
             try:
                 selection = int(inputFromPage)
-                if (selection > self.numberOfRequest or selection < 0):
+                if (selection > self.numberOfCourses or selection < 0):
                     print("Enter a valid number")
                 else:
                     return SystemMessage(FunctionType.SELECT_MY_COURSE, PageType.SELECTED_MY_COURSE_PAGE, selection)
