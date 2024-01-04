@@ -10,8 +10,8 @@ class UserInterface:
 
     
     def display(self):
-    #    setSystemMessage(self.currentPage.runPage())
-        pass
+        self.setSystemMessage(self.currentPage.runPage())
+        
 
 
     def addPage(self, page):
