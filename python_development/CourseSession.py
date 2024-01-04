@@ -1,4 +1,4 @@
-from Course import Course
+from python_development.Course import Course
 
 
 class CourseSession(Course):

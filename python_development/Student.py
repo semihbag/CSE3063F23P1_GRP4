@@ -1,7 +1,7 @@
-from CourseSession import CourseSession
-from CourseType import CourseType
-from Person import Person
-from Mark import Mark
+from python_development.CourseSession import CourseSession
+from python_development.CourseType import CourseType
+from python_development.Person import Person
+from python_development.Mark import Mark
 
 class Student(Person):
     def __init__(self, firstName, lastName, personId, password, advisor, transcript, curriculum):

@@ -1,5 +1,5 @@
-from Lecturer import Lecturer
-from Course import Course
+from python_development.Lecturer import Lecturer
+from python_development.Course import Course
 
 class Advisor(Lecturer):
     def __init__(self, FirstName, LastName, lecturerID, password):
