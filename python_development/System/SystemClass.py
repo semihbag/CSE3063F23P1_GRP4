@@ -7,6 +7,8 @@ from python_development.Page.LoginPage import LoginPage
 from python_development.Page.PageType import PageType
 from python_development.System.SystemDomain import SystemDomain
 
+from python_development.System import FunctionType
+
 
 class SystemClass:
     def __init__(self, user_interface):
@@ -21,7 +23,7 @@ class SystemClass:
     def run(self):
         while True:
             self.userInterface.display()
-            self.listen_user_interface(self.userInterface.getSystemMessage())
+            self.listenUserInterface(self.userInterface.getSystemMessage())
 
     def login(self, user_info):
         username = user_info[0]
@@ -154,3 +156,10 @@ class SystemClass:
     def studentToJsonArray(self, students):
         student_ids = [student.getPersonId().getId() for student in students]
         return student_ids
+    
+
+
+    def listenUserInterface(self, sm):
+        functionType = sm.getFunctionType()
+
+        if (functionType == Fun)
