@@ -6,7 +6,7 @@ class Advisor(Lecturer):
         super().__init__(FirstName, LastName, lecturerID, password)
         self.students = []
         self.awaitingStudents = []
-        self.selectStudent = None
+        self.selectstudent = None
 
     def login(self, user_info, persons):
         username = user_info[0]
@@ -28,29 +28,29 @@ class Advisor(Lecturer):
             if student not in self.awaitingStudents and student.getRequest() == "true":
                 self.awaitingStudents.append(student)
 
-    def select_Student(self, index):
+    def selectStudent(self, index):
         index = index - 1
         currentStudent = self.getAwaitingStudents()[index]
         self.setSelectStudent(currentStudent)
 
     def approve(self):
-        selectCourses = self.selectStudent.getSelectedCourses()
+        selectCourses = self.selectstudent.getSelectedCourses()
         for course in selectCourses:
-            self.selectStudent.addApprovedCourse(course)
-            course.enrollStudent(self.selectStudent)
-        self.selectStudent.dropAllSelectedCourses()
-        self.selectStudent.setRequest("null")
-        self.removeAwaitingStudent(self.selectStudent)
+            self.selectstudent.addApprovedCourse(course)
+            course.enrollStudent(self.selectstudent)
+        self.selectstudent.dropAllSelectedCourses()
+        self.selectstudent.setRequest("null")
+        self.removeAwaitingStudent(self.selectstudent)
         self.setSelectStudent(None)
 
     def disapprove(self):
-        selectCourses = self.selectStudent.getSelectedCourses()
+        selectCourses = self.selectstudent.getSelectedCourses()
         for course in selectCourses:
             course.setQuota(course.getQuota() + 1)
-            self.selectStudent.getSyllabus().removeCourseFromSyllabus(course)
-        self.selectStudent.dropAllSelectedCourses()
-        self.selectStudent.setRequest("false")
-        self.removeAwaitingStudent(self.selectStudent)
+            self.selectstudent.getSyllabus().removeCourseFromSyllabus(course)
+        self.selectstudent.dropAllSelectedCourses()
+        self.selectstudent.setRequest("false")
+        self.removeAwaitingStudent(self.selectstudent)
         self.setSelectStudent(None)
 
     def sendNotification(self, message, type):
@@ -63,7 +63,7 @@ class Advisor(Lecturer):
         else:
             defaultMessage = message
 
-        self.selectStudent.addUnreadNotification(defaultMessage)
+        self.selectstudent.addUnreadNotification(defaultMessage)
 
     def getStudentList(self):
         return self.students
@@ -82,7 +82,7 @@ class Advisor(Lecturer):
         del self.awaitingStudents[ind]
 
     def getSelectStudent(self):
-        return self.selectStudent
+        return self.selectstudent
 
     def setSelectStudent(self, student):
-        self.selectStudent = student
+        self.selectstudent = student

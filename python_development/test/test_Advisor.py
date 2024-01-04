@@ -23,7 +23,7 @@ class AdvisorTest(unittest.TestCase):
         advisor.findAwaitingStudents()
         self.assertEqual(2,len(advisor.getAwaitingStudents()))
         self.assertEqual("Yilmaz", advisor.getAwaitingStudents()[1].getFirstName())
-        advisor.select_Student(1)
+        advisor.selectStudent(1)
         self.assertEqual("Eren",advisor.getSelectStudent().getFirstName())
 
     
@@ -81,7 +81,7 @@ class AdvisorTest(unittest.TestCase):
         student.setRequest("true")
         advisor.setStudents([student])
         advisor.findAwaitingStudents()
-        advisor.select_Student(1)
+        advisor.selectStudent(1)
 
         course_hour4 = [Hour.H_08_30_09_20, Hour.H_09_30_10_20]
         course_schedules4 = [CourseSchedule(Day.MONDAY, course_hour4)]
@@ -107,7 +107,7 @@ class AdvisorTest(unittest.TestCase):
         student.setRequest("true")
         advisor.setStudents([student])
         advisor.findAwaitingStudents()
-        advisor.select_Student(1)
+        advisor.selectStudent(1)
 
         course_hour4 = [Hour.H_08_30_09_20, Hour.H_09_30_10_20]
         course_schedules4 = [CourseSchedule(Day.MONDAY, course_hour4)]
