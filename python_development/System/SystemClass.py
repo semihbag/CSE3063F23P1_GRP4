@@ -1,15 +1,15 @@
 import json
-import os
 
 from python_development.Advisor import Advisor
 from python_development.CourseSession import CourseSession
+from python_development.Lecturer import Lecturer
 from python_development.Page.LoginPage import LoginPage
 from python_development.Page.PageType import PageType
+from python_development.Student import Student
 from python_development.System.SystemDomain import SystemDomain
-
-from python_development.System import FunctionType
 from python_development.Page import PageType
 import time
+
 
 class SystemClass:
     def __init__(self, user_interface):
@@ -27,49 +27,48 @@ class SystemClass:
             self.listenUserInterface(self.userInterface.getSystemMessage())
 
     def login(self, user_info):
-        username = user_info[0]
-        password = user_info[1]
-        user_found = False
-
-        if username[0] == 'o':
-            for student in self.domain.getStudentCreator().getStudents():
-                if ("o" + student.getPersonId().getId() == username) and (
-                        student.getPassword().getPassword() == password):
-                    self.setCurrentUser()(student)
-                    user_found = True
-                    break
-        elif username[0] == 'l':
-            for lecturer in self.domain.getLecturerCreator().getLecturers():
-                if ("l" + lecturer.getPersonId().getId() == username) and (
-                        lecturer.getPassword().getPassword() == password):
-                    if isinstance(lecturer, Advisor):
-                        lecturer.findAwaitingStudents()
-                    self.setCurrentUser()(lecturer)
-                    lecturer.createSyllabus(lecturer.getGivenCourses())
-                    user_found = True
-                    break
-
-        if not user_found:
-            print("\u001B[33;1mUsername/Password incorrect.\n\u001B[0m")
+        all_users = None
+        if user_info[0][0] == 'o':
+            all_users = self.domain.getStudentCreator().get_students()
+            self.currentUser = Student.login(Student(None, None, None, None,
+                                                     None, None, None), user_info, all_users)
+        elif user_info[0][0] == 'a':
+            all_users = self.domain.getAdvisorCreator().get_advisors()
+            self.currentUser = Advisor.login(Advisor(None, None, None, None),
+                                             user_info, all_users)
+        elif user_info[0][0] == 'l':
+            all_users = self.extract_advisors()
+            self.currentUser = Lecturer.login(Lecturer(None, None, None, None),
+                                              user_info, all_users)
+        if self.currentUser is None:
+            print("Username/Password incorrect.\n")
         else:
-            self.userInterface.setPages(self.domain.getPageCreator().createPages(self.currentUser))
-            self.userInterface.setCurrentPage(PageType.MAIN_MENU_PAGE)
-            print(
-                "\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + self.currentUser.getFirstName() + " " + self.currentUser.getLastName() + "\u001B[0m")
+            self.userInterface.set_pages(self.domain.getPageCreator().create_pages(self.currentUser))
+            self.userInterface.set_current_page(PageType.MAIN_MENU_PAGE)
+            print("LOGIN SUCCESSFUL - WELCOME {} {}".format(self.currentUser.get_first_name(),
+                                                            self.currentUser.get_last_name()))
+            all_users.clear()
+
+    def extract_advisors(self):
+        lecturer_only = []
+        for lecturer in self.domain.getLecturerCreator().getLecturers():
+            if not isinstance(lecturer, Advisor):
+                lecturer_only.append(lecturer)
+        return lecturer_only
 
     def logout(self):
         self.userInterface.resetPages()
         login = LoginPage("Welcome! Please enter your username/password.")
         self.userInterface.addPage(login)
         self.userInterface.setCurrentPage(PageType.LOGIN_PAGE)
-        self.setCurrentUser()(None)
+        self.setCurrentUser(None)
 
     def exit(self):
         self.updateStudentJson()
         self.updateCourseJson()
         self.updateAdvisorJson()
         self.updateLecturerJson()
-        os._exit(0)
+        exit(0)
 
     def updateCourseJson(self):
         try:
@@ -84,7 +83,7 @@ class SystemClass:
                         self.domain.getCourseCreator().getCourses()[i].getStudentList())
             with open("JSON_Files\\courses.json", 'w') as file:
                 file.write(json.dumps(jsonObject, indent=4))
-        except (IOError, json.JSONDecodeError) as ignored:
+        except (IOError, json.JSONDecodeError):
             print("An error occurred while writing data to the courses JSON file.")
 
     def updateLecturerJson(self):
@@ -100,7 +99,7 @@ class SystemClass:
                             i].getPassword().getPassword()
             with open("JSON_Files\\lecturers.json", 'w') as file:
                 file.write(json.dumps(jsonObject, indent=4))
-        except (IOError, json.JSONDecodeError) as ignored:
+        except (IOError, json.JSONDecodeError):
             print("An error occurred while writing data to the lecturers JSON file.")
 
     def updateAdvisorJson(self):
@@ -115,7 +114,7 @@ class SystemClass:
                         i].getPassword().getPassword()
             with open("JSON_Files\\advisors.json", 'w') as file:
                 file.write(json.dumps(jsonObject, indent=4))
-        except (IOError, json.JSONDecodeError) as ignored:
+        except (IOError, json.JSONDecodeError):
             print("An error occurred while writing data to the advisors JSON file.")
 
     def updateStudentJson(self):
@@ -139,7 +138,7 @@ class SystemClass:
                         self.domain.getStudentCreator().getStudents()[i].getUnreadNotifications())
                 with open(f"JSON_Files\\Students\\{studentId}.json", 'w') as file:
                     file.write(json.dumps(jsonStudent, indent=4))
-            except (IOError, json.JSONDecodeError) as exception:
+            except (IOError, json.JSONDecodeError):
                 print("\nSYSTEM UPDATE FAILS.")
 
     def transcriptCourses(self, transcript_courses_list):
@@ -151,29 +150,25 @@ class SystemClass:
                 transcript_courses_ar.append(course.getCourseId().getId())
         return transcript_courses_ar
 
-    def setSurrentUser(self, user):
-        self.currentUser = user
-
     def studentToJsonArray(self, students):
         student_ids = [student.getPersonId().getId() for student in students]
         return student_ids
-    
-
 
     def listenUserInterface(self, sm):
         functionType = sm.getFunctionType()
 
-        if (functionType == "LOGIN"):
+        if functionType == "LOGIN":
             userInfo = sm.getInput()
             self.login(userInfo)
-       
-        elif (functionType == "LOGOUT"):
-            print("LOGOUT SUCCESSFUL - GOODBYE " + self.currentUser.getFirstName() + " " + self.currentUser.getLastName())
+
+        elif functionType == "LOGOUT":
+            print(
+                "LOGOUT SUCCESSFUL - GOODBYE " + self.currentUser.getFirstName() + " " + self.currentUser.getLastName())
             print("bunu renkli yazcan he unutma dayıogli")
             self.logout()
             self.userInterface.setCurrentPage(PageType.LOGIN_PAGE)
-       
-        elif (functionType == "EXIT"):
+
+        elif functionType == "EXIT":
             print("SYSTEM EXITING")
             time.sleep(0.5)
             print("SYSTEM EXITING.")
@@ -185,13 +180,13 @@ class SystemClass:
             print("bunu renkli yazcan he unutma dayıogli")
             self.exit()
 
-        elif (functionType == "CHANGE_PAGE"):
+        elif functionType == "CHANGE_PAGE":
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == "SELECT_COURSE"):
+        elif functionType == "SELECT_COURSE":
             student = self.currentUser
             courseName = student.getSelectableCourses()[int(sm.getInput()) - 1].getCourseName()
-            if (student.addSelectedCourse(int(sm.getInput()))):
+            if student.addSelectedCourse(int(sm.getInput())):
                 print("Course Addition Is Succesful - " + courseName)
                 print("bunu renkli yazcan he unutma dayıogli")
             else:
@@ -199,11 +194,14 @@ class SystemClass:
                 print("bunu renkli yazcan he unutma dayıogli")
 
             selectableCoursePage = self.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE)
-            selectableCoursePage.setContent(self.domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(), student.getMarks()))
+            selectableCoursePage.setContent(
+                self.domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(),
+                                                                                student.getMarks()))
             selectableCoursePage.setNumberOfSelectableCourses(len(student.getSelectableCourses()))
 
             selectedCoursePage = self.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE)
-            selectedCoursePage.setContent(self.domain.getPageCreator().createSelectedCoursesPageContent(student.getSelectedCourses()))
+            selectedCoursePage.setContent(
+                self.domain.getPageCreator().createSelectedCoursesPageContent(student.getSelectedCourses()))
             selectedCoursePage.setNumberOfDropableCourses(len(student.getSelectedCourses()))
 
             syllabus = self.userInterface.selectPage(PageType.SYLLABUS_PAGE)
@@ -211,7 +209,7 @@ class SystemClass:
 
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == "DROP_COURSE"):
+        elif functionType == "DROP_COURSE":
             student = self.currentUser
             courseName = student.getSelectableCourses()[int(sm.getInput()) - 1].getCourseName()
             student.dropCourse(int(sm.getInput()))
@@ -219,11 +217,14 @@ class SystemClass:
             print("bunu renkli yazcan he unutma dayıogli")
 
             selectableCoursePage = self.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE)
-            selectableCoursePage.setContent(self.domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(), student.getMarks()))
+            selectableCoursePage.setContent(
+                self.domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(),
+                                                                                student.getMarks()))
             selectableCoursePage.setNumberOfSelectableCourses(len(student.getSelectableCourses()))
 
             selectedCoursePage = self.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE)
-            selectedCoursePage.setContent(self.domain.getPageCreator().createSelectedCoursesPageContent(student.getSelectedCourses()))
+            selectedCoursePage.setContent(
+                self.domain.getPageCreator().createSelectedCoursesPageContent(student.getSelectedCourses()))
             selectedCoursePage.setNumberOfDropableCourses(len(student.getSelectedCourses()))
 
             syllabus = self.userInterface.selectPage(PageType.SYLLABUS_PAGE)
@@ -231,9 +232,9 @@ class SystemClass:
 
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == "SEND_APPROVE"):
+        elif functionType == "SEND_APPROVE":
             student = self.currentUser
-            if (student.getRequest() == "false"):
+            if student.getRequest() == "false":
                 student.sendToApproval()
                 print("You have successfully sent your course selection list for advisor approval!")
                 print("bunu renkli yazcan he unutma dayıogli")
@@ -244,17 +245,19 @@ class SystemClass:
 
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == "SELECET_STUDENT"):
+        elif functionType == "SELECET_STUDENT":
             advisor = self.currentUser
             advisor.selectStudent(int(sm.getInput()))
 
             selectedStudentRequestPage = self.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE)
-            selectedStudentRequestPage.setContent(self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
+            selectedStudentRequestPage.setContent(
+                self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == "APPROVE_REQUEST"):
+        elif functionType == "APPROVE_REQUEST":
             advisor = self.currentUser
-            selectedStudentFullName = advisor.getSelectStudent().getFirstName() + " " + advisor.getSelectStudent().getLastName()
+            selectedStudentFullName = (advisor.getSelectStudent().getFirstName() + " " +
+                                       advisor.getSelectStudent().getLastName())
             advisor.sendNotification(sm.getInput(), "A")
             advisor.approve()
 
@@ -262,43 +265,49 @@ class SystemClass:
             print("bunu renkli yazcan he unutma dayıogli")
 
             selectedStudentRequestPage = self.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE)
-            selectedStudentRequestPage.setContent(self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
+            selectedStudentRequestPage.setContent(
+                self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
 
             evaluateRequestPage = self.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE)
-            evaluateRequestPage.setContent(self.domain.getPageCreator().createEvaluateRequestPageContent(advisor.getAwaitingStudents()))
+            evaluateRequestPage.setContent(
+                self.domain.getPageCreator().createEvaluateRequestPageContent(advisor.getAwaitingStudents()))
             evaluateRequestPage.setNumberOfRequest(len(advisor.getAwaitingStudents()))
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == "DISAPPREOVE_REQUEST"):
+        elif functionType == "DISAPPREOVE_REQUEST":
             advisor = self.currentUser
-            selectedStudentFullName = advisor.getSelectStudent().getFirstName() + " " + advisor.getSelectStudent().getLastName()
+            selectedStudentFullName = (advisor.getSelectStudent().getFirstName() + " " +
+                                       advisor.getSelectStudent().getLastName())
             advisor.sendNotification(sm.getInput(), "R")
             advisor.disapprove()
 
             print("Request Has Been Disapproved - " + selectedStudentFullName + "'s Request")
             print("bunu renkli yazcan he unutma dayıogli")
             selectedStudentRequestPage = self.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE)
-            selectedStudentRequestPage.setContent(self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
+            selectedStudentRequestPage.setContent(
+                self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
 
             evaluateRequestPage = self.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE)
-            evaluateRequestPage.setContent(self.domain.getPageCreator().createEvaluateRequestPageContent(advisor.getAwaitingStudents()))
+            evaluateRequestPage.setContent(
+                self.domain.getPageCreator().createEvaluateRequestPageContent(advisor.getAwaitingStudents()))
             evaluateRequestPage.setNumberOfRequest(len(advisor.getAwaitingStudents()))
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == "SELECT_MY_COURSE"):
+        elif functionType == "SELECT_MY_COURSE":
             lecturer = self.currentUser
             lecturer.selectCourse(int(sm.getInput()))
 
             selectedMyCoursePage = self.userInterface.selectPage(PageType.SELECTED_MY_COURSE_PAGE)
-            selectedMyCoursePage.setContent(self.domain.getPageCreator().createSelectedMyCoursePage(lecturer.getSelectedCourse()))
-            
+            selectedMyCoursePage.setContent(
+                self.domain.getPageCreator().createSelectedMyCoursePage(lecturer.getSelectedCourse()))
+
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == "CHANGE_PASSWORD"):
+        elif functionType == "CHANGE_PASSWORD":
             passwords = sm.getInput()
-            
-            if (self.currentUser.getPassword().compareCurrentPassword(passwords[0])):
-                if (self.currentUser.getPassword().checkPasswordCond(passwords[1])):
+
+            if self.currentUser.getPassword().compareCurrentPassword(passwords[0]):
+                if self.currentUser.getPassword().checkPasswordCond(passwords[1]):
                     self.currentUser.getPassword().setPassword(passwords[1])
                     print("Password Change Successful")
                     print("bunu renkli yazcan he unutma dayıogli")
@@ -308,20 +317,21 @@ class SystemClass:
             else:
                 print("Your current password incorrect!")
                 print("bunu renkli yazcan he unutma dayıogli")
-            
+
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == "READ_NOTIFICATIONS"):
+        elif functionType == "READ_NOTIFICATIONS":
             student = self.currentUser
             student.clearUnreadNotification()
 
             mainMenuPageStudent = self.userInterface.selectPage(PageType.MAIN_MENU_PAGE)
-            mainMenuPageStudent.setContent(self.domain.getPageCreator().createMainMenuPageStudentContent(len(student.getUnreadNotifications())))
+            mainMenuPageStudent.setContent(
+                self.domain.getPageCreator().createMainMenuPageStudentContent(len(student.getUnreadNotifications())))
 
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
     def getCurrentUser(self):
         return self.currentUser
-    
+
     def setCurrentUser(self, currentUser):
         self.currentUser = currentUser
