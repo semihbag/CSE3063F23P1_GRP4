@@ -16,10 +16,10 @@ class LecturerTest(unittest.TestCase):
 
     def test_lucterer_info(self):
         lecturer = Lecturer("Mustafa", "Agaoglu", Id("1501002"), Password("sql112233"))
-        self.assertEqual("Mustafa",lecturer.get_first_name())
-        self.assertEqual("Agaoglu",lecturer.get_last_name())
-        self.assertEqual("1501002",lecturer.get_person_id().get_id())
-        self.assertEquals("sql112233",lecturer.get_password().get_password())
+        self.assertEqual("Mustafa",lecturer.getFirstName())
+        self.assertEqual("Agaoglu",lecturer.getLastName())
+        self.assertEqual("1501002",lecturer.getPersonId().getId())
+        self.assertEquals("sql112233",lecturer.getPassword().getPassword())
         self.assertEqual([], lecturer.getGivenCourses())
         self.assertEqual(None,lecturer.getSelectedCourse())
 
@@ -35,7 +35,7 @@ class LecturerTest(unittest.TestCase):
         lecturer.setGivenCourses([course4,course3])
         self.assertTrue(2,len(lecturer.getGivenCourses()))
         lecturer.selectCourse(2)
-        self.assertEqual("Introduction to Computer Engineering",lecturer.getSelectedCourse().get_course_name())
+        self.assertEqual("Introduction to Computer Engineering",lecturer.getSelectedCourse().getCourseName())
 
     def test_syllabus(self):
         lecturer = Lecturer("Mustafa", "Agaoglu", Id("1501002"), Password("sql112233"))
@@ -48,12 +48,12 @@ class LecturerTest(unittest.TestCase):
         course3 = Course(Id("CSE1200"), "Introduction to Computer Engineering", 15, 1, None, course_schedules3, 4, CourseType.MANDATORY)   
         lecturer.setGivenCourses([course4,course3])
 
-        lecturer.create_syllabus(lecturer.getGivenCourses())
-        self.assertFalse(lecturer.get_syllabus().is_empty(0,1))
-        self.assertFalse(lecturer.get_syllabus().is_empty(1,1))
-        self.assertFalse(lecturer.get_syllabus().is_empty(0,0))
-        self.assertFalse(lecturer.get_syllabus().is_empty(1,0)) 
-        self.assertTrue(lecturer.get_syllabus().is_empty(2,1))  
+        lecturer.createSyllabus(lecturer.getGivenCourses())
+        self.assertFalse(lecturer.getSyllabus().isEmpty(0,1))
+        self.assertFalse(lecturer.getSyllabus().isEmpty(1,1))
+        self.assertFalse(lecturer.getSyllabus().isEmpty(0,0))
+        self.assertFalse(lecturer.getSyllabus().isEmpty(1,0)) 
+        self.assertTrue(lecturer.getSyllabus().isEmpty(2,1))  
 
     def test_login(self):
         
@@ -69,19 +69,19 @@ class LecturerTest(unittest.TestCase):
 
         newId = "l1501002"
         persons = [lecturer]
-        data = [newId,lecturer.get_password().get_password()]
+        data = [newId,lecturer.getPassword().getPassword()]
         username = data[0]
         password = data[1]
         self.assertTrue(isinstance(lecturer,Lecturer))
-        self.assertEqual(True,"l" + lecturer.get_person_id().get_id() == username)
+        self.assertEqual(True,"l" + lecturer.getPersonId().getId() == username)
         self.assertEqual(True,password == "sql112233")
-        return_lecturer = lecturer.login([newId,lecturer.get_password().get_password()],[lecturer])
+        return_lecturer = lecturer.login([newId,lecturer.getPassword().getPassword()],[lecturer])
         self.assertTrue(isinstance(return_lecturer,Lecturer))
-        self.assertFalse(lecturer.get_syllabus().is_empty(0,1))
-        self.assertFalse(lecturer.get_syllabus().is_empty(1,1))
-        self.assertFalse(lecturer.get_syllabus().is_empty(0,0))
-        self.assertFalse(lecturer.get_syllabus().is_empty(1,0)) 
-        self.assertTrue(lecturer.get_syllabus().is_empty(2,1)) 
+        self.assertFalse(lecturer.getSyllabus().isEmpty(0,1))
+        self.assertFalse(lecturer.getSyllabus().isEmpty(1,1))
+        self.assertFalse(lecturer.getSyllabus().isEmpty(0,0))
+        self.assertFalse(lecturer.getSyllabus().isEmpty(1,0)) 
+        self.assertTrue(lecturer.getSyllabus().isEmpty(2,1)) 
 
 if __name__ == '__main__':
     unittest.main()
