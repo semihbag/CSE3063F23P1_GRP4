@@ -1,4 +1,4 @@
-from python_development.Page import Page
+from python_development.Page.Page import Page
 from python_development.Page import PageType
 from python_development.System import FunctionType
 from python_development.System import SystemMessage
