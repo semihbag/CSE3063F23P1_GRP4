@@ -8,7 +8,7 @@ class SyllabusPage(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.SYLLABUS_PAGE)
+        self.setType("SYLLABUS_PAGE")
         self.setName("Syllabus Page Student")
 
 

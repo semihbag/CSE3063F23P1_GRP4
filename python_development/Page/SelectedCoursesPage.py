@@ -9,7 +9,7 @@ class SelectedCoursesPage(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.SELECTED_COURSES_PAGE)
+        self.setType("SELECTED_COURSES_PAGE")
         self.setName("Selected Courses Page")
 
 

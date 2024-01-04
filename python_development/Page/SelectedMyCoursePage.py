@@ -8,7 +8,7 @@ class SelectedMyCoursePage(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.SELECTED_MY_COURSE_PAGE)
+        self.setType("SELECTED_MY_COURSE_PAGE")
         self.setName("Selected My Course Page")
 
 

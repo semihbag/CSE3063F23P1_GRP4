@@ -8,7 +8,7 @@ class MyNotificationsPage(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.MY_NOTIFICATIONS_PAGE)
+        self.setType("MY_NOTIFICATIONS_PAGE")
         self.setName("My Notifications Page")
 
 

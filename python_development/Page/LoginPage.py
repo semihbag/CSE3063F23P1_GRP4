@@ -8,7 +8,7 @@ class LoginPage(Page):
     
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.LOGIN_PAGE)
+        self.setType("LOGIN_PAGE")
         self.setName("Login Page")
 
     

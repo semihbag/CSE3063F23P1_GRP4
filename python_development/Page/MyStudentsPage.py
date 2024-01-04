@@ -7,7 +7,7 @@ class MyStudentsPage(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.MY_STUDENTS_PAGE)
+        self.setType("MY_STUDENTS_PAGE")
         self.setName("All Students Page")
 
 

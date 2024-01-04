@@ -6,7 +6,7 @@ class ChangePasswordPage(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.CHANGE_PASSWORD_PAGE)
+        self.setType("CHANGE_PASSWORD_PAGE")
         self.setName("Change Password Page")
 
     

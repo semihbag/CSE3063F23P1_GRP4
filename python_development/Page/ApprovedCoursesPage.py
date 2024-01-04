@@ -7,7 +7,7 @@ class ApprovedCoursesPage(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.APPROVED_COURSES_PAGE)
+        self.setType("APPROVED_COURSES_PAGE")
         self.setName("Approved Courses Page")
 
     

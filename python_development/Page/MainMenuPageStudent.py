@@ -7,7 +7,7 @@ class MainMenuPageStudent(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.MAIN_MENU_PAGE)
+        self.setType("MAIN_MENU_PAGE")
         self.setName("Main Menu Page Student")
 
 

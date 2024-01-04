@@ -8,7 +8,7 @@ class SelectedStudentRequestPage(Page):
      
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.SELECTED_STUDENT_REQUEST_PAGE)
+        self.setType("SELECTED_STUDENT_REQUEST_PAGE")
         self.setName("Selected Student Request Page")
 
 

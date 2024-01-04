@@ -8,7 +8,7 @@ class TranscriptPage(Page):
     
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.TRANSCRIPT_PAGE)
+        self.setType("TRANSCRIPT_PAGE")
         self.setName("My Transcript Page")
 
 

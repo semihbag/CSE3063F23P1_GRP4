@@ -9,7 +9,7 @@ class MyCoursesPage(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType(PageType.MY_COURSES_PAGE)
+        self.setType("MY_COURSES_PAGE")
         self.setName("My Courses Page")
 
 

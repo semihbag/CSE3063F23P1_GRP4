@@ -19,7 +19,7 @@ class SystemClass:
 
         login = LoginPage("Welcome! Please enter your username/password.")
         self.userInterface.addPage(login)
-        self.userInterface.setCurrentPage(PageType.LOGIN_PAGE)
+        self.userInterface.setCurrentPage("LOGIN_PAGE")
 
     def run(self):
         while True:
@@ -163,17 +163,17 @@ class SystemClass:
     def listenUserInterface(self, sm):
         functionType = sm.getFunctionType()
 
-        if (functionType == FunctionType.LOGIN):
+        if (functionType == "LOGIN"):
             userInfo = sm.getInput()
             self.login(userInfo)
        
-        elif (functionType == FunctionType.LOGOUT):
+        elif (functionType == "LOGOUT"):
             print("LOGOUT SUCCESSFUL - GOODBYE " + self.currentUser.getFirstName() + " " + self.currentUser.getLastName())
             print("bunu renkli yazcan he unutma dayıogli")
             self.logout()
             self.userInterface.setCurrentPage(PageType.LOGIN_PAGE)
        
-        elif (functionType == FunctionType.EXIT):
+        elif (functionType == "EXIT"):
             print("SYSTEM EXITING")
             time.sleep(0.5)
             print("SYSTEM EXITING.")
@@ -185,10 +185,10 @@ class SystemClass:
             print("bunu renkli yazcan he unutma dayıogli")
             self.exit()
 
-        elif (functionType == FunctionType.CHANGE_PAGE):
+        elif (functionType == "CHANGE_PAGE"):
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == FunctionType.SELECT_COURSE):
+        elif (functionType == "SELECT_COURSE"):
             student = self.currentUser
             courseName = student.getSelectableCourses()[int(sm.getInput()) - 1].getCourseName()
             if (student.addSelectedCourse(int(sm.getInput()))):
@@ -211,7 +211,7 @@ class SystemClass:
 
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == FunctionType.DROP_COURSE):
+        elif (functionType == "DROP_COURSE"):
             student = self.currentUser
             courseName = student.getSelectableCourses()[int(sm.getInput()) - 1].getCourseName()
             student.dropCourse(int(sm.getInput()))
@@ -231,7 +231,7 @@ class SystemClass:
 
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == FunctionType.SEND_APPROVE):
+        elif (functionType == "SEND_APPROVE"):
             student = self.currentUser
             if (student.getRequest() == "false"):
                 student.sendToApproval()
@@ -244,7 +244,7 @@ class SystemClass:
 
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == FunctionType.SELECET_STUDENT):
+        elif (functionType == "SELECET_STUDENT"):
             advisor = self.currentUser
             advisor.selectStudent(int(sm.getInput()))
 
@@ -252,7 +252,7 @@ class SystemClass:
             selectedStudentRequestPage.setContent(self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == FunctionType.APPROVE_REQUEST):
+        elif (functionType == "APPROVE_REQUEST"):
             advisor = self.currentUser
             selectedStudentFullName = advisor.getSelectStudent().getFirstName() + " " + advisor.getSelectStudent().getLastName()
             advisor.sendNotification(sm.getInput(), "A")
@@ -269,7 +269,7 @@ class SystemClass:
             evaluateRequestPage.setNumberOfRequest(len(advisor.getAwaitingStudents()))
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == FunctionType.DISAPPREOVE_REQUEST):
+        elif (functionType == "DISAPPREOVE_REQUEST"):
             advisor = self.currentUser
             selectedStudentFullName = advisor.getSelectStudent().getFirstName() + " " + advisor.getSelectStudent().getLastName()
             advisor.sendNotification(sm.getInput(), "R")
@@ -285,7 +285,7 @@ class SystemClass:
             evaluateRequestPage.setNumberOfRequest(len(advisor.getAwaitingStudents()))
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == FunctionType.SELECT_MY_COURSE):
+        elif (functionType == "SELECT_MY_COURSE"):
             lecturer = self.currentUser
             lecturer.selectCourse(int(sm.getInput()))
 
@@ -294,7 +294,7 @@ class SystemClass:
             
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == FunctionType.CHANGE_PASSWORD):
+        elif (functionType == "CHANGE_PASSWORD"):
             passwords = sm.getInput()
             
             if (self.currentUser.getPassword().compareCurrentPassword(passwords[0])):
@@ -311,7 +311,7 @@ class SystemClass:
             
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
-        elif (functionType == FunctionType.READ_NOTIFICATIONS):
+        elif (functionType == "READ_NOTIFICATIONS"):
             student = self.currentUser
             student.clearUnreadNotification()
 
