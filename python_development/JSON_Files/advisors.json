@@ -18,15 +18,15 @@
         "name": "Betul"
     },
     {
-        "password": "password123",
-        "advisorId": "1000101",
-        "surname": "San",
-        "name": "Yusuf"
-    },
+        "name" : "Omer",
+        "surname" : "Korcak",
+        "advisorId" : "1501004",
+        "password":"omer.Korcak004"
+		},
     {
-        "password": "password456",
-        "advisorId": "1000102",
-        "surname": "Acik",
-        "name": "Pelin"
-    }
+        "name" : "Cigdem",
+        "surname" : "Eroglu Erdem",
+        "advisorId" : "1501009",
+        "password":"Cigdem.EE009"
+		}
 ]}

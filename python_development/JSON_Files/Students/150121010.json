@@ -1,5 +1,5 @@
 {
-    "advisor": "1501005",
+    "advisor": "1501009",
     "request": "false",
     "readNotification": [],
     "password": "Saliha45.",
@@ -33,19 +33,19 @@
             "FF"
         ],
         "gradesPassed": [
-            "AA",
+            "BB",
             "BB",
             "CB",
-            "CC",
+            "BB",
             "CB",
             "BA",
             "AA",
-            "AA",
-            "CC",
+            "BB",
+            "DC",
             "CB",
             "BA",
             "AA",
-            "AA"
+            "DD"
         ]
     },
     "unreadNotification": [],

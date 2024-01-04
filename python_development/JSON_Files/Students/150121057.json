@@ -28,22 +28,22 @@
 
         "gradesFailed": [],
         "gradesPassed": [
-            "AA",
+            "DD",
             "BA",
             "BB",
             "BB",
             "AA",
             "CB",
-            "AA",
-            "AA",
-            "AA",
+            "CB",
+            "DC",
+            "BB",
             "BB",
             "BA",
-            "BB",
+            "DD",
             "CC",
             "AA",
-            "AA",
-            "BA"
+            "DD",
+            "CB"
         ]
     },
     "unreadNotification": [],

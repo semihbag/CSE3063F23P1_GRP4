@@ -61,12 +61,6 @@
 			"password":"Mehmet_Baran.11"
 		},
 		{
-			"name" : "Omer",
-			"surname" : "Korcak",
-			"lecturerId" : "1501004",
-			"password":"omer.Korcak004"
-		},
-		{
 			"name" : "Oguzhan",
 			"surname" : "Ceylan",
 			"lecturerId" : "1306001",
@@ -89,12 +83,6 @@
 			"surname" : "Topcuoglu",
 			"lecturerId" : "1501008",
 			"password":"haluk_Rahmi.008"
-		},
-		{
-			"name" : "Cigdem",
-			"surname" : "Eroglu Erdem",
-			"lecturerId" : "1501009",
-			"password":"Cigdem.EE009"
 		},
 		{
 			"name":"Tuna",
