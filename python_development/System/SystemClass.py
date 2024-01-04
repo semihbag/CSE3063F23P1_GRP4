@@ -8,7 +8,8 @@ from python_development.Page.PageType import PageType
 from python_development.System.SystemDomain import SystemDomain
 
 from python_development.System import FunctionType
-
+from python_development.Page import PageType
+import time
 
 class SystemClass:
     def __init__(self, user_interface):
@@ -162,4 +163,114 @@ class SystemClass:
     def listenUserInterface(self, sm):
         functionType = sm.getFunctionType()
 
-        if (functionType == Fun)
+        if (functionType == FunctionType.LOGIN):
+            userInfo = sm.getInput()
+            self.login(userInfo)
+       
+        elif (functionType == FunctionType.LOGOUT):
+            print("LOGOUT SUCCESSFUL - GOODBYE " + self.currentUser.getFirstName() + " " + self.currentUser.getLastName())
+            print("bunu renkli yazcan he unutma dayıogli")
+            self.logout()
+            self.userInterface.setCurrentPage(PageType.LOGIN_PAGE)
+       
+        elif (functionType == FunctionType.EXIT):
+            print("SYSTEM EXITING")
+            time.sleep(0.5)
+            print("SYSTEM EXITING.")
+            time.sleep(0.5)
+            print("SYSTEM EXITING..")
+            time.sleep(0.5)
+            print("SYSTEM EXITING...")
+            time.sleep(0.5)
+            print("bunu renkli yazcan he unutma dayıogli")
+            self.exit()
+
+        elif (functionType == FunctionType.CHANGE_PAGE):
+            self.userInterface.setCurrentPage(sm.getNextPageType())
+
+        elif (functionType == FunctionType.SELECT_COURSE):
+            student = self.currentUser
+            courseName = student.getSelectableCourses()[int(sm.getInput()) - 1].getCourseName()
+            if (student.addSelectedCourse(int(sm.getInput()))):
+                print("Course Addition Is Succesful - " + courseName)
+                print("bunu renkli yazcan he unutma dayıogli")
+            else:
+                print("Course Addition Is Not Succesful - " + courseName)
+                print("bunu renkli yazcan he unutma dayıogli")
+
+            selectableCoursePage = self.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE)
+            selectableCoursePage.setContent(self.domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(), student.getMarks()))
+            selectableCoursePage.setNumberOfSelectableCourses(len(student.getSelectableCourses()))
+
+            selectedCoursePage = self.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE)
+            selectedCoursePage.setContent(self.domain.getPageCreator().createSelectedCoursesPageContent(student.getSelectedCourses()))
+            selectedCoursePage.setNumberOfDropableCourses(len(student.getSelectedCourses()))
+
+            syllabus = self.userInterface.selectPage(PageType.SYLLABUS_PAGE)
+            syllabus.setContent(self.domain.getPageCreator().createSyllabusPageContent(student.getSyllabus()))
+
+            self.userInterface.setCurrentPage(sm.getNextPageType())
+
+        elif (functionType == FunctionType.DROP_COURSE):
+            student = self.currentUser
+            courseName = student.getSelectableCourses()[int(sm.getInput()) - 1].getCourseName()
+            student.dropCourse(int(sm.getInput()))
+            print("Course Dropping Is Succesful - " + courseName)
+            print("bunu renkli yazcan he unutma dayıogli")
+
+            selectableCoursePage = self.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE)
+            selectableCoursePage.setContent(self.domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(), student.getMarks()))
+            selectableCoursePage.setNumberOfSelectableCourses(len(student.getSelectableCourses()))
+
+            selectedCoursePage = self.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE)
+            selectedCoursePage.setContent(self.domain.getPageCreator().createSelectedCoursesPageContent(student.getSelectedCourses()))
+            selectedCoursePage.setNumberOfDropableCourses(len(student.getSelectedCourses()))
+
+            syllabus = self.userInterface.selectPage(PageType.SYLLABUS_PAGE)
+            syllabus.setContent(self.domain.getPageCreator().createSyllabusPageContent(student.getSyllabus()))
+
+            self.userInterface.setCurrentPage(sm.getNextPageType())
+
+        elif (functionType == FunctionType.SEND_APPROVE):
+            student = self.currentUser
+            if (student.getRequest() == "false"):
+                student.sendToApproval()
+                print("You have successfully sent your course selection list for advisor approval!")
+                print("bunu renkli yazcan he unutma dayıogli")
+            else:
+                print("You have already successfully sent your course selection list for advisor approval!")                print("bunu renkli yazcan he unutma dayıogli")
+                print("bunu renkli yazcan he unutma dayıogli")
+
+            self.userInterface.setCurrentPage(sm.getNextPageType())
+
+        elif (functionType == FunctionType.SELECET_STUDENT):
+            advisor = self.currentUser
+            advisor.selectStudent(int(sm.getInput()))
+
+            selectedStudentRequestPage = self.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE)
+            selectedStudentRequestPage.setContent(self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
+            self.userInterface.setCurrentPage(sm.getNextPageType())
+
+        elif (functionType == FunctionType.APPROVE_REQUEST):
+            advisor = self.currentUser
+            selectedStudentFullName = advisor.getSelectStudent().getFirstName() + " " + advisor.getSelectStudent().getLastName()
+            advisor.sendNotification(sm.getInput(), "A")
+            advisor.approve()
+            print("Request Has Been Approved - " + selectedStudentFullName + "'s Request")
+            print("bunu renkli yazcan he unutma dayıogli")
+
+            selectedStudentRequestPage = self.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE)
+            selectedStudentRequestPage.setContent(self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
+
+            evaluateRequestPage = self.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE)
+            evaluateRequestPage.setContent(self.domain.getPageCreator().createEvaluateRequestPageContent(advisor.getAwaitingStudents()))
+            evaluateRequestPage.setNumberOfRequest(len(advisor.getAwaitingStudents()))
+            self.userInterface.setCurrentPage(sm.getNextPageType())
+
+        elif (functionType == FunctionType.DISAPPREOVE_REQUEST):
+            advisor = self.currentUser
+            selectedStudentFullName = advisor.getSelectStudent().getFirstName() + " " + advisor.getSelectStudent().getLastName()
+            advisor.sendNotification(sm.getInput(), "R")
+            advisor.disapprove()
+
+
