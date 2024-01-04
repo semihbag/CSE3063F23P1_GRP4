@@ -1,16 +1,16 @@
 class CourseSchedule:
-    def __init__(self, course_day, course_hours):
-        self.course_day = course_day
-        self.course_hours = course_hours
+    def __init__(self, courseDay, courseHours):
+        self.courseDay = courseDay
+        self.courseHours = courseHours
 
     def getCourseDay(self):
-        return self.course_day
+        return self.courseDay
 
-    def setCourseDay(self, course_day):
-        self.course_day = course_day
+    def setCourseDay(self, courseDay):
+        self.courseDay = courseDay
 
     def getCourseHours(self):
-        return self.course_hours
+        return self.courseHours
 
-    def setCourseHours(self, course_hours):
-        self.course_hours = course_hours
+    def setCourseHours(self, courseHours):
+        self.courseHours = courseHours

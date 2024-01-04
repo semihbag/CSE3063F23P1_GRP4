@@ -1,41 +1,41 @@
 class Course:
-    def __init__(self, course_id, course_name, quota, term, lecturer, course_schedules, credit, course_type):
-        self.course_id = course_id
-        self.course_name = course_name
+    def __init__(self, courseId, courseName, quota, term, lecturer, courseSchedules, credit, courseType):
+        self.courseId = courseId
+        self.courseName = courseName
         self.quota = quota
         self.term = term
         self.lecturer = lecturer
-        self.course_schedules = course_schedules
+        self.courseSchedules = courseSchedules
         self.credit = credit
-        self.course_type = course_type
-        self.prerequisite_courses = []
-        self.student_list = []
+        self.courseType = courseType
+        self.prerequisiteCourses = []
+        self.studentList = []
 
     def enrollStudent(self, student):
-        self.student_list.append(student)
+        self.studentList.append(student)
 
     def equals(self, obj):
         if isinstance(obj, Course):
-            return obj.course_id.get_id() == self.course_id.get_id()
+            return obj.getCourseId().get_id() == self.getCourseId().get_id()
         return False
 
     def getTerm(self):
         return self.term
 
     def getCourseId(self):
-        return self.course_id
+        return self.courseId
 
     def getCourseName(self):
-        return self.course_name
+        return self.courseName
 
     def getQuota(self):
         return self.quota
 
     def getPrerequisiteCourses(self):
-        return self.prerequisite_courses
+        return self.prerequisiteCourses
 
     def getStudentList(self):
-        return self.student_list
+        return self.studentList
 
     def getLecturer(self):
         return self.lecturer
@@ -43,20 +43,20 @@ class Course:
     def setQuota(self, quota):
         self.quota = quota
 
-    def setStudentList(self, student_list):
-        self.student_list = student_list
+    def setStudentList(self, studentList):
+        self.studentList = studentList
 
     def getCourseSchedules(self):
-        return self.course_schedules
+        return self.courseSchedules
 
-    def setCourseSchedules(self, course_schedules):
-        self.course_schedules = course_schedules
+    def setCourseSchedules(self, courseSchedules):
+        self.courseSchedules = courseSchedules
 
     def getCourseType(self):
-        return self.course_type
+        return self.courseType
 
-    def setCourseType(self, course_type):
-        self.course_type = course_type
+    def setCourseType(self, courseType):
+        self.courseType = courseType
 
     def getCredit(self):
         return self.credit

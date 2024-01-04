@@ -2,15 +2,15 @@ from python_development.Course import Course
 
 
 class CourseSession(Course):
-    def __init__(self, course_id, course_name, quota, term, lecturer, session_id, course_schedules, credit, course_type):
-        super().__init__(course_id, course_name, quota, term, lecturer, course_schedules, credit, course_type)
-        self.session_id = session_id
+    def __init__(self, courseID, courseName, quota, term, lecturer, sessionId, courseSchedules, credit, courseType):
+        super().__init__(courseID, courseName, quota, term, lecturer, courseSchedules, credit, courseType)
+        self.sessionId = sessionId
 
     def equals(self, obj):
         if isinstance(obj, CourseSession):
             return (
-                    obj.get_course_id().get_id() == self.get_course_id().get_id()
-                    and obj.get_session_id().get_id() == self.get_session_id().get_id()
+                    obj.getCourseId().getId() == self.getCourseId().getId()
+                    and obj.getSessionId().getId() == self.getSessionId().getId()
             )
         return False
 
