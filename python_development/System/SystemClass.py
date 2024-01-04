@@ -35,7 +35,7 @@ class SystemClass:
             for student in self.domain.getStudentCreator().getStudents():
                 if ("o" + student.getPersonId().getId() == username) and (
                         student.getPassword().getPassword() == password):
-                    self.set_current_user(student)
+                    self.setCurrentUser()(student)
                     user_found = True
                     break
         elif username[0] == 'l':
@@ -44,7 +44,7 @@ class SystemClass:
                         lecturer.getPassword().getPassword() == password):
                     if isinstance(lecturer, Advisor):
                         lecturer.findAwaitingStudents()
-                    self.set_current_user(lecturer)
+                    self.setCurrentUser()(lecturer)
                     lecturer.createSyllabus(lecturer.getGivenCourses())
                     user_found = True
                     break
@@ -62,7 +62,7 @@ class SystemClass:
         login = LoginPage("Welcome! Please enter your username/password.")
         self.userInterface.addPage(login)
         self.userInterface.setCurrentPage(PageType.LOGIN_PAGE)
-        self.set_current_user(None)
+        self.setCurrentUser()(None)
 
     def exit(self):
         self.updateStudentJson()
@@ -257,6 +257,7 @@ class SystemClass:
             selectedStudentFullName = advisor.getSelectStudent().getFirstName() + " " + advisor.getSelectStudent().getLastName()
             advisor.sendNotification(sm.getInput(), "A")
             advisor.approve()
+
             print("Request Has Been Approved - " + selectedStudentFullName + "'s Request")
             print("bunu renkli yazcan he unutma dayıogli")
 
@@ -274,4 +275,53 @@ class SystemClass:
             advisor.sendNotification(sm.getInput(), "R")
             advisor.disapprove()
 
+            print("Request Has Been Disapproved - " + selectedStudentFullName + "'s Request")
+            print("bunu renkli yazcan he unutma dayıogli")
+            selectedStudentRequestPage = self.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE)
+            selectedStudentRequestPage.setContent(self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
 
+            evaluateRequestPage = self.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE)
+            evaluateRequestPage.setContent(self.domain.getPageCreator().createEvaluateRequestPageContent(advisor.getAwaitingStudents()))
+            evaluateRequestPage.setNumberOfRequest(len(advisor.getAwaitingStudents()))
+            self.userInterface.setCurrentPage(sm.getNextPageType())
+
+        elif (functionType == FunctionType.SELECT_MY_COURSE):
+            lecturer = self.currentUser
+            lecturer.selectCourse(int(sm.getInput()))
+
+            selectedMyCoursePage = self.userInterface.selectPage(PageType.SELECTED_MY_COURSE_PAGE)
+            selectedMyCoursePage.setContent(self.domain.getPageCreator().createSelectedMyCoursePage(lecturer.getSelectedCourse()))
+            
+            self.userInterface.setCurrentPage(sm.getNextPageType())
+
+        elif (functionType == FunctionType.CHANGE_PASSWORD):
+            passwords = sm.getInput()
+            
+            if (self.currentUser.getPassword().compareCurrentPassword(passwords[0])):
+                if (self.currentUser.getPassword().checkPasswordCond(passwords[1])):
+                    self.currentUser.getPassword().setPassword(passwords[1])
+                    print("Password Change Successful")
+                    print("bunu renkli yazcan he unutma dayıogli")
+                else:
+                    print("Your new password must obey the rules!")
+                    print("bunu renkli yazcan he unutma dayıogli")
+            else:
+                print("Your current password incorrect!")
+                print("bunu renkli yazcan he unutma dayıogli")
+            
+            self.userInterface.setCurrentPage(sm.getNextPageType())
+
+        elif (functionType == FunctionType.READ_NOTIFICATIONS):
+            student = self.currentUser
+            student.clearUnreadNotification()
+
+            mainMenuPageStudent = self.userInterface.selectPage(PageType.MAIN_MENU_PAGE)
+            mainMenuPageStudent.setContent(self.domain.getPageCreator().createMainMenuPageStudentContent(len(student.getUnreadNotifications())))
+
+            self.userInterface.setCurrentPage(sm.getNextPageType())
+
+    def getCurrentUser(self):
+        return self.currentUser
+    
+    def setCurrentUser(self, currentUser):
+        self.currentUser = currentUser

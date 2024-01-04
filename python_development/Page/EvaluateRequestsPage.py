@@ -2,6 +2,7 @@ from python_development.Page.Page import Page
 from python_development.Page.PageType import PageType
 from python_development.System.FunctionType import FunctionType
 from python_development.System.SystemMessage import SystemMessage
+
 class EvaluateRequestsPage(Page):
     
     numberOfRequest = None

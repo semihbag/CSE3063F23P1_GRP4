@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class Page:
+class Page(ABC):
     pageType = None
     name = None
     content = None
@@ -10,7 +10,7 @@ class Page:
 
 
     @abstractmethod
-    def runPage():
+    def runPage(self):
         pass
 
 
