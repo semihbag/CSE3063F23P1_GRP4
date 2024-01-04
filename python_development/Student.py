@@ -35,19 +35,20 @@ class Student(Person):
     def login(self, userInfo, persons):
         username, password = userInfo
         for student in persons:
-            if f"o{student.getPersonId().getId()}" == username and student.getPassword().getPassword() == password:
+            if student.equals("o" + str(student.getPersonId().getId())) and \
+                    student.getPassword().getPassword().equals(password):
                 return student
         return None
 
     def isSelectedCourse(self, course):
         for selectedCourse in self.selectedCourses:
-            if selectedCourse.getCourseId().getId() == course.getCourseId().getId():
+            if selectedCourse.equals(course):
                 return True
         return False
 
     def isPassedCourse(self, course):
         for passedCourse in self.transcript.getPassedCourses():
-            if passedCourse.getCourse().getCourseId().getId() == course.getCourseId().getId():
+            if passedCourse.getCourse().equals(course):
                 return True
         return False
 
@@ -62,7 +63,7 @@ class Student(Person):
 
     def isFailedCourse(self, course):
         for failedCourse in self.transcript.getFailedCourses():
-            if failedCourse.getCourse().getCourseId().getId() == course.getCourseId().getId() and self.transcript.getTerm() % 2 == course.getTerm() % 2:
+            if failedCourse.getCourse().equals(course) and self.transcript.getTerm() % 2 == course.getTerm() % 2:
                 return True
         return False
 
@@ -193,12 +194,13 @@ class Student(Person):
                 if curriculumCourse not in self.selectableCourses:
                     self.selectableCourses.append(curriculumCourse)
 
-    def removeAllSessions(self, course, selectableCourses):
+    def removeAllSessions(self, course):
         i = 0
-        while i < len(selectableCourses):
-            if course.getCourseId().getId() == selectableCourses[i].getCourseId().getId():
-                selectableCourses.pop(i)
+        while i < len(self.selectableCourses):
+            if self.selectableCourses[i].equals(course):
+                self.selectableCourses.pop(i)
                 i -= 1
+
             i += 1
 
     def createSyllabus(self, courses):
