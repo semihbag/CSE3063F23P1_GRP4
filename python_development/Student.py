@@ -194,12 +194,13 @@ class Student(Person):
                 if curriculumCourse not in self.selectableCourses:
                     self.selectableCourses.append(curriculumCourse)
 
-    def removeAllSessions(self, course, selectableCourses):
+    def removeAllSessions(self, course):
         i = 0
-        while i < len(selectableCourses):
-            if course.getCourseId().getId() == selectableCourses[i].getCourseId().getId():
-                selectableCourses.pop(i)
+        while i < len(self.selectableCourses):
+            if self.selectableCourses[i].equals(course):
+                self.selectableCourses.pop(i)
                 i -= 1
+
             i += 1
 
     def createSyllabus(self, courses):
