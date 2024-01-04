@@ -1,14 +1,14 @@
 import unittest
-from Advisor import Advisor
-from Student import Student
-from Id import Id
-from Password import Password
-from Course import Course
-from CourseType import CourseType
-from CourseSchedule import CourseSchedule
-from Hour import Hour
-from Day import Day
-from Mark import Mark
+from python_development.Advisor import Advisor
+from python_development.Student import Student
+from python_development.Id import Id
+from python_development.Password import Password
+from python_development.Course import Course
+from python_development.CourseType import CourseType
+from python_development.CourseSchedule import CourseSchedule
+from python_development.Hour import Hour
+from python_development.Day import Day
+from python_development.Mark import Mark
 
 class AdvisorTest(unittest.TestCase):
 
