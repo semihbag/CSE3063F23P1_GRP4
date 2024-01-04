@@ -1,4 +1,5 @@
 import json
+import logging
 
 from python_development.CourseSession import CourseSession
 from python_development.CourseType import CourseType
@@ -67,7 +68,8 @@ class CreateStudent:
                         crt_student.approvedCourses = approved_courses
                         crt_student.filterCourses()
                         self.students.append(crt_student)
-                except (json.JSONDecodeError, FileNotFoundError):
+                except (json.JSONDecodeError, FileNotFoundError) as e:
+                    logging.exception(f"Error in student data {line}: {e}")
                     pass
 
         self.assignStudentToAdvisor(advisors)
