@@ -238,7 +238,8 @@ class SystemClass:
                 print("You have successfully sent your course selection list for advisor approval!")
                 print("bunu renkli yazcan he unutma dayıogli")
             else:
-                print("You have already successfully sent your course selection list for advisor approval!")                print("bunu renkli yazcan he unutma dayıogli")
+                print("You have already successfully sent your course selection list for advisor approval!")
+                print("bunu renkli yazcan he unutma dayıogli")
                 print("bunu renkli yazcan he unutma dayıogli")
 
             self.userInterface.setCurrentPage(sm.getNextPageType())
