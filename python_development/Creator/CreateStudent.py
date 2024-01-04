@@ -115,7 +115,7 @@ class CreateStudent:
                     break
 
     def fillStudentListCourse(self, courses):
-        with open("python_development\\JSON_Files\\courses.json", 'r') as courses_file:
+        with open("JSON_Files\\courses.json", 'r') as courses_file:
             course_json = json.load(courses_file)
             for i in range(len(course_json['courses'])):
                 current_course = course_json['courses'][i]
