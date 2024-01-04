@@ -44,7 +44,7 @@ class SystemClass:
             print("Username/Password incorrect.\n")
         else:
             self.userInterface.set_pages(self.domain.getPageCreator().create_pages(self.currentUser))
-            self.userInterface.set_current_page(PageType.MAIN_MENU_PAGE)
+            self.userInterface.set_current_page("MAIN_MENU_PAGE")
             print("LOGIN SUCCESSFUL - WELCOME {} {}".format(self.currentUser.get_first_name(),
                                                             self.currentUser.get_last_name()))
             all_users.clear()
@@ -60,7 +60,7 @@ class SystemClass:
         self.userInterface.resetPages()
         login = LoginPage("Welcome! Please enter your username/password.")
         self.userInterface.addPage(login)
-        self.userInterface.setCurrentPage(PageType.LOGIN_PAGE)
+        self.userInterface.setCurrentPage("LOGIN_PAGE")
         self.setCurrentUser(None)
 
     def exit(self):
@@ -166,7 +166,7 @@ class SystemClass:
                 "LOGOUT SUCCESSFUL - GOODBYE " + self.currentUser.getFirstName() + " " + self.currentUser.getLastName())
             print("bunu renkli yazcan he unutma dayıogli")
             self.logout()
-            self.userInterface.setCurrentPage(PageType.LOGIN_PAGE)
+            self.userInterface.setCurrentPage("LOGIN_PAGE")
 
         elif functionType == "EXIT":
             print("SYSTEM EXITING")
@@ -193,18 +193,18 @@ class SystemClass:
                 print("Course Addition Is Not Succesful - " + courseName)
                 print("bunu renkli yazcan he unutma dayıogli")
 
-            selectableCoursePage = self.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE)
+            selectableCoursePage = self.userInterface.selectPage("SELECTABLE_COURSES_PAGE")
             selectableCoursePage.setContent(
                 self.domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(),
                                                                                 student.getMarks()))
             selectableCoursePage.setNumberOfSelectableCourses(len(student.getSelectableCourses()))
 
-            selectedCoursePage = self.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE)
+            selectedCoursePage = self.userInterface.selectPage("SELECTED_COURSES_PAGE")
             selectedCoursePage.setContent(
                 self.domain.getPageCreator().createSelectedCoursesPageContent(student.getSelectedCourses()))
             selectedCoursePage.setNumberOfDropableCourses(len(student.getSelectedCourses()))
 
-            syllabus = self.userInterface.selectPage(PageType.SYLLABUS_PAGE)
+            syllabus = self.userInterface.selectPage("SYLLABUS_PAGE")
             syllabus.setContent(self.domain.getPageCreator().createSyllabusPageContent(student.getSyllabus()))
 
             self.userInterface.setCurrentPage(sm.getNextPageType())
@@ -216,18 +216,18 @@ class SystemClass:
             print("Course Dropping Is Succesful - " + courseName)
             print("bunu renkli yazcan he unutma dayıogli")
 
-            selectableCoursePage = self.userInterface.selectPage(PageType.SELECTABLE_COURSES_PAGE)
+            selectableCoursePage = self.userInterface.selectPage("SELECTABLE_COURSES_PAGE")
             selectableCoursePage.setContent(
                 self.domain.getPageCreator().createSelectableCoursesPageContent(student.getSelectableCourses(),
                                                                                 student.getMarks()))
             selectableCoursePage.setNumberOfSelectableCourses(len(student.getSelectableCourses()))
 
-            selectedCoursePage = self.userInterface.selectPage(PageType.SELECTED_COURSES_PAGE)
+            selectedCoursePage = self.userInterface.selectPage("SELECTED_COURSES_PAGE")
             selectedCoursePage.setContent(
                 self.domain.getPageCreator().createSelectedCoursesPageContent(student.getSelectedCourses()))
             selectedCoursePage.setNumberOfDropableCourses(len(student.getSelectedCourses()))
 
-            syllabus = self.userInterface.selectPage(PageType.SYLLABUS_PAGE)
+            syllabus = self.userInterface.selectPage("SYLLABUS_PAGE")
             syllabus.setContent(self.domain.getPageCreator().createSyllabusPageContent(student.getSyllabus()))
 
             self.userInterface.setCurrentPage(sm.getNextPageType())
@@ -249,7 +249,7 @@ class SystemClass:
             advisor = self.currentUser
             advisor.selectStudent(int(sm.getInput()))
 
-            selectedStudentRequestPage = self.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE)
+            selectedStudentRequestPage = self.userInterface.selectPage("SELECTED_STUDENT_REQUEST_PAGE")
             selectedStudentRequestPage.setContent(
                 self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
             self.userInterface.setCurrentPage(sm.getNextPageType())
@@ -264,11 +264,11 @@ class SystemClass:
             print("Request Has Been Approved - " + selectedStudentFullName + "'s Request")
             print("bunu renkli yazcan he unutma dayıogli")
 
-            selectedStudentRequestPage = self.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE)
+            selectedStudentRequestPage = self.userInterface.selectPage("SELECTED_STUDENT_REQUEST_PAGE")
             selectedStudentRequestPage.setContent(
                 self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
 
-            evaluateRequestPage = self.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE)
+            evaluateRequestPage = self.userInterface.selectPage("EVALUATE_REQUESTS_PAGE")
             evaluateRequestPage.setContent(
                 self.domain.getPageCreator().createEvaluateRequestPageContent(advisor.getAwaitingStudents()))
             evaluateRequestPage.setNumberOfRequest(len(advisor.getAwaitingStudents()))
@@ -283,11 +283,11 @@ class SystemClass:
 
             print("Request Has Been Disapproved - " + selectedStudentFullName + "'s Request")
             print("bunu renkli yazcan he unutma dayıogli")
-            selectedStudentRequestPage = self.userInterface.selectPage(PageType.SELECTED_STUDENT_REQUEST_PAGE)
+            selectedStudentRequestPage = self.userInterface.selectPage("SELECTED_STUDENT_REQUEST_PAGE")
             selectedStudentRequestPage.setContent(
                 self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
 
-            evaluateRequestPage = self.userInterface.selectPage(PageType.EVALUATE_REQUESTS_PAGE)
+            evaluateRequestPage = self.userInterface.selectPage("EVALUATE_REQUESTS_PAGE")
             evaluateRequestPage.setContent(
                 self.domain.getPageCreator().createEvaluateRequestPageContent(advisor.getAwaitingStudents()))
             evaluateRequestPage.setNumberOfRequest(len(advisor.getAwaitingStudents()))
@@ -297,7 +297,7 @@ class SystemClass:
             lecturer = self.currentUser
             lecturer.selectCourse(int(sm.getInput()))
 
-            selectedMyCoursePage = self.userInterface.selectPage(PageType.SELECTED_MY_COURSE_PAGE)
+            selectedMyCoursePage = self.userInterface.selectPage("SELECTED_MY_COURSE_PAGE")
             selectedMyCoursePage.setContent(
                 self.domain.getPageCreator().createSelectedMyCoursePage(lecturer.getSelectedCourse()))
 
@@ -324,7 +324,7 @@ class SystemClass:
             student = self.currentUser
             student.clearUnreadNotification()
 
-            mainMenuPageStudent = self.userInterface.selectPage(PageType.MAIN_MENU_PAGE)
+            mainMenuPageStudent = self.userInterface.selectPage("MAIN_MENU_PAGE")
             mainMenuPageStudent.setContent(
                 self.domain.getPageCreator().createMainMenuPageStudentContent(len(student.getUnreadNotifications())))
 
