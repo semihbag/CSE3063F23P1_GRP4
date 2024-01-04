@@ -48,7 +48,7 @@ class Student(Person):
 
     def isPassedCourse(self, course):
         for passedCourse in self.transcript.getPassedCourses():
-            if passedCourse.getCourse().getCourseId().getId() == course.getCourseId().getId():
+            if passedCourse.getCourse().equals(course):
                 return True
         return False
 
