@@ -14,5 +14,4 @@ class AllCoursesPage(Page):
     def runPage(self):
         self.showContent()
         self.takeInput()
-        FunctionType.c
         return SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, None)

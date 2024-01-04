@@ -26,6 +26,6 @@ class MainMenuPageLecturer(Page):
             elif (inputFromPage == "4"):
                 return SystemMessage(FunctionType.LOGOUT, PageType.LOGIN_PAGE, None)
             elif (inputFromPage == "5"):
-                return SystemMessage(FunctionType.EXIT, None, None);
+                return SystemMessage(FunctionType.EXIT, None, None)
             else:
                print("Wrong Input!")
