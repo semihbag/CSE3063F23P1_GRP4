@@ -5,10 +5,127 @@ from python_development.CourseSession import CourseSession
 from python_development.CourseType import CourseType
 from python_development.Lecturer import Lecturer
 from python_development.Mark import Mark
+from python_development.Page.AllCoursesPage import AllCoursesPage
+from python_development.Page.ApprovedCoursesPage import ApprovedCoursesPage
+from python_development.Page.ChangePasswordPage import ChangePasswordPage
+from python_development.Page.EvaluateRequestsPage import EvaluateRequestsPage
+from python_development.Page.MainMenuPageAdvisor import MainMenuPageAdvisor
+from python_development.Page.MainMenuPageLecturer import MainMenuPageLecturer
+from python_development.Page.MainMenuPageStudent import MainMenuPageStudent
+from python_development.Page.MyCoursesPage import MyCoursesPage
+from python_development.Page.MyNotificationsPage import MyNotificationsPage
+from python_development.Page.MyStudentsPage import MyStudentsPage
+from python_development.Page.ProfilePage import ProfilePage
+from python_development.Page.SelectableCoursesPage import SelectableCoursesPage
+from python_development.Page.SelectedCoursesPage import SelectedCoursesPage
+from python_development.Page.SelectedMyCoursePage import SelectedMyCoursePage
+from python_development.Page.SelectedStudentRequestPage import SelectedStudentRequestPage
+from python_development.Page.SyllabusPage import SyllabusPage
+from python_development.Page.TranscriptPage import TranscriptPage
 from python_development.Student import Student
 
 
 class CreatePage:
+
+    def __init__(self):
+        self.pages = []
+
+    def create_pages(self, current_user):
+        if isinstance(current_user, Student):
+            main_student = MainMenuPageStudent(
+                self.createMainMenuPageStudentContent(len(current_user.getUnreadNotifications())))
+            self.pages.append(main_student)
+
+            profile = ProfilePage(self.createProfilePageContent(current_user))
+            self.pages.append(profile)
+
+            c_password = ChangePasswordPage(self.createChangePasswordPage())
+            self.pages.append(c_password)
+
+            notifications = MyNotificationsPage(
+                self.createMyNotificationsPageContent(current_user.getUnreadNotifications(),
+                                                      current_user.getReadNotifications()))
+            self.pages.append(notifications)
+
+            transcript = TranscriptPage(self.createTranscriptPageContent(current_user))
+            self.pages.append(transcript)
+
+            syllabus = SyllabusPage(self.createSyllabusPageContent(current_user.getSyllabus()))
+            self.pages.append(syllabus)
+
+            all_courses = AllCoursesPage(self.createAllCoursesPageContent(current_user.getCurriculum()))
+            self.pages.append(all_courses)
+
+            selectable = SelectableCoursesPage(
+                self.createSelectableCoursesPageContent(current_user.getSelectableCourses(),
+                                                        current_user.getMarks()))
+            selectable.setNumberOfSelectableCourses(len(current_user.getSelectableCourses()))
+            self.pages.append(selectable)
+
+            selected = SelectedCoursesPage(
+                self.createSelectedCoursesPageContent(current_user.getSelectedCourses()))
+            selected.setNumberOfDropableCourses(len(current_user.getSelectedCourses()))
+            self.pages.append(selected)
+
+            approved = ApprovedCoursesPage(
+                self.createApprovedCoursesPageContent(current_user.getApprovedCourses()))
+            self.pages.append(approved)
+
+        elif isinstance(current_user, Advisor):
+            main_advisor = MainMenuPageAdvisor(self.createMainMenuPageAdvisorContent())
+            self.pages.append(main_advisor)
+
+            profile = ProfilePage(self.createProfilePageContent(current_user))
+            self.pages.append(profile)
+
+            c_password = ChangePasswordPage(self.createChangePasswordPage())
+            self.pages.append(c_password)
+
+            my_students = MyStudentsPage(self.createMyStudentsPageContent(current_user.getStudentList()))
+            self.pages.append(my_students)
+
+            evaluate_request = EvaluateRequestsPage(
+                self.createEvaluateRequestPageContent(current_user.getAwaitingStudents()))
+            evaluate_request.setNumberOfRequest(len(current_user.getAwaitingStudents()))
+            self.pages.append(evaluate_request)
+
+            my_courses = MyCoursesPage(self.createMyCoursesPageContent(current_user))
+            my_courses.setNumberOfCourses(len(current_user.getGivenCourses()))
+            self.pages.append(my_courses)
+
+            selected_course = SelectedMyCoursePage(
+                self.createSelectedMyCoursePage(current_user.getSelectedCourse()))
+            self.pages.append(selected_course)
+
+            selected_student_request = SelectedStudentRequestPage(
+                self.createSelectedStudentsRequestPageContent(current_user.getSelectStudent()))
+            self.pages.append(selected_student_request)
+
+            syllabus = SyllabusPage(self.createSyllabusPageContent(current_user.getSyllabus()))
+            self.pages.append(syllabus)
+
+        elif isinstance(current_user, Lecturer):
+            main_lecturer = MainMenuPageLecturer(self.createMainMenuPageLecturerContent())
+            self.pages.append(main_lecturer)
+
+            profile = ProfilePage(self.createProfilePageContent(current_user))
+            self.pages.append(profile)
+
+            c_password = ChangePasswordPage(self.createChangePasswordPage())
+            self.pages.append(c_password)
+
+            my_courses = MyCoursesPage(self.createMyCoursesPageContent(current_user))
+            my_courses.setNumberOfCourses(len(current_user.getGivenCourses()))
+            self.pages.append(my_courses)
+
+            selected_course = SelectedMyCoursePage(
+                self.createSelectedMyCoursePage(current_user.getSelectedCourse()))
+            self.pages.append(selected_course)
+
+            syllabus = SyllabusPage(self.createSyllabusPageContent(current_user.getSyllabus()))
+            self.pages.append(syllabus)
+
+        return self.pages
 
     # CONTENTS
     def createMainMenuPageStudentContent(self, number_of_unread_notifications):
@@ -130,7 +247,7 @@ class CreatePage:
 
     def createMyCoursesPageContent(self, lecturer):
         content = "\033[1m\nCOURSES\n\033[0m"
-        for i, course in enumerate(lecturer.given_courses):
+        for i, course in enumerate(lecturer.getGivenCourses()):
             session_info = f".{course.getSessionId().getId()}" if isinstance(course, CourseSession) else ""
             content += (f"{i + 1})  {course.getCourseId().getId()}{session_info}" +
                         self.blankAfterStr(f"{course.getCourseId().getId()}{session_info}", 13) +
@@ -218,7 +335,8 @@ class CreatePage:
         else:
             for i, course in enumerate(courses):
                 if i == 0 and type != 1 and not (type == 2 and course.getCourseType() != CourseType.MANDATORY):
-                    str_content = "\033[1m     CODE         COURSE                                             LECTURER\n\033[0m"
+                    str_content = ("\033[1m     CODE         COURSE                                             "
+                                   "LECTURER\n\033[0m")
 
                 if type == 1:
                     str_content += self.allCourseLabels(i)
@@ -227,7 +345,8 @@ class CreatePage:
                         str_content += f"\033[1m\n{course.getCourseType()}\n\033[1m"
                     elif i > 0 and (course.getCourseType() != courses[i - 1].getCourseType()):
                         str_content += f"\033[1m\n{course.getCourseType()}\n\033[1m"
-                        str_content += "\033[1m     CODE         COURSE                                             LECTURER\n\033[0m"
+                        str_content += ("\033[1m     CODE         COURSE                                             "
+                                        "LECTURER\n\033[0m")
 
                 if marks:
                     mark = marks[i]
@@ -303,4 +422,3 @@ class CreatePage:
 
     def blankAfterI(self, i):
         return "    " if i < 10 else "   "
-
