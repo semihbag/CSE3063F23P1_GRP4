@@ -18,4 +18,4 @@ class ChangePasswordPage(Page):
         print("Enter your new password: ")
         passwords[1] = self.takeInput()
 
-        return SystemMessage(FunctionType.CHANGE_PASSWORD, PageType.PROFILE_PAGE, passwords)
+        return SystemMessage("CHANGE_PASSWORD", "PROFILE_PAGE", passwords)

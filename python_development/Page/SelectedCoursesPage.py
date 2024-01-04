@@ -23,12 +23,12 @@ class SelectedCoursesPage(Page):
                 if (selection > self.numberOfDropableCourses or selection < 0):
                     print("Enter a valid number")
                 else:
-                    return SystemMessage(FunctionType.DROP_COURSE, PageType.SELECTED_COURSES_PAGE, selection)
+                    return SystemMessage("DROP_COURSE", "SELECTED_COURSES_PAGE", selection)
             except:
                 if(inputFromPage.lower() == "a"):
-                    return SystemMessage(FunctionType.SEND_APPROVE, PageType.MAIN_MENU_PAGE, None)
+                    return SystemMessage("SEND_APPROVE", "MAIN_MENU_PAGE", None)
                 if(inputFromPage.lower() == "q"):
-                    return SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, None)
+                    return SystemMessage("CHANGE_PAGE", "MAIN_MENU_PAGE", None)
                 else:
                     print("Wrong Input")
 

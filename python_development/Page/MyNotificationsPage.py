@@ -15,7 +15,7 @@ class MyNotificationsPage(Page):
     def runPage(self):
         self.showContent()
         self.takeInput()
-        return SystemMessage(FunctionType.READ_NOTIFICATIONS, PageType.MAIN_MENU_PAGE, None)
+        return SystemMessage("READ_NOTIFICATIONS", "MAIN_MENU_PAGE", None)
     
 
     

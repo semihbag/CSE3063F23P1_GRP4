@@ -14,4 +14,4 @@ class MyStudentsPage(Page):
     def runPage(self):
         self.showContent()
         self.takeInput()
-        return SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, None)
+        return SystemMessage("CHANGE_PAGE", "MAIN_MENU_PAGE", None)

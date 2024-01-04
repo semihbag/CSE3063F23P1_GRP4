@@ -20,12 +20,12 @@ class SelectedStudentRequestPage(Page):
             if(inputFromPage.lower() == "a"):
                 print("Type your message or press enter directly:")
                 message = self.takeInput()
-                return SystemMessage(FunctionType.APPROVE_REQUEST, PageType.EVALUATE_REQUESTS_PAGE, message)
+                return SystemMessage("APPROVE_REQUEST", "EVALUATE_REQUESTS_PAGE", message)
             elif (inputFromPage.lower() == "r"):
                 print("Type your message or press enter directly:")
                 message = self.takeInput()
-                return SystemMessage(FunctionType.DISAPPREOVE_REQUEST, PageType.EVALUATE_REQUESTS_PAGE, message)
+                return SystemMessage("DISAPPREOVE_REQUEST", "EVALUATE_REQUESTS_PAGE", message)
             elif (inputFromPage.lower() == "q"):
-                return SystemMessage(FunctionType.CHANGE_PAGE, PageType.EVALUATE_REQUESTS_PAGE, None)
+                return SystemMessage("CHANGE_PAGE", "EVALUATE_REQUESTS_PAGE", None)
             else:
                 print("Wrong Input!")

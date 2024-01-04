@@ -15,4 +15,4 @@ class SelectedMyCoursePage(Page):
     def runPage(self):
         self.showContent()
         self.takeInput()
-        return SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_COURSES_PAGE, None)
+        return SystemMessage("CHANGE_PAGE", "MY_COURSES_PAGE", None)

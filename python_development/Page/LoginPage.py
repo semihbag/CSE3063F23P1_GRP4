@@ -20,4 +20,4 @@ class LoginPage(Page):
         print("Password: ")
         userInfo[1] = self.takeInput()
 
-        return SystemMessage(FunctionType.LOGIN, None,userInfo)
+        return SystemMessage("LOGIN", None,userInfo)

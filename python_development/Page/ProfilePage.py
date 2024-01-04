@@ -18,9 +18,9 @@ class ProfilePage(Page):
         while(True):
             inputFromPage = self.takeInput()
             if (inputFromPage.lower() == "c"):
-                return SystemMessage(FunctionType.CHANGE_PAGE, PageType.CHANGE_PASSWORD_PAGE, None)
+                return SystemMessage("CHANGE_PAGE", "CHANGE_PASSWORD_PAGE", None)
             elif (inputFromPage.lower() == "q"):
-                return SystemMessage(FunctionType.CHANGE_PAGE, PageType.MAIN_MENU_PAGE, None)
+                return SystemMessage("CHANGE_PAGE", "MAIN_MENU_PAGE", None)
             else:
                 print("Wrong Input!")
 

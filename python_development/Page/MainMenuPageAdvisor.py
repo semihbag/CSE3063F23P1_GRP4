@@ -17,19 +17,19 @@ class MainMenuPageAdvisor(Page):
             inputFromPage = self.takeInput()
 
             if (inputFromPage == "1"):
-                return SystemMessage(FunctionType.CHANGE_PAGE, PageType.PROFILE_PAGE, None)
+                return SystemMessage("CHANGE_PAGE", "PROFILE_PAGE", None)
             elif (inputFromPage == "2"):
-                return SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_STUDENTS_PAGE, None)
+                return SystemMessage("CHANGE_PAGE", "MY_STUDENTS_PAGE", None)
             elif (inputFromPage == "3"):
-                return SystemMessage(FunctionType.CHANGE_PAGE, PageType.EVALUATE_REQUESTS_PAGE, None)
+                return SystemMessage("CHANGE_PAGE", "EVALUATE_REQUESTS_PAGE", None)
             elif (inputFromPage == "4"):
-                return SystemMessage(FunctionType.CHANGE_PAGE, PageType.MY_COURSES_PAGE, None)
+                return SystemMessage("CHANGE_PAGE", "MY_COURSES_PAGE", None)
             elif (inputFromPage == "5"):
-                return SystemMessage(FunctionType.CHANGE_PAGE, PageType.SYLLABUS_PAGE, None)
+                return SystemMessage("CHANGE_PAGE", "SYLLABUS_PAGE", None)
             elif (inputFromPage == "6"):
-                return SystemMessage(FunctionType.LOGOUT, PageType.LOGIN_PAGE, None)
+                return SystemMessage("LOGOUT", "LOGIN_PAGE", None)
             elif (inputFromPage == "7"):
-                return SystemMessage(FunctionType.EXIT, None, None)
+                return SystemMessage("EXIT", None, None)
             else:
                print("Wrong Input!")
               
