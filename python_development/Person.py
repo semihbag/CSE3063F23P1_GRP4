@@ -4,47 +4,47 @@ from Syllabus import Syllabus
 
 
 class Person(ABC):
-    def __init__(self, first_name, last_name, person_id, password):
-        self.first_name = first_name
-        self.last_name = last_name
+    def __init__(self, firstName, lastName, personId, password):
+        self.firstName = firstName
+        self.lastName = lastName
         self.password = password
         self.syllabus = Syllabus()
-        self.person_id = person_id
+        self.personId = personId
 
-    def is_equal(self, obj):
+    def equals(self, obj):
         if isinstance(obj, Person):
-            return obj.get_person_id().get_id() == self.get_person_id().get_id()
+            return obj.getPersonId().getId() == self.getPersonId().getId()
         return False
 
-    def get_person_id(self):
-        return self.person_id
+    def getPersonId(self):
+        return self.personId
 
-    def set_person_id(self, person_id):
-        self.person_id = person_id
+    def setPersonId(self, personId):
+        self.personId = personId
 
     @abstractmethod
     def login(self, user_info, persons):
         pass
 
-    def get_first_name(self):
-        return self.first_name
+    def getFirstName(self):
+        return self.firstName
 
-    def get_last_name(self):
-        return self.last_name
+    def getLastName(self):
+        return self.lastName
 
-    def get_password(self):
+    def getPassword(self):
         return self.password
 
-    def set_password(self, password):
+    def setPassword(self, password):
         self.password = password
 
     @abstractmethod
-    def create_syllabus(self, courses):
+    def createSyllabus(self, courses):
         # Implementation of create_syllabus method in Python
         pass
 
-    def get_syllabus(self):
+    def getSyllabus(self):
         return self.syllabus
 
-    def set_syllabus(self, syllabus):
+    def setSyllabus(self, syllabus):
         self.syllabus = syllabus

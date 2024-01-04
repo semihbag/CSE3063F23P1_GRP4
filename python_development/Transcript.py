@@ -1,37 +1,37 @@
 class Transcript:
-    def __init__(self, gpa_100, term, passed_courses, failed_courses):
-        self.gpa_100 = gpa_100
+    def __init__(self, GPA_100, term, passedCourses, failedCourses):
+        self.GPA_100 = GPA_100
         self.term = term
-        self.total_credit = 0
-        self.passed_courses = passed_courses
-        self.failed_courses = failed_courses
-        self.total_credit = self.calculate_total_credit()
+        self.totalCredit = 0
+        self.passedCourses = passedCourses
+        self.failedCourses = failedCourses
+        self.totalCredit = self.calculateTotalCredit()
 
-    def calculate_total_credit(self):
-        for grade_class in self.passed_courses:
-            self.total_credit += grade_class.get_course().get_credit()
-        return self.total_credit
+    def calculateTotalCredit(self):
+        for gradeClass in self.passedCourses:
+            self.totalCredit += gradeClass.getCourse().getCredit()
+        return self.totalCredit
 
-    def get_gpa_100(self):
-        return self.gpa_100
+    def getGPA_100(self):
+        return self.GPA_100
 
-    def set_gpa_100(self, gpa_100):
-        self.gpa_100 = gpa_100
+    def setGPA_100(self, GPA_100):
+        self.GPA_100 = GPA_100
 
-    def get_term(self):
+    def getTerm(self):
         return self.term
 
-    def set_term(self, term):
+    def setTerm(self, term):
         self.term = term
 
-    def get_passed_courses(self):
-        return self.passed_courses
+    def getPassedCourses(self):
+        return self.passedCourses
 
-    def get_failed_courses(self):
-        return self.failed_courses
+    def getFailedCourses(self):
+        return self.failedCourses
 
-    def get_total_credit(self):
-        return self.total_credit
+    def getTotalCredit(self):
+        return self.totalCredit
 
-    def set_total_credit(self, total_credit):
-        self.total_credit = total_credit
+    def setTotalCredit(self, totalCredit):
+        self.totalCredit = totalCredit

@@ -4,20 +4,20 @@ class GradeClass:
         self.grade = grade
         self.term = None
 
-    def get_course(self):
+    def getCourse(self):
         return self.course
 
-    def get_grade(self):
+    def getGrade(self):
         return self.grade
 
-    def set_grade(self, grade):
+    def setGrade(self, grade):
         self.grade = grade
 
-    def set_course(self, course):
+    def setCourse(self, course):
         self.course = course
 
-    def set_term(self, term):
+    def setTerm(self, term):
         self.term = term
 
-    def get_term(self):
+    def getTerm(self):
         return self.term

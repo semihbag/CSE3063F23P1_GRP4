@@ -12,39 +12,39 @@ from Transcript import Transcript
 
 class TestStudent(unittest.TestCase):
 
-    def test_check_course_type(self):
+    def testCheckCourseType(self):
         # NONTECHNICAL
         BUS1004 = Course(None, "Strategic Entrepreneurship", 0, 3, None, None, 0, CourseType.NONTECHNICAL)
 
         # CASE1: Student term < 2
         term1 = Transcript(0, 1, [], None)
-        student_term1 = Student(None, None, None, None, None, term1, None)
-        self.assertFalse(student_term1.check_course_type(BUS1004))
+        studentTerm1 = Student(None, None, None, None, None, term1, None)
+        self.assertFalse(studentTerm1.checkCourseType(BUS1004))
 
         # CASE2: Student term >= 2
         term2 = Transcript(0, 2, [], None)
-        student_term2 = Student(None, None, None, None, None, term2, None)
-        self.assertTrue(student_term2.check_course_type(BUS1004))
+        studentTerm2 = Student(None, None, None, None, None, term2, None)
+        self.assertTrue(studentTerm2.checkCourseType(BUS1004))
 
         # TECHNICAL
         CSE4217 = Course(None, "Microprocessors", 0, 7, None, None, 0, CourseType.TECHNICAL)
 
         # CASE 1: Student term = 7
         term7 = Transcript(0, 7, [], None)
-        student_term7 = Student(None, None, None, None, None, term7, None)
-        self.assertTrue(student_term7.check_course_type(CSE4217))
+        studentTerm7 = Student(None, None, None, None, None, term7, None)
+        self.assertTrue(studentTerm7.checkCourseType(CSE4217))
 
         # CASE 2: Student term != 7 OR 8
-        self.assertFalse(student_term1.check_course_type(CSE4217))
+        self.assertFalse(studentTerm1.checkCourseType(CSE4217))
 
         # FACULTY
         EE4062 = Course(None, "Introduction to Image Processing", 0, 0, None, None, 0, CourseType.FACULTY)
 
         # CASE 1: Student term == 7
-        self.assertTrue(student_term7.check_course_type(EE4062))
+        self.assertTrue(studentTerm7.checkCourseType(EE4062))
 
         # CASE 2: Student term != 7
-        self.assertFalse(student_term1.check_course_type(EE4062))
+        self.assertFalse(studentTerm1.checkCourseType(EE4062))
 
         # MANDATORY
         ATA121 = Course(None, "Ataturk Ilkeleri ve Inkilap Tarihi I", 0, 1, None, None, 0, CourseType.MANDATORY)
@@ -54,53 +54,53 @@ class TestStudent(unittest.TestCase):
         # Engineering Project I and Engineering Project II
 
         # CASE1: COURSE: Engineering Project I, Student's credit >= 165
-        term7.set_total_credit(180)
-        self.assertTrue(student_term7.check_course_type(Engineering_Project_I))
+        term7.setTotalCredit(180)
+        self.assertTrue(studentTerm7.checkCourseType(Engineering_Project_I))
 
         # CASE2: COURSE: Engineering Project I, Student's credit < 165
-        term7.set_total_credit(100)
-        self.assertFalse(student_term7.check_course_type(Engineering_Project_I))
+        term7.setTotalCredit(100)
+        self.assertFalse(studentTerm7.checkCourseType(Engineering_Project_I))
 
         # CASE3: COURSE: Engineering Project II, Student's credit >= 165 TRUE
-        term7.set_total_credit(180)
-        self.assertTrue(student_term7.check_course_type(Engineering_Project_II))
+        term7.setTotalCredit(180)
+        self.assertTrue(studentTerm7.checkCourseType(Engineering_Project_II))
 
         # CASE4: COURSE: Engineering Project II, Student's credit < 165 FALSE
-        term7.set_total_credit(90)
-        self.assertFalse(student_term7.check_course_type(Engineering_Project_II))
+        term7.setTotalCredit(90)
+        self.assertFalse(studentTerm7.checkCourseType(Engineering_Project_II))
 
         # Taking the course of his own term
         # CASE5: course's term == Student's term
-        self.assertFalse(student_term2.check_course_type(ATA121))
+        self.assertFalse(studentTerm2.checkCourseType(ATA121))
 
         # Is Sagligi ve Guvenligi I and Is Sagligi ve Guvenligi II
         isgI = Course(None, "Is Sagligi ve Guvenligi I", 0, 7, None, None, 0, CourseType.MANDATORY)
         term3 = Transcript(2.5, 3, [], None)
-        student_term3 = Student(None, None, None, None, None, term3, None)
+        studentTerm3 = Student(None, None, None, None, None, term3, None)
 
         # CASE6: Student's gpa < 3.0 && Student's year >= 3
-        self.assertFalse(student_term3.check_course_type(isgI))
+        self.assertFalse(studentTerm3.checkCourseType(isgI))
 
         # Taking a course at a higher level"
         # CAS7: Student's gpa >= 3.0 && Student's year < 3
         term3_1 = Transcript(3.1, 1, [], None)
-        student_term3_1 = Student(None, None, None, None, None, term3_1, None)
-        self.assertFalse(student_term3_1.check_course_type(isgI))
+        studentTerm3_1 = Student(None, None, None, None, None, term3_1, None)
+        self.assertFalse(studentTerm3_1.checkCourseType(isgI))
 
         # CASE8: Student's gpa >= 3.0 && Student's year >= 3
         term3_2 = Transcript(3.1, 3, [], None)
-        student_term3_2 = Student(None, None, None, None, None, term3_2, None)
-        self.assertTrue(student_term3_2.check_course_type(isgI))
+        studentTerm3_2 = Student(None, None, None, None, None, term3_2, None)
+        self.assertTrue(studentTerm3_2.checkCourseType(isgI))
 
         # CASE9: Student's gpa >= 3.0 && Student's year >= 3 course's year == Student's year +2
-        course_term5 = Course(None, "Digital Logic Design", 0, 5, None, None, 0, CourseType.MANDATORY)
-        self.assertTrue(student_term3_2.check_course_type(course_term5))
+        courseTerm5 = Course(None, "Digital Logic Design", 0, 5, None, None, 0, CourseType.MANDATORY)
+        self.assertTrue(studentTerm3_2.checkCourseType(courseTerm5))
 
         # CASE10: Student's gpa >= 3.0 && Student's year >= 3 course's != Student's year +2
-        course_term7 = Course(None, "Computer Networks", 0, 7, None, None, 0, CourseType.MANDATORY)
-        self.assertFalse(student_term3_2.check_course_type(course_term7))
+        courseTerm7 = Course(None, "Computer Networks", 0, 7, None, None, 0, CourseType.MANDATORY)
+        self.assertFalse(studentTerm3_2.checkCourseType(courseTerm7))
 
-    def test_is_failed_course(self):
+    def testIsFailedCourse(self):
         id1 = Id("CSE2023")
         id2 = Id("MATH1002")
 
@@ -109,109 +109,109 @@ class TestStudent(unittest.TestCase):
         course2 = Course(id2, None, 0, 2, None, None, 0, None)
 
         # Creating sample GradeClass objects
-        passed_course1 = GradeClass(course1, Grade.AA)
-        failed_course1 = GradeClass(course2, Grade.FF)
+        passedCourse1 = GradeClass(course1, Grade.AA)
+        failedCourse1 = GradeClass(course2, Grade.FF)
 
         # passedCourses and failedCourses ArrayLists are created and objects are added to these lists
-        passed_courses = [passed_course1]
-        failed_courses = [failed_course1]
+        passedCourses = [passedCourse1]
+        failedCourses = [failedCourse1]
 
-        transcript = Transcript(0, 4, passed_courses, failed_courses)
+        transcript = Transcript(0, 4, passedCourses, failedCourses)
 
         # Creating a Student object and adding a Transcript object to this object
         student = Student(None, None, None, None, None, transcript, None)
 
         # Must return false because the first lesson was successful
-        self.assertFalse(student.is_failed_course(course1))
+        self.assertFalse(student.isFailedCourse(course1))
 
         # Must return true because second lesson failed
-        self.assertTrue(student.is_failed_course(course2))
+        self.assertTrue(student.isFailedCourse(course2))
 
-    def test_exceed(self):
+    def testExceed(self):
         # Creating an ArrayList to store passed courses
-        passed_courses = []
+        passedCourses = []
 
         # Creating a Transcript with initial values and an empty list of passed courses
-        transcript = Transcript(0, 0, passed_courses, None)
+        transcript = Transcript(0, 0, passedCourses, None)
 
         # Creating a Student with null values for personal information, using the created transcript
         student = Student(None, None, None, None, None, transcript, None)
 
         # Creating the first course and adding it to the list of passed courses with grade AA
         course1 = Course(None, None, 0, 0, None, None, 0, CourseType.NONTECHNICAL)
-        grade_class1 = GradeClass(course1, Grade.AA)
-        passed_courses.append(grade_class1)
+        gradeClass1 = GradeClass(course1, Grade.AA)
+        passedCourses.append(gradeClass1)
 
         # Asserting that the student did not exceed the limit for NONTECHNICAL courses with max limit 2
-        self.assertFalse(student.exceed(course1.get_course_type(), 2))
+        self.assertFalse(student.exceed(course1.getCourseType(), 2))
 
         # Creating the second course and adding it to the list of passed courses with grade AA
         course2 = Course(None, None, 0, 0, None, None, 0, CourseType.NONTECHNICAL)
-        grade_class2 = GradeClass(course1, Grade.AA)
-        passed_courses.append(grade_class2)
+        gradeClass2 = GradeClass(course1, Grade.AA)
+        passedCourses.append(gradeClass2)
 
         # Asserting that the student exceeded the limit for NONTECHNICAL courses with max limit 2
-        self.assertTrue(student.exceed(course2.get_course_type(), 2))
+        self.assertTrue(student.exceed(course2.getCourseType(), 2))
 
         # Creating the third course and adding it to the list of passed courses with grade AA
         course3 = Course(None, None, 0, 0, None, None, 0, CourseType.FACULTY)
-        grade_class3 = GradeClass(course3, Grade.AA)
-        passed_courses.append(grade_class3)
+        gradeClass3 = GradeClass(course3, Grade.AA)
+        passedCourses.append(gradeClass3)
 
         # Asserting that the student did not exceed the limit for FACULTY courses with max limit 2
-        self.assertFalse(student.exceed(course3.get_course_type(), 2))
+        self.assertFalse(student.exceed(course3.getCourseType(), 2))
 
         # Creating the fourth course and adding it to the list of passed courses with grade AA
         course4 = Course(None, None, 0, 0, None, None, 0, CourseType.FACULTY)
-        grade_class4 = GradeClass(course4, Grade.AA)
-        passed_courses.append(grade_class4)
+        gradeClass4 = GradeClass(course4, Grade.AA)
+        passedCourses.append(gradeClass4)
 
         # Asserting that the student exceeded the limit for FACULTY courses with max limit 2
-        self.assertTrue(student.exceed(course4.get_course_type(), 2))
+        self.assertTrue(student.exceed(course4.getCourseType(), 2))
 
-    def test_exceed_term(self):
+    def testExceedTerm(self):
         student = Student(None, None, None, None, None, None, None)
 
         # CASE 1: Check status if student does not select specific course type in the current term
-        self.assertFalse(student.exceed_term(CourseType.MANDATORY))
-        self.assertFalse(student.exceed_term(CourseType.TECHNICAL))
-        self.assertFalse(student.exceed_term(CourseType.FACULTY))
+        self.assertFalse(student.exceedTerm(CourseType.MANDATORY))
+        self.assertFalse(student.exceedTerm(CourseType.TECHNICAL))
+        self.assertFalse(student.exceedTerm(CourseType.FACULTY))
 
         # CASE2: If student selects one specific course type in the current term
-        non_technical = Course(None, "Strategic Entrepreneurship", 0, 3, None, None, 0, CourseType.NONTECHNICAL)
+        nonTechnical = Course(None, "Strategic Entrepreneurship", 0, 3, None, None, 0, CourseType.NONTECHNICAL)
         technical = Course(None, "Microprocessors", 0, 3, None, None, 0, CourseType.TECHNICAL)
         faculty = Course(None, "Introduction to Image Processing", 0, 3, None, None, 0, CourseType.FACULTY)
 
-        selected_courses = [non_technical, technical, faculty]
-        student.set_selected_courses(selected_courses)
+        selectedCourses = [nonTechnical, technical, faculty]
+        student.setSelectedCourses(selectedCourses)
 
-        self.assertTrue(student.exceed_term(CourseType.NONTECHNICAL))
-        self.assertTrue(student.exceed_term(CourseType.TECHNICAL))
-        self.assertTrue(student.exceed_term(CourseType.FACULTY))
+        self.assertTrue(student.exceedTerm(CourseType.NONTECHNICAL))
+        self.assertTrue(student.exceedTerm(CourseType.TECHNICAL))
+        self.assertTrue(student.exceedTerm(CourseType.FACULTY))
 
-    def test_clear_unread_notification(self):
+    def testClearUnreadNotification(self):
         student = Student(None, None, None, None, None, None, None)
 
-        unread_notifications = []
-        read_notifications = []
-        student.set_unread_notifications(unread_notifications)
-        student.set_read_notifications(read_notifications)
+        unreadNotifications = []
+        readNotifications = []
+        student.setUnreadNotifications(unreadNotifications)
+        student.setReadNotifications(readNotifications)
 
-        student.add_unread_notification("Notification 1")
-        student.add_unread_notification("Notification 2")
+        student.addUnreadNotification("Notification 1")
+        student.addUnreadNotification("Notification 2")
 
-        student.clear_unread_notification()
+        student.clearUnreadNotification()
 
-        self.assertTrue(len(student.get_unread_notifications()) == 0)
-        self.assertFalse(len(student.get_read_notifications()) == 0)
+        self.assertTrue(len(student.getUnreadNotifications()) == 0)
+        self.assertFalse(len(student.getReadNotifications()) == 0)
 
-    def test_add_unread_notification(self):
+    def testAddUnreadNotification(self):
         student = Student(None, None, None, None, None, None, None)
 
-        student.set_unread_notifications([])
+        student.setUnreadNotifications([])
 
         notification = "Test Notification"
-        student.add_unread_notification(notification)
+        student.addUnreadNotification(notification)
 
-        self.assertTrue(notification in student.get_unread_notifications())
-        self.assertEqual(notification, student.get_unread_notifications()[0])
+        self.assertTrue(notification in student.getUnreadNotifications())
+        self.assertEqual(notification, student.getUnreadNotifications()[0])
