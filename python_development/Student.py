@@ -292,9 +292,6 @@ class Student(Person):
         return self.marks
 
 
-    def setMarks(self, marks):
-        self.marks = marks
-
     def setSelectableCourses(self, value):
         self._selectableCourses = value
 

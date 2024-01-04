@@ -6,7 +6,7 @@ class CourseSession(Course):
         super().__init__(course_id, course_name, quota, term, lecturer, course_schedules, credit, course_type)
         self.session_id = session_id
 
-    def is_equal(self, obj):
+    def equals(self, obj):
         if isinstance(obj, CourseSession):
             return (
                     obj.get_course_id().get_id() == self.get_course_id().get_id()
@@ -15,5 +15,5 @@ class CourseSession(Course):
         return False
 
 
-    def get_session_id(self):
+    def getSessionId(self):
         return self.session_id
