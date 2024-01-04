@@ -16,15 +16,15 @@ class Advisor(Lecturer):
                 advisor = person
                 if ("a" + str(advisor.get_person_id().get_id()) == username and
                         advisor.get_password().get_password() == password):
-                    advisor.find_awaiting_students()
-                    advisor.create_syllabus(advisor.get_given_courses())
+                    advisor.findAwaitingStudents()
+                    advisor.create_syllabus(advisor.getGivenCourses())
                     return advisor
         
         return None
     
     def findAwaitingStudents(self):
         for student in self.students:
-            if student not in self.awaitingStudents and student.getRequest() == "true":
+            if student not in self.awaitingStudents and student.get_request() == "true":
                 self.awaitingStudents.append(student)
 
     def select_student(self, index):
