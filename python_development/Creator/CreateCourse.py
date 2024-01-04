@@ -44,8 +44,8 @@ class CreateCourse:
 
                     for prerequisite in prerequisite_id:
                         for crs in self.courses:
-                            if crs.course_id.id == prerequisite:
-                                course.prerequisite_courses.append(crs)
+                            if crs.courseId.id == prerequisite:
+                                course.prerequisiteCourses.append(crs)
                                 break
                     self.courses.append(course)
             self.assignCoursesToLecturer(lecturers)
