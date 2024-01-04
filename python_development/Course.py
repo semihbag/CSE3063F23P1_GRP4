@@ -11,55 +11,55 @@ class Course:
         self.prerequisite_courses = []
         self.student_list = []
 
-    def enroll_student(self, student):
+    def enrollStudent(self, student):
         self.student_list.append(student)
 
-    def is_equal(self, obj):
+    def equals(self, obj):
         if isinstance(obj, Course):
             return obj.course_id.get_id() == self.course_id.get_id()
         return False
 
-    def get_term(self):
+    def getTerm(self):
         return self.term
 
-    def get_course_id(self):
+    def getCourseId(self):
         return self.course_id
 
-    def get_course_name(self):
+    def getCourseName(self):
         return self.course_name
 
-    def get_quota(self):
+    def getQuota(self):
         return self.quota
 
-    def get_prerequisite_courses(self):
+    def getPrerequisiteCourses(self):
         return self.prerequisite_courses
 
-    def get_student_list(self):
+    def getStudentList(self):
         return self.student_list
 
-    def get_lecturer(self):
+    def getLecturer(self):
         return self.lecturer
 
-    def set_quota(self, quota):
+    def setQuota(self, quota):
         self.quota = quota
 
-    def set_student_list(self, student_list):
+    def setStudentList(self, student_list):
         self.student_list = student_list
 
-    def get_course_schedules(self):
+    def getCourseSchedules(self):
         return self.course_schedules
 
-    def set_course_schedules(self, course_schedules):
+    def setCourseSchedules(self, course_schedules):
         self.course_schedules = course_schedules
 
-    def get_course_type(self):
+    def getCourseType(self):
         return self.course_type
 
-    def set_course_type(self, course_type):
+    def setCourseType(self, course_type):
         self.course_type = course_type
 
-    def get_credit(self):
+    def getCredit(self):
         return self.credit
 
-    def set_credit(self, credit):
+    def setCredit(self, credit):
         self.credit = credit

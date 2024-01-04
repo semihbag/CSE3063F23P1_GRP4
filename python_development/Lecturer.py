@@ -11,9 +11,9 @@ class Lecturer(Person):
         for person in persons:
             if isinstance(person, Lecturer):
                 lecturer = person
-                if ("l" + str(lecturer.get_person_id().get_id()) == username and
-                        lecturer.get_password().get_password() == password):
-                    lecturer.create_syllabus(lecturer.getGivenCourses())
+                if ("l" + str(lecturer.getPersonId().getId()) == username and
+                        lecturer.getPassword().getPassword() == password):
+                    lecturer.createSyllabus(lecturer.getGivenCourses())
                     return lecturer
         return None
 
@@ -22,11 +22,9 @@ class Lecturer(Person):
         currentCourse = self.givenCourses[index]
         self.setSelectedCourse(currentCourse)
 
-    def create_syllabus(self, givenCourses):
-        self.get_syllabus().fill_syllabus(givenCourses)
+    def createSyllabus(self, givenCourses):
+        self.getSyllabus().fillSyllabus(givenCourses)
 
-    def getLecturerId(self):
-        return self.lecturerId
 
     def getGivenCourses(self):
         return self.givenCourses
