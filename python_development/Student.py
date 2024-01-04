@@ -63,7 +63,7 @@ class Student(Person):
 
     def isFailedCourse(self, course):
         for failedCourse in self.transcript.getFailedCourses():
-            if failedCourse.getCourse().getCourseId().getId() == course.getCourseId().getId() and self.transcript.getTerm() % 2 == course.getTerm() % 2:
+            if failedCourse.getCourse().equals(course) and self.transcript.getTerm() % 2 == course.getTerm() % 2:
                 return True
         return False
 
