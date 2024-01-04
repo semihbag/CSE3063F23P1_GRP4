@@ -3,7 +3,7 @@ class Lecturer(Person):
     def __init__(self, FirstName,LastName , LecturerId, password):
         super().__init__(FirstName, LastName, LecturerId, password)
         self.givenCourses = []
-        self.selectCourse = None
+        self.selectedCourse = None
 
     def login(self, user_info, persons):
         username = user_info[0]
@@ -13,7 +13,7 @@ class Lecturer(Person):
                 lecturer = person
                 if ("l" + str(lecturer.get_person_id().get_id()) == username and
                         lecturer.get_password().get_password() == password):
-                    lecturer.create_syllabus(lecturer.get_given_courses())
+                    lecturer.create_syllabus(lecturer.getGivenCourses())
                     return lecturer
         return None
 
@@ -23,7 +23,7 @@ class Lecturer(Person):
         self.setSelectedCourse(currentCourse)
 
     def create_syllabus(self, givenCourses):
-        self.getSyllabus().fillSyllabus(givenCourses)
+        self.get_syllabus().fill_syllabus(givenCourses)
 
     def getLecturerId(self):
         return self.lecturerId
