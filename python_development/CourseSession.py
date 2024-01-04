@@ -16,4 +16,4 @@ class CourseSession(Course):
 
 
     def getSessionId(self):
-        return self.session_id
+        return self.sessionId
