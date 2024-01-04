@@ -1,6 +1,11 @@
 from python_development.Creator.CreateAdvisor import CreateAdvisor
+from python_development.Creator.CreateCourse import CreateCourse
 from python_development.Creator.CreateLecturer import CreateLecturer
 from python_development.Creator.CreateStudent import CreateStudent
+
+
+class CreatePage:
+    pass
 
 
 class SystemDomain:
