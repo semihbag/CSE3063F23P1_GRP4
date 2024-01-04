@@ -42,7 +42,7 @@ class Student(Person):
 
     def isSelectedCourse(self, course):
         for selectedCourse in self.selectedCourses:
-            if selectedCourse.getCourseId().getId() == course.getCourseId().getId():
+            if selectedCourse.equals(course):
                 return True
         return False
 
