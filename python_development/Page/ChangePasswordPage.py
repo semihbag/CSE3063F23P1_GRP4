@@ -3,7 +3,7 @@ from python_development.Page import PageType
 from python_development.System import FunctionType
 from python_development.System import SystemMessage
 
-class ChangePasswaordPage(Page):
+class ChangePasswordPage(Page):
 
     def __init__(self, content):
         super().__init__(content)

@@ -1,6 +1,6 @@
 import json
 
-from python_development.Advisor import  Advisor
+from python_development.Advisor import Advisor
 from python_development.Id import Id
 from python_development.Password import Password
 

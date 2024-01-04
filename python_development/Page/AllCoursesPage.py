@@ -3,7 +3,7 @@ from python_development.Page import PageType
 from python_development.System import FunctionType
 from python_development.System import SystemMessage
 
-class AllCoursesPAge(Page):
+class AllCoursesPage(Page):
 
     def __init__(self, content):
         super().__init__(content)

@@ -1,12 +1,12 @@
 import unittest
 
-from Student import Student
-from Course import Course
-from Id import Id
-from GradeClass import GradeClass
-from CourseType import CourseType
-from Grade import Grade
-from Transcript import Transcript
+from python_development.Student import Student
+from python_development.Course import Course
+from python_development.Id import Id
+from python_development.GradeClass import GradeClass
+from python_development.CourseType import CourseType
+from python_development.Grade import Grade
+from python_development.Transcript import Transcript
 
 
 

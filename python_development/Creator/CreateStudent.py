@@ -26,10 +26,10 @@ class CreateStudent:
                         transcript = json_student['transcript']
                         registration = json_student['registration']
 
-                        id = json_student['id']
+                        studentId = json_student['id']
                         name = json_student['name']
                         lastname = json_student['lastname']
-                        print(name + lastname)
+
                         advisor_id = json_student['advisor']
                         boolean_string = json_student['request']
                         read_notification = json_student['readNotification']
@@ -56,16 +56,16 @@ class CreateStudent:
                         term = transcript['term']
                         gpa = self.calculateGPA(passed_courses, failed_courses)
 
-                        crt_student = Student(name, lastname, Id(id), Password(password),
+                        crt_student = Student(name, lastname, Id(studentId), Password(password),
                                               self.findAdvisor(advisor_id, advisors),
                                               Transcript(gpa, term, passed_courses, failed_courses), courses)
 
                         crt_student.request = boolean_string
-                        crt_student.read_notifications = list(read_notification)
-                        crt_student.unread_notifications = list(unread_notification)
-                        crt_student.selected_courses = selected_courses
-                        crt_student.approved_courses = approved_courses
-                        crt_student.filter_courses()
+                        crt_student.readNotifications = list(read_notification)
+                        crt_student.unreadNotifications = list(unread_notification)
+                        crt_student.selectedCourses = selected_courses
+                        crt_student.approvedCourses = approved_courses
+                        crt_student.filterCourses()
                         self.students.append(crt_student)
                 except (json.JSONDecodeError, FileNotFoundError):
                     pass
@@ -78,13 +78,15 @@ class CreateStudent:
         j = 0
         for i in range(len(transcript_courses)):
             for course in courses:
-                if course.course_id.id == transcript_courses[i] and not self.courseExists(course, transcript_course_list):
+                if (course.getCourseId().getId() == transcript_courses[i] and
+                        not self.courseExists(course, transcript_course_list)):
                     grade_class = GradeClass(course, self.getCourseGrade(grades[i]))
-                    if course.course_type == CourseType.NONTECHNICAL or "Is Sagligi ve Guvenligi" in course.course_name:
+                    if (course.getCourseType() == CourseType.NONTECHNICAL or
+                            "Is Sagligi ve Guvenligi" in course.getCourseName()):
                         grade_class.term = term_passed[j]
                         j += 1
                     else:
-                        grade_class.term = course.term
+                        grade_class.term = course.getTerm()
                     transcript_course_list.append(grade_class)
         return transcript_course_list
 
@@ -92,23 +94,24 @@ class CreateStudent:
         student_courses_list = []
         for s in student_courses_ar:
             for j in range(len(courses)):
-                if isinstance(courses[j], CourseSession) and (courses[j].course_id.id + "." + courses[j].session_id.id == s):
+                if isinstance(courses[j], CourseSession) and (
+                        courses[j].getCourseId().getId() + "." + courses[j].getSessionId().getId() == s):
                     student_courses_list.append(courses[j])
-                elif s == courses[j].course_id.id:
+                elif s == courses[j].getCourseId().getId():
                     student_courses_list.append(courses[j])
         return student_courses_list
 
     def findAdvisor(self, advisor_id, advisors):
         for advisor in advisors:
-            if advisor.person_id.id == advisor_id:
+            if advisor.getPersonId().getId() == advisor_id:
                 return advisor
         return None
 
     def assignStudentToAdvisor(self, advisors):
         for student in self.students:
             for advisor in advisors:
-                if student.advisor.person_id.id == advisor.person_id.id:
-                    advisor.student_list.append(student)
+                if student.getAdvisor().getPersonId().getId() == advisor.getPersonId().getId():
+                    advisor.getStudentList().append(student)
                     break
 
     def fillStudentListCourse(self, courses):
@@ -119,13 +122,13 @@ class CreateStudent:
                 course_students_id = current_course['studentList']
                 for curr_student_id in course_students_id:
                     for st in self.students:
-                        if st.person_id.id == curr_student_id and st not in courses[i].student_list:
+                        if st.getPersonId().getId() == curr_student_id and st not in courses[i].student_list:
                             courses[i].student_list.append(st)
                             break
 
     def courseExists(self, course, transcript_course_list):
         for grade_class in transcript_course_list:
-            if course.course_id.id == grade_class.course.course_id.id:
+            if course.getCourseId().getId() == grade_class.getCourse().getCourseId().getId():
                 return True
         return False
 
