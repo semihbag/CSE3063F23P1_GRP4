@@ -34,23 +34,15 @@ class Student(Person):
 
     def login(self, userInfo, persons):
         username, password = userInfo
-        for person in persons:
-            if f"o{person.personId}" == username and person.password.password == password:
-                return person
+        for student in persons:
+            if f"o{student.getPersonId().getId()}" == username and student.getPassword().getPassword() == password:
+                return student
         return None
 
     def isSelectedCourse(self, course):
         for selectedCourse in self.selectedCourses:
-            if isinstance(course, CourseSession):
-                if isinstance(selectedCourse, CourseSession):
-                    if selectedCourse.getSessionId().getId() == course.getSessionId().getId():
-                        return True
-                else:
-                    if selectedCourse.getCourseId().getId() == course.getCourseId().getId():
-                        return True
-            else:
-                if selectedCourse.getCourseId().getId() == course.getCourseId().getId():
-                    return True
+            if selectedCourse.getCourseId().getId() == course.getCourseId().getId():
+                return True
         return False
 
     def isPassedCourse(self, course):
@@ -84,7 +76,7 @@ class Student(Person):
         self.selectedCourses.clear()
         self.selectedCourseCredit = 0
         print("1------------------------------------------0", len(self.selectedCourses))
-        self.setMarks()  # Assuming setMarks() is a function/method available in your code
+        self.setMarks()
 
     def sendToApproval(self):
         self.request = "true"
@@ -109,17 +101,16 @@ class Student(Person):
 
         if mark == Mark.ERROR_CONFLICT:
             print(
-                f"The course you want to add {course.courseName} conflicts with {self.syllabus.findConflictedCourseName(course)}!")
+                f"The course you want to add {course.getCourseName()} conflicts with {self.syllabus.findConflictedCourseName(course)}!")
 
         if mark == Mark.ERROR_SAME_TYPE:
-            print(f"You cannot select {course.courseType} course more than once in one term!")
+            print(f"You cannot select {course.getCourseType()} course more than once in one term!")
 
         if mark == Mark.SELECTED:
             if isinstance(course, CourseSession):
-                print(f"You have already selected a session from {course.Course.getCourseName()}.")
+                print(f"You have already selected a session from {course.getCourseName()}.")
             else:
-                print(f"You have already selected {course.courseName}.")
-
+                print(f"You have already selected {course.getCourseName()}.")
         return False
 
     def setMarks(self):
@@ -137,9 +128,9 @@ class Student(Person):
     def finalCheckSelectedCourse(self, course):
         if self.request == "false":
             if not self.isSelectedCourse(course):
-                if self.selectedCourseCredit + course.credit < 40:
-                    courseType = course.courseType
-                    if courseType != CourseType.CourseType.MANDATORY:
+                if self.selectedCourseCredit + course.getCredit() < 40:
+                    courseType = course.getCourseType()
+                    if courseType != CourseType.MANDATORY:
                         if self.exceedTerm(courseType):
                             return Mark.ERROR_SAME_TYPE
                     if not self.syllabus.checkConflict(course):
@@ -151,36 +142,36 @@ class Student(Person):
         return Mark.ERROR_ALREADY_SENDED
 
     def checkCourseType(self, course):
-        courseType = course.courseType
+        courseType = course.getCourseType()
         if courseType == CourseType.NONTECHNICAL and self.transcript.term >= 2:
             if not self.exceed(courseType, 2):
                 return True
         elif courseType == CourseType.TECHNICAL:
-            if self.transcript.term == 7 or self.transcript.term == 8:
+            if self.transcript.getTerm() == 7 or self.transcript.getTerm() == 8:
                 return True
         elif courseType == CourseType.FACULTY:
-            if (self.transcript.term == 7 or self.transcript.term == 8) and not self.exceed(courseType, 1):
+            if (self.transcript.getTerm() == 7 or self.transcript.getTerm() == 8) and not self.exceed(courseType, 1):
                 return True
         elif courseType == CourseType.MANDATORY:
-            if course.courseName == "Engineering Project I" or course.courseName == "Engineering Project II":
-                if self.transcript.totalCredit >= 165:
+            if course.getCourseName() == "Engineering Project I" or course.getCourseName() == "Engineering Project II":
+                if self.transcript.getTotalCredit() >= 165:
                     return True
                 return False
-            elif course.term == self.transcript.term:
+            elif course.getTerm() == self.transcript.getTerm():
                 return True
-            elif (self.transcript.GPA_100 >= 3.0 and self.transcript.term >= 3) and (
-                    (
-                            course.courseName == "Is Sagligi ve Guvenligi I" or course.courseName == "Is Sagligi ve Guvenligi II") or
-                    (course.term == self.transcript.term + 2)):
+            elif (self.transcript.getGPA_100() >= 3.0 and self.transcript.getTerm() >= 3) and (
+                    (course.getCourseName() == "Is Sagligi ve Guvenligi I" or course.getCourseName() == "Is Sagligi ve Guvenligi II") or
+                    (course.getTerm() == self.transcript.getTerm() + 2)):
                 return True
         return False
 
     def exceed(self, courseType, limit):
-        ct = sum(1 for gradeClass in self.transcript.passedCourses if gradeClass.course.courseType == courseType)
+        ct = sum(1 for gradeClass in self.transcript.getPassedCourses()
+                 if gradeClass.getCourse().getCourseType() == courseType)
         return ct == limit
 
     def exceedTerm(self, courseType):
-        ct = sum(1 for selectedCourse in self.selectedCourses if selectedCourse.courseType == courseType)
+        ct = sum(1 for selectedCourse in self.selectedCourses if selectedCourse.getCourseType() == courseType)
         return ct > 0
 
     def clearUnreadNotification(self):
@@ -192,13 +183,13 @@ class Student(Person):
 
     def dropCourse(self, i):
         course = self.selectedCourses.pop(i - 1)
-        self.selectedCourseCredit -= course.credit
+        self.selectedCourseCredit -= course.getCredit()
         self.syllabus.removeCourseFromSyllabus(course)
         self.setMarks()
 
     def addAllSessions(self, course):
         for curriculumCourse in self.curriculum:
-            if course.courseId == curriculumCourse.courseId:
+            if course.getCourseId().getId() == curriculumCourse.getCourseId().getId():
                 if curriculumCourse not in self.selectableCourses:
                     self.selectableCourses.append(curriculumCourse)
 
@@ -212,12 +203,6 @@ class Student(Person):
 
     def createSyllabus(self, courses):
         self.syllabus.fillSyllabus(courses)
-    
-    def getSyllabus(self):
-        return self.syllabus
-    
-    def setSyllabus(self, syllabus):
-        self.syllabus = syllabus
 
     def getCurriculum(self):
         return self.curriculum
@@ -292,9 +277,5 @@ class Student(Person):
         return self.marks
 
 
-    def setSelectableCourses(self, value):
-        self._selectableCourses = value
-
-
-    def setCurriculum(self, value):
-        self._curriculum = value
+    def set_marks(self, marks):
+        self.marks = marks
