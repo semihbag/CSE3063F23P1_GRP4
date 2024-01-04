@@ -11,9 +11,9 @@ class CreateCourse:
     def __init__(self, file_name, lecturers):
         self.courses = []
         self.file_name = file_name
-        self.create_courses(lecturers)
+        self.createCourses(lecturers)
 
-    def create_courses(self, lecturers):
+    def createCourses(self, lecturers):
         try:
             with open(self.file_name, 'r') as file:
                 content = file.read()
@@ -34,8 +34,8 @@ class CreateCourse:
                             break
 
                     course_schedule = []
-                    self.fill_course_schedule(course_data["day"], course_data["hour"], course_schedule)
-                    course_type = self.set_course_type(course_type_str)
+                    self.fillCourseSchedule(course_data["day"], course_data["hour"], course_schedule)
+                    course_type = self.setCourseType(course_type_str)
                     if course_data["isSession"]:
                         session_id = course_data["sessionId"]
                         course = CourseSession(Id(course_id), name, quota, term, course_lecturer, Id(session_id), course_schedule, credit, course_type)
@@ -48,29 +48,29 @@ class CreateCourse:
                                 course.prerequisite_courses.append(crs)
                                 break
                     self.courses.append(course)
-            self.assign_courses_to_lecturer(lecturers)
+            self.assignCoursesToLecturer(lecturers)
         except (json.JSONDecodeError, FileNotFoundError):
             print("An error occurred in the courses JSON file. Please ensure that the file is created in the correct format and fix any errors.")
 
-    def assign_courses_to_lecturer(self, lecturers):
+    def assignCoursesToLecturer(self, lecturers):
         for course in self.courses:
             for lecturer in lecturers:
                 if course.lecturer == lecturer:
                     lecturer.getGivenCourses().append(course)
 
     @staticmethod
-    def json_arr_to_str_arr(json_array):
+    def jsonArrToStrArr(json_array):
         return [str(item) for item in json_array]
 
-    def fill_course_schedule(self, day_json_arr, hour_json_arr, course_schedules):
-        day_str_arr = self.json_arr_to_str_arr(day_json_arr)
+    def fillCourseSchedule(self, day_json_arr, hour_json_arr, course_schedules):
+        day_str_arr = self.jsonArrToStrArr(day_json_arr)
         for i, day_str in enumerate(day_str_arr):
-            current_day = self.get_course_day(day_str)
-            hours = [self.get_course_hour(str(hour)) for hour in hour_json_arr[i]]
+            current_day = self.getCourseDay(day_str)
+            hours = [self.getCourseHour(str(hour)) for hour in hour_json_arr[i]]
             course_schedules.append(CourseSchedule(current_day, hours))
 
     @staticmethod
-    def get_course_day(str_day):
+    def getCourseDay(str_day):
         return {
             "MONDAY": Day.MONDAY,
             "TUESDAY": Day.TUESDAY,
@@ -80,7 +80,7 @@ class CreateCourse:
         }.get(str_day.upper(), None)
 
     @staticmethod
-    def get_course_hour(str_hour):
+    def getCourseHour(str_hour):
         return {
             "8.30": Hour.H_08_30_09_20,
             "9.30": Hour.H_09_30_10_20,
@@ -98,7 +98,7 @@ class CreateCourse:
         }.get(str_hour, None)
 
     @staticmethod
-    def set_course_type(course_type_str):
+    def setCourseType(course_type_str):
         return {
             "mandatory": CourseType.MANDATORY,
             "technical": CourseType.TECHNICAL,
@@ -106,8 +106,8 @@ class CreateCourse:
             "faculty": CourseType.FACULTY
         }.get(course_type_str, None)
 
-    def get_courses(self):
+    def getCourses(self):
         return self.courses
 
-    def set_courses(self, courses):
+    def setCourses(self, courses):
         self.courses = courses
