@@ -1,21 +1,54 @@
+import os
+
 from python_development.Creator.CreateLecturer import CreateLecturer
-import json
 import unittest
 
+
 class CreateLecturerTest(unittest.TestCase):
+
+    def setUp(self):
+        self.createLecturer = None
+        self.lecturers = []
+
+        fileContent = '''{
+            "lecturers": [
+                {
+                    "password": "test123",
+                    "lecturerId": "100",
+                    "surname": "B",                            
+                    "name": "A"
+                },
+                {
+                    "password": "test123",
+                    "lecturerId": "101",
+                    "surname": "D",
+                    "name": "C"                        
+                },
+                {
+                    "password": "test123",
+                    "lecturerId": "102",
+                    "surname": "F",
+                    "name": "E"
+                }                    ]
+        }'''
+
+        with open("lecturersTest.json", 'w') as file:
+            file.write(fileContent)
+
+        self.createLecturer = CreateLecturer("lecturersTest.json")
+
+        os.remove("lecturersTest.json")
+
     def test_create_lecturers(self):
-        file_name = "JSON_files\\lecturers.json"
-        lecturer_creator = CreateLecturer(file_name)
-        lecturers = lecturer_creator.getLecturers()
-        self.assertIsNotNone(lecturer_creator)
-        lecturers = lecturer_creator.getLecturers()
-        self.assertIsNotNone(lecturers)
-        #self.assertEqual(54, len(lecturers))
-        firstLecturer = lecturers[0]
-        self.assertEqual("Ayse", firstLecturer.getFirstName())
-        self.assertEqual("Yilmaz", firstLecturer.getLastName())
-        self.assertEqual("1505001", firstLecturer.getPersonId().getId())
-        self.assertEqual("Ataturk_81", firstLecturer.getPassword().getPassword())
+        lecturers = self.createLecturer.getLecturers()
+        self.assertEqual(3, len(lecturers))
+        self.assertEqual(lecturers[0].getPersonId().getId(), "100")
+        self.assertEqual(lecturers[1].getPersonId().getId(), "101")
+        self.assertEqual(lecturers[2].getPersonId().getId(), "102")
+        self.assertEqual(lecturers[0].getFirstName(), "A")
+        self.assertEqual(lecturers[1].getFirstName(), "C")
+        self.assertEqual(lecturers[2].getFirstName(), "E")
+
 
 if __name__ == '__main__':
     unittest.main()
