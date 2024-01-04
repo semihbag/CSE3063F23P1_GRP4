@@ -70,8 +70,7 @@ class SystemClass:
 
     def updateCourseJson(self):
         try:
-            path = os.path.join("src", "JSON_Files", "courses.json")
-            with open(path, 'r') as file:
+            with open("JSON_Files\\courses.json", 'r') as file:
                 content = file.read()
                 jsonObject = json.loads(content)
                 courseJSON = jsonObject["courses"]
@@ -80,15 +79,14 @@ class SystemClass:
                     currentCourse["quota"] = self.domain.getCourseCreator().getCourses()[i].getQuota()
                     currentCourse["studentList"] = self.studentToJsonArray(
                         self.domain.getCourseCreator().getCourses()[i].getStudentList())
-            with open(path, 'w') as file:
+            with open("JSON_Files\\courses.json", 'w') as file:
                 file.write(json.dumps(jsonObject, indent=4))
         except (IOError, json.JSONDecodeError) as ignored:
             print("An error occurred while writing data to the courses JSON file.")
 
     def updateLecturerJson(self):
         try:
-            path = os.path.join("src", "JSON_Files", "lecturers.json")
-            with open(path, 'r') as file:
+            with open("JSON_Files\\lecturers.json", 'r') as file:
                 content = file.read()
                 jsonObject = json.loads(content)
                 lecturerJSON = jsonObject["lecturers"]
@@ -97,15 +95,14 @@ class SystemClass:
                         currentLecturer = lecturerJSON[i]
                         currentLecturer["password"] = self.domain.getLecturerCreator().getLecturers()[
                             i].getPassword().getPassword()
-            with open(path, 'w') as file:
+            with open("JSON_Files\\lecturers.json", 'w') as file:
                 file.write(json.dumps(jsonObject, indent=4))
         except (IOError, json.JSONDecodeError) as ignored:
             print("An error occurred while writing data to the lecturers JSON file.")
 
     def updateAdvisorJson(self):
         try:
-            path = os.path.join("src", "JSON_Files", "advisors.json")
-            with open(path, 'r') as file:
+            with open("JSON_Files\\advisors.json", 'r') as file:
                 content = file.read()
                 jsonObject = json.loads(content)
                 advisorJSON = jsonObject["advisors"]
@@ -113,7 +110,7 @@ class SystemClass:
                     currentAdvisor = advisorJSON[i]
                     currentAdvisor["password"] = self.domain.getAdvisorCreator().getAdvisors()[
                         i].getPassword().getPassword()
-            with open(path, 'w') as file:
+            with open("JSON_Files\\advisors.json", 'w') as file:
                 file.write(json.dumps(jsonObject, indent=4))
         except (IOError, json.JSONDecodeError) as ignored:
             print("An error occurred while writing data to the advisors JSON file.")
@@ -122,15 +119,14 @@ class SystemClass:
         for i in range(len(self.domain.getStudentCreator().getStudents())):
             try:
                 studentId = self.domain.getStudentCreator().getStudents()[i].getPersonId().getId()
-                path = os.path.join("src", "JSON_Files", "Students", f"{studentId}.json")
-                with open(path, 'r') as file:
+                with open(f"JSON_Files\\Students\\{studentId}.json", 'r') as file:
                     content = file.read()
                     jsonStudent = json.loads(content)
                     registration = jsonStudent["registration"]
                     selected = self.domain.getStudentCreator().getStudents()[i].getSelectedCourses()
                     approved = self.domain.getStudentCreator().getStudents()[i].getApprovedCourses()
-                    registration["selectedCourses"] = self.transcript_courses(selected)
-                    registration["approvedCourses"] = self.transcript_courses(approved)
+                    registration["selectedCourses"] = self.transcriptCourses(selected)
+                    registration["approvedCourses"] = self.transcriptCourses(approved)
                     jsonStudent["password"] = self.domain.getStudentCreator().getStudents()[
                         i].getPassword().getPassword()
                     jsonStudent["request"] = self.domain.getStudentCreator().getStudents()[i].getRequest()
@@ -138,7 +134,7 @@ class SystemClass:
                         self.domain.getStudentCreator().getStudents()[i].getReadNotifications())
                     jsonStudent["unreadNotification"] = list(
                         self.domain.getStudentCreator().getStudents()[i].getUnreadNotifications())
-                with open(path, 'w') as file:
+                with open(f"JSON_Files\\Students\\{studentId}.json", 'w') as file:
                     file.write(json.dumps(jsonStudent, indent=4))
             except (IOError, json.JSONDecodeError) as exception:
                 print("\nSYSTEM UPDATE FAILS.")
@@ -158,15 +154,3 @@ class SystemClass:
     def studentToJsonArray(self, students):
         student_ids = [student.getPersonId().getId() for student in students]
         return student_ids
-
-    def transcriptCourses(self, transcript_courses_list):
-        transcript_courses_ar = []
-        for course in transcript_courses_list:
-            if isinstance(course, CourseSession):
-                transcript_courses_ar.append(f"{course.getCourseId().getId()}.{course.getSessionId().getId()}")
-            else:
-                transcript_courses_ar.append(course.getCourseId().getId())
-        return transcript_courses_ar
-
-
-
