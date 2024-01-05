@@ -140,7 +140,10 @@ class Student(Person):
                         return Mark.SUCCESSFUL
                     else:
                         return Mark.ERROR_CONFLICT
-                return Mark.ERROR_CREDIT_LIMIT
+                elif self.syllabus.checkConflict(course):
+                    return Mark.ERROR_CONFLICT
+                else:
+                    return Mark.ERROR_CREDIT_LIMIT
             return Mark.SELECTED
         return Mark.ERROR_ALREADY_SENDED
 
