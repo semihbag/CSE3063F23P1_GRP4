@@ -8,7 +8,7 @@ class ProfilePage(Page):
 
     def __init__(self, content):
         super().__init__(content)
-        self.setType("MY_STUDENTS_PAGE")
+        self.setType("PROFILE_PAGE")
         self.setName("Profile Page")
 
 
