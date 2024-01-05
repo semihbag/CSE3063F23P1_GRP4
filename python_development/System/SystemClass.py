@@ -43,8 +43,8 @@ class SystemClass:
         if self.currentUser is None:
             print("Username/Password incorrect.\n")
         else:
-            self.userInterface.set_pages(self.domain.getPageCreator().create_pages(self.currentUser))
-            self.userInterface.set_current_page("MAIN_MENU_PAGE")
+            self.userInterface.setPages(self.domain.getPageCreator().create_pages(self.currentUser))
+            self.userInterface.setCurrentPage("MAIN_MENU_PAGE")
             print("LOGIN SUCCESSFUL - WELCOME {} {}".format(self.currentUser.get_first_name(),
                                                             self.currentUser.get_last_name()))
             all_users.clear()
