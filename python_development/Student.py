@@ -2,6 +2,8 @@ from python_development.CourseSession import CourseSession
 from python_development.CourseType import CourseType
 from python_development.Person import Person
 from python_development.Mark import Mark
+import logging
+logging.basicConfig(filename='logfile.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class Student(Person):
     def __init__(self, firstName, lastName, personId, password, advisor, transcript, curriculum):
@@ -92,6 +94,7 @@ class Student(Person):
             course.setQuota(course.getQuota() - 1)
             self.syllabus.addCourseToSyllabus(course)
             self.setMarks()
+            logging.info(f"Course '{course.getCourseName()}' selected by {self.getFirstName(),self.getLastName()}")
             return True
 
         if mark == Mark.ERROR_ALREADY_SENDED:
