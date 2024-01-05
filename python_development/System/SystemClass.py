@@ -4,10 +4,8 @@ from python_development.Advisor import Advisor
 from python_development.CourseSession import CourseSession
 from python_development.Lecturer import Lecturer
 from python_development.Page.LoginPage import LoginPage
-from python_development.Page.PageType import PageType
 from python_development.Student import Student
 from python_development.System.SystemDomain import SystemDomain
-from python_development.Page import PageType
 import time
 
 
@@ -47,7 +45,6 @@ class SystemClass:
             self.userInterface.setCurrentPage("MAIN_MENU_PAGE")
             print("LOGIN SUCCESSFUL - WELCOME {} {}".format(self.currentUser.getFirstName(),
                                                             self.currentUser.getLastName()))
-            all_users.clear()
 
     def extract_advisors(self):
         lecturer_only = []
