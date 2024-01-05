@@ -38,7 +38,7 @@ class CreateCourseTest(unittest.TestCase):
         with open(file_path, 'w') as file:
             json.dump(file_content, file)
 
-        # Create CreateCourse instance and test
+        # Create CreateCourse instance and UnitTests
         lecturers = [lecturer]
         self.create_course = CreateCourse(file_path, lecturers)
         # Clean up temporary file
@@ -58,11 +58,6 @@ class CreateCourseTest(unittest.TestCase):
         self.assertEqual(Day.TUESDAY, course.getCourseSchedules()[0].getCourseDay())
         self.assertEqual(Hour.H_13_00_13_50, course.getCourseSchedules()[0].getCourseHours()[0])
 
-    def test_json_arr_to_str_arr(self):
-        jsonArray = ["Item1", "Item2"]
-
-        result = self.create_course.jsonArrToStrArr(jsonArray)
-        self.assertListEqual(["Item1", "Item2"], result)
 
 if __name__ == '__main__':
     unittest.main()

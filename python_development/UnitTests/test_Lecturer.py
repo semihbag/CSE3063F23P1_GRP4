@@ -17,7 +17,7 @@ class LecturerTest(unittest.TestCase):
         self.assertEqual("Mustafa",lecturer.getFirstName())
         self.assertEqual("Agaoglu",lecturer.getLastName())
         self.assertEqual("1501002",lecturer.getPersonId().getId())
-        self.assertEquals("sql112233",lecturer.getPassword().getPassword())
+        self.assertEqual("sql112233",lecturer.getPassword().getPassword())
         self.assertEqual([], lecturer.getGivenCourses())
         self.assertEqual(None,lecturer.getSelectedCourse())
 
