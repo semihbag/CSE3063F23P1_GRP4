@@ -42,6 +42,11 @@ class UserInterface:
         return None
     ############### BİR ÜST SATIRDA NULL DÖNDÜRMEK YERİNE EXCEPTİON KONULABİLİR UNUTMAAAAA
 
+
+    def resetPages(self):
+        self.pages.clear()
+
+        
     # GETTER - SETTER
 
     def getPages(self):
