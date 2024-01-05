@@ -14,4 +14,4 @@ class ApprovedCoursesPage(Page):
     def runPage(self):
         self.showContent()
         self.takeInput()
-        return SystemMessage("CHANGE_PAGE", "CHANGE_PAGE", None)
+        return SystemMessage("CHANGE_PAGE", "MAIN_MENU_PAGE", None)
