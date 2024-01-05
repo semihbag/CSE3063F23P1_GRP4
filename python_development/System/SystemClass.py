@@ -29,11 +29,11 @@ class SystemClass:
     def login(self, user_info):
         all_users = None
         if user_info[0][0] == 'o':
-            all_users = self.domain.getStudentCreator().get_students()
+            all_users = self.domain.getStudentCreator().getStudents()
             self.currentUser = Student.login(Student(None, None, None, None,
                                                      None, None, None), user_info, all_users)
         elif user_info[0][0] == 'a':
-            all_users = self.domain.getAdvisorCreator().get_advisors()
+            all_users = self.domain.getAdvisorCreator().getAdvisors()
             self.currentUser = Advisor.login(Advisor(None, None, None, None),
                                              user_info, all_users)
         elif user_info[0][0] == 'l':
