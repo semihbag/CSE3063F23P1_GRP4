@@ -45,8 +45,8 @@ class SystemClass:
         else:
             self.userInterface.setPages(self.domain.getPageCreator().create_pages(self.currentUser))
             self.userInterface.setCurrentPage("MAIN_MENU_PAGE")
-            print("LOGIN SUCCESSFUL - WELCOME {} {}".format(self.currentUser.get_first_name(),
-                                                            self.currentUser.get_last_name()))
+            print("LOGIN SUCCESSFUL - WELCOME {} {}".format(self.currentUser.getFirstName(),
+                                                            self.currentUser.getLastName()))
             all_users.clear()
 
     def extract_advisors(self):
