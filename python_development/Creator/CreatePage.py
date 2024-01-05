@@ -297,10 +297,10 @@ class CreatePage:
                     self.blankAfterStr(f"Student Id : {student.getPersonId().getId()}", 45) +
                     "Faculty    : Engineering Faculty\n" +
                     f"Name       : {student.getFirstName()}" +
-                    self.blankAfterStr(f"Name       : {student.getFirstName}", 45) +
+                    self.blankAfterStr(f"Name       : {student.getFirstName()}", 45) +
                     "Department : Computer Engineering\n" +
                     f"Surname    : {student.getLastName()}" +
-                    self.blankAfterStr(f"Surname    : {student.getLastName}", 45) +
+                    self.blankAfterStr(f"Surname    : {student.getLastName()}", 45) +
                     f"GPA        : {Decimal(student.getTranscript().getGPA_100()):.2f}\n\n"))
         all_transcript_courses = student.getTranscript().getPassedCourses() + student.getTranscript().getFailedCourses()
         for j in range(1, student.getTranscript().getTerm()):
