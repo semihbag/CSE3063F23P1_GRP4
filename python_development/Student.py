@@ -35,8 +35,8 @@ class Student(Person):
     def login(self, userInfo, persons):
         username, password = userInfo
         for student in persons:
-            if student.equals("o" + str(student.getPersonId().getId())) and \
-                    student.getPassword().getPassword().equals(password):
+            if username == ("o" + str(student.getPersonId().getId())) and \
+                    student.getPassword().getPassword() == password:
                 return student
         return None
 
