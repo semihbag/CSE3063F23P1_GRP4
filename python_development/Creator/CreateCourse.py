@@ -1,13 +1,13 @@
 import json
 import logging
 import sys
-from python_development.Course import Course
-from python_development.CourseSession import CourseSession
-from python_development.Id import Id
-from python_development.CourseSchedule import CourseSchedule
-from python_development.CourseType import CourseType
-from python_development.Day import Day
-from python_development.Hour import Hour
+from python_development.CourseObject.Course import Course
+from python_development.CourseObject.CourseSession import CourseSession
+from python_development.PersonObject.Id import Id
+from python_development.CourseObject.CourseSchedule import CourseSchedule
+from python_development.CourseObject.CourseType import CourseType
+from python_development.CourseObject.Day import Day
+from python_development.CourseObject.Hour import Hour
 
 class CreateCourse:
     def __init__(self, file_name, lecturers):

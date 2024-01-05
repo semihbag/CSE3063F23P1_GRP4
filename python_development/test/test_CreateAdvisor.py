@@ -1,8 +1,7 @@
 import unittest
 import os
-import json
 
-from python_development.Lecturer import Lecturer
+from python_development.PersonObject.Lecturer import Lecturer
 from python_development.Creator.CreateAdvisor import CreateAdvisor
 
 

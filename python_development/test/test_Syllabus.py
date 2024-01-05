@@ -1,12 +1,12 @@
 import unittest
 
-from python_development.Syllabus import Syllabus
-from python_development.Hour import Hour
-from python_development.CourseSchedule import CourseSchedule
-from python_development.Course import Course
-from python_development.Id import Id
-from python_development.Day import Day
-from python_development.CourseType import CourseType
+from python_development.CourseObject.Syllabus import Syllabus
+from python_development.CourseObject.Hour import Hour
+from python_development.CourseObject.CourseSchedule import CourseSchedule
+from python_development.CourseObject.Course import Course
+from python_development.PersonObject.Id import Id
+from python_development.CourseObject.Day import Day
+from python_development.CourseObject.CourseType import CourseType
 
 class TestSyllabus(unittest.TestCase):
 

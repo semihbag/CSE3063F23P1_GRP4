@@ -1,5 +1,5 @@
-from python_development.Hour import Hour
-from python_development.Day import Day
+from python_development.CourseObject.Hour import Hour
+from python_development.CourseObject.Day import Day
 
 class Syllabus:
     def __init__(self):

@@ -1,9 +1,9 @@
 import json
 import logging
 import sys
-from python_development.Advisor import Advisor
-from python_development.Id import Id
-from python_development.Password import Password
+from python_development.PersonObject.Advisor import Advisor
+from python_development.PersonObject.Id import Id
+from python_development.PersonObject.Password import Password
 
 
 class CreateAdvisor:

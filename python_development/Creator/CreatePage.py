@@ -1,10 +1,10 @@
 from decimal import Decimal
 
-from python_development.Advisor import Advisor
-from python_development.CourseSession import CourseSession
-from python_development.CourseType import CourseType
-from python_development.Lecturer import Lecturer
-from python_development.Mark import Mark
+from python_development.PersonObject.Advisor import Advisor
+from python_development.CourseObject.CourseSession import CourseSession
+from python_development.CourseObject.CourseType import CourseType
+from python_development.PersonObject.Lecturer import Lecturer
+from python_development.PersonObject.Mark import Mark
 from python_development.Page.AllCoursesPage import AllCoursesPage
 from python_development.Page.ApprovedCoursesPage import ApprovedCoursesPage
 from python_development.Page.ChangePasswordPage import ChangePasswordPage
@@ -22,7 +22,7 @@ from python_development.Page.SelectedMyCoursePage import SelectedMyCoursePage
 from python_development.Page.SelectedStudentRequestPage import SelectedStudentRequestPage
 from python_development.Page.SyllabusPage import SyllabusPage
 from python_development.Page.TranscriptPage import TranscriptPage
-from python_development.Student import Student
+from python_development.PersonObject.Student import Student
 
 
 class CreatePage:

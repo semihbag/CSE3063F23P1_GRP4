@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from python_development.Syllabus import Syllabus
+from python_development.CourseObject.Syllabus import Syllabus
 
 
 class Person(ABC):

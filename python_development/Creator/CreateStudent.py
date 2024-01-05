@@ -1,14 +1,14 @@
 import json
 import logging
 
-from python_development.CourseSession import CourseSession
-from python_development.CourseType import CourseType
-from python_development.Grade import Grade
-from python_development.GradeClass import GradeClass
-from python_development.Id import Id
-from python_development.Password import Password
-from python_development.Student import Student
-from python_development.Transcript import Transcript
+from python_development.CourseObject.CourseSession import CourseSession
+from python_development.CourseObject.CourseType import CourseType
+from python_development.CourseObject.Grade import Grade
+from python_development.CourseObject.GradeClass import GradeClass
+from python_development.PersonObject.Id import Id
+from python_development.PersonObject.Password import Password
+from python_development.PersonObject.Student import Student
+from python_development.CourseObject.Transcript import Transcript
 
 
 class CreateStudent:

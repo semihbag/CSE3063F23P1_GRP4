@@ -1,4 +1,4 @@
-from python_development.Person import Person
+from python_development.PersonObject.Person import Person
 class Lecturer(Person):
     def __init__(self, FirstName,LastName , LecturerId, password):
         super().__init__(FirstName, LastName, LecturerId, password)

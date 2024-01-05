@@ -1,10 +1,10 @@
 import json
 
-from python_development.Advisor import Advisor
-from python_development.CourseSession import CourseSession
-from python_development.Lecturer import Lecturer
+from python_development.PersonObject.Advisor import Advisor
+from python_development.CourseObject.CourseSession import CourseSession
+from python_development.PersonObject.Lecturer import Lecturer
 from python_development.Page.LoginPage import LoginPage
-from python_development.Student import Student
+from python_development.PersonObject.Student import Student
 from python_development.System.SystemDomain import SystemDomain
 import time
 

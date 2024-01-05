@@ -1,9 +1,9 @@
-from python_development.CourseSession import CourseSession
-from python_development.CourseType import CourseType
-from python_development.Person import Person
-from python_development.Mark import Mark
+from python_development.CourseObject.CourseSession import CourseSession
+from python_development.CourseObject.CourseType import CourseType
+from python_development.PersonObject.Person import Person
+from python_development.PersonObject.Mark import Mark
 import logging
-logging.basicConfig(filename='logfile.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='../logfile.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class Student(Person):
     def __init__(self, firstName, lastName, personId, password, advisor, transcript, curriculum):
