@@ -206,7 +206,7 @@ class SystemClass:
 
         elif functionType == "DROP_COURSE":
             student = self.currentUser
-            courseName = student.getSelectableCourses()[int(sm.getInput()) - 1].getCourseName()
+            courseName = student.getSelectedCourses()[int(sm.getInput()) - 1].getCourseName()
             student.dropCourse(int(sm.getInput()))
             print("\u001B[32;1mCourse Dropping Is Succesful - " + courseName + "\u001B[0m")
 
