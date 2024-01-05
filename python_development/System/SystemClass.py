@@ -39,13 +39,12 @@ class SystemClass:
             self.currentUser = Lecturer.login(Lecturer(None, None, None, None),
                                               user_info, all_users)
         if self.currentUser is None:
-            print("Username/Password incorrect.\n")
+            print("\u001B[33;1mUsername/Password incorrect.\n\u001B[0m")
         else:
             self.userInterface.setPages(self.domain.getPageCreator().create_pages(self.currentUser))
             self.userInterface.setCurrentPage("MAIN_MENU_PAGE")
-            print("LOGIN SUCCESSFUL - WELCOME {} {}".format(self.currentUser.getFirstName(),
-                                                            self.currentUser.getLastName()))
-
+            print("\u001B[32;1mLOGIN SUCCESSFUL - WELCOME " + self.currentUser.getFirstName() + " " + self.currentUser.getLastName() + "\u001B[0m")
+    
     def extract_advisors(self):
         lecturer_only = []
         for lecturer in self.domain.getLecturerCreator().getLecturers():
@@ -160,21 +159,19 @@ class SystemClass:
 
         elif functionType == "LOGOUT":
             print(
-                "LOGOUT SUCCESSFUL - GOODBYE " + self.currentUser.getFirstName() + " " + self.currentUser.getLastName())
-            print("bunu renkli yazcan he unutma dayıogli")
+                print("\u001B[31;1mLOGOUT SUCCESSFUL - GOODBYE "+ self.currentUser.getFirstName() + " " + self.currentUser.getLastName() + "\u001B[0m")
             self.logout()
             self.userInterface.setCurrentPage("LOGIN_PAGE")
 
         elif functionType == "EXIT":
-            print("SYSTEM EXITING")
+            print("\u001B[31;1mSYSTEM EXITING\u001B[0m")
             time.sleep(0.5)
-            print("SYSTEM EXITING.")
+            print("\u001B[31;1mSYSTEM EXITING.\u001B[0m")
             time.sleep(0.5)
-            print("SYSTEM EXITING..")
+            print("\u001B[31;1mSYSTEM EXITING..\u001B[0m")
             time.sleep(0.5)
-            print("SYSTEM EXITING...")
+            print("\u001B[31;1mSYSTEM EXITING...\u001B[0m")
             time.sleep(0.5)
-            print("bunu renkli yazcan he unutma dayıogli")
             self.exit()
 
         elif functionType == "CHANGE_PAGE":
@@ -184,11 +181,9 @@ class SystemClass:
             student = self.currentUser
             courseName = student.getSelectableCourses()[int(sm.getInput()) - 1].getCourseName()
             if student.addSelectedCourse(int(sm.getInput())):
-                print("Course Addition Is Succesful - " + courseName)
-                print("bunu renkli yazcan he unutma dayıogli")
+                print("\u001B[32;1mCourse Addition Is Succesful - " + courseName + "\u001B[0m") 
             else:
-                print("Course Addition Is Not Succesful - " + courseName)
-                print("bunu renkli yazcan he unutma dayıogli")
+                print("\u001B[33;1mCourse Addition Is Not Succesful - " + courseName + "\u001B[0m")
 
             selectableCoursePage = self.userInterface.selectPage("SELECTABLE_COURSES_PAGE")
             selectableCoursePage.setContent(
@@ -210,8 +205,7 @@ class SystemClass:
             student = self.currentUser
             courseName = student.getSelectableCourses()[int(sm.getInput()) - 1].getCourseName()
             student.dropCourse(int(sm.getInput()))
-            print("Course Dropping Is Succesful - " + courseName)
-            print("bunu renkli yazcan he unutma dayıogli")
+            print("\u001B[32;1mCourse Dropping Is Succesful - " + courseName + "\u001B[0m")
 
             selectableCoursePage = self.userInterface.selectPage("SELECTABLE_COURSES_PAGE")
             selectableCoursePage.setContent(
@@ -233,12 +227,9 @@ class SystemClass:
             student = self.currentUser
             if student.getRequest() == "false":
                 student.sendToApproval()
-                print("You have successfully sent your course selection list for advisor approval!")
-                print("bunu renkli yazcan he unutma dayıogli")
+                print("\u001B[32;1mYou have successfully sent your course selection list for advisor approval!\u001B[0m")
             else:
-                print("You have already successfully sent your course selection list for advisor approval!")
-                print("bunu renkli yazcan he unutma dayıogli")
-                print("bunu renkli yazcan he unutma dayıogli")
+               print("\u001B[33;1mYou have already successfully sent your course selection list for advisor approval!\u001B[0m")
 
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
@@ -258,8 +249,7 @@ class SystemClass:
             advisor.sendNotification(sm.getInput(), "A")
             advisor.approve()
 
-            print("Request Has Been Approved - " + selectedStudentFullName + "'s Request")
-            print("bunu renkli yazcan he unutma dayıogli")
+            print("\u001B[32;1mRequest Has Been Approved - " + selectedStudentFullName + "'s Request\u001B[0m");
 
             selectedStudentRequestPage = self.userInterface.selectPage("SELECTED_STUDENT_REQUEST_PAGE")
             selectedStudentRequestPage.setContent(
@@ -278,8 +268,8 @@ class SystemClass:
             advisor.sendNotification(sm.getInput(), "R")
             advisor.disapprove()
 
-            print("Request Has Been Disapproved - " + selectedStudentFullName + "'s Request")
-            print("bunu renkli yazcan he unutma dayıogli")
+            print("\u001B[33;1mRequest Has Been Disapproved - " + selectedStudentFullName + "'s Request\u001B[0m")
+
             selectedStudentRequestPage = self.userInterface.selectPage("SELECTED_STUDENT_REQUEST_PAGE")
             selectedStudentRequestPage.setContent(
                 self.domain.getPageCreator().createSelectedStudentsRequestPageContent(advisor.getSelectStudent()))
@@ -306,14 +296,11 @@ class SystemClass:
             if self.currentUser.getPassword().compareCurrentPassword(passwords[0]):
                 if self.currentUser.getPassword().checkPasswordCond(passwords[1]):
                     self.currentUser.getPassword().setPassword(passwords[1])
-                    print("Password Change Successful")
-                    print("bunu renkli yazcan he unutma dayıogli")
+                    print("\u001B[32;1mPassword Change Successful\u001B[0m")
                 else:
-                    print("Your new password must obey the rules!")
-                    print("bunu renkli yazcan he unutma dayıogli")
+                    print("\u001B[33;1mYour new password must obey the rules!\u001B[0m")
             else:
-                print("Your current password incorrect!")
-                print("bunu renkli yazcan he unutma dayıogli")
+                print("\u001B[33;1mYour current password incorrect!\u001B[0m")
 
             self.userInterface.setCurrentPage(sm.getNextPageType())
 
