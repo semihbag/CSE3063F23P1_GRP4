@@ -1,3 +1,5 @@
+import logging
+
 from python_development.System.SystemClass import SystemClass
 from python_development.UserInterface.UserInterface import UserInterface
 
@@ -8,7 +10,7 @@ if __name__ == "__main__":
         system.run()
 
     except Exception as e:
-        print(f"Error found: {e}")
+        logging.exception(f"Error found: {e}")
     
     except KeyboardInterrupt:
         pass

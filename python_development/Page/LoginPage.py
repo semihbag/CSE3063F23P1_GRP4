@@ -10,14 +10,11 @@ class LoginPage(Page):
         super().__init__(content)
         self.setType("LOGIN_PAGE")
         self.setName("Login Page")
-
     
     def runPage(self):
         self.showContent()
         userInfo = [None, None]
-        print("Username: ")
-        userInfo[0] = self.takeInput()
-        print("Password: ")
-        userInfo[1] = self.takeInput()
+        userInfo[0] = input("Username: ")
+        userInfo[1] = input("Password: ")
 
         return SystemMessage("LOGIN", None,userInfo)
