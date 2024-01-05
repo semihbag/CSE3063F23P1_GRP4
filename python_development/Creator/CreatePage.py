@@ -311,7 +311,7 @@ class CreatePage:
                 if all_transcript_course.getTerm() == j:
                     course = all_transcript_course.getCourse()
                     content += (f"{course.getCourseId().getId()}" +
-                                self.blankAfterStr(course.getCourseId.getId(), 13) +
+                                self.blankAfterStr(course.getCourseId().getId(), 13) +
                                 f"{course.getCourseName()}" +
                                 self.blankAfterStr(course.getCourseName(), 50) +
                                 f"{course.getCredit()} | {course.getCredit()}               "
