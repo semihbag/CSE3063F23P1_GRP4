@@ -158,8 +158,7 @@ class SystemClass:
             self.login(userInfo)
 
         elif functionType == "LOGOUT":
-            print(
-                print("\u001B[31;1mLOGOUT SUCCESSFUL - GOODBYE "+ self.currentUser.getFirstName() + " " + self.currentUser.getLastName() + "\u001B[0m")
+            print("\u001B[31;1mLOGOUT SUCCESSFUL - GOODBYE "+ self.currentUser.getFirstName() + " " + self.currentUser.getLastName() + "\u001B[0m")
             self.logout()
             self.userInterface.setCurrentPage("LOGIN_PAGE")
 
