@@ -69,7 +69,7 @@ class CreateStudent:
                         crt_student.filterCourses()
                         self.students.append(crt_student)
                 except (json.JSONDecodeError, FileNotFoundError) as e:
-                    logging.exception(f"Error in student data {line}: {e}")
+                    logging.warning(f"Error in student data {line}: {e}")
                     pass
 
         self.assignStudentToAdvisor(advisors)

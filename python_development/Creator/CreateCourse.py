@@ -1,6 +1,6 @@
 import json
 import logging
-import sys
+
 from python_development.CourseObject.Course import Course
 from python_development.CourseObject.CourseSession import CourseSession
 from python_development.PersonObject.Id import Id
@@ -53,7 +53,7 @@ class CreateCourse:
             self.assignCoursesToLecturer(lecturers)
         except (json.JSONDecodeError, FileNotFoundError) as e:
             logging.exception(f"Error in course data in courses.json file: {e}")
-            sys.exit(0)
+            exit(0)
 
     def assignCoursesToLecturer(self, lecturers):
         for course in self.courses:

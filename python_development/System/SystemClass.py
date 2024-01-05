@@ -1,4 +1,6 @@
 import json
+import logging
+import time
 
 from python_development.PersonObject.Advisor import Advisor
 from python_development.CourseObject.CourseSession import CourseSession
@@ -6,7 +8,6 @@ from python_development.PersonObject.Lecturer import Lecturer
 from python_development.Page.LoginPage import LoginPage
 from python_development.PersonObject.Student import Student
 from python_development.System.SystemDomain import SystemDomain
-import time
 
 
 class SystemClass:
@@ -25,7 +26,6 @@ class SystemClass:
             self.listenUserInterface(self.userInterface.getSystemMessage())
 
     def login(self, user_info):
-        all_users = None
         if user_info[0][0] == 'o':
             all_users = self.domain.getStudentCreator().getStudents()
             self.currentUser = Student.login(Student(None, None, None, None,
@@ -80,7 +80,8 @@ class SystemClass:
             with open("JSON_Files\\courses.json", 'w') as file:
                 file.write(json.dumps(jsonObject, indent=4))
         except (IOError, json.JSONDecodeError):
-            print("An error occurred while writing data to the courses JSON file.")
+            logging.exception("An error occurred while writing data to the courses JSON file.")
+            exit(0)
 
     def updateLecturerJson(self):
         try:
@@ -96,7 +97,8 @@ class SystemClass:
             with open("JSON_Files\\lecturers.json", 'w') as file:
                 file.write(json.dumps(jsonObject, indent=4))
         except (IOError, json.JSONDecodeError):
-            print("An error occurred while writing data to the lecturers JSON file.")
+            logging.exception("An error occurred while writing data to the lecturers JSON file.")
+            exit(0)
 
     def updateAdvisorJson(self):
         try:
@@ -111,7 +113,8 @@ class SystemClass:
             with open("JSON_Files\\advisors.json", 'w') as file:
                 file.write(json.dumps(jsonObject, indent=4))
         except (IOError, json.JSONDecodeError):
-            print("An error occurred while writing data to the advisors JSON file.")
+            logging.exception("An error occurred while writing data to the advisors JSON file.")
+            exit(0)
 
     def updateStudentJson(self):
         for i in range(len(self.domain.getStudentCreator().getStudents())):
@@ -135,7 +138,8 @@ class SystemClass:
                 with open(f"JSON_Files\\Students\\{studentId}.json", 'w') as file:
                     file.write(json.dumps(jsonStudent, indent=4))
             except (IOError, json.JSONDecodeError):
-                print("\nSYSTEM UPDATE FAILS.")
+                logging.exception("\nSYSTEM UPDATE FAILS.")
+                exit(0)
 
     def transcriptCourses(self, transcript_courses_list):
         transcript_courses_ar = []
@@ -248,7 +252,7 @@ class SystemClass:
             advisor.sendNotification(sm.getInput(), "A")
             advisor.approve()
 
-            print("\u001B[32;1mRequest Has Been Approved - " + selectedStudentFullName + "'s Request\u001B[0m");
+            print("\u001B[32;1mRequest Has Been Approved - " + selectedStudentFullName + "'s Request\u001B[0m")
 
             selectedStudentRequestPage = self.userInterface.selectPage("SELECTED_STUDENT_REQUEST_PAGE")
             selectedStudentRequestPage.setContent(

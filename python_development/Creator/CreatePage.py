@@ -315,7 +315,7 @@ class CreatePage:
                                 f"{course.getCourseName()}" +
                                 self.blankAfterStr(course.getCourseName(), 50) +
                                 f"{course.getCredit()} | {course.getCredit()}               "
-                                f"{all_transcript_course.getGrade()}\n")
+                                f"{all_transcript_course.getGrade().value}\n")
             content += "\n"
         content += "Press any key to return.\n"
         return content
@@ -342,9 +342,9 @@ class CreatePage:
                     str_content += self.allCourseLabels(i)
                 elif type == 2:
                     if i == 0 and (course.getCourseType() != CourseType.MANDATORY):
-                        str_content += f"\033[1m\n{course.getCourseType()}\n\033[1m"
+                        str_content += f"\033[1m\n{course.getCourseType().value}\n\033[1m"
                     elif i > 0 and (course.getCourseType() != courses[i - 1].getCourseType()):
-                        str_content += f"\033[1m\n{course.getCourseType()}\n\033[1m"
+                        str_content += f"\033[1m\n{course.getCourseType().value}\n\033[1m"
                         str_content += ("\033[1m     CODE         COURSE                                             "
                                         "LECTURER\n\033[0m")
 
