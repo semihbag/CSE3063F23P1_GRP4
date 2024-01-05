@@ -1,4 +1,6 @@
 import json
+import logging
+import sys
 from python_development.Course import Course
 from python_development.CourseSession import CourseSession
 from python_development.Id import Id
@@ -49,8 +51,9 @@ class CreateCourse:
                                 break
                     self.courses.append(course)
             self.assignCoursesToLecturer(lecturers)
-        except (json.JSONDecodeError, FileNotFoundError):
-            print("An error occurred in the courses JSON file. Please ensure that the file is created in the correct format and fix any errors.")
+        except (json.JSONDecodeError, FileNotFoundError) as e:
+            logging.exception(f"Error in course data in courses.json file: {e}")
+            sys.exit(0)
 
     def assignCoursesToLecturer(self, lecturers):
         for course in self.courses:
@@ -58,13 +61,9 @@ class CreateCourse:
                 if course.lecturer == lecturer:
                     lecturer.getGivenCourses().append(course)
 
-    @staticmethod
-    def jsonArrToStrArr(json_array):
-        return [str(item) for item in json_array]
 
     def fillCourseSchedule(self, day_json_arr, hour_json_arr, course_schedules):
-        day_str_arr = self.jsonArrToStrArr(day_json_arr)
-        for i, day_str in enumerate(day_str_arr):
+        for i, day_str in enumerate(day_json_arr):
             current_day = self.getCourseDay(day_str)
             hours = [self.getCourseHour(str(hour)) for hour in hour_json_arr[i]]
             course_schedules.append(CourseSchedule(current_day, hours))

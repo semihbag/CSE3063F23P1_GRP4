@@ -1,5 +1,6 @@
 import json
-
+import logging
+import sys
 from python_development.Advisor import Advisor
 from python_development.Id import Id
 from python_development.Password import Password
@@ -25,10 +26,9 @@ class CreateAdvisor:
                     advisor = Advisor(name, surname, Id(advisor_id), Password(password))
                     self.advisors.append(advisor)
                     lecturers.append(advisor)
-        except (json.JSONDecodeError, FileNotFoundError, IOError):
-            print("An error occurred in the advisors JSON file. "
-                  "Please ensure that the file is created in the correct format and fix any errors.")
-            exit(0)
+        except (json.JSONDecodeError, FileNotFoundError, IOError) as e:
+            logging.exception(f"Error in advisor date in advisors.json file: {e}")
+            sys.exit(0)
 
     def getAdvisors(self):
         return self.advisors

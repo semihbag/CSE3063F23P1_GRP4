@@ -1,5 +1,6 @@
 import json
-
+import logging
+import sys
 from python_development.Lecturer import Lecturer
 from python_development.Id import Id
 from python_development.Password import Password
@@ -24,8 +25,8 @@ class CreateLecturer:
                     lecturer = Lecturer(name, surname, Id(lecturer_id), Password(password))
                     self.lecturers.append(lecturer)
         except (json.JSONDecodeError, FileNotFoundError) as e:
-            print(
-                f"An error occurred in the lecturers JSON file: {e}. Please ensure the file is in the correct format.")
+            logging.exception(f"Error in lecturer data in lecturers.json file: {e}")
+            sys.exit(0)
 
     def getLecturers(self):
         return self.lecturers
