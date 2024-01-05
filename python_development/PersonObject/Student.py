@@ -192,6 +192,7 @@ class Student(Person):
         self.selectedCourseCredit -= course.getCredit()
         self.syllabus.removeCourseFromSyllabus(course)
         self.setMarks()
+        logging.info(f"Course '{course.getCourseName()}' dropped by {self.getFirstName(), self.getLastName()}")
 
     def addAllSessions(self, course):
         for curriculumCourse in self.curriculum:
