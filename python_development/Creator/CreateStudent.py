@@ -124,8 +124,8 @@ class CreateStudent:
                 course_students_id = current_course['studentList']
                 for curr_student_id in course_students_id:
                     for st in self.students:
-                        if st.getPersonId().getId() == curr_student_id and st not in courses[i].student_list:
-                            courses[i].student_list.append(st)
+                        if st.getPersonId().getId() == curr_student_id and st not in courses[i].getStudentList():
+                            courses[i].getStudentList().append(st)
                             break
 
     def courseExists(self, course, transcript_course_list):
