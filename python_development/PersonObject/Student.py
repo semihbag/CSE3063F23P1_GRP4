@@ -78,7 +78,6 @@ class Student(Person):
     def dropAllSelectedCourses(self):
         self.selectedCourses.clear()
         self.selectedCourseCredit = 0
-        print("1------------------------------------------0", len(self.selectedCourses))
         self.setMarks()
 
     def sendToApproval(self):
