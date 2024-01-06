@@ -10,7 +10,8 @@ if __name__ == "__main__":
         system.run()
 
     except Exception as e:
-        logging.exception(f"Error found: {e}")
+        passs
+        #logging.exception(f"Error found: {e}")
     
     except KeyboardInterrupt:
         pass
