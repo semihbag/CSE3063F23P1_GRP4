@@ -1,0 +1,23 @@
+{
+    "advisor": "1501005",
+    "request": "false",
+    "readNotification": [],
+    "password": "Sude987..",
+    "transcript": {
+        "failedCourses": [],
+        "passedCourses": [],
+        "termPassed": [],
+        "term": 1,
+        "gradesFailed": [],
+        "gradesPassed": []
+    },
+    "unreadNotification": [],
+    "name": "Sude",
+    "registration": {
+        "selectedCourses": [],
+        "approvedCourses": []
+    },
+    "id": "150122063",
+    "type": "student",
+    "lastname": "Sevecen"
+}

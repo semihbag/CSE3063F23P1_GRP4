@@ -1,0 +1,60 @@
+{
+    "advisor": "1501001",
+    "request": "false",
+    "readNotification": [],
+    "password": "Mirel123.",
+    "transcript": {
+        "failedCourses": [
+            "CSE1242",
+            "MATH2256"
+        ],
+        "passedCourses": [
+            "ATA121",
+            "MBG1201",
+            "CSE1200",
+            "CSE1241",
+            "MATH1001",
+            "PHYS1101",
+            "PHYS1103",
+            "TRD121",
+            "ATA122",
+            "MATH1002",
+            "PHYS1102",
+            "PHYS1104",
+            "TRD122",
+            "HR1013"
+        ],
+        "term": 3,
+        "termPassed": [2],
+
+        "gradesFailed": [
+            "FF",
+            "FF"
+        ],
+        "gradesPassed": [
+            "CC",
+            "BB",
+            "BA",
+            "AA",
+            "CC",
+            "AA",
+            "BB",
+            "BB",
+            "DC",
+            "BA",
+            "AA",
+            "DC",
+            "DD",
+            "BA"
+        ]
+    },
+    "unreadNotification": [],
+    "name": "Mirel",
+    "registration": {
+        "selectedCourses": [],
+        "approvedCourses": []
+    },
+    "id": "150121030",
+    "type": "student",
+    "lastname": "Aksoy"
+}

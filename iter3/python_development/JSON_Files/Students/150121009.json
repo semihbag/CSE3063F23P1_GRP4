@@ -1,0 +1,57 @@
+{
+    "advisor": "1501002",
+    "request": "false",
+    "readNotification": [],
+    "password": "Mutlu66..",
+    "transcript": {
+        "failedCourses": [],
+        "passedCourses": [
+            "ATA121",
+            "MBG1201",
+            "CSE1200",
+            "CSE1241",
+            "MATH1001",
+            "PHYS1101",
+            "PHYS1103",
+            "TRD121",
+            "ATA122",
+            "CSE1242",
+            "MATH1002",
+            "MATH2256",
+            "PHYS1102",
+            "PHYS1104",
+            "TRD122",
+            "HR1013"
+        ],
+        "term": 3,
+        "termPassed": [2],
+        "gradesFailed": [],
+        "gradesPassed": [
+            "CC",
+            "CC",
+            "AA",
+            "BA",
+            "CC",
+            "CC",
+            "CC",
+            "CC",
+            "CC",
+            "BA",
+            "AA",
+            "CC",
+            "BA",
+            "CC",
+            "AA",
+            "CC"
+        ]
+    },
+    "unreadNotification": [],
+    "name": "Umut",
+    "registration": {
+        "selectedCourses": [],
+        "approvedCourses": []
+    },
+    "id": "150121009",
+    "type": "student",
+    "lastname": "Mutlu"
+}

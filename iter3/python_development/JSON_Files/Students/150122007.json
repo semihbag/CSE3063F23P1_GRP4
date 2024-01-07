@@ -1,0 +1,23 @@
+{
+    "advisor": "1501004",
+    "request": "false",
+    "readNotification": [],
+    "password": "Password.123",
+    "transcript": {
+        "failedCourses": [],
+        "passedCourses": [],
+        "termPassed": [],
+        "term": 1,
+        "gradesFailed": [],
+        "gradesPassed": []
+    },
+    "unreadNotification": [],
+    "name": "Adnan",
+    "registration": {
+        "selectedCourses": [],
+        "approvedCourses": []
+    },
+    "id": "150122007",
+    "type": "student",
+    "lastname": "Ziya"
+}

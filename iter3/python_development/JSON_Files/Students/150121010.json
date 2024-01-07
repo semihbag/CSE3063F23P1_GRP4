@@ -1,0 +1,60 @@
+{
+    "advisor": "1501009",
+    "request": "false",
+    "readNotification": [],
+    "password": "Saliha45.",
+    "transcript": {
+        "failedCourses": [
+            "MATH1001",
+            "MATH1002",
+            "MATH2256"
+        ],
+        "passedCourses": [
+            "ATA121",
+            "MBG1201",
+            "CSE1200",
+            "CSE1241",
+            "PHYS1101",
+            "PHYS1103",
+            "TRD121",
+            "ATA122",
+            "CSE1242",
+            "PHYS1102",
+            "PHYS1104",
+            "TRD122",
+            "COMM2060"
+        ],
+        "term": 3,
+        "termPassed": [2],
+
+        "gradesFailed": [
+            "FF",
+            "FF",
+            "FF"
+        ],
+        "gradesPassed": [
+            "BB",
+            "BB",
+            "CB",
+            "BB",
+            "CB",
+            "BA",
+            "AA",
+            "BB",
+            "DC",
+            "CB",
+            "BA",
+            "AA",
+            "DD"
+        ]
+    },
+    "unreadNotification": [],
+    "name": "Saliha",
+    "registration": {
+        "selectedCourses": [],
+        "approvedCourses": []
+    },
+    "id": "150121010",
+    "type": "student",
+    "lastname": "Durbilmez"
+}

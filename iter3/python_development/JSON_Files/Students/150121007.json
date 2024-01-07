@@ -1,0 +1,58 @@
+{
+    "advisor": "1501005",
+    "request": "false",
+    "readNotification": [],
+    "password": "Password_123",
+    "transcript": {
+        "failedCourses": [],
+        "passedCourses": [
+            "ATA121",
+            "MBG1201",
+            "CSE1200",
+            "CSE1241",
+            "MATH1001",
+            "PHYS1101",
+            "PHYS1103",
+            "TRD121",
+            "ATA122",
+            "CSE1242",
+            "MATH1002",
+            "MATH2256",
+            "PHYS1102",
+            "PHYS1104",
+            "TRD122",
+            "NTE1013"
+        ],
+        "term": 3,
+        "termPassed": [2],
+
+        "gradesFailed": [],
+        "gradesPassed": [
+            "DD",
+            "BB",
+            "BB",
+            "CB",
+            "AA",
+            "CC",
+            "AA",
+            "DC",
+            "AA",
+            "DC",
+            "BA",
+            "BB",
+            "DD",
+            "AA",
+            "DC",
+            "BA"
+        ]
+    },
+    "unreadNotification": [],
+    "name": "Bihter",
+    "registration": {
+        "selectedCourses": [],
+        "approvedCourses": []
+    },
+    "id": "150121007",
+    "type": "student",
+    "lastname": "Yalcin"
+}
