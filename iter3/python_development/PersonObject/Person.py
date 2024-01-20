@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 
-from python_development.CourseObject.Syllabus import Syllabus
-
+from iter3.python_development.CourseObject.Syllabus import Syllabus
 
 class Person(ABC):
     def __init__(self, firstName, lastName, personId, password):

@@ -1,4 +1,4 @@
-from python_development.PersonObject.Lecturer import Lecturer
+from iter3.python_development.PersonObject.Lecturer import Lecturer
 
 
 class Advisor(Lecturer):

@@ -1,6 +1,6 @@
 import unittest
 
-from python_development.PersonObject.Password import Password
+from iter3.python_development.PersonObject.Password import Password
 
 
 class TestPassword(unittest.TestCase):

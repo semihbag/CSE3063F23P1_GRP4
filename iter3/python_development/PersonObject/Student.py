@@ -1,7 +1,7 @@
-from python_development.CourseObject.CourseSession import CourseSession
-from python_development.CourseObject.CourseType import CourseType
-from python_development.PersonObject.Person import Person
-from python_development.PersonObject.Mark import Mark
+from iter3.python_development.CourseObject.CourseSession import CourseSession
+from iter3.python_development.CourseObject.CourseType import CourseType
+from iter3.python_development.PersonObject.Person import Person
+from iter3.python_development.PersonObject.Mark import Mark
 import logging
 logging.basicConfig(filename='../logfile.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 

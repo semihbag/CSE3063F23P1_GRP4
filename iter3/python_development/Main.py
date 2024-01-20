@@ -1,7 +1,7 @@
 import logging
 
-from python_development.System.SystemClass import SystemClass
-from python_development.UserInterface.UserInterface import UserInterface
+from iter3.python_development.System.SystemClass import SystemClass
+from iter3.python_development.UserInterface.UserInterface import UserInterface
 
 if __name__ == "__main__":
     try:

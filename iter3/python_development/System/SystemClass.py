@@ -2,12 +2,12 @@ import json
 import logging
 import time
 
-from python_development.PersonObject.Advisor import Advisor
-from python_development.CourseObject.CourseSession import CourseSession
-from python_development.PersonObject.Lecturer import Lecturer
-from python_development.Page.LoginPage import LoginPage
-from python_development.PersonObject.Student import Student
-from python_development.System.SystemDomain import SystemDomain
+from iter3.python_development.PersonObject.Advisor import Advisor
+from iter3.python_development.CourseObject.CourseSession import CourseSession
+from iter3.python_development.PersonObject.Lecturer import Lecturer
+from iter3.python_development.Page.LoginPage import LoginPage
+from iter3.python_development.PersonObject.Student import Student
+from iter3.python_development.System.SystemDomain import SystemDomain
 
 
 class SystemClass:

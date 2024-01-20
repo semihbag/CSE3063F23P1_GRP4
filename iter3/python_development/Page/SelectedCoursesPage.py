@@ -1,7 +1,7 @@
-from python_development.Page.Page import Page
-from python_development.Page.PageType import PageType
-from python_development.System.FunctionType import FunctionType
-from python_development.System.SystemMessage import SystemMessage
+from iter3.python_development.Page.Page import Page
+from iter3.python_development.Page.PageType import PageType
+from iter3.python_development.System.FunctionType import FunctionType
+from iter3.python_development.System.SystemMessage import SystemMessage
 
 class SelectedCoursesPage(Page):
 

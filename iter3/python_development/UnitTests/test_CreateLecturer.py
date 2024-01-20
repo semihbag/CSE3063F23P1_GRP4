@@ -1,6 +1,6 @@
 import os
 
-from python_development.Creator.CreateLecturer import CreateLecturer
+from iter3.python_development.Creator.CreateLecturer import CreateLecturer
 import unittest
 
 

@@ -1,5 +1,5 @@
-from python_development.Page.PageType import PageType
-from python_development.System.FunctionType import FunctionType
+from iter3.python_development.Page.PageType import PageType
+from iter3.python_development.System.FunctionType import FunctionType
 
 class SystemMessage:
     

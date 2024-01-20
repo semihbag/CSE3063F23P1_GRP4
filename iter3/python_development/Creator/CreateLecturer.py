@@ -1,9 +1,9 @@
 import json
 import logging
 
-from python_development.PersonObject.Lecturer import Lecturer
-from python_development.PersonObject.Id import Id
-from python_development.PersonObject.Password import Password
+from iter3.python_development.PersonObject.Lecturer import Lecturer
+from iter3.python_development.PersonObject.Id import Id
+from iter3.python_development.PersonObject.Password import Password
 
 
 class CreateLecturer:

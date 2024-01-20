@@ -1,8 +1,8 @@
-from python_development.Creator.CreateAdvisor import CreateAdvisor
-from python_development.Creator.CreateCourse import CreateCourse
-from python_development.Creator.CreateLecturer import CreateLecturer
-from python_development.Creator.CreatePage import CreatePage
-from python_development.Creator.CreateStudent import CreateStudent
+from iter3.python_development.Creator.CreateAdvisor import CreateAdvisor
+from iter3.python_development.Creator.CreateCourse import CreateCourse
+from iter3.python_development.Creator.CreateLecturer import CreateLecturer
+from iter3.python_development.Creator.CreatePage import CreatePage
+from iter3.python_development.Creator.CreateStudent import CreateStudent
 
 
 class SystemDomain:

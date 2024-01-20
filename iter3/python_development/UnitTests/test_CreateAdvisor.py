@@ -1,8 +1,8 @@
 import unittest
 import os
 
-from python_development.PersonObject.Lecturer import Lecturer
-from python_development.Creator.CreateAdvisor import CreateAdvisor
+from iter3.python_development.PersonObject.Lecturer import Lecturer
+from iter3.python_development.Creator.CreateAdvisor import CreateAdvisor
 
 
 class TestCreateAdvisor(unittest.TestCase):
